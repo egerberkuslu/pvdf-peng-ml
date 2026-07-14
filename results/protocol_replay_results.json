@@ -1,0 +1,42 @@
+{
+  "airfoil": {
+    "n": 1503,
+    "in_sample_R2": 0.9941526281148778,
+    "recordwise_10fold_R2": 0.9126086517738323,
+    "gp_coverage95_recordwise": 0.9387890884896873,
+    "leave_one_velocity_out_R2": 0.8702617013138196,
+    "n_velocity_levels": 4,
+    "leave_one_chord_out_R2": 0.6493856120273374,
+    "n_chord_levels": 6,
+    "cvplus_rf_coverage95": 0.9993346640053227,
+    "cvplus_rf_mean_width95": 7.1177516788645,
+    "active_learning_top1pct": {
+      "EI_median": 17.5,
+      "EI_mean": 18.05,
+      "random_median": 48.5,
+      "random_mean": 65.0,
+      "budget_total": 1503,
+      "EI_median_budget_pct": 1.164337990685296
+    }
+  },
+  "energy_efficiency": {
+    "n": 768,
+    "in_sample_R2": 0.9996236033583047,
+    "recordwise_10fold_R2": 0.9986679685964099,
+    "gp_coverage95_recordwise": 0.9244791666666666,
+    "leave_one_glazing_out_R2": 0.8236909704516813,
+    "n_glazing_levels": 4,
+    "leave_one_compactness_out_R2": 0.49636502773604185,
+    "n_compactness_levels": 12,
+    "cvplus_rf_coverage95": 0.9986979166666666,
+    "cvplus_rf_mean_width95": 2.052027847222232,
+    "active_learning_top1pct": {
+      "EI_median": 15.5,
+      "EI_mean": 17.95,
+      "random_median": 68.0,
+      "random_mean": 72.55,
+      "budget_total": 768,
+      "EI_median_budget_pct": 2.0182291666666665
+    }
+  }
+}

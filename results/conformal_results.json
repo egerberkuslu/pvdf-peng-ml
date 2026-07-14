@@ -1,0 +1,60 @@
+{
+  "method": "CV+ (K=10 outer, jackknife+ inner)",
+  "timing_probe_per_outer_fold_sec": 6.39,
+  "estimated_full_nested_loo_both_targets_sec": 958.5,
+  "n_rows": 75,
+  "seed": 0,
+  "targets": {
+    "Vpp": {
+      "loo_rf_mae_300trees": 0.3199603068237094,
+      "loo_rf_rmse_300trees": 0.5970941699890461,
+      "jackknife_plus": {
+        "90": {
+          "empirical_coverage": 0.9866666666666667,
+          "mean_width": 1.665661340207243,
+          "median_width": 1.6056729317386207,
+          "mean_width_top_decile": 1.908846552874186,
+          "n_top_decile": 8
+        },
+        "95": {
+          "empirical_coverage": 1.0,
+          "mean_width": 2.954614632737414,
+          "median_width": 2.976986323210515,
+          "mean_width_top_decile": 3.016033690892855,
+          "n_top_decile": 8
+        }
+      },
+      "gp_loo": {
+        "coverage_95": 0.9066666666666666,
+        "mean_width_95": 2.16415488661354,
+        "median_width_95": 2.12904747612947
+      }
+    },
+    "Vmax": {
+      "loo_rf_mae_300trees": 0.2603294019153524,
+      "loo_rf_rmse_300trees": 0.37199077204537095,
+      "jackknife_plus": {
+        "90": {
+          "empirical_coverage": 1.0,
+          "mean_width": 1.3429430257006114,
+          "median_width": 1.3512705064756059,
+          "mean_width_top_decile": 1.3755225321313556,
+          "n_top_decile": 8
+        },
+        "95": {
+          "empirical_coverage": 1.0,
+          "mean_width": 1.9376550543757007,
+          "median_width": 1.9490058592170079,
+          "mean_width_top_decile": 1.8750496776554089,
+          "n_top_decile": 8
+        }
+      },
+      "gp_loo": {
+        "coverage_95": 0.8933333333333333,
+        "mean_width_95": 1.3879416552336135,
+        "median_width_95": 1.3470319809932212
+      }
+    }
+  },
+  "total_runtime_sec": 126.0
+}

@@ -1,0 +1,47 @@
+External benchmark datasets (UCI Machine Learning Repository)
+=============================================================
+
+The two files in this directory are PUBLIC benchmark datasets from the UCI
+Machine Learning Repository. They are redistributed here unchanged so that the
+protocol-replay experiment (code/protocol_replay.py) can be reproduced without
+network access. They are NOT part of the piezoelectric nanogenerator study; they
+serve only as independent, external test beds for the same modeling protocol.
+
+-------------------------------------------------------------------------------
+1. airfoil_self_noise.dat
+-------------------------------------------------------------------------------
+Name      : Airfoil Self-Noise Data Set
+Source    : UCI Machine Learning Repository
+URL       : https://archive.ics.uci.edu/dataset/291/airfoil+self+noise
+Provenance: NASA aerodynamic and acoustic tests of airfoil blade sections
+            conducted in an anechoic wind tunnel.
+Citation  : Brooks, T. F., Pope, D. S., & Marcolini, M. A. (1989).
+            Airfoil Self-Noise and Prediction. NASA Reference Publication 1218.
+            National Aeronautics and Space Administration.
+Format    : Tab-separated, 6 columns, 1503 rows, no header.
+            Columns: frequency [Hz], angle of attack [deg], chord length [m],
+            free-stream velocity [m/s], suction-side displacement thickness [m],
+            scaled sound pressure level [dB] (target).
+
+-------------------------------------------------------------------------------
+2. ENB2012_data.xlsx
+-------------------------------------------------------------------------------
+Name      : Energy Efficiency Data Set
+Source    : UCI Machine Learning Repository
+URL       : https://archive.ics.uci.edu/dataset/242/energy+efficiency
+Provenance: Simulated energy analysis of 768 building shapes performed in
+            Ecotect.
+Citation  : Tsanas, A., & Xifara, A. (2012). Accurate quantitative estimation of
+            energy performance of residential buildings using statistical
+            machine learning tools. Energy and Buildings, 49, 560-567.
+            https://doi.org/10.1016/j.enbuild.2012.03.003
+Format    : Excel (.xlsx), 8 input features (X1-X8), 2 targets (Y1 heating load,
+            Y2 cooling load), 768 rows.
+
+-------------------------------------------------------------------------------
+License / terms
+-------------------------------------------------------------------------------
+UCI Machine Learning Repository datasets are distributed under the
+Creative Commons Attribution 4.0 International (CC BY 4.0) license.
+The datasets are provided here under those original terms. Please cite the
+original publications listed above when using these files.

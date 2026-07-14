@@ -1,0 +1,38 @@
+{
+  "energy_is_N_rms2_max_abs_dev": 1.4210854715202004e-14,
+  "rms_LOO_R2": 0.9141997156901656,
+  "rms_LOO_MAE": 0.018458242037890663,
+  "rms_leave_one_composition_out_R2": 0.7117454655603047,
+  "rms_leave_one_composition_out_MAE": 0.033329064774478445,
+  "rms_leave_one_frequency_out_R2": -1.0994419167157736,
+  "rms_leave_one_frequency_out_MAE": 0.08042943506187014,
+  "rms_leave_one_force_out_R2": 0.519345899337734,
+  "rms_leave_one_force_out_MAE": 0.03431642063376527,
+  "drop20Hz_pred_mean": 0.11441780220786599,
+  "drop20Hz_meas_mean": 0.20301222301075839,
+  "drop20Hz_MAE": 0.08860570491405931,
+  "drop20Hz_rel_underprediction_pct": 43.639944181192206,
+  "calibration_slope": 0.9150334976353312,
+  "calibration_intercept": 0.010939663594642384,
+  "top10pct_MAE": 0.03196014081800441,
+  "top10pct_mean_rel_err_pct": 10.779814966760656,
+  "overall_mean_rel_err_pct": 29.027032984198158,
+  "MAE_by_frequency": {
+    "5": 0.01808116885342041,
+    "10": 0.011305271830916971,
+    "15": 0.01936634139538537,
+    "20": 0.0278880051949059,
+    "25": 0.01565042291482467
+  },
+  "MAE_by_composition": {
+    "PVDF": 0.012644507216993013,
+    "PVDF+BaTiO3": 0.01352462552181238,
+    "PVDF+BaTiO3+%1CNT": 0.021768570201637007,
+    "PVDF+BaTiO3+%2CNT": 0.026954460765965364,
+    "PVDF+BaTiO3+%3CNT": 0.01739904648304557
+  },
+  "coverage68_pct": 61.33333333333333,
+  "coverage95_pct": 88.0,
+  "mean_interval_width95": 0.07963455160136634,
+  "mean_posterior_std": 0.020315309926821522
+}

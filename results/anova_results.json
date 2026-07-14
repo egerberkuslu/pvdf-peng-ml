@@ -1,0 +1,180 @@
+{
+  "rms_Voc": {
+    "residual_df": 32,
+    "model_R2": 0.9552769501530363,
+    "typ2_partial_eta2": {
+      "composition": 0.5475321029355154,
+      "force": 0.8456970783882136,
+      "frequency": 0.910987017792334,
+      "composition:force": 0.6477227503824975,
+      "composition:frequency": 0.40004502097092187,
+      "force:frequency": 0.6586090570631135
+    },
+    "typ3_partial_eta2": {
+      "composition": 0.5475321029355131,
+      "force": 0.8456970783882147,
+      "frequency": 0.9109870177923338,
+      "composition:force": 0.6477227503824977,
+      "composition:frequency": 0.4000450209709214,
+      "force:frequency": 0.6586090570631137
+    },
+    "typ2_p_values": {
+      "composition": 3.0121528829748497e-05,
+      "force": 1.0327290342137231e-13,
+      "frequency": 2.419378241390451e-16,
+      "composition:force": 1.6323148650264203e-05,
+      "composition:frequency": 0.23713489652823383,
+      "force:frequency": 1.0337136532507662e-05
+    },
+    "partial_eta2_90CI_typ2_residboot": {
+      "composition": [
+        0.6151238876406755,
+        0.8502593748051602
+      ],
+      "force": [
+        0.8859262422492455,
+        0.9593364756933065
+      ],
+      "frequency": [
+        0.9367401234588136,
+        0.9777260696401414
+      ],
+      "composition:force": [
+        0.7281377427909903,
+        0.8932933972979252
+      ],
+      "composition:frequency": [
+        0.5259052957153247,
+        0.7958675318008596
+      ],
+      "force:frequency": [
+        0.7342175505502674,
+        0.8970058799912816
+      ]
+    },
+    "diagnostics": {
+      "shapiro_p": 0.0011319489538315246,
+      "breusch_pagan_p": 0.01673397867294547,
+      "levene_composition_p": 0.33885430040083153
+    }
+  },
+  "log_rms": {
+    "residual_df": 32,
+    "model_R2": 0.9677635295639362,
+    "typ2_partial_eta2": {
+      "composition": 0.6268412136819487,
+      "force": 0.9179705117409649,
+      "frequency": 0.9254526616821352,
+      "composition:force": 0.8005909861705238,
+      "composition:frequency": 0.21144072409984424,
+      "force:frequency": 0.31174714058006064
+    },
+    "typ3_partial_eta2": {
+      "composition": 0.6268412136819281,
+      "force": 0.9179705117409652,
+      "frequency": 0.9254526616821352,
+      "composition:force": 0.8005909861705242,
+      "composition:frequency": 0.21144072409984582,
+      "force:frequency": 0.3117471405800619
+    },
+    "typ2_p_values": {
+      "composition": 1.5590246331198144e-06,
+      "force": 4.202619152748547e-18,
+      "frequency": 1.438038079606487e-17,
+      "composition:force": 3.2483777497039376e-09,
+      "composition:frequency": 0.906380790119339,
+      "force:frequency": 0.11135524034953237
+    },
+    "partial_eta2_90CI_typ2_residboot": {
+      "composition": [
+        0.7147881935662198,
+        0.8764172780142081
+      ],
+      "force": [
+        0.945938508836244,
+        0.9775343731068784
+      ],
+      "frequency": [
+        0.9511435211568962,
+        0.9794898782210936
+      ],
+      "composition:force": [
+        0.8634036321024424,
+        0.9412717408601707
+      ],
+      "composition:frequency": [
+        0.3683252426825476,
+        0.6753815225774729
+      ],
+      "force:frequency": [
+        0.4017620203556498,
+        0.7078194945230168
+      ]
+    },
+    "diagnostics": {
+      "shapiro_p": 0.49028264447637776,
+      "breusch_pagan_p": 0.052826350454451526,
+      "levene_composition_p": 0.2173613231449687
+    }
+  },
+  "Vpp": {
+    "residual_df": 32,
+    "model_R2": 0.9400048730432577,
+    "typ2_partial_eta2": {
+      "composition": 0.37650082258331646,
+      "force": 0.7560770928219636,
+      "frequency": 0.8829966632913145,
+      "composition:force": 0.5057268522712169,
+      "composition:frequency": 0.4167529903191692,
+      "force:frequency": 0.7282635294887082
+    },
+    "typ3_partial_eta2": {
+      "composition": 0.3765008225833153,
+      "force": 0.7560770928219656,
+      "frequency": 0.8829966632913145,
+      "composition:force": 0.5057268522712172,
+      "composition:frequency": 0.4167529903191678,
+      "force:frequency": 0.7282635294887084
+    },
+    "typ2_p_values": {
+      "composition": 0.003664033824983085,
+      "force": 1.5705125092743465e-10,
+      "frequency": 1.8661731548934083e-14,
+      "composition:force": 0.0018961872326915279,
+      "composition:frequency": 0.18988223537278193,
+      "force:frequency": 3.5349530916317276e-07
+    },
+    "partial_eta2_90CI_typ2_residboot": {
+      "composition": [
+        0.4373593927258335,
+        0.7570279138775065
+      ],
+      "force": [
+        0.8123622193540172,
+        0.9325598555417287
+      ],
+      "frequency": [
+        0.9168205965293867,
+        0.9708018037162418
+      ],
+      "composition:force": [
+        0.5972123281727045,
+        0.8353319153878156
+      ],
+      "composition:frequency": [
+        0.5337299476661272,
+        0.8077336469101253
+      ],
+      "force:frequency": [
+        0.79367442951379,
+        0.9250992173057105
+      ]
+    },
+    "diagnostics": {
+      "shapiro_p": 0.0006450639187209209,
+      "breusch_pagan_p": 0.05092243874509158,
+      "levene_composition_p": 0.48265329653000044
+    }
+  },
+  "recommended_scale_for_rms": "log10"
+}
