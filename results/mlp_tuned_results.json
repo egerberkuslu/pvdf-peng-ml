@@ -2,9 +2,9 @@
   "rms_Voc": {
     "tuned_nestedCV_R2": 0.8433918601459529,
     "tuned_nestedCV_MAE": 0.022040850161885325,
-    "fixed_config_LOO_R2": 0.831,
+    "fixed_config_LOO_R2": 0.793,
     "GP_LOO_R2": 0.914,
-    "delta_tuned_minus_fixed": 0.012391860145952949,
+    "delta_tuned_minus_fixed": 0.05039186014595287,
     "delta_tuned_minus_GP": -0.07060813985404713,
     "most_selected_config": {
       "hidden": [
@@ -19,9 +19,9 @@
   "Vpp": {
     "tuned_nestedCV_R2": 0.7931158039205553,
     "tuned_nestedCV_MAE": 0.4204664073462123,
-    "fixed_config_LOO_R2": 0.769,
+    "fixed_config_LOO_R2": 0.786,
     "GP_LOO_R2": 0.775,
-    "delta_tuned_minus_fixed": 0.024115803920555234,
+    "delta_tuned_minus_fixed": 0.007115803920555219,
     "delta_tuned_minus_GP": 0.01811580392055523,
     "most_selected_config": {
       "hidden": [
@@ -36,9 +36,9 @@
   "Vmax": {
     "tuned_nestedCV_R2": 0.8145957344841321,
     "tuned_nestedCV_MAE": 0.2828445012943877,
-    "fixed_config_LOO_R2": 0.754,
+    "fixed_config_LOO_R2": 0.778,
     "GP_LOO_R2": 0.788,
-    "delta_tuned_minus_fixed": 0.060595734484132135,
+    "delta_tuned_minus_fixed": 0.036595734484132114,
     "delta_tuned_minus_GP": 0.026595734484132105,
     "most_selected_config": {
       "hidden": [

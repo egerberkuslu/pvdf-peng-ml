@@ -37,8 +37,10 @@ read it from the current working directory and write their JSON next to it).
 | `protocol_replay.py` | `protocol_replay_results.json` | external replication |
 | `make_graphical_abstract.py` | figure | overview figure (early draft) |
 
-`cv_results.json` and `sig_table.json` are pre-existing artifacts of the
-original model benchmark, included for completeness.
+`reg_models.json` and `reg_stats.json` are the authoritative outputs of the
+original DVC benchmark pipeline (per-model LOO-CV scores and the
+bootstrap/Wilcoxon significance statistics reported in Tables 3-4 of the
+paper).
 
 ## Dependencies
 
