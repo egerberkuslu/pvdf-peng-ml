@@ -36,11 +36,16 @@ read it from the current working directory and write their JSON next to it).
 | `anova_detail.py` | `anova_results.json` | full ANOVA specification |
 | `protocol_replay.py` | `protocol_replay_results.json` | external replication |
 | `make_graphical_abstract.py` | figure | overview figure (early draft) |
+| `make_model_comparison.py` | `fig05` bar chart | fourteen-regressor comparison (Fig. 5) |
+| `make_calibration_figure.py` | `fig05_calibration` | LOO calibration scatter (Fig. 6) |
 
 `reg_models.json` and `reg_stats.json` are the authoritative outputs of the
 original DVC benchmark pipeline (per-model LOO-CV scores and the
 bootstrap/Wilcoxon significance statistics reported in Tables 3-4 of the
-paper).
+paper). Where the two files overlap, `reg_stats.json` is the canonical
+source for the numbers quoted in the paper (the files differ only in the
+ARD-GP score on the peak-voltage target, 0.783 vs 0.777, from a minor
+refit between runs).
 
 ## Dependencies
 
