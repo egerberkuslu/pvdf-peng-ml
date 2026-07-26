@@ -38,6 +38,7 @@ read it from the current working directory and write their JSON next to it).
 | `make_graphical_abstract.py` | figure | overview figure (early draft) |
 | `make_model_comparison.py` | `fig05` bar chart | fourteen-regressor comparison (Fig. 5) |
 | `make_calibration_figure.py` | `fig05_calibration` | LOO calibration scatter (Fig. 6) |
+| `make_uncertainty_map.py` | `fig07_uncertainty_map` | GP reliability map + quoted std stats (Fig. 9) |
 
 `reg_models.json` and `reg_stats.json` are the authoritative outputs of the
 original DVC benchmark pipeline (per-model LOO-CV scores and the
