@@ -74,6 +74,7 @@ data/external/  UCI benchmark datasets (see NOTE.txt for provenance)
 | `protocol_replay_extended.py` | `protocol_replay_extended.json` | five-dataset external replication with calibrated GP intervals |
 | `revision_experiments.py` | `revision_experiments.json` | referee-response batch: per-fold force results, mean-function ablations, coverage binomial CIs, Lorentzian uncertainties, multi-seed stability, n=75 subsampled replication, realizable stopping rule and OFAT baseline |
 | `groupwise_conformal.py` | `groupwise_conformal.json` | paired McNemar on raw-vs-jackknife+ hits and jackknife+ coverage under group-wise splits |
+| `ga_search.py` | `ga_search.json` | genetic-algorithm cross-check of the dense-grid optimum over the refit GP surrogate |
 
 ## Usage Instructions
 
