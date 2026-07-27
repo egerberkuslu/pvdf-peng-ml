@@ -1,0 +1,120 @@
+{
+  "airfoil": {
+    "n": 1503,
+    "in_sample_R2": 0.994152627217764,
+    "recordwise_10fold_R2": 0.9126086484660253,
+    "gp_raw_coverage95": 0.9387890884896873,
+    "gp_cvplus": {
+      "90": {
+        "coverage": 0.9973386560212908,
+        "mean_width": 6.313029635833578
+      },
+      "95": {
+        "coverage": 0.9986693280106453,
+        "mean_width": 9.376826236668489
+      }
+    },
+    "leave_one_chord_out_R2": 0.649385740549381,
+    "n_chord_levels": 6,
+    "leave_one_velocity_out_R2": 0.8707269399119338,
+    "n_velocity_levels": 4,
+    "active_learning_top1pct": {
+      "EI_median": 17.5,
+      "random_median": 48.5
+    }
+  },
+  "energy_efficiency": {
+    "n": 768,
+    "in_sample_R2": 0.999623603358352,
+    "recordwise_10fold_R2": 0.9986679680795729,
+    "gp_raw_coverage95": 0.9244791666666666,
+    "gp_cvplus": {
+      "90": {
+        "coverage": 0.9895833333333334,
+        "mean_width": 1.247152957347086
+      },
+      "95": {
+        "coverage": 0.9973958333333334,
+        "mean_width": 1.6011360671789154
+      }
+    },
+    "leave_one_compactness_out_R2": 0.4963737611127178,
+    "n_compactness_levels": 12,
+    "leave_one_glazing_out_R2": 0.8218093350317365,
+    "n_glazing_levels": 4,
+    "active_learning_top1pct": {
+      "EI_median": 15.5,
+      "random_median": 68.0
+    }
+  },
+  "concrete": {
+    "n": 1030,
+    "in_sample_R2": 0.9764249392462173,
+    "recordwise_10fold_R2": 0.9212960680307931,
+    "gp_raw_coverage95": 0.9398058252427185,
+    "gp_cvplus": {
+      "90": {
+        "coverage": 0.9854368932038835,
+        "mean_width": 15.905247049050725
+      },
+      "95": {
+        "coverage": 0.9970873786407767,
+        "mean_width": 20.367547734203125
+      }
+    },
+    "leave_one_binder_out_R2": 0.7021480088883079,
+    "n_binder_levels": 4,
+    "leave_one_age_out_R2": 0.5552844562101007,
+    "n_age_levels": 14,
+    "active_learning_top1pct": {
+      "EI_median": 25.0,
+      "random_median": 63.5
+    }
+  },
+  "yacht": {
+    "n": 308,
+    "in_sample_R2": 0.9999801412695672,
+    "recordwise_10fold_R2": 0.9992801275897488,
+    "gp_raw_coverage95": 0.8831168831168831,
+    "gp_cvplus": {
+      "90": {
+        "coverage": 1.0,
+        "mean_width": 1.0784705436684432
+      },
+      "95": {
+        "coverage": 1.0,
+        "mean_width": 1.7391292912346157
+      }
+    },
+    "leave_one_hull_out_R2": 0.9864029668746882,
+    "n_hull_levels": 22,
+    "leave_one_froude_out_R2": 0.9993424884454677,
+    "n_froude_levels": 14,
+    "active_learning_top1pct": {
+      "EI_median": 12.5,
+      "random_median": 44.0
+    }
+  },
+  "ccpp_2000sub": {
+    "n": 2000,
+    "in_sample_R2": 0.9533333741473081,
+    "recordwise_10fold_R2": 0.9466394040657414,
+    "gp_raw_coverage95": 0.958,
+    "gp_cvplus": {
+      "90": {
+        "coverage": 0.923,
+        "mean_width": 12.241082050886087
+      },
+      "95": {
+        "coverage": 0.957,
+        "mean_width": 14.71433418349422
+      }
+    },
+    "leave_one_AT_band_out_R2": 0.9420591225606837,
+    "n_AT_band_levels": 8,
+    "active_learning_top1pct": {
+      "EI_median": 15.0,
+      "random_median": 90.5
+    }
+  }
+}
