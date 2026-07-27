@@ -57,6 +57,14 @@ for ax, (akey, atitle) in zip(axs, AXES):
     ax.set_title(atitle, fontsize=10)
     ax.tick_params(labelsize=8)
     ax.set_ylim(-3.1, 1.05)
+    for xi, val in zip(x, p):
+        if val < -3.1:
+            ax.text(xi + w / 2, -3.02, f"{val:.1f}", ha="center", va="bottom",
+                    fontsize=7, color="#D1495B", rotation=90)
+    for xi, val in zip(x, g):
+        if val < -3.1:
+            ax.text(xi - w / 2, -3.02, f"{val:.1f}", ha="center", va="bottom",
+                    fontsize=7, color="#4878A8", rotation=90)
 axs[0].set_ylabel(r"group-wise CV $R^2$", fontsize=9)
 axs[0].legend(fontsize=8.5, frameon=False, loc="lower left")
 for ext in ("pdf", "png"):

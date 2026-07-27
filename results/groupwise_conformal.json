@@ -1,0 +1,56 @@
+{
+ "mcnemar_rms": {
+  "90": {
+   "raw_cov": 0.84,
+   "jk_cov": 0.9066666666666666,
+   "jk_only_hits_b": 6,
+   "raw_only_hits_c": 1,
+   "mcnemar_exact_p": 0.125
+  },
+  "95": {
+   "raw_cov": 0.88,
+   "jk_cov": 0.96,
+   "jk_only_hits_b": 7,
+   "raw_only_hits_c": 1,
+   "mcnemar_exact_p": 0.0703125
+  }
+ },
+ "groupwise_jackknife_rms": {
+  "composition": {
+   "90": {
+    "coverage": 0.6266666666666667,
+    "n": 75,
+    "mean_width": 0.07731639442939717
+   },
+   "95": {
+    "coverage": 0.88,
+    "n": 75,
+    "mean_width": 0.10854072484730243
+   }
+  },
+  "force": {
+   "90": {
+    "coverage": 0.6666666666666666,
+    "n": 75,
+    "mean_width": 0.06953673192114107
+   },
+   "95": {
+    "coverage": 0.8,
+    "n": 75,
+    "mean_width": 0.12245807252701338
+   }
+  },
+  "frequency": {
+   "90": {
+    "coverage": 0.28,
+    "n": 75,
+    "mean_width": 0.07011493001319657
+   },
+   "95": {
+    "coverage": 0.4,
+    "n": 75,
+    "mean_width": 0.08922880430321964
+   }
+  }
+ }
+}

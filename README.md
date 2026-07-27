@@ -72,6 +72,8 @@ data/external/  UCI benchmark datasets (see NOTE.txt for provenance)
 | `calibrated_conformal.py` | `calibrated_conformal_results.json` | nested-LOO jackknife+ and sigma-scaled intervals for the GP |
 | `make_physgp_figures.py` | `fig12`, `fig13` | axis-wise generalization and coverage-width figures |
 | `protocol_replay_extended.py` | `protocol_replay_extended.json` | five-dataset external replication with calibrated GP intervals |
+| `revision_experiments.py` | `revision_experiments.json` | referee-response batch: per-fold force results, mean-function ablations, coverage binomial CIs, Lorentzian uncertainties, multi-seed stability, n=75 subsampled replication, realizable stopping rule and OFAT baseline |
+| `groupwise_conformal.py` | `groupwise_conformal.json` | paired McNemar on raw-vs-jackknife+ hits and jackknife+ coverage under group-wise splits |
 
 ## Usage Instructions
 
