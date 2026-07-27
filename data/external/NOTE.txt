@@ -1,11 +1,15 @@
 External benchmark datasets (UCI Machine Learning Repository)
 =============================================================
 
-The two files in this directory are PUBLIC benchmark datasets from the UCI
+The data files in this directory are PUBLIC benchmark datasets from the UCI
 Machine Learning Repository. They are redistributed here unchanged so that the
 protocol-replay experiment (code/protocol_replay.py) can be reproduced without
 network access. They are NOT part of the piezoelectric nanogenerator study; they
 serve only as independent, external test beds for the same modeling protocol.
+
+Each entry lists the discrete, low-cardinality columns that were verified in the
+data itself and are therefore usable as grouping variables for leave-one-level-out
+or grouped k-fold cross-validation.
 
 -------------------------------------------------------------------------------
 1. airfoil_self_noise.dat
@@ -13,6 +17,7 @@ serve only as independent, external test beds for the same modeling protocol.
 Name      : Airfoil Self-Noise Data Set
 Source    : UCI Machine Learning Repository
 URL       : https://archive.ics.uci.edu/dataset/291/airfoil+self+noise
+Repo DOI  : 10.24432/C5VW2C
 Provenance: NASA aerodynamic and acoustic tests of airfoil blade sections
             conducted in an anechoic wind tunnel.
 Citation  : Brooks, T. F., Pope, D. S., & Marcolini, M. A. (1989).
@@ -22,6 +27,7 @@ Format    : Tab-separated, 6 columns, 1503 rows, no header.
             Columns: frequency [Hz], angle of attack [deg], chord length [m],
             free-stream velocity [m/s], suction-side displacement thickness [m],
             scaled sound pressure level [dB] (target).
+Groups    : free-stream velocity (4 levels), chord length (6 levels).
 
 -------------------------------------------------------------------------------
 2. ENB2012_data.xlsx
@@ -29,6 +35,7 @@ Format    : Tab-separated, 6 columns, 1503 rows, no header.
 Name      : Energy Efficiency Data Set
 Source    : UCI Machine Learning Repository
 URL       : https://archive.ics.uci.edu/dataset/242/energy+efficiency
+Repo DOI  : 10.24432/C51307
 Provenance: Simulated energy analysis of 768 building shapes performed in
             Ecotect.
 Citation  : Tsanas, A., & Xifara, A. (2012). Accurate quantitative estimation of
@@ -37,6 +44,103 @@ Citation  : Tsanas, A., & Xifara, A. (2012). Accurate quantitative estimation of
             https://doi.org/10.1016/j.enbuild.2012.03.003
 Format    : Excel (.xlsx), 8 input features (X1-X8), 2 targets (Y1 heating load,
             Y2 cooling load), 768 rows.
+Groups    : X7 glazing area distribution (4 levels), X1 relative compactness
+            (12 levels), X5 overall height (2 levels), X6 orientation (4 levels).
+
+-------------------------------------------------------------------------------
+3. Concrete_Data.xls
+-------------------------------------------------------------------------------
+Name      : Concrete Compressive Strength Data Set
+Source    : UCI Machine Learning Repository
+URL       : https://archive.ics.uci.edu/dataset/165/concrete+compressive+strength
+Repo DOI  : 10.24432/C5PK67
+Provenance: Laboratory compression tests on concrete cylinders of varying mixture
+            proportions and curing ages, donated by Prof. I-Cheng Yeh,
+            Chung-Hua University, Taiwan (2007).
+Citation  : Yeh, I.-C. (1998). Modeling of strength of high performance concrete
+            using artificial neural networks. Cement and Concrete Research,
+            28(12), 1797-1808.
+            https://doi.org/10.1016/S0008-8846(98)00165-3
+Format    : Excel (.xls), single sheet with header row, 1030 rows, 9 columns,
+            no missing values. Columns: cement, blast furnace slag, fly ash,
+            water, superplasticizer, coarse aggregate, fine aggregate
+            [all kg per m^3 of mixture], age [days, integer], and concrete
+            compressive strength [MPa] (target).
+            Rows are grouped by mixture rather than randomized, so any record
+            wise k-fold split must shuffle before splitting.
+Groups    : age in days (14 levels: 1, 3, 7, 14, 28, 56, 90, 91, 100, 120, 180,
+            270, 360, 365); mixture identity, defined as the unique combination
+            of the seven ingredient columns (428 levels, 1 to 20 records each);
+            binder type, derived from which supplementary cementitious materials
+            are present (4 levels: plain cement 232 records, slag only 334,
+            fly ash only 234, slag and fly ash 230).
+
+-------------------------------------------------------------------------------
+4. yacht_hydrodynamics.data
+-------------------------------------------------------------------------------
+Name      : Yacht Hydrodynamics Data Set
+Source    : UCI Machine Learning Repository
+URL       : https://archive.ics.uci.edu/dataset/243/yacht+hydrodynamics
+Repo DOI  : 10.24432/C5XG7R
+Provenance: Towing-tank resistance experiments on Delft systematic yacht hull
+            series models, Ship Hydromechanics Laboratory, Delft University of
+            Technology. Donated by Roberto Lopez.
+Citation  : Gerritsma, J., Onnink, R., & Versluis, A. (1981). Geometry,
+            resistance and stability of the Delft systematic yacht hull series.
+            International Shipbuilding Progress, 28(328), 276-297.
+            https://doi.org/10.3233/ISP-1981-2832801
+            Ortigosa, I., Lopez, R., & Garcia, J. (2007). A neural networks
+            approach to residuary resistance of sailing yachts prediction. In
+            Proceedings of the International Conference on Marine Engineering
+            (MARINE 2007), Barcelona.
+Format    : Space-separated, no header, 308 rows, 7 columns, no missing values.
+            Columns: longitudinal position of the centre of buoyancy, prismatic
+            coefficient, length-displacement ratio, beam-draught ratio,
+            length-beam ratio, Froude number, and residuary resistance per unit
+            weight of displacement (target).
+Groups    : hull identity, defined as the unique combination of the five
+            geometry columns (22 levels, exactly 14 records each); Froude number
+            (14 levels, exactly 22 records each); prismatic coefficient
+            (10 levels); length-beam ratio (10 levels); length-displacement
+            ratio (8 levels); longitudinal centre of buoyancy (5 levels).
+            The design is a complete 22 hulls by 14 speeds grid, so leaving one
+            hull out is a clean geometry-extrapolation test and leaving one
+            Froude number out is a clean speed-extrapolation test.
+
+-------------------------------------------------------------------------------
+5. Folds5x2_pp.xlsx
+-------------------------------------------------------------------------------
+Name      : Combined Cycle Power Plant Data Set
+Source    : UCI Machine Learning Repository
+URL       : https://archive.ics.uci.edu/dataset/294/combined+cycle+power+plant
+Repo DOI  : 10.24432/C5002N
+Provenance: Hourly averaged sensor readings collected over six years
+            (2006-2011) from a combined cycle power plant operating at full
+            load, donated by Pinar Tufekci and Heysem Kaya.
+Citation  : Tufekci, P. (2014). Prediction of full load electrical power output
+            of a base load operated combined cycle power plant using machine
+            learning methods. International Journal of Electrical Power and
+            Energy Systems, 60, 126-140.
+            https://doi.org/10.1016/j.ijepes.2014.02.027
+            Kaya, H., Tufekci, P., & Gurgen, S. F. (2012). Local and global
+            learning methods for predicting power of a combined gas and steam
+            turbine. In Proceedings of the International Conference on Emerging
+            Trends in Computer and Electronics Engineering (ICETCEE 2012),
+            13-18, Dubai.
+Format    : Excel (.xlsx) with five sheets. Each sheet holds the same 9568
+            records in a different random order, provided by the donors for
+            5x2-fold testing, so exactly one sheet must be used at a time.
+            Columns: AT ambient temperature [C], V exhaust vacuum [cm Hg],
+            AP ambient pressure [mbar], RH relative humidity [%], and PE net
+            hourly electrical energy output [MW] (target). No missing values;
+            41 exactly duplicated records are present in the original data and
+            are retained unchanged.
+Groups    : all four inputs are continuous, so no native discrete column exists.
+            Grouped splits therefore use a binned operating-regime variable
+            computed from the data: ambient temperature in 5 C bands
+            (8 levels spanning 0 to 35 C) or exhaust vacuum in 5 cm Hg bands
+            (12 levels spanning 25 to 80). Leaving out a temperature band is an
+            extrapolation test and is much harder than a record-wise split.
 
 -------------------------------------------------------------------------------
 License / terms
@@ -44,4 +148,8 @@ License / terms
 UCI Machine Learning Repository datasets are distributed under the
 Creative Commons Attribution 4.0 International (CC BY 4.0) license.
 The datasets are provided here under those original terms. Please cite the
-original publications listed above when using these files.
+original publications listed above when using these files. The Concrete
+Compressive Strength data carry the additional condition set by the donor that
+reuse is unlimited provided the copyright notice for Prof. I-Cheng Yeh and the
+1998 Cement and Concrete Research paper are retained, which the citation above
+satisfies.

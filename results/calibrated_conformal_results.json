@@ -1,0 +1,154 @@
+{
+  "rms_Voc": {
+    "raw_gp": {
+      "90": {
+        "coverage": 0.84,
+        "mean_width": 0.06683142244566737,
+        "median_width": 0.06697777713831315
+      },
+      "95": {
+        "coverage": 0.88,
+        "mean_width": 0.07963455159949882,
+        "median_width": 0.07980894397208083
+      }
+    },
+    "jackknife_plus": {
+      "90": {
+        "coverage": 0.9066666666666666,
+        "mean_width": 0.07174135287538233,
+        "median_width": 0.07179676469741117
+      },
+      "95": {
+        "coverage": 0.96,
+        "mean_width": 0.09137130212518589,
+        "median_width": 0.0880110195689826
+      }
+    },
+    "scaled_jackknife_plus": {
+      "90": {
+        "coverage": 0.9066666666666666,
+        "mean_width": 0.08442187181929954,
+        "median_width": 0.08677379774752153
+      },
+      "95": {
+        "coverage": 0.96,
+        "mean_width": 0.10567592211262176,
+        "median_width": 0.10529627290581106
+      }
+    }
+  },
+  "Vpp": {
+    "raw_gp": {
+      "90": {
+        "coverage": 0.9066666666666666,
+        "mean_width": 1.8161817047293085,
+        "median_width": 1.7867201342234158
+      },
+      "95": {
+        "coverage": 0.9066666666666666,
+        "mean_width": 2.1641139809183905,
+        "median_width": 2.1290083543912703
+      }
+    },
+    "jackknife_plus": {
+      "90": {
+        "coverage": 0.9066666666666666,
+        "mean_width": 2.30683064383741,
+        "median_width": 2.2945986892319135
+      },
+      "95": {
+        "coverage": 0.96,
+        "mean_width": 4.471016867671717,
+        "median_width": 4.551904083961427
+      }
+    },
+    "scaled_jackknife_plus": {
+      "90": {
+        "coverage": 0.9066666666666666,
+        "mean_width": 2.1092652429207224,
+        "median_width": 2.0542081667040426
+      },
+      "95": {
+        "coverage": 0.96,
+        "mean_width": 5.577124511371446,
+        "median_width": 5.25828940848391
+      }
+    }
+  },
+  "Vmax": {
+    "raw_gp": {
+      "90": {
+        "coverage": 0.8533333333333334,
+        "mean_width": 1.1647759008632907,
+        "median_width": 1.130444100684643
+      },
+      "95": {
+        "coverage": 0.8933333333333333,
+        "mean_width": 1.3879160907365033,
+        "median_width": 1.3470072276182168
+      }
+    },
+    "jackknife_plus": {
+      "90": {
+        "coverage": 0.9066666666666666,
+        "mean_width": 1.5456604313081916,
+        "median_width": 1.5509634158150971
+      },
+      "95": {
+        "coverage": 0.9733333333333334,
+        "mean_width": 2.2869622036284345,
+        "median_width": 2.263750393211212
+      }
+    },
+    "scaled_jackknife_plus": {
+      "90": {
+        "coverage": 0.9066666666666666,
+        "mean_width": 1.6132764136432167,
+        "median_width": 1.6123657482658613
+      },
+      "95": {
+        "coverage": 0.96,
+        "mean_width": 2.6333908215652744,
+        "median_width": 2.619947806362841
+      }
+    }
+  },
+  "energy": {
+    "raw_gp": {
+      "90": {
+        "coverage": 0.88,
+        "mean_width": 23.549145351112767,
+        "median_width": 22.80679165154558
+      },
+      "95": {
+        "coverage": 0.8933333333333333,
+        "mean_width": 28.060537423274067,
+        "median_width": 27.175968431175733
+      }
+    },
+    "jackknife_plus": {
+      "90": {
+        "coverage": 0.9066666666666666,
+        "mean_width": 30.032969613203743,
+        "median_width": 30.103421158213983
+      },
+      "95": {
+        "coverage": 0.96,
+        "mean_width": 44.48079920445839,
+        "median_width": 43.52631671437787
+      }
+    },
+    "scaled_jackknife_plus": {
+      "90": {
+        "coverage": 0.9066666666666666,
+        "mean_width": 32.72202574776704,
+        "median_width": 29.767560114281533
+      },
+      "95": {
+        "coverage": 0.96,
+        "mean_width": 83.71853186731794,
+        "median_width": 97.67681009782125
+      }
+    }
+  }
+}

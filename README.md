@@ -68,6 +68,10 @@ data/external/  UCI benchmark datasets (see NOTE.txt for provenance)
 | `make_uncertainty_map.py` | `fig07_uncertainty_map` | GP reliability map + quoted std stats (Fig. 9) |
 | `make_eda_figure.py` | `fig00_eda` | six-panel exploratory-data-analysis figure (Fig. 2) |
 | `make_response_surface.py` | `fig06_response_surface` | GP/RF response surfaces at the 2 wt% slice (Fig. 8) |
+| `physgp_analysis.py` | `physgp_results.json` | PhysGP against plain GP, LOO + axis-wise group CV |
+| `calibrated_conformal.py` | `calibrated_conformal_results.json` | nested-LOO jackknife+ and sigma-scaled intervals for the GP |
+| `make_physgp_figures.py` | `fig12`, `fig13` | axis-wise generalization and coverage-width figures |
+| `protocol_replay_extended.py` | `protocol_replay_extended.json` | five-dataset external replication with calibrated GP intervals |
 
 ## Usage Instructions
 
