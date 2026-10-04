@@ -1,169 +1,154 @@
-# pvdf-peng-ml — Uncertainty-Aware, Experiment-Efficient Surrogate Modeling of Electrospun PVDF/BaTiO3/MWCNT Piezoelectric Nanogenerators
+# pvdf-peng-ml
 
-Analysis code, derived data, and per-analysis results for the manuscript
+Code, derived data and derived results for the manuscript
 
-> **Uncertainty-Aware, Experiment-Efficient Surrogate Modeling of Electrospun
-> PVDF/BaTiO₃/MWCNT Piezoelectric Nanogenerators**
+> **Machine Learning Prediction of the Voltage Response of Electrospun PVDF/BaTiO3/MWCNT
+> Piezoelectric Nanogenerators Across Composition, Force and Frequency**
 > Candan Akça (ORCID 0000-0001-5305-0296), Ege Erberk Uslu (ORCID 0000-0001-9119-8574),
 > Levent Paralı (ORCID 0000-0002-4462-7628)
-> Manisa Celal Bayar University and Ege University, Türkiye
-> Prepared for submission to *Advanced Engineering Informatics*.
 
-**Code repository:** <https://github.com/egerberkuslu/pvdf-peng-ml>
+**Repository:** <https://github.com/egerberkuslu/pvdf-peng-ml>
 
-## Description
+## Purpose
 
-The manuscript builds an uncertainty-aware Gaussian-process surrogate for the
-open-circuit voltage of an electrospun poly(vinylidene fluoride)/barium
-titanate/multi-walled carbon nanotube (PVDF/BaTiO3/MWCNT) piezoelectric
-nanogenerator, trained on 75 full-factorial recordings spanning five
-compositions, three tapping forces, and five excitation frequencies. The
-Gaussian process is chosen in advance from fourteen benchmarked regressors
-under leakage-safe leave-one-out cross-validation, and every prediction ships
-with a measured validity domain, coverage-checked uncertainty, and an explicit
-experiment-budget audit.
+The study predicts the voltage response of electrospun poly(vinylidene fluoride)
+(PVDF), barium titanate (BaTiO3) and multi-walled carbon nanotube (MWCNT)
+piezoelectric nanogenerators (PENG) from composition, tapping force and tapping
+frequency. A fourteen-regressor benchmark under leave-one-out cross-validation
+selects an ARD Gaussian process, a closed-form voltage law (PhysGP and the
+five-parameter LawGP) is tested as a mean function, and the evaluation separates
+interpolation inside the measured grid from generalization to unseen composition,
+force or frequency levels. The remaining analyses cover calibrated and conformal
+intervals, specimen variability, frequency-axis and K-mode extensions of the law,
+an RC read-out model, a simulated generator with known ground truth, active
+learning, an external check on digitized literature sweeps and on public UCI
+benchmarks, and the LCR dielectric measurements of the five compositions.
+Every number in the manuscript is written by one of the scripts below into a
+LaTeX macro file (`results/numbers_*.tex`) with a JSON file that holds the
+full-precision value.
 
-This repository reproduces every result in the paper: the 14-model benchmark
-under leave-one-out cross-validation, the group-wise (leave-one-level-out)
-cross-validation that draws the interpolation-versus-generalization boundary,
-empirical interval-coverage measurement, CV+/jackknife+ conformal prediction,
-the fully specified factorial ANOVA, the retrospective active-learning audit,
-and the external replication of the whole evaluation protocol on two public
-UCI engineering benchmarks. Results ship as one JSON file per analysis so
-that any number in the paper can be checked without rerunning anything.
-
-## Dataset Information
-
-| File | Contents | Source and license |
-|---|---|---|
-| `data/targets_design.parquet` | Derived, analysis-ready design table: 75 conditions (composition, CNT wt%, force, frequency) with four voltage targets (RMS, peak-to-peak, peak, squared-voltage proxy) | Derived from raw waveforms measured by Koç et al. (2025), used with the originators' permission; raw waveforms available from those authors on reasonable request |
-| `data/external/` | UCI benchmarks for the external replication: Airfoil Self-Noise (N=1503) and Energy Efficiency (N=768) | UCI Machine Learning Repository, CC BY 4.0; provenance details in `data/external/NOTE.txt` |
-| `results/*.json` | One JSON per analysis (see the script table below) plus the canonical benchmark outputs `reg_stats.json` and `reg_models.json` | Produced by this repository |
-
-Where `reg_stats.json` and `reg_models.json` overlap, **`reg_stats.json` is the
-canonical source** for the numbers quoted in the paper (the files differ only
-in the ARD-GP score on the peak-voltage target, 0.783 vs 0.777, from a minor
-refit between runs).
-
-## Code Information
+## Folder layout
 
 ```
-code/           analysis and figure scripts (Python 3)
-results/        JSON outputs, one per analysis
-data/           derived 75-condition design table (targets_design.parquet)
-data/external/  UCI benchmark datasets (see NOTE.txt for provenance)
+code/                 analysis scripts (Python); peng_paths.py defines all paths
+code/baseline/        first-stage analyses whose JSON outputs the later scripts read
+code/figures/         scripts of the manuscript's result figures
+data/                 design table, LCR measurements, external data (no raw waveforms)
+results/              derived numbers: JSON, CSV, LaTeX macros, table bodies
+results/baseline/     outputs of code/baseline/ (and of the fourteen-regressor benchmark)
+results/tables/       table bodies (booktabs) written by the scripts
+results/lcr/          LCR summary, RC chain, figure data and macros
+figures/              PDFs of the five manuscript result figures; scripts write further figure files here
 ```
 
-| Script | Output | Paper section |
-|---|---|---|
-| `batchD_analysis.py` | `batchD_results.json` | group-wise CV, coverage, calibration slope |
-| `activeL_analysis.py` | `activeL_results.json` | active-learning audit |
-| `conformal_analysis.py` | `conformal_results.json` | CV+/jackknife+ intervals |
-| `mlp_tuned_analysis.py` | `mlp_tuned_results.json` | nested-CV MLP tuning |
-| `anova_detail.py` | `anova_results.json` | full ANOVA specification |
-| `protocol_replay.py` | `protocol_replay_results.json` | external replication |
-| `make_graphical_abstract.py` | figure | overview figure (early draft) |
-| `make_model_comparison.py` | `fig05` bar chart | fourteen-regressor comparison (Fig. 5) |
-| `make_calibration_figure.py` | `fig05_calibration` | LOO calibration scatter (Fig. 6) |
-| `make_uncertainty_map.py` | `fig07_uncertainty_map` | GP reliability map + quoted std stats (Fig. 9) |
-| `make_eda_figure.py` | `fig00_eda` | six-panel exploratory-data-analysis figure (Fig. 2) |
-| `make_response_surface.py` | `fig06_response_surface` | GP/RF response surfaces at the 2 wt% slice (Fig. 8) |
-| `physgp_analysis.py` | `physgp_results.json` | PhysGP against plain GP, LOO + axis-wise group CV |
-| `calibrated_conformal.py` | `calibrated_conformal_results.json` | nested-LOO jackknife+ and sigma-scaled intervals for the GP |
-| `make_physgp_figures.py` | `fig12`, `fig13` | axis-wise generalization and coverage-width figures |
-| `protocol_replay_extended.py` | `protocol_replay_extended.json` | five-dataset external replication with calibrated GP intervals |
-| `revision_experiments.py` | `revision_experiments.json` | referee-response batch: per-fold force results, mean-function ablations, coverage binomial CIs, Lorentzian uncertainties, multi-seed stability, n=75 subsampled replication, realizable stopping rule and OFAT baseline |
-| `groupwise_conformal.py` | `groupwise_conformal.json` | paired McNemar on raw-vs-jackknife+ hits and jackknife+ coverage under group-wise splits |
-| `ga_search.py` | `ga_search.json` | genetic-algorithm cross-check of the dense-grid optimum over the refit GP surrogate |
+## Data description
 
-## Usage Instructions
+The experiment is a full factorial of **5 compositions x 3 forces x 5 frequencies = 75
+conditions**, one recording per condition. The compositions are PVDF, PVDF/BaTiO3, and
+PVDF/BaTiO3 with 1, 2 and 3 wt% MWCNT; the tapping force is 1, 2 and 3 N; the tapping
+frequency is 5, 10, 15, 20 and 25 Hz. The open-circuit voltage was recorded for one
+second at 1 kHz per condition. The measurements and the fabrication follow
+Koç et al. (2025), *The Piezoelectric Nanogenerators Based on PVDF/BaTiO3/MWCNT
+Ternary Composite Prepared by the Electrospinning Method*, Journal of Materials
+Science 60(48):25481-25503, doi:10.1007/s10853-025-11872-9.
+
+| File | Contents |
+|---|---|
+| `data/design_table.csv` | One row per condition (75 rows): `condition_id` (0-74), `composition`, `cnt_pct`, `force_N`, `freq_Hz`, `is_pristine`, targets `Vrms_V`, `Vpp_V`, `Vmax_V` and `energy_proxy` (1000 x Vrms^2) |
+| `data/targets_design.parquet` | The same table in the form the scripts read (`rms_Voc`, `Vpp`, `Vmax`, `energy` columns; row index = `condition_id`) |
+| `data/lcr/lcr_tidy.csv` | LCR measurements of the five compositions, 201 frequencies from 1 kHz to 1 MHz each: `Cs_F`, `Cp_F`, loss tangent `D`, stated electrode area and thickness, relative permittivity recomputed from them. The stated geometry gives a relative permittivity below one for four compositions, so it is flagged TO CONFIRM and the permittivity is not used as a material property |
+| `data/external_peng/*.csv`, `*.provenance.json` | Values read from figures of four open-access nanogenerator papers (Salama 2024, Shi 2025, Li 2022, Park 2017) with axis calibration and reading error per study; cite the original articles when using them. The source PDFs and annotated overlays are not redistributed |
+| `data/external/` | UCI benchmarks (Airfoil Self-Noise, Energy Efficiency, Concrete, Yacht, Combined Cycle Power Plant), unchanged; provenance in `data/external/NOTE.txt` |
+| `results/lcr/lcr_summary.csv` | Per-composition summary of the LCR measurements |
+
+**Raw waveforms are not part of this repository. The sampled voltage waveforms are
+available from the authors on reasonable request (TO CONFIRM by the authors).** The
+design table is derived from them; the scripts that start from the waveforms
+(`a1_segment.py`, `a1_specimen.py`, `a4_figures.py`, `a6_twin.py`, `a7_dynforce.py`,
+`a11_freq.py`, `figures/make_cycles.py`) need `data/long.parquet` and `data/series_index.parquet` and cannot be rerun
+without them; their outputs are shipped under `results/`. The original LCR workbook is
+likewise available on request; `data/lcr/lcr_tidy.csv` holds every value of its five
+labelled blocks.
+
+## How to reproduce
+
+Python 3.12.4 on Linux. Package versions of the environment the results were produced in are in
+`requirements.txt` (numpy 2.3.5, pandas 2.2.3, scipy 1.17.1, scikit-learn 1.7.2,
+statsmodels 0.14.6, xgboost 3.3.0, matplotlib 3.11.0).
 
 ```bash
 git clone https://github.com/egerberkuslu/pvdf-peng-ml.git
 cd pvdf-peng-ml
 python3 -m venv .venv && source .venv/bin/activate
-pip install scikit-learn pandas numpy scipy statsmodels joblib matplotlib pyarrow
+pip install -r requirements.txt
 ```
 
-Run each script from a directory containing `targets_design.parquet` (scripts
-read it from the current working directory and write their JSON next to it;
-they also fall back to the repository's `data/` folder automatically):
+All scripts are run from the repository root as `python code/<script>.py`; paths come
+from `code/peng_paths.py` (set the environment variable `PENG_ROOT` to work on another
+copy). Seeds are fixed, so a rerun on the same library versions rewrites identical
+files; other versions change low-order digits (see Notes).
 
-```bash
-cd data
-python ../code/batchD_analysis.py
-python ../code/make_calibration_figure.py   # prints the LOO R2 per target and
-                                            # asserts they match the published values
-```
+Run order (each step reads the files written by the earlier ones, which are already
+in `results/`, so every script can also be run on its own):
 
-`protocol_replay.py` expects the UCI files under `external_data/`; from
-`data/`, create a symlink first: `ln -s external external_data`.
+1. `python code/run_baseline.py` (optional): the twelve scripts of `code/baseline/`
+   into `results/baseline/`; they overwrite the shipped first-stage files (see Notes).
+2. `python code/a2_physgp.py` (about 1 minute on 16 cores): LawGP identifiability,
+   per-level axes, selection rule; writes `a2_physgp.json`, `numbers_a2.tex`, tables.
+3. `python code/a3_tables.py` (5 to 10 minutes) and `python code/a3_sensitivity.py`:
+   benchmark, coverage, active-learning and replication tables.
+4. `python code/a5_structured.py`, `a8_specvar.py`, `a9_external.py`, `a10_methods.py`,
+   `a12_axisrule.py`, `a13_rankset.py`, `a14_kmode.py` (a few minutes to about half
+   an hour each; `a12` and `a14` accept `--smoke` for a reduced run and `--n-jobs`).
+5. `python code/lcr_analysis.py` (seconds): LCR summary, RC chain and macros.
+6. `python code/figures/make_{axes,coverage,law,lcr,twin}.py`: manuscript result
+   figures into `figures/`.
 
-## Requirements
+## Which file regenerates what
 
-Python 3.12; scikit-learn 1.7, pandas 2.2, numpy 2.3, scipy 1.17,
-statsmodels 0.14, joblib 1.5, pyarrow, and matplotlib (figure scripts only).
-All results are deterministic (fixed seeds); the figure scripts assert their
-recomputed cross-validated scores against the published values before writing
-any output.
+| Script | Writes | Content (macro prefix) |
+|---|---|---|
+| `a1_specimen.py`, `a1_segment.py` | `results/a1_*.csv/json`, `numbers_a1.tex`, `tables/tab_spec_*.tex` | cycle segmentation, repeatability, split-half, specimen bootstrap (`spec`); needs raw waveforms |
+| `a2_physgp.py`, `a2_report.py` | `a2_physgp.json`, `numbers_a2.tex`, `tables/tab_phys_*.tex` | LawGP/PhysGP against the plain GP, per-level and axis-wise results (`phys`) |
+| `a3_tables.py`, `a3_bench.py`, `a3_conformal.py`, `a3_sensitivity.py` | `a3_tables.json`, `a3_groupwise_coverage.json`, `numbers_a3.tex`, `tables/tab_bench_*.tex`, `tab_cov_*.tex`, `tab_al_*.tex`, `tab_rep_*.tex` | benchmark of fourteen regressors, interval coverage, McNemar tests, replication (`bench`, `cov`) |
+| `a4_figures.py` | `a4_desc.json`, `numbers_a4.tex`, `tables/tab_desc_optima.tex` | descriptive figures and optima (`desc`); needs raw waveforms |
+| `a5_structured.py` | `a5_structured.json`, `numbers_a5.tex`, `tables/tab_alt_*.tex` | structured kernels against plain GP and PhysGP |
+| `a6_twin.py` | `a6_twin.json`, `a6_*.csv`, `numbers_a6.tex`, `tables/tab_a6_*.tex` | simulated generator with known ground truth; needs raw waveforms for its first block |
+| `a7_dynforce.py` | `a7_dynforce.json`, `a7_*.csv`, `numbers_a7.tex` | RC deconvolution and open-circuit sensitivity; needs raw waveforms |
+| `a8_specvar.py` | `a8_specvar.json`, `numbers_a8.tex` | literature-calibrated specimen variability |
+| `a9_external.py` | `a9_external.json`, `a9_*.csv`, `numbers_a9.tex` | protocol applied to the digitized literature sweeps |
+| `a10_methods.py` | `a10_methods.json`, `a10_*.csv`, `numbers_a10.tex` | fixed against tuned models, active-learning stopping, public datasets |
+| `a11_freq.py` | `a11_freq.json`, `numbers_a11.tex` | frequency-axis extensions; needs raw waveforms |
+| `a12_axisrule.py` | `a12_axisrule.json`, `a12_units.csv`, `numbers_a12.tex` | inner-fold audit of the axis rule |
+| `a13_rankset.py` | `a13_rankset.json`, `numbers_a13.tex` | composition statements that survive specimen variability |
+| `a14_kmode.py` | `a14_kmode.json`, `numbers_a14.tex` | K-mode law chosen by BIC |
+| `lcr_analysis.py` | `results/lcr/*` | LCR summary, RC high-pass chain, macros (`lcr`) |
+| `code/baseline/*.py` | `results/baseline/*.json` | first-stage analyses; `reg_stats.json` and `reg_models.json` (benchmark scores) are shipped, their pipeline is not |
+| `code/reg_common.py` | | model factories of the fourteen regressors |
+| `code/figures/make_*.py` | `figures/*.pdf/png` | manuscript result figures (axes, coverage, law, lcr, twin; cycles needs raw waveforms) |
 
-## Methodology
+## Notes
 
-1. **Design table.** The 75 open-circuit-voltage waveforms (one second at
-   1 kHz per condition) are summarized into per-condition amplitude targets;
-   the squared-voltage proxy is the exact deterministic function
-   E = 1000 x RMS^2.
-2. **Benchmark.** Fourteen regressors, from linear baselines to tree
-   ensembles and an ARD Matern-5/2 Gaussian process, are scored by
-   leave-one-out cross-validation with all preprocessing fitted inside each
-   fold; in-sample scores are reported next to cross-validated ones.
-3. **Generalization boundary.** The cross-validation is repeated group-wise,
-   holding out every condition that shares one factor level, which separates
-   within-grid interpolation from generalization to unseen levels.
-4. **Uncertainty.** Empirical coverage of the Gaussian-process intervals is
-   measured under leave-one-out, and distribution-free CV+/jackknife+
-   conformal intervals are supplied for the tree ensembles.
-5. **Physics checks.** A fully specified factorial ANOVA, an interpretable
-   closed-form voltage law, and per-material Lorentzian resonance fits.
-6. **Experiment efficiency.** A retrospective expected-improvement replay of
-   the measurement campaign counts the experiments the surrogate would have
-   saved.
-7. **External replication.** The identical recipe is replayed on the two UCI
-   benchmarks, reproducing the same qualitative findings.
+The recordings 52, 54 and 73 (zero-based `condition_id`) are scaled copies of other
+recordings; every headline is also reported without them (n = 72, `*_n72` files and
+macros).
+
+The first-stage JSON files in `results/baseline/` are the inputs the later scripts read.
+They were produced with earlier library versions; rerunning them with the pinned
+versions reproduces the numbers to about the third decimal (for example the
+leave-one-out R2 of the PhysGP changes by up to 0.002).
 
 ## Citation
 
-If you use this code or the derived design table, please cite the manuscript:
-
-```bibtex
-@article{akca2026pvdf,
-  author = {Ak{\c{c}}a, Candan and Uslu, Ege Erberk and Paral{\i}, Levent},
-  title  = {Uncertainty-Aware, Experiment-Efficient Surrogate Modeling of
-            Electrospun {PVDF}/{BaTiO}$_3$/{MWCNT} Piezoelectric Nanogenerators},
-  year   = {2026},
-  note   = {Prepared for submission to Advanced Engineering Informatics},
-  url    = {https://github.com/egerberkuslu/pvdf-peng-ml}
-}
-```
-
-Please also cite the data sources you use:
-
-- **Raw waveform measurements** — Koç M., Guluzade S., Tatardar F., Musayeva N. N., Sarı A., Paralı L. *Piezoelectric nanogenerators based on PVDF fibers.* Journal of Materials Science 60(48):25481-25503, 2025. DOI 10.1007/s10853-025-11872-9.
-- **Airfoil Self-Noise** — Brooks T. F., Pope D. S., Marcolini M. A. *Airfoil self-noise and prediction.* NASA RP-1218, 1989.
-- **Energy Efficiency** — Tsanas A., Xifara A. *Accurate quantitative estimation of energy performance of residential buildings using statistical machine learning tools.* Energy and Buildings 49:560-567, 2012.
-
-A machine-readable [`CITATION.cff`](CITATION.cff) is included, so GitHub's
-"Cite this repository" button gives the same reference.
+See `CITATION.cff`. The manuscript is under preparation; no DOI exists yet.
+Please also cite the data sources: Koç et al. (2025) for the measurements, and the
+original articles of the digitized sweeps and the UCI benchmarks listed in
+`results/a9_provenance.csv` and `data/external/NOTE.txt`.
 
 ## License
 
-Code: MIT (see [`LICENSE`](LICENSE)). Data files keep their original
-licenses and terms as described under *Dataset Information*.
+Code: MIT (see `LICENSE`). Data files keep the licenses of their sources.
 
-## Getting help and contributing
+## Contact
 
-For questions or reproduction problems, please open an issue on this
-repository and include the failing command together with the output of
-`pip freeze`. Pull requests are welcome, particularly additional regressors
-for the benchmark; a new model only needs to follow the fixed-hyperparameter,
-fold-internal-preprocessing protocol used by the existing scripts.
+Open an issue on this repository with the failing command and the output of `pip freeze`.

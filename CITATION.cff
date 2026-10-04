@@ -1,25 +1,22 @@
 cff-version: 1.2.0
-message: "If you use this software or the derived design table, please cite the article below."
-title: "pvdf-peng-ml: Uncertainty-Aware, Experiment-Efficient Surrogate Modeling of Electrospun PVDF/BaTiO3/MWCNT Piezoelectric Nanogenerators"
+message: "If you use this software or the derived data, please cite the article below."
+title: "pvdf-peng-ml: code and derived data for machine learning prediction of the voltage response of electrospun PVDF/BaTiO3/MWCNT piezoelectric nanogenerators"
 type: software
 authors:
   - family-names: Akça
     given-names: Candan
     orcid: "https://orcid.org/0000-0001-5305-0296"
-    affiliation: "Department of Fashion Design, Manisa Celal Bayar University, Türkiye"
   - family-names: Uslu
     given-names: Ege Erberk
     orcid: "https://orcid.org/0000-0001-9119-8574"
-    affiliation: "Department of Computer Engineering, Ege University, Türkiye"
   - family-names: Paralı
     given-names: Levent
     orcid: "https://orcid.org/0000-0002-4462-7628"
-    affiliation: "Department of Electronics and Automation, Manisa Celal Bayar University, Türkiye"
 repository-code: "https://github.com/egerberkuslu/pvdf-peng-ml"
 license: MIT
 preferred-citation:
   type: article
-  title: "Uncertainty-Aware, Experiment-Efficient Surrogate Modeling of Electrospun PVDF/BaTiO3/MWCNT Piezoelectric Nanogenerators"
+  title: "Machine Learning Prediction of the Voltage Response of Electrospun PVDF/BaTiO3/MWCNT Piezoelectric Nanogenerators Across Composition, Force and Frequency"
   authors:
     - family-names: Akça
       given-names: Candan
@@ -31,4 +28,3 @@ preferred-citation:
       given-names: Levent
       orcid: "https://orcid.org/0000-0002-4462-7628"
   year: 2026
-  notes: "Prepared for submission to Advanced Engineering Informatics"
