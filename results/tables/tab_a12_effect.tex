@@ -1,0 +1,25 @@
+\begin{tabular}{l l r r r r r l}
+\toprule
+Source & Outer effect & Units & Helps/hurts & Correct & Accuracy (\%) & $|\Delta R^2|$ median [p10, p90] & Axes \\
+\midrule
+Real grid ($n=75$) & small, $0.02 < |\Delta R^2| \le 0.1$ & 0 & 0/0 & 0/0 & -- & -- & -- \\
+ & medium, $0.1 < |\Delta R^2| \le 0.5$ & 2 & 1/1 & 2/2 & 100 & 0.35 [0.24, 0.46] & comp. 1, force 1 \\
+ & large effects are detected, $|\Delta R^2| > 0.5$ & 7 & 2/5 & 6/7 & 86 & 0.90 [0.66, 3.85] & comp. 2, force 2, freq. 3 \\
+\addlinespace
+External, all levels & small, $0.02 < |\Delta R^2| \le 0.1$ & 3 & 1/2 & 1/3 & 33 & 0.06 [0.04, 0.07] & comp. 1, force 1, freq. 1 \\
+ & medium, $0.1 < |\Delta R^2| \le 0.5$ & 2 & 1/1 & 2/2 & 100 & 0.34 [0.22, 0.47] & freq. 1, preload 1 \\
+ & large effects are detected, $|\Delta R^2| > 0.5$ & 3 & 2/1 & 3/3 & 100 & 0.58 [0.58, 1.43] & comp. 2, preload 1 \\
+\addlinespace
+External, sub-sampled & small, $0.02 < |\Delta R^2| \le 0.1$ & 12 & 5/7 & 8/12 & 67 & 0.04 [0.03, 0.08] & comp. 4, force 4, freq. 3, preload 1 \\
+ & medium, $0.1 < |\Delta R^2| \le 0.5$ & 32 & 17/15 & 17/32 & 53 & 0.29 [0.12, 0.44] & comp. 13, force 7, freq. 4, preload 8 \\
+ & large effects are detected, $|\Delta R^2| > 0.5$ & 48 & 21/27 & 36/48 & 75 & 1.35 [0.59, 77.12] & comp. 19, force 15, freq. 11, preload 3 \\
+\addlinespace
+Twin grids (seed 0) & small, $0.02 < |\Delta R^2| \le 0.1$ & 218 & 176/42 & 151/218 & 69 & 0.06 [0.03, 0.09] & comp. 131, force 86, freq. 1 \\
+ & medium, $0.1 < |\Delta R^2| \le 0.5$ & 159 & 111/48 & 141/159 & 89 & 0.15 [0.11, 0.42] & comp. 64, force 74, freq. 21 \\
+ & large effects are detected, $|\Delta R^2| > 0.5$ & 233 & 104/129 & 230/233 & 99 & 1.33 [0.58, 10.31] & comp. 12, force 3, freq. 218 \\
+\addlinespace
+Twin grids (seed 42) & small, $0.02 < |\Delta R^2| \le 0.1$ & 89 & 75/14 & 54/89 & 61 & 0.05 [0.03, 0.09] & comp. 54, force 35 \\
+ & medium, $0.1 < |\Delta R^2| \le 0.5$ & 86 & 61/25 & 82/86 & 95 & 0.19 [0.11, 0.47] & comp. 30, force 45, freq. 11 \\
+ & large effects are detected, $|\Delta R^2| > 0.5$ & 127 & 50/77 & 124/127 & 98 & 1.35 [0.57, 9.50] & comp. 17, force 1, freq. 109 \\
+\bottomrule
+\end{tabular}

@@ -1,0 +1,13 @@
+\footnotesize\setlength{\tabcolsep}{2.5pt}%
+\begin{tabular}{@{}lcccccccc@{}}
+\toprule
+Dataset & $N$ & \shortstack{In-sample\\$R^2$} & \shortstack{Record-wise\\CV $R^2$} & \shortstack{Worst group-wise\\$R^2$} & \shortstack{Raw GP cov.\\@95\%} & \shortstack{J+ cov.\\@95\%} & \shortstack{J+ width\\$/\sigma_y$} & \shortstack{AL median\\(rand.)} \\
+\midrule
+PENG (this work) & 75 & 1.00 & 0.914 & $-$1.10 (frequency) & 88\% & 96\% & 1.18 & 15 (38) \\
+Energy Efficiency \cite{tsanasAccurateQuantitativeEstimation2012} & 768 & 1.00 & 0.999 & 0.50 (compactness) & 92\% & 100\% & 0.16 & 16 (68) \\
+Airfoil Self-Noise \cite{brooksAirfoilSelfnoisePrediction1989} & 1503 & 0.99 & 0.913 & 0.65 (chord) & 94\% & 100\% & 1.36 & 18 (49) \\
+Concrete Strength \cite{yehModelingStrengthHigh1998} & 1030 & 0.98 & 0.921 & 0.56 (curing age) & 94\% & 100\% & 1.22 & 25 (64) \\
+Yacht Hydrodynamics \cite{gerritsmaGeometryResistanceStability1981} & 308 & 1.00 & 0.999 & 0.99 (hull) & 88\% & 100\% & 0.11 & 13 (44) \\
+Power Plant \cite{tufekciPredictionFullLoad2014} & 2000 & 0.95 & 0.947 & 0.94 (temperature band) & 96\% & 96\% & 0.86 & 15 (91) \\
+\bottomrule
+\end{tabular}

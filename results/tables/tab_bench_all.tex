@@ -1,0 +1,27 @@
+\footnotesize\setlength{\tabcolsep}{2.5pt}%
+\begin{tabular}{@{}lccccccccc@{}}
+\toprule
+ & \multicolumn{3}{c}{\RMS} & \multicolumn{3}{c}{\Vpp} & \multicolumn{3}{c}{\Vmax} \\
+\cmidrule(lr){2-4}\cmidrule(lr){5-7}\cmidrule(lr){8-10}
+Model & CV $R^2$ & in-sample & MAE (V) & CV $R^2$ & in-sample & MAE (V) & CV $R^2$ & in-sample & MAE (V) \\
+\midrule
+Linear regression & 0.267 & 0.35 & 0.048 & 0.168 & 0.27 & 0.892 & 0.194 & 0.29 & 0.552 \\
+Ridge & 0.268 & 0.35 & 0.048 & 0.169 & 0.27 & 0.890 & 0.195 & 0.29 & 0.550 \\
+Lasso & 0.227 & 0.30 & 0.049 & 0.168 & 0.27 & 0.888 & 0.194 & 0.29 & 0.547 \\
+Polynomial deg.\ 2, OLS & 0.436 & 0.59 & 0.044 & 0.296 & 0.50 & 0.858 & 0.339 & 0.52 & 0.529 \\
+Polynomial deg.\ 2, ridge & 0.441 & 0.59 & 0.043 & 0.301 & 0.50 & 0.850 & 0.344 & 0.52 & 0.524 \\
+Support-vector reg. & 0.638 & 0.82 & 0.031 & 0.529 & 0.70 & 0.574 & 0.611 & 0.80 & 0.354 \\
+Kernel ridge & 0.548 & 0.72 & 0.037 & 0.404 & 0.63 & 0.716 & 0.472 & 0.66 & 0.428 \\
+$k$-nearest neighbors & 0.386 & 0.69 & 0.043 & 0.289 & 0.63 & 0.740 & 0.354 & 0.67 & 0.470 \\
+Random forest & 0.863 & 0.98 & 0.019 & 0.829 & 0.98 & 0.320 & 0.816 & 0.98 & 0.262 \\
+Extra-trees & 0.860 & 1.00 & 0.020 & 0.824 & 1.00 & 0.342 & 0.811 & 1.00 & 0.271 \\
+Gradient boosting & 0.859 & 0.97 & 0.020 & 0.807 & 0.97 & 0.384 & 0.799 & 0.96 & 0.265 \\
+XGBoost & 0.868 & 0.98 & 0.020 & 0.809 & 0.97 & 0.394 & 0.799 & 0.96 & 0.268 \\
+Multilayer perceptron & 0.793 & 0.96 & 0.023 & 0.786 & 0.95 & 0.423 & 0.778 & 0.96 & 0.285 \\
+Gaussian process (ARD) & 0.914 & 1.00 & 0.018 & 0.775 & 0.95 & 0.384 & 0.783 & 0.97 & 0.270 \\
+\midrule
+Support-vector reg., tuned (exploratory) & 0.307 & -- & 0.054 & 0.475 & -- & 0.720 & 0.665 & -- & 0.377 \\
+Multilayer perceptron, nested tuning & 0.843 & -- & 0.022 & 0.793 & -- & 0.420 & 0.815 & -- & 0.283 \\
+\bottomrule
+\multicolumn{10}{@{}>{\raggedright\arraybackslash}p{0.97\textwidth}@{}}{Leave-one-out $R^2$ of the Gaussian process on \Vmax{} is 0.783 with Mat\'ern length scales initialized at [1, 1, 1, 1], the setting of the significance analysis, and 0.777 with the benchmark initialization [1, 1, 1, 5]. The in-sample value 0.97 is the same under both. The Gaussian-process \Vmax{} MAE comes from the run initialized at [1, 1, 1, 5].} \\
+\end{tabular}

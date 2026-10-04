@@ -1,0 +1,24 @@
+\footnotesize\setlength{\tabcolsep}{2.5pt}%
+\begin{tabular}{@{}llccccc@{}}
+\toprule
+ & & \multicolumn{2}{c}{Oracle stop} & \multicolumn{3}{c}{Realizable stop} \\
+\cmidrule(lr){3-4}\cmidrule(lr){5-7}
+Strategy & Model & Median [IQR] & Success & Median [IQR] & Success & Regret (V) \\
+\midrule
+OFAT sweep (15 cell starts) & -- & 10 [10, 10] & 15/15 & 11 [11, 11] & 15/15 & 0.000 \\
+OFAT after the initial design & -- & 18 [14.25, 19] & 30/30 & 19 [19, 20] & 30/30 & 0.000 \\
+Random order & -- & 38 [20.75, 46.75] & 30/30 & -- & -- & -- \\
+EI & \GP & 15 [12.25, 20] & 30/30 & 14 [13, 15.75] & 14/30 & 0.106 \\
+EI & \LawGP & 12 [11.25, 13] & 30/30 & 14 [13, 15] & 28/30 & 0.000 \\
+UCB & \GP & 14 [12.25, 17] & 30/30 & 14 [13, 15.75] & 16/30 & 0.000 \\
+UCB & \LawGP & 12 [12, 13] & 30/30 & 14 [13, 15] & 26/30 & 0.000 \\
+Thompson sampling & \GP & 13 [11.25, 15] & 30/30 & 14 [13, 16] & 19/30 & 0.000 \\
+Thompson sampling & \LawGP & 12 [12, 13] & 30/30 & 14 [13, 15] & 26/30 & 0.000 \\
+Batch EI ($q=3$) & \GP & 19 [16, 22] & 30/30 & 22 [19, 24.25] & 20/30 & 0.000 \\
+Batch EI ($q=3$) & \LawGP & 16 [13, 16] & 30/30 & 19 [19, 22] & 30/30 & 0.000 \\
+OFAT-then-EI hybrid & \GP & 17 [14.25, 19.75] & 30/30 & 18 [17.25, 19] & 20/30 & 0.000 \\
+OFAT-then-EI hybrid & \LawGP & 16 [14.25, 18] & 30/30 & 18 [18, 19] & 25/30 & 0.000 \\
+OFAT-then-EI hybrid (15 cell starts) & \GP & 32 [8, 36] & 15/15 & 12 [11, 14] & 7/15 & 0.106 \\
+OFAT-then-EI hybrid (15 cell starts) & \LawGP & 10 [8.5, 12] & 15/15 & 11 [11, 11.5] & 12/15 & 0.000 \\
+\bottomrule
+\end{tabular}

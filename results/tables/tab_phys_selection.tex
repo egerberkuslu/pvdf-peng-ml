@@ -1,0 +1,27 @@
+\begin{tabular}{l lrlr lrlr lrlr}
+\toprule
+ & \multicolumn{4}{c}{\RMS} & \multicolumn{4}{c}{\Vpp} & \multicolumn{4}{c}{\Vmax} \\
+\cmidrule(lr){2-5} \cmidrule(lr){6-9} \cmidrule(lr){10-13}
+ & \multicolumn{2}{c}{Inner-CV rule} & \multicolumn{2}{c}{Stability rule} & \multicolumn{2}{c}{Inner-CV rule} & \multicolumn{2}{c}{Stability rule} & \multicolumn{2}{c}{Inner-CV rule} & \multicolumn{2}{c}{Stability rule} \\
+Outer held-out level & pick & $R^2$ & pick & $R^2$ & pick & $R^2$ & pick & $R^2$ & pick & $R^2$ & pick & $R^2$ \\
+\midrule
+\multicolumn{13}{l}{Held-out composition} \\
+PVDF & GP & 0.51 & GP & 0.51 & GP & 0.62 & GP & 0.62 & GP & 0.24 & GP & 0.24 \\
+PVDF/BaTiO$_3$ & GP & 0.81 & GP & 0.81 & GP & 0.64 & GP & 0.64 & GP & 0.54 & GP & 0.54 \\
++1 wt\% CNT & GP & 0.65 & GP & 0.65 & GP & 0.51 & GP & 0.51 & GP & 0.55 & GP & 0.55 \\
++2 wt\% CNT & Phys & 0.74 & GP & 0.81 & Phys & 0.81 & GP & 0.84 & Phys & 0.75 & GP & 0.76 \\
++3 wt\% CNT & GP & 0.53 & GP & 0.53 & Phys & $-$0.86 & Phys & $-$0.86 & Phys & $-$1.97 & Phys & $-$1.97 \\
+\midrule
+\multicolumn{13}{l}{Held-out force level} \\
+\SI{1}{\newton} & Phys & $-$0.48 & Phys & $-$0.48 & Phys & $-$0.39 & Phys & $-$0.39 & Phys & $-$0.55 & Phys & $-$0.55 \\
+\SI{2}{\newton} & Phys & 0.86 & GP & 0.87 & Phys & 0.73 & GP & $-$0.02 & Phys & 0.74 & GP & $-$0.03 \\
+\SI{3}{\newton} & Phys & 0.69 & GP & 0.29 & Phys & 0.72 & GP & $-$0.29 & Phys & 0.81 & GP & $-$0.33 \\
+\midrule
+\multicolumn{13}{l}{Held-out frequency level} \\
+\SI{5}{\hertz} & GP & $-$3.31 & GP & $-$3.31 & GP & $-$5.61 & GP & $-$5.61 & GP & $-$2.10 & GP & $-$2.10 \\
+\SI{10}{\hertz} & GP & 0.36 & GP & 0.36 & GP & 0.42 & GP & 0.42 & GP & 0.55 & GP & 0.55 \\
+\SI{15}{\hertz} & Phys & $-$5.61 & GP & $-$0.57 & GP & 0.41 & GP & 0.41 & GP & 0.50 & GP & 0.50 \\
+\SI{20}{\hertz} & Phys & $-$0.15 & GP & $-$0.11 & GP & $-$0.26 & GP & $-$0.26 & GP & $-$0.10 & GP & $-$0.10 \\
+\SI{25}{\hertz} & Phys & $-$106.22 & GP & $-$53.99 & Phys & $-$628.71 & Phys & $-$628.71 & Phys & $-$148.10 & GP & $-$89.29 \\
+\bottomrule
+\end{tabular}

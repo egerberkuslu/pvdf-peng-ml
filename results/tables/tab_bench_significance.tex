@@ -1,0 +1,21 @@
+\footnotesize\setlength{\tabcolsep}{2.5pt}%
+\begin{tabular}{@{}llccc@{}}
+\toprule
+Target & Model & CV $R^2$ & $95\%$ bootstrap CI & $p$ vs best \\
+\midrule
+\multirow{4}{*}{\RMS} & Gaussian process & \textbf{0.914} & [0.85, 0.94] & -- \\
+ & XGBoost & 0.868 & [0.76, 0.91] & 0.56 \\
+ & Random forest & 0.863 & [0.82, 0.91] & 0.99 \\
+ & Linear regression & 0.267 & [$-$0.01, 0.40] & $1.9\times10^{-8}$ \\
+\midrule
+\multirow{4}{*}{\Vpp} & Random forest & \textbf{0.829} & [0.75, 0.92] & -- \\
+ & Extra-trees & 0.824 & [0.75, 0.88] & 0.84 \\
+ & Gaussian process & 0.775 & [0.57, 0.87] & 0.076 \\
+ & Linear regression & 0.168 & [$-$0.17, 0.29] & $4.2\times10^{-11}$ \\
+\midrule
+\multirow{4}{*}{\Vmax} & Random forest & \textbf{0.816} & [0.71, 0.88] & -- \\
+ & Gradient boosting & 0.799 & [0.57, 0.89] & 0.68 \\
+ & Gaussian process & 0.783 & [0.62, 0.87] & 0.78 \\
+ & Linear regression & 0.194 & [$-$0.11, 0.32] & $2.5\times10^{-7}$ \\
+\bottomrule
+\end{tabular}

@@ -1,0 +1,18 @@
+\begin{tabular}{l l r r r r c}
+\toprule
+Dataset & Scheme & \GP & \LawGP, $K=1$ & \LawGP, BIC $K$ & Law alone, BIC $K$ & Folds with $K = 1/2/3/4/5$ \\
+\midrule
+This grid, \RMS & LOO & 0.90 & 0.86 & 0.90 & 0.82 & 0/72/0/0/0 \\
+ & held-out composition & 0.64 & 0.09 & 0.29 & 0.32 & 0/5/0/0/0 \\
+ & held-out force & 0.58 & 0.70 & 0.80 & 0.80 & 0/3/0/0/0 \\
+ & held-out frequency & \ensuremath{-}1.27 & \ensuremath{-}3.35 & \ensuremath{-}3.39 & \ensuremath{-}3.71 & 3/2/0/0/0 \\
+This grid, \Vpp & LOO & 0.69 & 0.67 & 0.73 & 0.78 & 0/72/0/0/0 \\
+ & held-out composition & 0.75 & 0.37 & 0.42 & 0.40 & 0/5/0/0/0 \\
+ & held-out force & \ensuremath{-}0.08 & 0.68 & 0.74 & 0.74 & 0/3/0/0/0 \\
+ & held-out frequency & \ensuremath{-}1.60 & \ensuremath{-}10.44 & \ensuremath{-}11.35 & \ensuremath{-}11.39 & 3/2/0/0/0 \\
+This grid, \Vmax & LOO & 0.70 & 0.73 & 0.81 & 0.78 & 0/72/0/0/0 \\
+ & held-out composition & 0.58 & 0.00 & 0.15 & 0.17 & 0/5/0/0/0 \\
+ & held-out force & \ensuremath{-}0.17 & 0.73 & 0.78 & 0.78 & 0/3/0/0/0 \\
+ & held-out frequency & \ensuremath{-}1.19 & \ensuremath{-}5.64 & \ensuremath{-}5.65 & \ensuremath{-}5.84 & 4/1/0/0/0 \\
+\bottomrule
+\end{tabular}

@@ -1,0 +1,17 @@
+\footnotesize\setlength{\tabcolsep}{2pt}%
+\begin{tabular}{@{}lccccc@{}}
+\toprule
+Strategy & Energy Eff. & Airfoil & Concrete & Yacht & Power Plant \\
+\midrule
+OFAT, one pass, single-record start & 18 (100\%) & 24.5 (65\%) & 47.5 (60\%) & 160 (15\%) & 30.5 (65\%) \\
+OFAT, repeated passes, single-record start & 18 (100\%) & 24.5 (90\%) & 47.5 (60\%) & 37 (100\%) & 30.5 (85\%) \\
+OFAT, one pass, after the initial design & 24.5 (100\%) & 25.5 (65\%) & 28 (80\%) & 26.5 (100\%) & 32 (75\%) \\
+OFAT, repeated passes, after the initial design & 24.5 (100\%) & 25.5 (70\%) & 28 (80\%) & 26.5 (100\%) & 32 (90\%) \\
+Random order & 68 (95\%) & 48.5 (85\%) & 63.5 (90\%) & 44 (100\%) & 90.5 (80\%) \\
+EI & 15.5 (100\%) & 17.5 (100\%) & 25 (100\%) & 12.5 (100\%) & 15 (100\%) \\
+UCB & 15 (100\%) & 18 (100\%) & 21 (100\%) & 13 (100\%) & 14 (100\%) \\
+Thompson sampling & 18 (100\%) & 17.5 (100\%) & 25.5 (100\%) & 14 (100\%) & 12 (100\%) \\
+Batch EI ($q=3$) & 20.5 (100\%) & 19 (100\%) & 22 (100\%) & 16 (100\%) & 16 (100\%) \\
+OFAT-then-EI hybrid & 22.5 (100\%) & 25.5 (100\%) & 25 (100\%) & 18 (100\%) & 31 (100\%) \\
+\bottomrule
+\end{tabular}

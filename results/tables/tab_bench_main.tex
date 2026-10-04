@@ -1,0 +1,20 @@
+\footnotesize\setlength{\tabcolsep}{2.5pt}%
+\begin{tabular}{@{}lccc@{}}
+\toprule
+Model & \RMS & \Vpp & \Vmax \\
+\midrule
+Gaussian process & \textbf{0.914} (1.00) & 0.775 (0.95) & 0.783 (0.97) \\
+Random forest & 0.863 (0.98) & \textbf{0.829} (0.98) & \textbf{0.816} (0.98) \\
+Extra-trees & 0.860 (1.00) & 0.824 (1.00) & 0.811 (1.00) \\
+XGBoost & 0.868 (0.98) & 0.809 (0.97) & 0.799 (0.96) \\
+Gradient boosting & 0.859 (0.97) & 0.807 (0.97) & 0.799 (0.96) \\
+Multilayer perceptron & 0.793 (0.96) & 0.786 (0.95) & 0.778 (0.96) \\
+Support-vector reg. & 0.638 (0.82) & 0.529 (0.70) & 0.611 (0.80) \\
+Kernel ridge & 0.548 (0.72) & 0.404 (0.63) & 0.472 (0.66) \\
+Polynomial deg.\ 2, ridge & 0.441 (0.59) & 0.301 (0.50) & 0.344 (0.52) \\
+Ridge & 0.268 (0.35) & 0.169 (0.27) & 0.195 (0.29) \\
+\midrule
+MLP, nested tuning & 0.843 (--) & 0.793 (--) & 0.815 (--) \\
+\bottomrule
+\multicolumn{4}{@{}>{\raggedright\arraybackslash}p{0.95\columnwidth}@{}}{\footnotesize Leave-one-out $R^2$ of the Gaussian process on \Vmax{} is 0.783 with Mat\'ern length scales initialized at [1, 1, 1, 1], the setting of the significance analysis, and 0.777 with the benchmark initialization [1, 1, 1, 5]. The in-sample value 0.97 is the same under both.} \\
+\end{tabular}

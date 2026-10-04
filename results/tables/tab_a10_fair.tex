@@ -1,0 +1,26 @@
+\footnotesize\setlength{\tabcolsep}{2.5pt}%
+\begin{tabular}{@{}lcccccc@{}}
+\toprule
+ & \multicolumn{2}{c}{\RMS} & \multicolumn{2}{c}{\Vpp} & \multicolumn{2}{c}{\Vmax} \\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}\cmidrule(lr){6-7}
+Model & Fixed & Tuned & Fixed & Tuned & Fixed & Tuned \\
+\midrule
+Linear regression & 0.267 (13) & 0.204 (12) & 0.168 (14) & 0.136 (12) & 0.194 (14) & 0.155 (11) \\
+Ridge & 0.268 (12) & 0.270 (10) & 0.169 (12) & 0.173 (10) & 0.195 (12) & 0.198 (9) \\
+Lasso & 0.227 (14) & 0.272 (9) & 0.168 (13) & 0.164 (11) & 0.194 (13) & 0.191 (10) \\
+Polynomial deg.\ 2, OLS & 0.436 (10) & 0.192 (14) & 0.296 (10) & 0.072 (13) & 0.339 (11) & 0.103 (13) \\
+Polynomial deg.\ 2, ridge & 0.441 (9) & 0.200 (13) & 0.301 (9) & 0.177 (9) & 0.344 (10) & 0.141 (12) \\
+Support-vector reg. & 0.638 (7) & 0.540 (8) & 0.529 (7) & 0.497 (8) & 0.611 (7) & 0.519 (8) \\
+Kernel ridge & 0.548 (8) & 0.861 (3) & 0.404 (8) & 0.803 (4) & 0.472 (8) & 0.801 (4) \\
+$k$-nearest neighbors & 0.386 (11) & 0.207 (11) & 0.289 (11) & $-$0.232 (14) & 0.354 (9) & $-$0.087 (14) \\
+Random forest & 0.863 (3) & 0.848 (6) & \textbf{0.829 (1)} & 0.828 (3) & \textbf{0.816 (1)} & 0.817 (2) \\
+Extra-trees & 0.860 (4) & 0.860 (4) & 0.824 (2) & 0.791 (6) & 0.811 (2) & 0.784 (6) \\
+Gradient boosting & 0.859 (5) & \textbf{0.900 (1)} & 0.807 (4) & 0.834 (2) & 0.799 (3) & 0.817 (3) \\
+XGBoost & 0.868 (2) & 0.897 (2) & 0.809 (3) & \textbf{0.849 (1)} & 0.799 (4) & \textbf{0.854 (1)} \\
+Multilayer perceptron & 0.793 (6) & 0.774 (7) & 0.786 (5) & 0.759 (7) & 0.778 (6) & 0.723 (7) \\
+Gaussian process (ARD) & \textbf{0.914 (1)} & 0.850 (5) & 0.775 (6) & 0.794 (5) & 0.783 (5) & 0.792 (5) \\
+\midrule
+Kendall $\tau$, fixed vs tuned & \multicolumn{2}{c}{0.47} & \multicolumn{2}{c}{0.65} & \multicolumn{2}{c}{0.56} \\
+Best at $n=72$, fixed / tuned & \multicolumn{2}{c}{GP (ARD) / Grad. boosting} & \multicolumn{2}{c}{Random forest / Grad. boosting} & \multicolumn{2}{c}{Extra-trees / Extra-trees} \\
+\bottomrule
+\end{tabular}

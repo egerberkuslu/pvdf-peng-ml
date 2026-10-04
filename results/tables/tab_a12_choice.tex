@@ -1,0 +1,55 @@
+\begin{tabular}{l l l r}
+\toprule
+Source & True axis & Picked axis: count & Correct \\
+\midrule
+Real grid ($n=75$) & force & force 3 & 3/3 \\
+ & all & & 3/3 \\
+\addlinespace
+External, all levels & comp. & comp. 2, none 1 & 2/3 \\
+ & freq. & none 1 & 0/1 \\
+ & none & none 1 & 1/1 \\
+ & all & & 3/5 \\
+\addlinespace
+Twin (seed 0), 3 forces, 5 freq. (our design) & comp. & force 5 & 0/5 \\
+ & force & force 35 & 35/35 \\
+ & freq. & force 35, freq. 5 & 5/40 \\
+ & all (picked: force 75, freq. 5) & & 40/80 \\
+\addlinespace
+Twin (seed 0), 5 forces, 5 freq. & comp. & comp. 1, force 3, none 17 & 1/21 \\
+ & freq. & freq. 40 & 40/40 \\
+ & none & force 8, none 11 & 11/19 \\
+ & all (picked: comp. 1, force 11, freq. 40, none 28) & & 52/80 \\
+\addlinespace
+Twin (seed 0), 3 forces, 3 freq. & comp. & force 5 & 0/5 \\
+ & force & force 35 & 35/35 \\
+ & freq. & freq. 40 & 40/40 \\
+ & all (picked: force 40, freq. 40) & & 75/80 \\
+\addlinespace
+Twin (seed 0) & comp. & comp. 1, force 13, none 17 & 1/31 \\
+ & force & force 70 & 70/70 \\
+ & freq. & force 35, freq. 85 & 85/120 \\
+ & none & force 8, none 11 & 11/19 \\
+ & all & & 167/240 \\
+\addlinespace
+Twin (seed 42), 3 forces, 5 freq. (our design) & comp. & force 1 & 0/1 \\
+ & force & force 19 & 19/19 \\
+ & freq. & force 18, freq. 2 & 2/20 \\
+ & all (picked: force 38, freq. 2) & & 21/40 \\
+\addlinespace
+Twin (seed 42), 5 forces, 5 freq. & comp. & force 1, none 6 & 0/7 \\
+ & force & force 1 & 1/1 \\
+ & freq. & freq. 20 & 20/20 \\
+ & none & none 12 & 12/12 \\
+ & all (picked: force 2, freq. 20, none 18) & & 33/40 \\
+\addlinespace
+Twin (seed 42), 3 forces, 3 freq. & force & force 20 & 20/20 \\
+ & freq. & freq. 20 & 20/20 \\
+ & all (picked: force 20, freq. 20) & & 40/40 \\
+\addlinespace
+Twin (seed 42) & comp. & force 2, none 6 & 0/8 \\
+ & force & force 40 & 40/40 \\
+ & freq. & force 18, freq. 42 & 42/60 \\
+ & none & none 12 & 12/12 \\
+ & all & & 94/120 \\
+\bottomrule
+\end{tabular}

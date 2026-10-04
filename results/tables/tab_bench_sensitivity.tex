@@ -1,0 +1,23 @@
+\footnotesize\setlength{\tabcolsep}{2.5pt}%
+\begin{tabular}{@{}llccc@{}}
+\toprule
+ & & \multicolumn{2}{c}{$n=75$} & $n=72$ \\
+\cmidrule(lr){3-4}\cmidrule(lr){5-5}
+Target & Model & canonical & recomputed & recomputed \\
+\midrule
+\multirow{4}{*}{\RMS} & Gaussian process & 0.914 & 0.914 & 0.905 \\
+ & Random forest & 0.863 & 0.865 & 0.853 \\
+ & Extra-trees & 0.860 & 0.862 & 0.866 \\
+ & XGBoost & 0.868 & 0.868 & 0.831 \\
+\midrule
+\multirow{4}{*}{\Vpp} & Gaussian process & 0.775 & 0.775 & 0.693 \\
+ & Random forest & 0.829 & 0.828 & 0.778 \\
+ & Extra-trees & 0.824 & 0.822 & 0.748 \\
+ & XGBoost & 0.809 & 0.809 & 0.738 \\
+\midrule
+\multirow{4}{*}{\Vmax} & Gaussian process & 0.783 & 0.784 & 0.697 \\
+ & Random forest & 0.816 & 0.817 & 0.765 \\
+ & Extra-trees & 0.811 & 0.819 & 0.771 \\
+ & XGBoost & 0.799 & 0.799 & 0.728 \\
+\bottomrule
+\end{tabular}

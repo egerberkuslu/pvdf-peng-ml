@@ -1,0 +1,401 @@
+% numbers_a8.tex, written by code/a8_specvar.py (E3 SPECVAR). Do not edit.
+\newcommand{\spvLitNStudies}{5}  % studies with device-to-device voltage dispersion
+\newcommand{\spvLitNRows}{43}  % rows of a8_literature_cv.csv
+\newcommand{\spvLitCvMedian}{4}  % percent, median study-level CV; optimistic bound: the median study-level CV (4 percent) comes from studies with unspecified replicate type (Lang 2016, Qu 2026), a spread that looks like repeat measurement (Li 2023: seven 'independent samples' that differ only in the second decimal) or non-electrospun devices (Ge 2024, commercial screen-printed film)
+\newcommand{\spvLitCvPSeventyFive}{5}  % percent, 75th percentile study-level CV
+\newcommand{\spvLitCvMax}{24}  % percent, maximum study-level CV (upper setting); He 2025 (24 percent, 3 devices) is the only direct evidence from separately fabricated electrospun devices; it is the upper setting of the simulation
+\newcommand{\spvLitCvDirect}{24}  % percent, He 2025: only direct evidence from separately fabricated electrospun devices
+\newcommand{\spvLitDirectNDevices}{3}  % devices in that study
+\newcommand{\spvLitCvMin}{1}  % percent, minimum study-level CV
+\newcommand{\spvLitCvRowMax}{41}  % percent, largest single-condition CV in the table
+\newcommand{\spvLitNElectrospun}{4}  % studies on electrospun material
+\newcommand{\spvNDraws}{2000}  % specimen re-draws for ranking and optimum
+\newcommand{\spvNDrawsLoo}{150}  % re-draws with LOO and held-out-force refits
+\newcommand{\spvNDrawsGroup}{25}  % re-draws with held-out-level jackknife+ refits
+\newcommand{\spvNDrawsWithin}{6}  % re-draws with within-grid nested jackknife+ refits
+\newcommand{\spvNDrawsDup}{50}  % n=72 re-draws with LOO and force refits
+\newcommand{\spvNDrawsDupCov}{3}  % n=72 re-draws with coverage refits
+\newcommand{\spvRankSurviveMedRms}{87}  % percent, re-draw (composition means treated as exact), P(full ranking unchanged), n75, CV median = optimistic bound
+\newcommand{\spvRankSurviveMedRmsHier}{5}  % percent, hierarchical posterior counterpart, P(full ranking unchanged), n75, CV median = optimistic bound
+\newcommand{\spvOptSurviveMedRms}{\ensuremath{>}99}  % percent, re-draw (composition means treated as exact), P(observed best stays best), n75, CV median = optimistic bound
+\newcommand{\spvOptSurviveMedRmsHier}{63}  % percent, hierarchical posterior counterpart, P(observed best stays best), n75, CV median = optimistic bound
+\newcommand{\spvOptSurviveRepMedRms}{98}  % percent, re-draw (composition means treated as exact), replication variant of P(best stays best), n75, CV median = optimistic bound
+\newcommand{\spvOptSurviveRepMedRmsHier}{52}  % percent, hierarchical posterior counterpart, replication variant of P(best stays best), n75, CV median = optimistic bound
+\newcommand{\spvRankSurviveRepMedRms}{69}  % percent, re-draw (composition means treated as exact), replication variant of P(ranking unchanged), n75, CV median = optimistic bound
+\newcommand{\spvRankSurviveRepMedRmsHier}{4}  % percent, hierarchical posterior counterpart, replication variant of P(ranking unchanged), n75, CV median = optimistic bound
+\newcommand{\spvRankSurviveMedVpp}{64}  % percent, re-draw (composition means treated as exact), P(full ranking unchanged), n75, CV median = optimistic bound
+\newcommand{\spvRankSurviveMedVppHier}{2}  % percent, hierarchical posterior counterpart, P(full ranking unchanged), n75, CV median = optimistic bound
+\newcommand{\spvOptSurviveMedVpp}{74}  % percent, re-draw (composition means treated as exact), P(observed best stays best), n75, CV median = optimistic bound
+\newcommand{\spvOptSurviveMedVppHier}{29}  % percent, hierarchical posterior counterpart, P(observed best stays best), n75, CV median = optimistic bound
+\newcommand{\spvOptSurviveRepMedVpp}{68}  % percent, re-draw (composition means treated as exact), replication variant of P(best stays best), n75, CV median = optimistic bound
+\newcommand{\spvOptSurviveRepMedVppHier}{28}  % percent, hierarchical posterior counterpart, replication variant of P(best stays best), n75, CV median = optimistic bound
+\newcommand{\spvRankSurviveRepMedVpp}{48}  % percent, re-draw (composition means treated as exact), replication variant of P(ranking unchanged), n75, CV median = optimistic bound
+\newcommand{\spvRankSurviveRepMedVppHier}{2}  % percent, hierarchical posterior counterpart, replication variant of P(ranking unchanged), n75, CV median = optimistic bound
+\newcommand{\spvRankSurviveMedVmax}{98}  % percent, re-draw (composition means treated as exact), P(full ranking unchanged), n75, CV median = optimistic bound
+\newcommand{\spvRankSurviveMedVmaxHier}{9}  % percent, hierarchical posterior counterpart, P(full ranking unchanged), n75, CV median = optimistic bound
+\newcommand{\spvOptSurviveMedVmax}{\ensuremath{>}99}  % percent, re-draw (composition means treated as exact), P(observed best stays best), n75, CV median = optimistic bound
+\newcommand{\spvOptSurviveMedVmaxHier}{73}  % percent, hierarchical posterior counterpart, P(observed best stays best), n75, CV median = optimistic bound
+\newcommand{\spvOptSurviveRepMedVmax}{99}  % percent, re-draw (composition means treated as exact), replication variant of P(best stays best), n75, CV median = optimistic bound
+\newcommand{\spvOptSurviveRepMedVmaxHier}{59}  % percent, hierarchical posterior counterpart, replication variant of P(best stays best), n75, CV median = optimistic bound
+\newcommand{\spvRankSurviveRepMedVmax}{88}  % percent, re-draw (composition means treated as exact), replication variant of P(ranking unchanged), n75, CV median = optimistic bound
+\newcommand{\spvRankSurviveRepMedVmaxHier}{6}  % percent, hierarchical posterior counterpart, replication variant of P(ranking unchanged), n75, CV median = optimistic bound
+\newcommand{\spvRankSurviveUpRms}{6}  % percent, re-draw (composition means treated as exact), P(full ranking unchanged), n75, CV upper = He 2025, direct evidence
+\newcommand{\spvRankSurviveUpRmsHier}{2}  % percent, hierarchical posterior counterpart, P(full ranking unchanged), n75, CV upper = He 2025, direct evidence
+\newcommand{\spvOptSurviveUpRms}{55}  % percent, re-draw (composition means treated as exact), P(observed best stays best), n75, CV upper = He 2025, direct evidence
+\newcommand{\spvOptSurviveUpRmsHier}{31}  % percent, hierarchical posterior counterpart, P(observed best stays best), n75, CV upper = He 2025, direct evidence
+\newcommand{\spvOptSurviveRepUpRms}{44}  % percent, re-draw (composition means treated as exact), replication variant of P(best stays best), n75, CV upper = He 2025, direct evidence
+\newcommand{\spvOptSurviveRepUpRmsHier}{26}  % percent, hierarchical posterior counterpart, replication variant of P(best stays best), n75, CV upper = He 2025, direct evidence
+\newcommand{\spvRankSurviveRepUpRms}{4}  % percent, re-draw (composition means treated as exact), replication variant of P(ranking unchanged), n75, CV upper = He 2025, direct evidence
+\newcommand{\spvRankSurviveRepUpRmsHier}{1}  % percent, hierarchical posterior counterpart, replication variant of P(ranking unchanged), n75, CV upper = He 2025, direct evidence
+\newcommand{\spvRankSurviveUpVpp}{7}  % percent, re-draw (composition means treated as exact), P(full ranking unchanged), n75, CV upper = He 2025, direct evidence
+\newcommand{\spvRankSurviveUpVppHier}{2}  % percent, hierarchical posterior counterpart, P(full ranking unchanged), n75, CV upper = He 2025, direct evidence
+\newcommand{\spvOptSurviveUpVpp}{45}  % percent, re-draw (composition means treated as exact), P(observed best stays best), n75, CV upper = He 2025, direct evidence
+\newcommand{\spvOptSurviveUpVppHier}{24}  % percent, hierarchical posterior counterpart, P(observed best stays best), n75, CV upper = He 2025, direct evidence
+\newcommand{\spvOptSurviveRepUpVpp}{39}  % percent, re-draw (composition means treated as exact), replication variant of P(best stays best), n75, CV upper = He 2025, direct evidence
+\newcommand{\spvOptSurviveRepUpVppHier}{23}  % percent, hierarchical posterior counterpart, replication variant of P(best stays best), n75, CV upper = He 2025, direct evidence
+\newcommand{\spvRankSurviveRepUpVpp}{4}  % percent, re-draw (composition means treated as exact), replication variant of P(ranking unchanged), n75, CV upper = He 2025, direct evidence
+\newcommand{\spvRankSurviveRepUpVppHier}{1}  % percent, hierarchical posterior counterpart, replication variant of P(ranking unchanged), n75, CV upper = He 2025, direct evidence
+\newcommand{\spvRankSurviveUpVmax}{11}  % percent, re-draw (composition means treated as exact), P(full ranking unchanged), n75, CV upper = He 2025, direct evidence
+\newcommand{\spvRankSurviveUpVmaxHier}{2}  % percent, hierarchical posterior counterpart, P(full ranking unchanged), n75, CV upper = He 2025, direct evidence
+\newcommand{\spvOptSurviveUpVmax}{63}  % percent, re-draw (composition means treated as exact), P(observed best stays best), n75, CV upper = He 2025, direct evidence
+\newcommand{\spvOptSurviveUpVmaxHier}{35}  % percent, hierarchical posterior counterpart, P(observed best stays best), n75, CV upper = He 2025, direct evidence
+\newcommand{\spvOptSurviveRepUpVmax}{52}  % percent, re-draw (composition means treated as exact), replication variant of P(best stays best), n75, CV upper = He 2025, direct evidence
+\newcommand{\spvOptSurviveRepUpVmaxHier}{28}  % percent, hierarchical posterior counterpart, replication variant of P(best stays best), n75, CV upper = He 2025, direct evidence
+\newcommand{\spvRankSurviveRepUpVmax}{6}  % percent, re-draw (composition means treated as exact), replication variant of P(ranking unchanged), n75, CV upper = He 2025, direct evidence
+\newcommand{\spvRankSurviveRepUpVmaxHier}{2}  % percent, hierarchical posterior counterpart, replication variant of P(ranking unchanged), n75, CV upper = He 2025, direct evidence
+\newcommand{\spvRankSurvivePSeventyFiveRms}{72}  % percent, re-draw (composition means treated as exact), P(full ranking unchanged), n75, CV 75th percentile
+\newcommand{\spvRankSurvivePSeventyFiveRmsHier}{5}  % percent, hierarchical posterior counterpart, P(full ranking unchanged), n75, CV 75th percentile
+\newcommand{\spvOptSurvivePSeventyFiveRms}{98}  % percent, re-draw (composition means treated as exact), P(observed best stays best), n75, CV 75th percentile
+\newcommand{\spvOptSurvivePSeventyFiveRmsHier}{60}  % percent, hierarchical posterior counterpart, P(observed best stays best), n75, CV 75th percentile
+\newcommand{\spvOptSurviveRepPSeventyFiveRms}{93}  % percent, re-draw (composition means treated as exact), replication variant of P(best stays best), n75, CV 75th percentile
+\newcommand{\spvOptSurviveRepPSeventyFiveRmsHier}{49}  % percent, hierarchical posterior counterpart, replication variant of P(best stays best), n75, CV 75th percentile
+\newcommand{\spvRankSurviveRepPSeventyFiveRms}{50}  % percent, re-draw (composition means treated as exact), replication variant of P(ranking unchanged), n75, CV 75th percentile
+\newcommand{\spvRankSurviveRepPSeventyFiveRmsHier}{4}  % percent, hierarchical posterior counterpart, replication variant of P(ranking unchanged), n75, CV 75th percentile
+\newcommand{\spvRankSurvivePSeventyFiveVpp}{51}  % percent, re-draw (composition means treated as exact), P(full ranking unchanged), n75, CV 75th percentile
+\newcommand{\spvRankSurvivePSeventyFiveVppHier}{2}  % percent, hierarchical posterior counterpart, P(full ranking unchanged), n75, CV 75th percentile
+\newcommand{\spvOptSurvivePSeventyFiveVpp}{69}  % percent, re-draw (composition means treated as exact), P(observed best stays best), n75, CV 75th percentile
+\newcommand{\spvOptSurvivePSeventyFiveVppHier}{29}  % percent, hierarchical posterior counterpart, P(observed best stays best), n75, CV 75th percentile
+\newcommand{\spvOptSurviveRepPSeventyFiveVpp}{62}  % percent, re-draw (composition means treated as exact), replication variant of P(best stays best), n75, CV 75th percentile
+\newcommand{\spvOptSurviveRepPSeventyFiveVppHier}{27}  % percent, hierarchical posterior counterpart, replication variant of P(best stays best), n75, CV 75th percentile
+\newcommand{\spvRankSurviveRepPSeventyFiveVpp}{36}  % percent, re-draw (composition means treated as exact), replication variant of P(ranking unchanged), n75, CV 75th percentile
+\newcommand{\spvRankSurviveRepPSeventyFiveVppHier}{2}  % percent, hierarchical posterior counterpart, replication variant of P(ranking unchanged), n75, CV 75th percentile
+\newcommand{\spvRankSurvivePSeventyFiveVmax}{91}  % percent, re-draw (composition means treated as exact), P(full ranking unchanged), n75, CV 75th percentile
+\newcommand{\spvRankSurvivePSeventyFiveVmaxHier}{8}  % percent, hierarchical posterior counterpart, P(full ranking unchanged), n75, CV 75th percentile
+\newcommand{\spvOptSurvivePSeventyFiveVmax}{\ensuremath{>}99}  % percent, re-draw (composition means treated as exact), P(observed best stays best), n75, CV 75th percentile
+\newcommand{\spvOptSurvivePSeventyFiveVmaxHier}{71}  % percent, hierarchical posterior counterpart, P(observed best stays best), n75, CV 75th percentile
+\newcommand{\spvOptSurviveRepPSeventyFiveVmax}{97}  % percent, re-draw (composition means treated as exact), replication variant of P(best stays best), n75, CV 75th percentile
+\newcommand{\spvOptSurviveRepPSeventyFiveVmaxHier}{56}  % percent, hierarchical posterior counterpart, replication variant of P(best stays best), n75, CV 75th percentile
+\newcommand{\spvRankSurviveRepPSeventyFiveVmax}{72}  % percent, re-draw (composition means treated as exact), replication variant of P(ranking unchanged), n75, CV 75th percentile
+\newcommand{\spvRankSurviveRepPSeventyFiveVmaxHier}{6}  % percent, hierarchical posterior counterpart, replication variant of P(ranking unchanged), n75, CV 75th percentile
+\newcommand{\spvFlipCvOptRms}{28}  % percent, CV at which P(optimum survives) = 0.5, n75
+\newcommand{\spvFlipCvRankRms}{7}  % percent, CV at which P(ranking survives) = 0.5, n75
+\newcommand{\spvFlipCvOptRepRms}{20}  % percent, replication variant, n75
+\newcommand{\spvFlipCvOptVpp}{19}  % percent, CV at which P(optimum survives) = 0.5, n75
+\newcommand{\spvFlipCvRankVpp}{5}  % percent, CV at which P(ranking survives) = 0.5, n75
+\newcommand{\spvFlipCvOptRepVpp}{13}  % percent, replication variant, n75
+\newcommand{\spvFlipCvOptVmax}{36}  % percent, CV at which P(optimum survives) = 0.5, n75
+\newcommand{\spvFlipCvRankVmax}{10}  % percent, CV at which P(ranking survives) = 0.5, n75
+\newcommand{\spvFlipCvOptRepVmax}{25}  % percent, replication variant, n75
+\newcommand{\spvDupRankSurviveMedRms}{47}  % percent, re-draw (composition means treated as exact), P(full ranking unchanged), n72, CV median = optimistic bound
+\newcommand{\spvDupRankSurviveMedRmsHier}{5}  % percent, hierarchical posterior counterpart, P(full ranking unchanged), n72, CV median = optimistic bound
+\newcommand{\spvDupOptSurviveMedRms}{\ensuremath{>}99}  % percent, re-draw (composition means treated as exact), P(observed best stays best), n72, CV median = optimistic bound
+\newcommand{\spvDupOptSurviveMedRmsHier}{60}  % percent, hierarchical posterior counterpart, P(observed best stays best), n72, CV median = optimistic bound
+\newcommand{\spvDupOptSurviveRepMedRms}{\ensuremath{>}99}  % percent, re-draw (composition means treated as exact), replication variant of P(best stays best), n72, CV median = optimistic bound
+\newcommand{\spvDupOptSurviveRepMedRmsHier}{49}  % percent, hierarchical posterior counterpart, replication variant of P(best stays best), n72, CV median = optimistic bound
+\newcommand{\spvDupRankSurviveRepMedRms}{36}  % percent, re-draw (composition means treated as exact), replication variant of P(ranking unchanged), n72, CV median = optimistic bound
+\newcommand{\spvDupRankSurviveRepMedRmsHier}{5}  % percent, hierarchical posterior counterpart, replication variant of P(ranking unchanged), n72, CV median = optimistic bound
+\newcommand{\spvDupRankSurviveMedVpp}{57}  % percent, re-draw (composition means treated as exact), P(full ranking unchanged), n72, CV median = optimistic bound
+\newcommand{\spvDupRankSurviveMedVppHier}{2}  % percent, hierarchical posterior counterpart, P(full ranking unchanged), n72, CV median = optimistic bound
+\newcommand{\spvDupOptSurviveMedVpp}{\ensuremath{>}99}  % percent, re-draw (composition means treated as exact), P(observed best stays best), n72, CV median = optimistic bound
+\newcommand{\spvDupOptSurviveMedVppHier}{29}  % percent, hierarchical posterior counterpart, P(observed best stays best), n72, CV median = optimistic bound
+\newcommand{\spvDupOptSurviveRepMedVpp}{\ensuremath{>}99}  % percent, re-draw (composition means treated as exact), replication variant of P(best stays best), n72, CV median = optimistic bound
+\newcommand{\spvDupOptSurviveRepMedVppHier}{27}  % percent, hierarchical posterior counterpart, replication variant of P(best stays best), n72, CV median = optimistic bound
+\newcommand{\spvDupRankSurviveRepMedVpp}{43}  % percent, re-draw (composition means treated as exact), replication variant of P(ranking unchanged), n72, CV median = optimistic bound
+\newcommand{\spvDupRankSurviveRepMedVppHier}{2}  % percent, hierarchical posterior counterpart, replication variant of P(ranking unchanged), n72, CV median = optimistic bound
+\newcommand{\spvDupRankSurviveMedVmax}{64}  % percent, re-draw (composition means treated as exact), P(full ranking unchanged), n72, CV median = optimistic bound
+\newcommand{\spvDupRankSurviveMedVmaxHier}{7}  % percent, hierarchical posterior counterpart, P(full ranking unchanged), n72, CV median = optimistic bound
+\newcommand{\spvDupOptSurviveMedVmax}{\ensuremath{>}99}  % percent, re-draw (composition means treated as exact), P(observed best stays best), n72, CV median = optimistic bound
+\newcommand{\spvDupOptSurviveMedVmaxHier}{66}  % percent, hierarchical posterior counterpart, P(observed best stays best), n72, CV median = optimistic bound
+\newcommand{\spvDupOptSurviveRepMedVmax}{\ensuremath{>}99}  % percent, re-draw (composition means treated as exact), replication variant of P(best stays best), n72, CV median = optimistic bound
+\newcommand{\spvDupOptSurviveRepMedVmaxHier}{53}  % percent, hierarchical posterior counterpart, replication variant of P(best stays best), n72, CV median = optimistic bound
+\newcommand{\spvDupRankSurviveRepMedVmax}{50}  % percent, re-draw (composition means treated as exact), replication variant of P(ranking unchanged), n72, CV median = optimistic bound
+\newcommand{\spvDupRankSurviveRepMedVmaxHier}{5}  % percent, hierarchical posterior counterpart, replication variant of P(ranking unchanged), n72, CV median = optimistic bound
+\newcommand{\spvDupRankSurviveUpRms}{6}  % percent, re-draw (composition means treated as exact), P(full ranking unchanged), n72, CV upper = He 2025, direct evidence
+\newcommand{\spvDupRankSurviveUpRmsHier}{2}  % percent, hierarchical posterior counterpart, P(full ranking unchanged), n72, CV upper = He 2025, direct evidence
+\newcommand{\spvDupOptSurviveUpRms}{66}  % percent, re-draw (composition means treated as exact), P(observed best stays best), n72, CV upper = He 2025, direct evidence
+\newcommand{\spvDupOptSurviveUpRmsHier}{31}  % percent, hierarchical posterior counterpart, P(observed best stays best), n72, CV upper = He 2025, direct evidence
+\newcommand{\spvDupOptSurviveRepUpRms}{51}  % percent, re-draw (composition means treated as exact), replication variant of P(best stays best), n72, CV upper = He 2025, direct evidence
+\newcommand{\spvDupOptSurviveRepUpRmsHier}{26}  % percent, hierarchical posterior counterpart, replication variant of P(best stays best), n72, CV upper = He 2025, direct evidence
+\newcommand{\spvDupRankSurviveRepUpRms}{4}  % percent, re-draw (composition means treated as exact), replication variant of P(ranking unchanged), n72, CV upper = He 2025, direct evidence
+\newcommand{\spvDupRankSurviveRepUpRmsHier}{1}  % percent, hierarchical posterior counterpart, replication variant of P(ranking unchanged), n72, CV upper = He 2025, direct evidence
+\newcommand{\spvDupRankSurviveUpVpp}{5}  % percent, re-draw (composition means treated as exact), P(full ranking unchanged), n72, CV upper = He 2025, direct evidence
+\newcommand{\spvDupRankSurviveUpVppHier}{2}  % percent, hierarchical posterior counterpart, P(full ranking unchanged), n72, CV upper = He 2025, direct evidence
+\newcommand{\spvDupOptSurviveUpVpp}{61}  % percent, re-draw (composition means treated as exact), P(observed best stays best), n72, CV upper = He 2025, direct evidence
+\newcommand{\spvDupOptSurviveUpVppHier}{24}  % percent, hierarchical posterior counterpart, P(observed best stays best), n72, CV upper = He 2025, direct evidence
+\newcommand{\spvDupOptSurviveRepUpVpp}{48}  % percent, re-draw (composition means treated as exact), replication variant of P(best stays best), n72, CV upper = He 2025, direct evidence
+\newcommand{\spvDupOptSurviveRepUpVppHier}{23}  % percent, hierarchical posterior counterpart, replication variant of P(best stays best), n72, CV upper = He 2025, direct evidence
+\newcommand{\spvDupRankSurviveRepUpVpp}{3}  % percent, re-draw (composition means treated as exact), replication variant of P(ranking unchanged), n72, CV upper = He 2025, direct evidence
+\newcommand{\spvDupRankSurviveRepUpVppHier}{1}  % percent, hierarchical posterior counterpart, replication variant of P(ranking unchanged), n72, CV upper = He 2025, direct evidence
+\newcommand{\spvDupRankSurviveUpVmax}{8}  % percent, re-draw (composition means treated as exact), P(full ranking unchanged), n72, CV upper = He 2025, direct evidence
+\newcommand{\spvDupRankSurviveUpVmaxHier}{2}  % percent, hierarchical posterior counterpart, P(full ranking unchanged), n72, CV upper = He 2025, direct evidence
+\newcommand{\spvDupOptSurviveUpVmax}{74}  % percent, re-draw (composition means treated as exact), P(observed best stays best), n72, CV upper = He 2025, direct evidence
+\newcommand{\spvDupOptSurviveUpVmaxHier}{34}  % percent, hierarchical posterior counterpart, P(observed best stays best), n72, CV upper = He 2025, direct evidence
+\newcommand{\spvDupOptSurviveRepUpVmax}{60}  % percent, re-draw (composition means treated as exact), replication variant of P(best stays best), n72, CV upper = He 2025, direct evidence
+\newcommand{\spvDupOptSurviveRepUpVmaxHier}{27}  % percent, hierarchical posterior counterpart, replication variant of P(best stays best), n72, CV upper = He 2025, direct evidence
+\newcommand{\spvDupRankSurviveRepUpVmax}{5}  % percent, re-draw (composition means treated as exact), replication variant of P(ranking unchanged), n72, CV upper = He 2025, direct evidence
+\newcommand{\spvDupRankSurviveRepUpVmaxHier}{1}  % percent, hierarchical posterior counterpart, replication variant of P(ranking unchanged), n72, CV upper = He 2025, direct evidence
+\newcommand{\spvDupRankSurvivePSeventyFiveRms}{38}  % percent, re-draw (composition means treated as exact), P(full ranking unchanged), n72, CV 75th percentile
+\newcommand{\spvDupRankSurvivePSeventyFiveRmsHier}{5}  % percent, hierarchical posterior counterpart, P(full ranking unchanged), n72, CV 75th percentile
+\newcommand{\spvDupOptSurvivePSeventyFiveRms}{\ensuremath{>}99}  % percent, re-draw (composition means treated as exact), P(observed best stays best), n72, CV 75th percentile
+\newcommand{\spvDupOptSurvivePSeventyFiveRmsHier}{57}  % percent, hierarchical posterior counterpart, P(observed best stays best), n72, CV 75th percentile
+\newcommand{\spvDupOptSurviveRepPSeventyFiveRms}{\ensuremath{>}99}  % percent, re-draw (composition means treated as exact), replication variant of P(best stays best), n72, CV 75th percentile
+\newcommand{\spvDupOptSurviveRepPSeventyFiveRmsHier}{47}  % percent, hierarchical posterior counterpart, replication variant of P(best stays best), n72, CV 75th percentile
+\newcommand{\spvDupRankSurviveRepPSeventyFiveRms}{28}  % percent, re-draw (composition means treated as exact), replication variant of P(ranking unchanged), n72, CV 75th percentile
+\newcommand{\spvDupRankSurviveRepPSeventyFiveRmsHier}{4}  % percent, hierarchical posterior counterpart, replication variant of P(ranking unchanged), n72, CV 75th percentile
+\newcommand{\spvDupRankSurvivePSeventyFiveVpp}{45}  % percent, re-draw (composition means treated as exact), P(full ranking unchanged), n72, CV 75th percentile
+\newcommand{\spvDupRankSurvivePSeventyFiveVppHier}{2}  % percent, hierarchical posterior counterpart, P(full ranking unchanged), n72, CV 75th percentile
+\newcommand{\spvDupOptSurvivePSeventyFiveVpp}{\ensuremath{>}99}  % percent, re-draw (composition means treated as exact), P(observed best stays best), n72, CV 75th percentile
+\newcommand{\spvDupOptSurvivePSeventyFiveVppHier}{28}  % percent, hierarchical posterior counterpart, P(observed best stays best), n72, CV 75th percentile
+\newcommand{\spvDupOptSurviveRepPSeventyFiveVpp}{99}  % percent, re-draw (composition means treated as exact), replication variant of P(best stays best), n72, CV 75th percentile
+\newcommand{\spvDupOptSurviveRepPSeventyFiveVppHier}{27}  % percent, hierarchical posterior counterpart, replication variant of P(best stays best), n72, CV 75th percentile
+\newcommand{\spvDupRankSurviveRepPSeventyFiveVpp}{31}  % percent, re-draw (composition means treated as exact), replication variant of P(ranking unchanged), n72, CV 75th percentile
+\newcommand{\spvDupRankSurviveRepPSeventyFiveVppHier}{2}  % percent, hierarchical posterior counterpart, replication variant of P(ranking unchanged), n72, CV 75th percentile
+\newcommand{\spvDupRankSurvivePSeventyFiveVmax}{52}  % percent, re-draw (composition means treated as exact), P(full ranking unchanged), n72, CV 75th percentile
+\newcommand{\spvDupRankSurvivePSeventyFiveVmaxHier}{7}  % percent, hierarchical posterior counterpart, P(full ranking unchanged), n72, CV 75th percentile
+\newcommand{\spvDupOptSurvivePSeventyFiveVmax}{\ensuremath{>}99}  % percent, re-draw (composition means treated as exact), P(observed best stays best), n72, CV 75th percentile
+\newcommand{\spvDupOptSurvivePSeventyFiveVmaxHier}{63}  % percent, hierarchical posterior counterpart, P(observed best stays best), n72, CV 75th percentile
+\newcommand{\spvDupOptSurviveRepPSeventyFiveVmax}{\ensuremath{>}99}  % percent, re-draw (composition means treated as exact), replication variant of P(best stays best), n72, CV 75th percentile
+\newcommand{\spvDupOptSurviveRepPSeventyFiveVmaxHier}{51}  % percent, hierarchical posterior counterpart, replication variant of P(best stays best), n72, CV 75th percentile
+\newcommand{\spvDupRankSurviveRepPSeventyFiveVmax}{39}  % percent, re-draw (composition means treated as exact), replication variant of P(ranking unchanged), n72, CV 75th percentile
+\newcommand{\spvDupRankSurviveRepPSeventyFiveVmaxHier}{5}  % percent, hierarchical posterior counterpart, replication variant of P(ranking unchanged), n72, CV 75th percentile
+\newcommand{\spvDupFlipCvOptRms}{35}  % percent, CV at which P(optimum survives) = 0.5, n72
+\newcommand{\spvDupFlipCvRankRms}{3}  % percent, CV at which P(ranking survives) = 0.5, n72
+\newcommand{\spvDupFlipCvOptRepRms}{24}  % percent, replication variant, n72
+\newcommand{\spvDupFlipCvOptVpp}{32}  % percent, CV at which P(optimum survives) = 0.5, n72
+\newcommand{\spvDupFlipCvRankVpp}{5}  % percent, CV at which P(ranking survives) = 0.5, n72
+\newcommand{\spvDupFlipCvOptRepVpp}{22}  % percent, replication variant, n72
+\newcommand{\spvDupFlipCvOptVmax}{44}  % percent, CV at which P(optimum survives) = 0.5, n72
+\newcommand{\spvDupFlipCvRankVmax}{5}  % percent, CV at which P(ranking survives) = 0.5, n72
+\newcommand{\spvDupFlipCvOptRepVmax}{31}  % percent, replication variant, n72
+\newcommand{\spvLawCstarObs}{2.35}  % wt%, law c* on observed data, n75
+\newcommand{\spvLawCstarMed}{2.35}  % wt%, median c* over re-draws, n75
+\newcommand{\spvLawCstarMedLo}{2.02}  % wt%, 2.5 percentile over 2000 draws
+\newcommand{\spvLawCstarMedHi}{3.23}  % wt%, 97.5 percentile over 2000 draws
+\newcommand{\spvLawLevelTwoMed}{71}  % percent, re-draw (means treated as exact), law factor largest at 2 wt% among 0-3 wt%
+\newcommand{\spvLawLevelTwoMedHier}{63}  % percent, hierarchical counterpart: posterior P(2 wt% has the largest V_rms effect)
+\newcommand{\spvLawCstarUp}{1.99}  % wt%, median c* over re-draws, n75
+\newcommand{\spvLawCstarUpLo}{1.24}  % wt%, 2.5 percentile over 1506 draws
+\newcommand{\spvLawCstarUpHi}{13.12}  % wt%, 97.5 percentile over 1506 draws
+\newcommand{\spvLawLevelTwoUp}{49}  % percent, re-draw (means treated as exact), law factor largest at 2 wt% among 0-3 wt%
+\newcommand{\spvLawLevelTwoUpHier}{31}  % percent, hierarchical counterpart: posterior P(2 wt% has the largest V_rms effect)
+\newcommand{\spvDupLawCstarObs}{2.42}  % wt%, law c* on observed data, n72
+\newcommand{\spvDupLawCstarMed}{2.42}  % wt%, median c* over re-draws, n72
+\newcommand{\spvDupLawCstarMedLo}{2.07}  % wt%, 2.5 percentile over 2000 draws
+\newcommand{\spvDupLawCstarMedHi}{3.36}  % wt%, 97.5 percentile over 2000 draws
+\newcommand{\spvDupLawLevelTwoMed}{61}  % percent, re-draw (means treated as exact), law factor largest at 2 wt% among 0-3 wt%
+\newcommand{\spvDupLawLevelTwoMedHier}{60}  % percent, hierarchical counterpart: posterior P(2 wt% has the largest V_rms effect)
+\newcommand{\spvDupLawCstarUp}{2.04}  % wt%, median c* over re-draws, n72
+\newcommand{\spvDupLawCstarUpLo}{1.30}  % wt%, 2.5 percentile over 1500 draws
+\newcommand{\spvDupLawCstarUpHi}{13.23}  % wt%, 97.5 percentile over 1500 draws
+\newcommand{\spvDupLawLevelTwoUp}{46}  % percent, re-draw (means treated as exact), law factor largest at 2 wt% among 0-3 wt%
+\newcommand{\spvDupLawLevelTwoUpHier}{31}  % percent, hierarchical counterpart: posterior P(2 wt% has the largest V_rms effect)
+\newcommand{\spvBaseLoo}{0.914}  % baseline LOO R2 plain GP, n75
+\newcommand{\spvBaseForceOneN}{\ensuremath{-}0.48}  % baseline held-out force 1 N R2 LawGP, n75
+\newcommand{\spvBaseForceTwoN}{0.86}  % baseline held-out force 2 N R2 LawGP, n75
+\newcommand{\spvBaseForceThreeN}{0.69}  % baseline held-out force 3 N R2 LawGP, n75
+\newcommand{\spvBaseWithinHits}{72}  % baseline within-grid jk+ 95 hits, n75
+\newcommand{\spvBaseGroupCompositionNinetyHits}{47}  % baseline group-wise jk+ hits, n75
+\newcommand{\spvBaseGroupCompositionNinetyFiveHits}{66}  % baseline group-wise jk+ hits, n75
+\newcommand{\spvBaseGroupForceNinetyHits}{50}  % baseline group-wise jk+ hits, n75
+\newcommand{\spvBaseGroupForceNinetyFiveHits}{60}  % baseline group-wise jk+ hits, n75
+\newcommand{\spvBaseGroupFrequencyNinetyHits}{21}  % baseline group-wise jk+ hits, n75
+\newcommand{\spvBaseGroupFrequencyNinetyFiveHits}{30}  % baseline group-wise jk+ hits, n75
+\newcommand{\spvLooMed}{0.914}  % median LOO R2 GP over re-draws, n75, CV median
+\newcommand{\spvLooMedLo}{0.907}  % low end, percentile over 150 draws
+\newcommand{\spvLooMedHi}{0.925}  % high end, percentile over 150 draws
+\newcommand{\spvForceOneNMed}{\ensuremath{-}0.46}  % median held-out 1 N R2 LawGP, n75, CV median
+\newcommand{\spvForceOneNMedLo}{\ensuremath{-}0.66}  % low end, percentile over 150 draws
+\newcommand{\spvForceOneNMedHi}{\ensuremath{-}0.30}  % high end, percentile over 150 draws
+\newcommand{\spvForceTwoNMed}{0.85}  % median held-out 2 N R2 LawGP, n75, CV median
+\newcommand{\spvForceTwoNMedLo}{0.80}  % low end, percentile over 150 draws
+\newcommand{\spvForceTwoNMedHi}{0.86}  % high end, percentile over 150 draws
+\newcommand{\spvForceThreeNMed}{0.69}  % median held-out 3 N R2 LawGP, n75, CV median
+\newcommand{\spvForceThreeNMedLo}{0.65}  % low end, percentile over 150 draws
+\newcommand{\spvForceThreeNMedHi}{0.71}  % high end, percentile over 150 draws
+\newcommand{\spvLawBeatsGpForceMed}{\ensuremath{>}99}  % percent, P(LawGP pooled held-out-force R2 > GP), n75; model comparison, no hierarchical counterpart
+\newcommand{\spvWithinHitsMed}{73}  % median within-grid jk+ 95 hits, n75, CV median
+\newcommand{\spvWithinHitsMedLo}{72}  % min, range over 6 draws
+\newcommand{\spvWithinHitsMedHi}{73}  % max, range over 6 draws
+\newcommand{\spvGroupCompositionNinetyHitsMed}{46}  % median group-wise jk+ hits, n75, CV median
+\newcommand{\spvGroupCompositionNinetyHitsMedLo}{44}  % min, range over 25 draws
+\newcommand{\spvGroupCompositionNinetyHitsMedHi}{57}  % max, range over 25 draws
+\newcommand{\spvGroupCompositionNinetyFiveHitsMed}{65}  % median group-wise jk+ hits, n75, CV median
+\newcommand{\spvGroupCompositionNinetyFiveHitsMedLo}{60}  % min, range over 25 draws
+\newcommand{\spvGroupCompositionNinetyFiveHitsMedHi}{68}  % max, range over 25 draws
+\newcommand{\spvGroupForceNinetyHitsMed}{52}  % median group-wise jk+ hits, n75, CV median
+\newcommand{\spvGroupForceNinetyHitsMedLo}{48}  % min, range over 25 draws
+\newcommand{\spvGroupForceNinetyHitsMedHi}{55}  % max, range over 25 draws
+\newcommand{\spvGroupForceNinetyFiveHitsMed}{60}  % median group-wise jk+ hits, n75, CV median
+\newcommand{\spvGroupForceNinetyFiveHitsMedLo}{56}  % min, range over 25 draws
+\newcommand{\spvGroupForceNinetyFiveHitsMedHi}{62}  % max, range over 25 draws
+\newcommand{\spvGroupFrequencyNinetyHitsMed}{22}  % median group-wise jk+ hits, n75, CV median
+\newcommand{\spvGroupFrequencyNinetyHitsMedLo}{18}  % min, range over 25 draws
+\newcommand{\spvGroupFrequencyNinetyHitsMedHi}{25}  % max, range over 25 draws
+\newcommand{\spvGroupFrequencyNinetyFiveHitsMed}{30}  % median group-wise jk+ hits, n75, CV median
+\newcommand{\spvGroupFrequencyNinetyFiveHitsMedLo}{25}  % min, range over 25 draws
+\newcommand{\spvGroupFrequencyNinetyFiveHitsMedHi}{33}  % max, range over 25 draws
+\newcommand{\spvLooUp}{0.913}  % median LOO R2 GP over re-draws, n75, CV upper
+\newcommand{\spvLooUpLo}{0.868}  % low end, percentile over 150 draws
+\newcommand{\spvLooUpHi}{0.951}  % high end, percentile over 150 draws
+\newcommand{\spvForceOneNUp}{\ensuremath{-}0.35}  % median held-out 1 N R2 LawGP, n75, CV upper
+\newcommand{\spvForceOneNUpLo}{\ensuremath{-}1.80}  % low end, percentile over 150 draws
+\newcommand{\spvForceOneNUpHi}{0.33}  % high end, percentile over 150 draws
+\newcommand{\spvForceTwoNUp}{0.85}  % median held-out 2 N R2 LawGP, n75, CV upper
+\newcommand{\spvForceTwoNUpLo}{0.75}  % low end, percentile over 150 draws
+\newcommand{\spvForceTwoNUpHi}{0.89}  % high end, percentile over 150 draws
+\newcommand{\spvForceThreeNUp}{0.68}  % median held-out 3 N R2 LawGP, n75, CV upper
+\newcommand{\spvForceThreeNUpLo}{0.51}  % low end, percentile over 150 draws
+\newcommand{\spvForceThreeNUpHi}{0.81}  % high end, percentile over 150 draws
+\newcommand{\spvLawBeatsGpForceUp}{90}  % percent, P(LawGP pooled held-out-force R2 > GP), n75; model comparison, no hierarchical counterpart
+\newcommand{\spvWithinHitsUp}{72}  % median within-grid jk+ 95 hits, n75, CV upper
+\newcommand{\spvWithinHitsUpLo}{71}  % min, range over 6 draws
+\newcommand{\spvWithinHitsUpHi}{72}  % max, range over 6 draws
+\newcommand{\spvGroupCompositionNinetyHitsUp}{35}  % median group-wise jk+ hits, n75, CV upper
+\newcommand{\spvGroupCompositionNinetyHitsUpLo}{24}  % min, range over 25 draws
+\newcommand{\spvGroupCompositionNinetyHitsUpHi}{63}  % max, range over 25 draws
+\newcommand{\spvGroupCompositionNinetyFiveHitsUp}{52}  % median group-wise jk+ hits, n75, CV upper
+\newcommand{\spvGroupCompositionNinetyFiveHitsUpLo}{43}  % min, range over 25 draws
+\newcommand{\spvGroupCompositionNinetyFiveHitsUpHi}{71}  % max, range over 25 draws
+\newcommand{\spvGroupForceNinetyHitsUp}{57}  % median group-wise jk+ hits, n75, CV upper
+\newcommand{\spvGroupForceNinetyHitsUpLo}{34}  % min, range over 25 draws
+\newcommand{\spvGroupForceNinetyHitsUpHi}{66}  % max, range over 25 draws
+\newcommand{\spvGroupForceNinetyFiveHitsUp}{68}  % median group-wise jk+ hits, n75, CV upper
+\newcommand{\spvGroupForceNinetyFiveHitsUpLo}{47}  % min, range over 25 draws
+\newcommand{\spvGroupForceNinetyFiveHitsUpHi}{72}  % max, range over 25 draws
+\newcommand{\spvGroupFrequencyNinetyHitsUp}{24}  % median group-wise jk+ hits, n75, CV upper
+\newcommand{\spvGroupFrequencyNinetyHitsUpLo}{17}  % min, range over 25 draws
+\newcommand{\spvGroupFrequencyNinetyHitsUpHi}{33}  % max, range over 25 draws
+\newcommand{\spvGroupFrequencyNinetyFiveHitsUp}{39}  % median group-wise jk+ hits, n75, CV upper
+\newcommand{\spvGroupFrequencyNinetyFiveHitsUpLo}{19}  % min, range over 25 draws
+\newcommand{\spvGroupFrequencyNinetyFiveHitsUpHi}{46}  % max, range over 25 draws
+\newcommand{\spvDupBaseLoo}{0.905}  % baseline LOO R2 plain GP, n72
+\newcommand{\spvDupBaseForceOneN}{\ensuremath{-}0.39}  % baseline held-out force 1 N R2 LawGP, n72
+\newcommand{\spvDupBaseForceTwoN}{0.84}  % baseline held-out force 2 N R2 LawGP, n72
+\newcommand{\spvDupBaseForceThreeN}{0.64}  % baseline held-out force 3 N R2 LawGP, n72
+\newcommand{\spvDupBaseWithinHits}{69}  % baseline within-grid jk+ 95 hits, n72
+\newcommand{\spvDupBaseGroupCompositionNinetyHits}{50}  % baseline group-wise jk+ hits, n72
+\newcommand{\spvDupBaseGroupCompositionNinetyFiveHits}{65}  % baseline group-wise jk+ hits, n72
+\newcommand{\spvDupBaseGroupForceNinetyHits}{55}  % baseline group-wise jk+ hits, n72
+\newcommand{\spvDupBaseGroupForceNinetyFiveHits}{64}  % baseline group-wise jk+ hits, n72
+\newcommand{\spvDupBaseGroupFrequencyNinetyHits}{21}  % baseline group-wise jk+ hits, n72
+\newcommand{\spvDupBaseGroupFrequencyNinetyFiveHits}{37}  % baseline group-wise jk+ hits, n72
+\newcommand{\spvDupLooMed}{0.903}  % median LOO R2 GP over re-draws, n72, CV median
+\newcommand{\spvDupLooMedLo}{0.896}  % low end, percentile over 50 draws
+\newcommand{\spvDupLooMedHi}{0.914}  % high end, percentile over 50 draws
+\newcommand{\spvDupForceOneNMed}{\ensuremath{-}0.39}  % median held-out 1 N R2 LawGP, n72, CV median
+\newcommand{\spvDupForceOneNMedLo}{\ensuremath{-}0.57}  % low end, percentile over 50 draws
+\newcommand{\spvDupForceOneNMedHi}{\ensuremath{-}0.26}  % high end, percentile over 50 draws
+\newcommand{\spvDupForceTwoNMed}{0.84}  % median held-out 2 N R2 LawGP, n72, CV median
+\newcommand{\spvDupForceTwoNMedLo}{0.79}  % low end, percentile over 50 draws
+\newcommand{\spvDupForceTwoNMedHi}{0.85}  % high end, percentile over 50 draws
+\newcommand{\spvDupForceThreeNMed}{0.63}  % median held-out 3 N R2 LawGP, n72, CV median
+\newcommand{\spvDupForceThreeNMedLo}{0.61}  % low end, percentile over 50 draws
+\newcommand{\spvDupForceThreeNMedHi}{0.66}  % high end, percentile over 50 draws
+\newcommand{\spvDupLawBeatsGpForceMed}{\ensuremath{>}99}  % percent, P(LawGP pooled held-out-force R2 > GP), n72; model comparison, no hierarchical counterpart
+\newcommand{\spvDupWithinHitsMed}{69}  % median within-grid jk+ 95 hits, n72, CV median
+\newcommand{\spvDupWithinHitsMedLo}{69}  % min, range over 3 draws
+\newcommand{\spvDupWithinHitsMedHi}{69}  % max, range over 3 draws
+\newcommand{\spvDupGroupCompositionNinetyHitsMed}{46}  % median group-wise jk+ hits, n72, CV median
+\newcommand{\spvDupGroupCompositionNinetyHitsMedLo}{44}  % min, range over 3 draws
+\newcommand{\spvDupGroupCompositionNinetyHitsMedHi}{47}  % max, range over 3 draws
+\newcommand{\spvDupGroupCompositionNinetyFiveHitsMed}{64}  % median group-wise jk+ hits, n72, CV median
+\newcommand{\spvDupGroupCompositionNinetyFiveHitsMedLo}{63}  % min, range over 3 draws
+\newcommand{\spvDupGroupCompositionNinetyFiveHitsMedHi}{65}  % max, range over 3 draws
+\newcommand{\spvDupGroupForceNinetyHitsMed}{55}  % median group-wise jk+ hits, n72, CV median
+\newcommand{\spvDupGroupForceNinetyHitsMedLo}{54}  % min, range over 3 draws
+\newcommand{\spvDupGroupForceNinetyHitsMedHi}{55}  % max, range over 3 draws
+\newcommand{\spvDupGroupForceNinetyFiveHitsMed}{64}  % median group-wise jk+ hits, n72, CV median
+\newcommand{\spvDupGroupForceNinetyFiveHitsMedLo}{64}  % min, range over 3 draws
+\newcommand{\spvDupGroupForceNinetyFiveHitsMedHi}{65}  % max, range over 3 draws
+\newcommand{\spvDupGroupFrequencyNinetyHitsMed}{20}  % median group-wise jk+ hits, n72, CV median
+\newcommand{\spvDupGroupFrequencyNinetyHitsMedLo}{18}  % min, range over 3 draws
+\newcommand{\spvDupGroupFrequencyNinetyHitsMedHi}{22}  % max, range over 3 draws
+\newcommand{\spvDupGroupFrequencyNinetyFiveHitsMed}{42}  % median group-wise jk+ hits, n72, CV median
+\newcommand{\spvDupGroupFrequencyNinetyFiveHitsMedLo}{39}  % min, range over 3 draws
+\newcommand{\spvDupGroupFrequencyNinetyFiveHitsMedHi}{43}  % max, range over 3 draws
+\newcommand{\spvDupLooUp}{0.882}  % median LOO R2 GP over re-draws, n72, CV upper
+\newcommand{\spvDupLooUpLo}{0.816}  % low end, percentile over 50 draws
+\newcommand{\spvDupLooUpHi}{0.941}  % high end, percentile over 50 draws
+\newcommand{\spvDupForceOneNUp}{\ensuremath{-}0.37}  % median held-out 1 N R2 LawGP, n72, CV upper
+\newcommand{\spvDupForceOneNUpLo}{\ensuremath{-}1.66}  % low end, percentile over 50 draws
+\newcommand{\spvDupForceOneNUpHi}{0.20}  % high end, percentile over 50 draws
+\newcommand{\spvDupForceTwoNUp}{0.83}  % median held-out 2 N R2 LawGP, n72, CV upper
+\newcommand{\spvDupForceTwoNUpLo}{0.77}  % low end, percentile over 50 draws
+\newcommand{\spvDupForceTwoNUpHi}{0.87}  % high end, percentile over 50 draws
+\newcommand{\spvDupForceThreeNUp}{0.62}  % median held-out 3 N R2 LawGP, n72, CV upper
+\newcommand{\spvDupForceThreeNUpLo}{0.43}  % low end, percentile over 50 draws
+\newcommand{\spvDupForceThreeNUpHi}{0.76}  % high end, percentile over 50 draws
+\newcommand{\spvDupLawBeatsGpForceUp}{80}  % percent, P(LawGP pooled held-out-force R2 > GP), n72; model comparison, no hierarchical counterpart
+\newcommand{\spvDupWithinHitsUp}{69}  % median within-grid jk+ 95 hits, n72, CV upper
+\newcommand{\spvDupWithinHitsUpLo}{69}  % min, range over 3 draws
+\newcommand{\spvDupWithinHitsUpHi}{69}  % max, range over 3 draws
+\newcommand{\spvDupGroupCompositionNinetyHitsUp}{37}  % median group-wise jk+ hits, n72, CV upper
+\newcommand{\spvDupGroupCompositionNinetyHitsUpLo}{36}  % min, range over 3 draws
+\newcommand{\spvDupGroupCompositionNinetyHitsUpHi}{47}  % max, range over 3 draws
+\newcommand{\spvDupGroupCompositionNinetyFiveHitsUp}{60}  % median group-wise jk+ hits, n72, CV upper
+\newcommand{\spvDupGroupCompositionNinetyFiveHitsUpLo}{56}  % min, range over 3 draws
+\newcommand{\spvDupGroupCompositionNinetyFiveHitsUpHi}{62}  % max, range over 3 draws
+\newcommand{\spvDupGroupForceNinetyHitsUp}{57}  % median group-wise jk+ hits, n72, CV upper
+\newcommand{\spvDupGroupForceNinetyHitsUpLo}{55}  % min, range over 3 draws
+\newcommand{\spvDupGroupForceNinetyHitsUpHi}{61}  % max, range over 3 draws
+\newcommand{\spvDupGroupForceNinetyFiveHitsUp}{66}  % median group-wise jk+ hits, n72, CV upper
+\newcommand{\spvDupGroupForceNinetyFiveHitsUpLo}{64}  % min, range over 3 draws
+\newcommand{\spvDupGroupForceNinetyFiveHitsUpHi}{67}  % max, range over 3 draws
+\newcommand{\spvDupGroupFrequencyNinetyHitsUp}{34}  % median group-wise jk+ hits, n72, CV upper
+\newcommand{\spvDupGroupFrequencyNinetyHitsUpLo}{25}  % min, range over 3 draws
+\newcommand{\spvDupGroupFrequencyNinetyHitsUpHi}{39}  % max, range over 3 draws
+\newcommand{\spvDupGroupFrequencyNinetyFiveHitsUp}{48}  % median group-wise jk+ hits, n72, CV upper
+\newcommand{\spvDupGroupFrequencyNinetyFiveHitsUpLo}{48}  % min, range over 3 draws
+\newcommand{\spvDupGroupFrequencyNinetyFiveHitsUpHi}{53}  % max, range over 3 draws
+\newcommand{\spvHierPBestNoSpec}{67}  % percent, posterior P(2 wt% best), n75, specimen CV none
+\newcommand{\spvHierRhatNoSpec}{1.005}  % max split R-hat of composition effects
+\newcommand{\spvHierCfNoSpec}{67}  % percent, empirical-Bayes closed form P(2 wt% best)
+\newcommand{\spvHierRatioThreeNoSpec}{1.09}  % posterior median ratio of 2 wt% to 3 wt% composition effect
+\newcommand{\spvHierRatioThreeNoSpecLo}{0.88}  % 2.5 percentile
+\newcommand{\spvHierRatioThreeNoSpecHi}{1.37}  % 97.5 percentile
+\newcommand{\spvHierPAboveThreeNoSpec}{80}  % percent, P(2 wt% effect > 3 wt% effect)
+\newcommand{\spvHierPBestMed}{63}  % percent, posterior P(2 wt% best), n75, specimen CV median
+\newcommand{\spvHierRhatMed}{1.003}  % max split R-hat of composition effects
+\newcommand{\spvHierCfMed}{64}  % percent, empirical-Bayes closed form P(2 wt% best)
+\newcommand{\spvHierRatioThreeMed}{1.09}  % posterior median ratio of 2 wt% to 3 wt% composition effect
+\newcommand{\spvHierRatioThreeMedLo}{0.87}  % 2.5 percentile
+\newcommand{\spvHierRatioThreeMedHi}{1.39}  % 97.5 percentile
+\newcommand{\spvHierPAboveThreeMed}{77}  % percent, P(2 wt% effect > 3 wt% effect)
+\newcommand{\spvHierPBestUp}{31}  % percent, posterior P(2 wt% best), n75, specimen CV upper
+\newcommand{\spvHierRhatUp}{1.005}  % max split R-hat of composition effects
+\newcommand{\spvHierCfUp}{not identifiable}  % empirical-Bayes closed form, omega_EB = 0: complete pooling, P(2 wt% best) undefined (not 0)
+\newcommand{\spvHierRatioThreeUp}{1.01}  % posterior median ratio of 2 wt% to 3 wt% composition effect
+\newcommand{\spvHierRatioThreeUpLo}{0.70}  % 2.5 percentile
+\newcommand{\spvHierRatioThreeUpHi}{1.64}  % 97.5 percentile
+\newcommand{\spvHierPAboveThreeUp}{56}  % percent, P(2 wt% effect > 3 wt% effect)
+\newcommand{\spvDupHierPBestNoSpec}{63}  % percent, posterior P(2 wt% best), n72, specimen CV none
+\newcommand{\spvDupHierRhatNoSpec}{1.005}  % max split R-hat of composition effects
+\newcommand{\spvDupHierCfNoSpec}{64}  % percent, empirical-Bayes closed form P(2 wt% best)
+\newcommand{\spvDupHierRatioThreeNoSpec}{1.09}  % posterior median ratio of 2 wt% to 3 wt% composition effect
+\newcommand{\spvDupHierRatioThreeNoSpecLo}{0.87}  % 2.5 percentile
+\newcommand{\spvDupHierRatioThreeNoSpecHi}{1.39}  % 97.5 percentile
+\newcommand{\spvDupHierPAboveThreeNoSpec}{77}  % percent, P(2 wt% effect > 3 wt% effect)
+\newcommand{\spvDupHierPBestMed}{60}  % percent, posterior P(2 wt% best), n72, specimen CV median
+\newcommand{\spvDupHierRhatMed}{1.003}  % max split R-hat of composition effects
+\newcommand{\spvDupHierCfMed}{61}  % percent, empirical-Bayes closed form P(2 wt% best)
+\newcommand{\spvDupHierRatioThreeMed}{1.08}  % posterior median ratio of 2 wt% to 3 wt% composition effect
+\newcommand{\spvDupHierRatioThreeMedLo}{0.86}  % 2.5 percentile
+\newcommand{\spvDupHierRatioThreeMedHi}{1.41}  % 97.5 percentile
+\newcommand{\spvDupHierPAboveThreeMed}{75}  % percent, P(2 wt% effect > 3 wt% effect)
+\newcommand{\spvDupHierPBestUp}{31}  % percent, posterior P(2 wt% best), n72, specimen CV upper
+\newcommand{\spvDupHierRhatUp}{1.004}  % max split R-hat of composition effects
+\newcommand{\spvDupHierCfUp}{not identifiable}  % empirical-Bayes closed form, omega_EB = 0: complete pooling, P(2 wt% best) undefined (not 0)
+\newcommand{\spvDupHierRatioThreeUp}{1.01}  % posterior median ratio of 2 wt% to 3 wt% composition effect
+\newcommand{\spvDupHierRatioThreeUpLo}{0.70}  % 2.5 percentile
+\newcommand{\spvDupHierRatioThreeUpHi}{1.65}  % 97.5 percentile
+\newcommand{\spvDupHierPAboveThreeUp}{56}  % percent, P(2 wt% effect > 3 wt% effect)

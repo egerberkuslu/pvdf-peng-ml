@@ -1,0 +1,27 @@
+\begin{tabular}{l l r r r r c}
+\toprule
+Dataset & Scheme & \GP & \LawGP, $K=1$ & \LawGP, BIC $K$ & Law alone, BIC $K$ & Folds with $K = 1/2/3/4/5$ \\
+\midrule
+This grid, \RMS & LOO & 0.91 & 0.89 & 0.90 & 0.84 & 0/75/0/0/0 \\
+ & held-out composition & 0.71 & 0.11 & 0.14 & 0.16 & 0/5/0/0/0 \\
+ & held-out force & 0.52 & 0.73 & 0.82 & 0.82 & 0/3/0/0/0 \\
+ & held-out frequency & \ensuremath{-}1.10 & \ensuremath{-}2.84 & \ensuremath{-}2.86 & \ensuremath{-}2.94 & 3/2/0/0/0 \\
+This grid, \Vpp & LOO & 0.78 & 0.74 & 0.80 & 0.82 & 0/75/0/0/0 \\
+ & held-out composition & 0.77 & 0.29 & 0.26 & 0.28 & 0/5/0/0/0 \\
+ & held-out force & \ensuremath{-}0.08 & 0.73 & 0.79 & 0.79 & 0/3/0/0/0 \\
+ & held-out frequency & \ensuremath{-}1.32 & \ensuremath{-}8.33 & \ensuremath{-}17.28 & \ensuremath{-}17.26 & 3/2/0/0/0 \\
+This grid, \Vmax & LOO & 0.78 & 0.79 & 0.84 & 0.82 & 0/75/0/0/0 \\
+ & held-out composition & 0.64 & \ensuremath{-}0.06 & \ensuremath{-}0.01 & 0.01 & 0/5/0/0/0 \\
+ & held-out force & \ensuremath{-}0.13 & 0.77 & 0.81 & 0.81 & 0/3/0/0/0 \\
+ & held-out frequency & \ensuremath{-}1.19 & \ensuremath{-}2.90 & \ensuremath{-}10.49 & \ensuremath{-}10.48 & 4/1/0/0/0 \\
+Salama 2024, frequency & LOO & 0.96 & 0.97 & 0.97 & 0.83 & 30/0/0/0/0 \\
+ & held-out composition & 0.18 & 0.76 & 0.76 & 0.76 & 6/0/0/0/0 \\
+ & held-out frequency & 0.97 & 0.97 & 0.97 & 0.86 & 5/0/0/0/0 \\
+Park 2017, G/PVDF/G (5\,Hz samples) & LOO & 0.86 & 0.87 & 0.86 & 0.53 & 0/234/0/0/0 \\
+ & held-out preload & 0.59 & 0.09 & 0.21 & 0.13 & 0/6/0/0/0 \\
+ & held-out frequency & \ensuremath{-}0.05 & \ensuremath{-}0.12 & \ensuremath{-}0.12 & \ensuremath{-}0.27 & 1/4/0/0/0 \\
+Park 2017, P(VDF-TrFE) (5\,Hz samples) & LOO & 0.86 & 0.87 & 0.83 & 0.54 & 0/0/1/161/7 \\
+ & held-out preload & \ensuremath{-}0.16 & \ensuremath{-}1.80 & \ensuremath{-}2.63 & \ensuremath{-}2.50 & 0/1/0/0/2 \\
+ & held-out frequency & 0.14 & 0.32 & 0.11 & \ensuremath{-}0.02 & 0/0/2/3/0 \\
+\bottomrule
+\end{tabular}

@@ -1,0 +1,27 @@
+\footnotesize\setlength{\tabcolsep}{2.5pt}%
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.17\textwidth}>{\raggedright\arraybackslash}p{0.46\textwidth}>{\raggedright\arraybackslash}p{0.18\textwidth}>{\raggedright\arraybackslash}p{0.11\textwidth}@{}}
+\toprule
+Model & Settings (scikit-learn / xgboost names) & Preprocessing & Tuning \\
+\midrule
+Linear regression & LinearRegression: fit\_intercept=True & none (\allowbreak raw inputs) & fixed a priori \\
+Ridge & Ridge: alpha=1.0, fit\_intercept=True & input standardization & fixed a priori \\
+Lasso & Lasso: alpha=0.01, max\_iter=10000 & input standardization & fixed a priori \\
+Polynomial deg.\ 2, OLS & LinearRegression: fit\_intercept=True & PolynomialFeatures(\allowbreak degree=2,\allowbreak include\_bias=True) & fixed a priori \\
+Polynomial deg.\ 2, ridge & Ridge: alpha=1.0, fit\_intercept=True & input standardization; PolynomialFeatures(\allowbreak degree=2,\allowbreak include\_bias=True) & fixed a priori \\
+Support-vector reg. & SVR: kernel=rbf, C=10, gamma=scale, epsilon=0.1 & input standardization; target standardized (StandardScaler, inverted before scoring) & fixed a priori \\
+Kernel ridge & KernelRidge: kernel=rbf, alpha=0.1, gamma=0.1 & input standardization; target standardized (StandardScaler, inverted before scoring) & fixed a priori \\
+$k$-nearest neighbors & KNeighborsRegressor: n\_neighbors=5, weights=uniform, p=2 & input standardization & fixed a priori \\
+Random forest & RandomForestRegressor: n\_estimators=400, max\_features=1.0, max\_depth=None, min\_samples\_leaf=1, bootstrap=True, random\_state=42 & none (\allowbreak raw inputs) & fixed a priori \\
+Extra-trees & ExtraTreesRegressor: n\_estimators=400, max\_features=1.0, max\_depth=None, min\_samples\_leaf=1, bootstrap=False, random\_state=42 & none (\allowbreak raw inputs) & fixed a priori \\
+Gradient boosting & GradientBoostingRegressor: n\_estimators=100, learning\_rate=0.1, max\_depth=3, subsample=1.0, loss=squared\_error, random\_state=42 & none (\allowbreak raw inputs) & fixed a priori \\
+XGBoost & XGBRegressor: n\_estimators=300, max\_depth=3, learning\_rate=0.05, subsample=1.0 (default), reg\_lambda=1.0 (default), random\_state=42 & none (\allowbreak raw inputs) & fixed a priori \\
+Multilayer perceptron & MLPRegressor: hidden\_layer\_sizes=(32, 16), activation=relu, solver=adam, alpha=0.05, learning\_rate\_init=0.001, max\_iter=4000, random\_state=42 & input standardization; target standardized (StandardScaler, inverted before scoring) & fixed a priori \\
+Gaussian process (ARD) & ConstantKernel(1.0, bounds $[10^{-5}, 10^{5}]$) $\times$ Matern($\nu$=2.5, length\_scale init [1, 1, 1, 5], bounds $[10^{-5}, 10^{5}]$) + WhiteKernel(0.001, bounds $[10^{-5}, 10^{5}]$); normalize\_y=True, alpha=1e-06, n\_restarts\_optimizer=4, random\_state=42 & none (\allowbreak raw inputs) & kernel by marginal likelihood in every training fold \\
+\midrule
+Multilayer perceptron, nested tuning & MLPRegressor: hidden\_layer\_sizes $\in$ \{(16), (32), (64), (32,16)\}, alpha $\in$ \{0.0001, 0.01, 1.0\} (12 configurations), solver=lbfgs, max\_iter=5000, random\_state=0; selected by inner KFold(n\_splits=5, shuffle=True, random\_state=0) $R^2$ inside every LOO training fold & input standardization; target standardized & nested grid search (declared exception) \\
+Support-vector reg., tuned (exploratory, not in the benchmark) & SVR(kernel=rbf): C $\in$ \{1, 10, 100\}, gamma $\in$ \{scale, 0.05, 0.2, 0.5\}; GridSearchCV(cv=5, unshuffled KFold, scoring=r2) refit inside every LOO training fold & input standardization; target not standardized & nested grid search \\
+Gaussian process for intervals and PhysGP (not in the benchmark) & ConstantKernel(1.0, bounds $[10^{-3}, 10^{3}]$) $\times$ Matern($\nu$=2.5, length\_scale init [1, 1, 1, 1], bounds $[10^{-2}, 10^{3}]$) + WhiteKernel(0.001, bounds $[10^{-6}, 10^{1}]$); normalize\_y=True, alpha=1e-10, n\_restarts\_optimizer=0 & input standardization in every fold & kernel by marginal likelihood in every training fold \\
+\midrule
+\multicolumn{4}{@{}>{\raggedright\arraybackslash}p{0.98\textwidth}@{}}{Selection protocol. Every setting above was fixed a priori and not tuned per target, the Gaussian process was designated the primary model before any score was computed, and the multilayer perceptron with nested tuning is the one declared exception. All preprocessing is fitted on the training rows of each fold, and scores are computed on the original voltage scale.} \\
+\bottomrule
+\end{tabular}

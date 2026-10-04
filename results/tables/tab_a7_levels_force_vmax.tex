@@ -1,0 +1,24 @@
+% note: $^\dagger$ Transductive under held-out force: the leave-self-out cell mean averages the other recordings of the held-out force level, all of which are in the test fold, and the within-specimen normalization averages over test rows; valid for LOO and held-out frequency only.
+% note: $^\ddagger$ Circular in every scheme (LOO, held-out force, held-out frequency): the force input is computed from the same recording whose descriptor is the target.
+\begin{tabular}{l rr rr rr}
+\toprule
+ & \multicolumn{2}{c}{\SI{1}{\newton}} & \multicolumn{2}{c}{\SI{2}{\newton}} & \multicolumn{2}{c}{\SI{3}{\newton}} \\
+\cmidrule(lr){2-3} \cmidrule(lr){4-5} \cmidrule(lr){6-7}
+Scenario & GP & LawGP & GP & LawGP & GP & LawGP \\
+\midrule
+Paper value (a2) & $-$3.41 & $-$0.55 & $-$0.03 & 0.74 & $-$0.33 & 0.81 \\
+Nominal label (paper, recomputed) & $-$3.41 & $-$0.55 & $-$0.03 & 0.74 & $-$0.33 & 0.81 \\
+Recovered force, per recording, \SI{1.9}{\nano\farad}$^\ddagger$ & $-$1.34 & 0.47 & 0.71 & 0.68 & 0.06 & 0.75 \\
+Recovered force, leave-self-out cell mean & $-$4.82$^\dagger$ & $-$0.46$^\dagger$ & 0.49$^\dagger$ & 0.63$^\dagger$ & $-$0.55$^\dagger$ & 0.74$^\dagger$ \\
+Recovered force, per recording, \SI{0.19}{\nano\farad}$^\ddagger$ & $-$1.20 & 0.48 & 0.72 & 0.69 & 0.11 & 0.74 \\
+Recovered force, per recording, \SI{7.7}{\nano\farad}$^\ddagger$ & $-$0.95 & 0.59 & 0.63 & 0.64 & $-$0.11 & 0.59 \\
+Scalar $V_\mathrm{oc}$, uniform \SI{1.9}{\nano\farad} & $-$7.37 & $-$3.16 & $-$0.14 & 0.49 & 0.37 & 0.17 \\
+Scalar $V_\mathrm{oc}$, electrospun-mat $\varepsilon_r$ & $-$4.39 & $-$1.45 & 0.50 & 0.50 & 0.25 & 0.23 \\
+Scalar $V_\mathrm{oc}$, dense-film $\varepsilon_r$ & $-$4.39 & $-$1.45 & 0.50 & 0.50 & 0.25 & 0.23 \\
+Scalar $V_\mathrm{oc}$, composite-literature $\varepsilon_r$ & 0.00 & 0.59 & 0.76 & 0.74 & 0.43 & 0.34 \\
+Waveform $V_\mathrm{oc}$, uniform \SI{1.9}{\nano\farad} & $-$0.92 & 0.19 & 0.75 & 0.82 & 0.15 & 0.60 \\
+Waveform $V_\mathrm{oc}$, electrospun-mat $\varepsilon_r$ & $-$0.43 & 0.26 & 0.70 & 0.66 & 0.18 & 0.57 \\
+Waveform $V_\mathrm{oc}$, dense-film $\varepsilon_r$ & $-$0.43 & 0.24 & 0.69 & 0.65 & 0.15 & 0.57 \\
+Waveform $V_\mathrm{oc}$, composite-literature $\varepsilon_r$ & 0.67 & 0.73 & 0.86 & 0.74 & 0.76 & 0.54 \\
+\bottomrule
+\end{tabular}

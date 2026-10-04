@@ -1,0 +1,24 @@
+\begin{tabular}{l l r r r r c c c r}
+\toprule
+Dataset & Axis & Levels & \GP & \LawGP & Gain & Truth & Picks & Verdict & Audit $R^2$ \\
+\midrule
+Salama 2024, impulse & comp. & 7 & 0.03 & 0.62 & 0.58 & helps & 6/7 & helps & 0.52 \\
+ & force & 5 & 0.82 & 0.75 & $-$0.07 & hurts & 4/5 & helps & 0.71 \\
+ & freq. & 2 & $-$0.01 & 0.73 & 0.74 & helps & -- & not auditable & -- \\
+\addlinespace
+Salama 2024, frequency & comp. & 6 & 0.18 & 0.76 & 0.58 & helps & 4/6 & helps & 0.71 \\
+ & freq. & 5 & 0.97 & 0.97 & 0.00 & neutral & 2/5 & hurts & 0.97 \\
+\addlinespace
+Shi 2025 & force & 10 & 1.00 & 0.99 & 0.00 & neutral & 3/10 & hurts & 0.99 \\
+ & comp. & 6 & 0.60 & 0.64 & 0.04 & helps & 3/6 & hurts & 0.52 \\
+\addlinespace
+Li 2022 & force & 10 & 0.99 & 0.99 & 0.00 & neutral & 8/10 & helps & 0.99 \\
+ & comp. & 2 & $-$0.12 & $-$0.13 & $-$0.01 & neutral & -- & not auditable & -- \\
+\addlinespace
+Park 2017, G/PVDF/G & preload & 6 & 0.59 & 0.09 & $-$0.50 & hurts & 0/6 & hurts & 0.59 \\
+ & freq. & 5 & $-$0.05 & $-$0.12 & $-$0.06 & hurts & 1/5 & hurts & $-$0.05 \\
+\addlinespace
+Park 2017, P(VDF-TrFE) & freq. & 5 & 0.14 & 0.32 & 0.19 & helps & 3/5 & helps & 0.20 \\
+ & preload & 3 & $-$0.16 & $-$1.80 & $-$1.64 & hurts & 0/3 & hurts & $-$0.16 \\
+\bottomrule
+\end{tabular}

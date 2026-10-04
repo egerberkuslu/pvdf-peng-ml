@@ -1,0 +1,3868 @@
+{
+ "description": "A3 coverage computations.\n\nwithin_grid(): nested LOO for the plain GP on V_rms, V_pp, |V|_max. For each\nheld-out condition j the model trained on the other 74 gives the raw\n+-z sigma interval, and 74 inner models (each also missing one training point\ni) give the jackknife+ and sigma-scaled jackknife+ intervals. This is the\nconstruction of legacy calibrated_conformal.py, repeated here because the\nMcNemar comparison needs per-point hits for every target (legacy stored them\nfor V_rms only).\n\ngroupwise(): legacy groupwise_conformal.py construction extended to all three\ntargets and to PhysGP. For a held-out level v of an axis, the training set is\nevery condition not at v. Jackknife+ residuals come from leave-one-out models\ninside that training set (for PhysGP the law is refitted inside every one of\nthose inner training sets), and the same inner models predict the held-out\nlevel. The outer model trained on the whole training set gives the raw\n+-z sigma interval at the held-out level.\n",
+ "groupwise": {
+  "rms_Voc": {
+   "gp": {
+    "composition": {
+     "raw": {
+      "90": {
+       "coverage": 0.7333333333333333,
+       "hits": 55,
+       "n": 75,
+       "ci95": [
+        0.6186272795170771,
+        0.8288894608555408
+       ],
+       "ci_method": "Clopper-Pearson exact, 95%",
+       "mean_width": 0.11876676125224023,
+       "median_width": 0.07928366471268294
+      },
+      "95": {
+       "coverage": 0.7733333333333333,
+       "hits": 58,
+       "n": 75,
+       "ci95": [
+        0.6620783862959236,
+        0.8620644323678299
+       ],
+       "ci_method": "Clopper-Pearson exact, 95%",
+       "mean_width": 0.14151932475978646,
+       "median_width": 0.0944723134344843
+      }
+     },
+     "jackknife_plus": {
+      "90": {
+       "coverage": 0.6266666666666667,
+       "hits": 47,
+       "n": 75,
+       "ci95": [
+        0.5073046300112944,
+        0.7356980883434918
+       ],
+       "ci_method": "Clopper-Pearson exact, 95%",
+       "mean_width": 0.0773163943831328,
+       "median_width": 0.07723886687092282
+      },
+      "95": {
+       "coverage": 0.88,
+       "hits": 66,
+       "n": 75,
+       "ci95": [
+        0.7843868764834109,
+        0.94363371577468
+       ],
+       "ci_method": "Clopper-Pearson exact, 95%",
+       "mean_width": 0.10854072482865573,
+       "median_width": 0.09834515544540323
+      }
+     },
+     "scaled_jackknife_plus": {
+      "90": {
+       "coverage": 0.7733333333333333,
+       "hits": 58,
+       "n": 75,
+       "ci95": [
+        0.6620783862959236,
+        0.8620644323678299
+       ],
+       "ci_method": "Clopper-Pearson exact, 95%",
+       "mean_width": 0.15113460745231763,
+       "median_width": 0.10334378364036695
+      },
+      "95": {
+       "coverage": 0.92,
+       "hits": 69,
+       "n": 75,
+       "ci95": [
+        0.8339631287011778,
+        0.9700748552659225
+       ],
+       "ci_method": "Clopper-Pearson exact, 95%",
+       "mean_width": 0.1979771589352812,
+       "median_width": 0.12873237387531566
+      }
+     },
+     "jackknife_plus_per_level": {
+      "PVDF": {
+       "90": {
+        "coverage": 0.8666666666666667,
+        "hits": 13,
+        "n": 15,
+        "ci95": [
+         0.5953973033966279,
+         0.9834240865599164
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 0.09258394541252012,
+        "median_width": 0.0926313036309947
+       },
+       "95": {
+        "coverage": 1.0,
+        "hits": 15,
+        "n": 15,
+        "ci95": [
+         0.7819806390894659,
+         1.0
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 0.13302621654160365,
+        "median_width": 0.13195072845216005
+       }
+      },
+      "PVDF+BaTiO3": {
+       "90": {
+        "coverage": 0.9333333333333333,
+        "hits": 14,
+        "n": 15,
+        "ci95": [
+         0.6805154334216966,
+         0.9983135697586473
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 0.08565228738189742,
+        "median_width": 0.0863225535280751
+       },
+       "95": {
+        "coverage": 1.0,
+        "hits": 15,
+        "n": 15,
+        "ci95": [
+         0.7819806390894659,
+         1.0
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 0.10299524437330886,
+        "median_width": 0.09834515544540323
+       }
+      },
+      "PVDF+BaTiO3+%1CNT": {
+       "90": {
+        "coverage": 0.4666666666666667,
+        "hits": 7,
+        "n": 15,
+        "ci95": [
+         0.2126667295193079,
+         0.7341386527226034
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 0.06405437072275914,
+        "median_width": 0.064380083972483
+       },
+       "95": {
+        "coverage": 0.8,
+        "hits": 12,
+        "n": 15,
+        "ci95": [
+         0.5191088661931469,
+         0.9566879948941633
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 0.09319286846901183,
+        "median_width": 0.09272674153174343
+       }
+      },
+      "PVDF+BaTiO3+%2CNT": {
+       "90": {
+        "coverage": 0.6,
+        "hits": 9,
+        "n": 15,
+        "ci95": [
+         0.3228697662062816,
+         0.8366356761404865
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 0.06665857500623606,
+        "median_width": 0.06688385254904056
+       },
+       "95": {
+        "coverage": 0.8666666666666667,
+        "hits": 13,
+        "n": 15,
+        "ci95": [
+         0.5953973033966279,
+         0.9834240865599164
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 0.09281187068054961,
+        "median_width": 0.09256218744373847
+       }
+      },
+      "PVDF+BaTiO3+%3CNT": {
+       "90": {
+        "coverage": 0.26666666666666666,
+        "hits": 4,
+        "n": 15,
+        "ci95": [
+         0.07787154629104358,
+         0.5510032410369705
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 0.0776327933922512,
+        "median_width": 0.07723886687092282
+       },
+       "95": {
+        "coverage": 0.7333333333333333,
+        "hits": 11,
+        "n": 15,
+        "ci95": [
+         0.4489967589630295,
+         0.9221284537089564
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 0.12067742407880472,
+        "median_width": 0.11661037124435902
+       }
+      }
+     }
+    },
+    "force": {
+     "raw": {
+      "90": {
+       "coverage": 0.84,
+       "hits": 63,
+       "n": 75,
+       "ci95": [
+        0.7371872689820966,
+        0.9144979728687841
+       ],
+       "ci_method": "Clopper-Pearson exact, 95%",
+       "mean_width": 0.13266502900938376,
+       "median_width": 0.12248896948941615
+      },
+      "95": {
+       "coverage": 0.88,
+       "hits": 66,
+       "n": 75,
+       "ci95": [
+        0.7843868764834109,
+        0.94363371577468
+       ],
+       "ci_method": "Clopper-Pearson exact, 95%",
+       "mean_width": 0.15808013224147208,
+       "median_width": 0.14595460943696725
+      }
+     },
+     "jackknife_plus": {
+      "90": {
+       "coverage": 0.6666666666666666,
+       "hits": 50,
+       "n": 75,
+       "ci95": [
+        0.548348583660696,
+        0.7713679382849695
+       ],
+       "ci_method": "Clopper-Pearson exact, 95%",
+       "mean_width": 0.06953672853052797,
+       "median_width": 0.06534518441453499
+      },
+      "95": {
+       "coverage": 0.8,
+       "hits": 60,
+       "n": 75,
+       "ci95": [
+        0.6916739106298713,
+        0.8835178514092479
+       ],
+       "ci_method": "Clopper-Pearson exact, 95%",
+       "mean_width": 0.12245805166989333,
+       "median_width": 0.11555132958939279
+      }
+     },
+     "scaled_jackknife_plus": {
+      "90": {
+       "coverage": 0.8666666666666667,
+       "hits": 65,
+       "n": 75,
+       "ci95": [
+        0.7684335581029383,
+        0.9341661663210497
+       ],
+       "ci_method": "Clopper-Pearson exact, 95%",
+       "mean_width": 0.13750133667833714,
+       "median_width": 0.12526159237182055
+      },
+      "95": {
+       "coverage": 0.9333333333333333,
+       "hits": 70,
+       "n": 75,
+       "ci95": [
+        0.8512395208422177,
+        0.9780007475302044
+       ],
+       "ci_method": "Clopper-Pearson exact, 95%",
+       "mean_width": 0.267860836942501,
+       "median_width": 0.3281391304038164
+      }
+     },
+     "jackknife_plus_per_level": {
+      "1": {
+       "90": {
+        "coverage": 0.52,
+        "hits": 13,
+        "n": 25,
+        "ci95": [
+         0.3130570444570323,
+         0.7220319903300534
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 0.06276888795408592,
+        "median_width": 0.06234065892055135
+       },
+       "95": {
+        "coverage": 0.72,
+        "hits": 18,
+        "n": 25,
+        "ci95": [
+         0.5061231781937445,
+         0.8792833114959333
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 0.08629109373026443,
+        "median_width": 0.08178496885594208
+       }
+      },
+      "2": {
+       "90": {
+        "coverage": 0.92,
+        "hits": 23,
+        "n": 25,
+        "ci95": [
+         0.7396941578947858,
+         0.9901604099812025
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 0.07957309803243554,
+        "median_width": 0.07864256612875575
+       },
+       "95": {
+        "coverage": 0.96,
+        "hits": 24,
+        "n": 25,
+        "ci95": [
+         0.796483086077586,
+         0.9989878003006891
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 0.16346913987077913,
+        "median_width": 0.1561849758161925
+       }
+      },
+      "3": {
+       "90": {
+        "coverage": 0.56,
+        "hits": 14,
+        "n": 25,
+        "ci95": [
+         0.34928163399133577,
+         0.7559763348527919
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 0.06626819960506249,
+        "median_width": 0.06462569725247325
+       },
+       "95": {
+        "coverage": 0.72,
+        "hits": 18,
+        "n": 25,
+        "ci95": [
+         0.5061231781937445,
+         0.8792833114959333
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 0.1176139214086364,
+        "median_width": 0.11555132958939279
+       }
+      }
+     }
+    },
+    "frequency": {
+     "raw": {
+      "90": {
+       "coverage": 0.6133333333333333,
+       "hits": 46,
+       "n": 75,
+       "ci95": [
+        0.4937958449660753,
+        0.7236318702551019
+       ],
+       "ci_method": "Clopper-Pearson exact, 95%",
+       "mean_width": 0.17158547786217668,
+       "median_width": 0.16970749174306032
+      },
+      "95": {
+       "coverage": 0.68,
+       "hits": 51,
+       "n": 75,
+       "ci95": [
+        0.5622094831510586,
+        0.7830736514186665
+       ],
+       "ci_method": "Clopper-Pearson exact, 95%",
+       "mean_width": 0.20445670749637035,
+       "median_width": 0.20221894901341278
+      }
+     },
+     "jackknife_plus": {
+      "90": {
+       "coverage": 0.28,
+       "hits": 21,
+       "n": 75,
+       "ci95": [
+        0.18240542148905795,
+        0.39563042179772623
+       ],
+       "ci_method": "Clopper-Pearson exact, 95%",
+       "mean_width": 0.0701149300555587,
+       "median_width": 0.07430460040063203
+      },
+      "95": {
+       "coverage": 0.4,
+       "hits": 30,
+       "n": 75,
+       "ci95": [
+        0.2885192274284212,
+        0.5196295307456509
+       ],
+       "ci_method": "Clopper-Pearson exact, 95%",
+       "mean_width": 0.08922880438252807,
+       "median_width": 0.0913529603166946
+      }
+     },
+     "scaled_jackknife_plus": {
+      "90": {
+       "coverage": 0.68,
+       "hits": 51,
+       "n": 75,
+       "ci95": [
+        0.5622094831510586,
+        0.7830736514186665
+       ],
+       "ci_method": "Clopper-Pearson exact, 95%",
+       "mean_width": 0.21573063941455975,
+       "median_width": 0.21876547445000377
+      },
+      "95": {
+       "coverage": 0.7066666666666667,
+       "hits": 53,
+       "n": 75,
+       "ci95": [
+        0.5902166511126432,
+        0.8061907155358399
+       ],
+       "ci_method": "Clopper-Pearson exact, 95%",
+       "mean_width": 0.26209914848292326,
+       "median_width": 0.27528608451116965
+      }
+     },
+     "jackknife_plus_per_level": {
+      "10": {
+       "90": {
+        "coverage": 0.7333333333333333,
+        "hits": 11,
+        "n": 15,
+        "ci95": [
+         0.4489967589630295,
+         0.9221284537089564
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 0.08184716097405248,
+        "median_width": 0.08208216345675605
+       },
+       "95": {
+        "coverage": 0.9333333333333333,
+        "hits": 14,
+        "n": 15,
+        "ci95": [
+         0.6805154334216966,
+         0.9983135697586473
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 0.09404665572190805,
+        "median_width": 0.09424110452517663
+       }
+      },
+      "15": {
+       "90": {
+        "coverage": 0.3333333333333333,
+        "hits": 5,
+        "n": 15,
+        "ci95": [
+         0.11824110336688091,
+         0.6161962674588458
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 0.07400014979282,
+        "median_width": 0.07416266007269001
+       },
+       "95": {
+        "coverage": 0.4666666666666667,
+        "hits": 7,
+        "n": 15,
+        "ci95": [
+         0.2126667295193079,
+         0.7341386527226034
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 0.09440055585314,
+        "median_width": 0.09135296031669461
+       }
+      },
+      "20": {
+       "90": {
+        "coverage": 0.13333333333333333,
+        "hits": 2,
+        "n": 15,
+        "ci95": [
+         0.016575913440083623,
+         0.40460269660337206
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 0.04889717258889048,
+        "median_width": 0.04876591084428922
+       },
+       "95": {
+        "coverage": 0.2,
+        "hits": 3,
+        "n": 15,
+        "ci95": [
+         0.0433120051058366,
+         0.48089113380685305
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 0.06546299181717923,
+        "median_width": 0.06501425067759808
+       }
+      },
+      "25": {
+       "90": {
+        "coverage": 0.0,
+        "hits": 0,
+        "n": 15,
+        "ci95": [
+         0.0,
+         0.218019360910534
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 0.06920169541239143,
+        "median_width": 0.0676377822714807
+       },
+       "95": {
+        "coverage": 0.0,
+        "hits": 0,
+        "n": 15,
+        "ci95": [
+         0.0,
+         0.218019360910534
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 0.10636948363424117,
+        "median_width": 0.10803328506334597
+       }
+      },
+      "5": {
+       "90": {
+        "coverage": 0.2,
+        "hits": 3,
+        "n": 15,
+        "ci95": [
+         0.0433120051058366,
+         0.48089113380685305
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 0.07662847150963907,
+        "median_width": 0.0767007830634478
+       },
+       "95": {
+        "coverage": 0.4,
+        "hits": 6,
+        "n": 15,
+        "ci95": [
+         0.16336432385951347,
+         0.6771302337937184
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 0.08586433488617194,
+        "median_width": 0.08545916189740765
+       }
+      }
+     }
+    }
+   },
+   "physgp": {
+    "composition": {
+     "raw": {
+      "90": {
+       "coverage": 0.6533333333333333,
+       "hits": 49,
+       "n": 75,
+       "ci95": [
+        0.5345790287409042,
+        0.7595683545480995
+       ],
+       "ci_method": "Clopper-Pearson exact, 95%",
+       "mean_width": 0.0975001550749292,
+       "median_width": 0.1046681643641566
+      },
+      "95": {
+       "coverage": 0.7066666666666667,
+       "hits": 53,
+       "n": 75,
+       "ci95": [
+        0.5902166511126432,
+        0.8061907155358399
+       ],
+       "ci_method": "Clopper-Pearson exact, 95%",
+       "mean_width": 0.11617860051663387,
+       "median_width": 0.12471981039545596
+      }
+     },
+     "jackknife_plus": {
+      "90": {
+       "coverage": 0.6,
+       "hits": 45,
+       "n": 75,
+       "ci95": [
+        0.48037046925434906,
+        0.7114807725715787
+       ],
+       "ci_method": "Clopper-Pearson exact, 95%",
+       "mean_width": 0.08476082864709854,
+       "median_width": 0.08156299483625495
+      },
+      "95": {
+       "coverage": 0.7866666666666666,
+       "hits": 59,
+       "n": 75,
+       "ci95": [
+        0.6768083243381808,
+        0.8728632011272364
+       ],
+       "ci_method": "Clopper-Pearson exact, 95%",
+       "mean_width": 0.1281443092722322,
+       "median_width": 0.13073928510871113
+      }
+     },
+     "scaled_jackknife_plus": {
+      "90": {
+       "coverage": 0.68,
+       "hits": 51,
+       "n": 75,
+       "ci95": [
+        0.5622094831510586,
+        0.7830736514186665
+       ],
+       "ci_method": "Clopper-Pearson exact, 95%",
+       "mean_width": 0.11220375451264795,
+       "median_width": 0.12233254148924733
+      },
+      "95": {
+       "coverage": 0.7866666666666666,
+       "hits": 59,
+       "n": 75,
+       "ci95": [
+        0.6768083243381808,
+        0.8728632011272364
+       ],
+       "ci_method": "Clopper-Pearson exact, 95%",
+       "mean_width": 0.15700395414866616,
+       "median_width": 0.16392130856377185
+      }
+     },
+     "jackknife_plus_per_level": {
+      "PVDF": {
+       "90": {
+        "coverage": 1.0,
+        "hits": 15,
+        "n": 15,
+        "ci95": [
+         0.7819806390894659,
+         1.0
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 0.09662379539728123,
+        "median_width": 0.0962454088874648
+       },
+       "95": {
+        "coverage": 1.0,
+        "hits": 15,
+        "n": 15,
+        "ci95": [
+         0.7819806390894659,
+         1.0
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 0.14783568862060534,
+        "median_width": 0.14663324602734829
+       }
+      },
+      "PVDF+BaTiO3": {
+       "90": {
+        "coverage": 0.6666666666666666,
+        "hits": 10,
+        "n": 15,
+        "ci95": [
+         0.38380373254115413,
+         0.881758896633119
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 0.10187502911122018,
+        "median_width": 0.1006914324590322
+       },
+       "95": {
+        "coverage": 0.8666666666666667,
+        "hits": 13,
+        "n": 15,
+        "ci95": [
+         0.5953973033966279,
+         0.9834240865599164
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 0.1310276495451788,
+        "median_width": 0.1311186275298186
+       }
+      },
+      "PVDF+BaTiO3+%1CNT": {
+       "90": {
+        "coverage": 0.4666666666666667,
+        "hits": 7,
+        "n": 15,
+        "ci95": [
+         0.2126667295193079,
+         0.7341386527226034
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 0.06533344771437118,
+        "median_width": 0.06422999128088008
+       },
+       "95": {
+        "coverage": 0.8,
+        "hits": 12,
+        "n": 15,
+        "ci95": [
+         0.5191088661931469,
+         0.9566879948941633
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 0.10990929691463865,
+        "median_width": 0.11112766670634755
+       }
+      },
+      "PVDF+BaTiO3+%2CNT": {
+       "90": {
+        "coverage": 0.6666666666666666,
+        "hits": 10,
+        "n": 15,
+        "ci95": [
+         0.38380373254115413,
+         0.881758896633119
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 0.07969328229771021,
+        "median_width": 0.0810012088982682
+       },
+       "95": {
+        "coverage": 0.8,
+        "hits": 12,
+        "n": 15,
+        "ci95": [
+         0.5191088661931469,
+         0.9566879948941633
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 0.11354529620232642,
+        "median_width": 0.11287940727487702
+       }
+      },
+      "PVDF+BaTiO3+%3CNT": {
+       "90": {
+        "coverage": 0.2,
+        "hits": 3,
+        "n": 15,
+        "ci95": [
+         0.0433120051058366,
+         0.48089113380685305
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 0.08027858871490988,
+        "median_width": 0.0789373042073061
+       },
+       "95": {
+        "coverage": 0.4666666666666667,
+        "hits": 7,
+        "n": 15,
+        "ci95": [
+         0.2126667295193079,
+         0.7341386527226034
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 0.13840361507841192,
+        "median_width": 0.13705968255941758
+       }
+      }
+     }
+    },
+    "force": {
+     "raw": {
+      "90": {
+       "coverage": 0.7066666666666667,
+       "hits": 53,
+       "n": 75,
+       "ci95": [
+        0.5902166511126432,
+        0.8061907155358399
+       ],
+       "ci_method": "Clopper-Pearson exact, 95%",
+       "mean_width": 0.08791466344311712,
+       "median_width": 0.09186000391844429
+      },
+      "95": {
+       "coverage": 0.8,
+       "hits": 60,
+       "n": 75,
+       "ci95": [
+        0.6916739106298713,
+        0.8835178514092479
+       ],
+       "ci_method": "Clopper-Pearson exact, 95%",
+       "mean_width": 0.10475678275447743,
+       "median_width": 0.10945794589245283
+      }
+     },
+     "jackknife_plus": {
+      "90": {
+       "coverage": 0.76,
+       "hits": 57,
+       "n": 75,
+       "ci95": [
+        0.647476043844978,
+        0.8511307824851023
+       ],
+       "ci_method": "Clopper-Pearson exact, 95%",
+       "mean_width": 0.0962582205017418,
+       "median_width": 0.09715018002674969
+      },
+      "95": {
+       "coverage": 0.96,
+       "hits": 72,
+       "n": 75,
+       "ci95": [
+        0.8875231782399902,
+        0.9916738343339206
+       ],
+       "ci_method": "Clopper-Pearson exact, 95%",
+       "mean_width": 0.1529050027174358,
+       "median_width": 0.16576055768008285
+      }
+     },
+     "scaled_jackknife_plus": {
+      "90": {
+       "coverage": 0.8266666666666667,
+       "hits": 62,
+       "n": 75,
+       "ci95": [
+        0.7218512839541988,
+        0.9043493790621072
+       ],
+       "ci_method": "Clopper-Pearson exact, 95%",
+       "mean_width": 0.11264812162901637,
+       "median_width": 0.1203418846223854
+      },
+      "95": {
+       "coverage": 0.96,
+       "hits": 72,
+       "n": 75,
+       "ci95": [
+        0.8875231782399902,
+        0.9916738343339206
+       ],
+       "ci_method": "Clopper-Pearson exact, 95%",
+       "mean_width": 0.16680123605169583,
+       "median_width": 0.1666389220578594
+      }
+     },
+     "jackknife_plus_per_level": {
+      "1": {
+       "90": {
+        "coverage": 0.76,
+        "hits": 19,
+        "n": 25,
+        "ci95": [
+         0.5487119821833135,
+         0.9064355606682571
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 0.08744979095552058,
+        "median_width": 0.08827098328791834
+       },
+       "95": {
+        "coverage": 0.92,
+        "hits": 23,
+        "n": 25,
+        "ci95": [
+         0.7396941578947858,
+         0.9901604099812025
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 0.11806437117326121,
+        "median_width": 0.1168927286464369
+       }
+      },
+      "2": {
+       "90": {
+        "coverage": 0.92,
+        "hits": 23,
+        "n": 25,
+        "ci95": [
+         0.7396941578947858,
+         0.9901604099812025
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 0.10449368040649604,
+        "median_width": 0.1019202089029132
+       },
+       "95": {
+        "coverage": 1.0,
+        "hits": 25,
+        "n": 25,
+        "ci95": [
+         0.8628148284692875,
+         1.0
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 0.17149641798417203,
+        "median_width": 0.16576055768008288
+       }
+      },
+      "3": {
+       "90": {
+        "coverage": 0.6,
+        "hits": 15,
+        "n": 25,
+        "ci95": [
+         0.38665349625683987,
+         0.788745193534858
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 0.09683119014320882,
+        "median_width": 0.09715018002674969
+       },
+       "95": {
+        "coverage": 0.96,
+        "hits": 24,
+        "n": 25,
+        "ci95": [
+         0.796483086077586,
+         0.9989878003006891
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 0.16915421899487415,
+        "median_width": 0.16938213477845954
+       }
+      }
+     }
+    },
+    "frequency": {
+     "raw": {
+      "90": {
+       "coverage": 0.4266666666666667,
+       "hits": 32,
+       "n": 75,
+       "ci95": [
+        0.3130700027529492,
+        0.5462352897760328
+       ],
+       "ci_method": "Clopper-Pearson exact, 95%",
+       "mean_width": 0.08029366823841282,
+       "median_width": 0.07703650915371585
+      },
+      "95": {
+       "coverage": 0.44,
+       "hits": 33,
+       "n": 75,
+       "ci95": [
+        0.32546719801587315,
+        0.5594177779667648
+       ],
+       "ci_method": "Clopper-Pearson exact, 95%",
+       "mean_width": 0.0956758068652997,
+       "median_width": 0.09179466243194656
+      }
+     },
+     "jackknife_plus": {
+      "90": {
+       "coverage": 0.4,
+       "hits": 30,
+       "n": 75,
+       "ci95": [
+        0.2885192274284212,
+        0.5196295307456509
+       ],
+       "ci_method": "Clopper-Pearson exact, 95%",
+       "mean_width": 0.08074678712340676,
+       "median_width": 0.08445919026714684
+      },
+      "95": {
+       "coverage": 0.5066666666666667,
+       "hits": 38,
+       "n": 75,
+       "ci95": [
+        0.38863897859151925,
+        0.6241518361712992
+       ],
+       "ci_method": "Clopper-Pearson exact, 95%",
+       "mean_width": 0.1306140360796058,
+       "median_width": 0.14586244397818948
+      }
+     },
+     "scaled_jackknife_plus": {
+      "90": {
+       "coverage": 0.44,
+       "hits": 33,
+       "n": 75,
+       "ci95": [
+        0.32546719801587315,
+        0.5594177779667648
+       ],
+       "ci_method": "Clopper-Pearson exact, 95%",
+       "mean_width": 0.09652897763454371,
+       "median_width": 0.09982333779081862
+      },
+      "95": {
+       "coverage": 0.5066666666666667,
+       "hits": 38,
+       "n": 75,
+       "ci95": [
+        0.38863897859151925,
+        0.6241518361712992
+       ],
+       "ci_method": "Clopper-Pearson exact, 95%",
+       "mean_width": 0.1477906488029699,
+       "median_width": 0.15906709682473488
+      }
+     },
+     "jackknife_plus_per_level": {
+      "10": {
+       "90": {
+        "coverage": 0.7333333333333333,
+        "hits": 11,
+        "n": 15,
+        "ci95": [
+         0.4489967589630295,
+         0.9221284537089564
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 0.08345119472672571,
+        "median_width": 0.08348637787812523
+       },
+       "95": {
+        "coverage": 1.0,
+        "hits": 15,
+        "n": 15,
+        "ci95": [
+         0.7819806390894659,
+         1.0
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 0.1562362773555342,
+        "median_width": 0.15691805384167445
+       }
+      },
+      "15": {
+       "90": {
+        "coverage": 0.13333333333333333,
+        "hits": 2,
+        "n": 15,
+        "ci95": [
+         0.016575913440083623,
+         0.40460269660337206
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 0.0995881909409919,
+        "median_width": 0.09922589132812104
+       },
+       "95": {
+        "coverage": 0.4,
+        "hits": 6,
+        "n": 15,
+        "ci95": [
+         0.16336432385951347,
+         0.6771302337937184
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 0.15985465638335647,
+        "median_width": 0.16073541971609517
+       }
+      },
+      "20": {
+       "90": {
+        "coverage": 0.13333333333333333,
+        "hits": 2,
+        "n": 15,
+        "ci95": [
+         0.016575913440083623,
+         0.40460269660337206
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 0.04822500484838368,
+        "median_width": 0.04790058188613368
+       },
+       "95": {
+        "coverage": 0.13333333333333333,
+        "hits": 2,
+        "n": 15,
+        "ci95": [
+         0.016575913440083623,
+         0.40460269660337206
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 0.05739180370766698,
+        "median_width": 0.05720743116849342
+       }
+      },
+      "25": {
+       "90": {
+        "coverage": 0.0,
+        "hits": 0,
+        "n": 15,
+        "ci95": [
+         0.0,
+         0.218019360910534
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 0.08182212074538628,
+        "median_width": 0.08067357774943928
+       },
+       "95": {
+        "coverage": 0.0,
+        "hits": 0,
+        "n": 15,
+        "ci95": [
+         0.0,
+         0.218019360910534
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 0.13372499897328197,
+        "median_width": 0.1345264115994131
+       }
+      },
+      "5": {
+       "90": {
+        "coverage": 1.0,
+        "hits": 15,
+        "n": 15,
+        "ci95": [
+         0.7819806390894659,
+         1.0
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 0.09064742435554632,
+        "median_width": 0.09043145097823499
+       },
+       "95": {
+        "coverage": 1.0,
+        "hits": 15,
+        "n": 15,
+        "ci95": [
+         0.7819806390894659,
+         1.0
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 0.14586244397818948,
+        "median_width": 0.14586244397818948
+       }
+      }
+     }
+    }
+   }
+  },
+  "Vpp": {
+   "gp": {
+    "composition": {
+     "raw": {
+      "90": {
+       "coverage": 0.8133333333333334,
+       "hits": 61,
+       "n": 75,
+       "ci95": [
+        0.7066845440343182,
+        0.8940175322680732
+       ],
+       "ci_method": "Clopper-Pearson exact, 95%",
+       "mean_width": 2.0834457752776747,
+       "median_width": 1.4442854422085918
+      },
+      "95": {
+       "coverage": 0.8533333333333334,
+       "hits": 64,
+       "n": 75,
+       "ci95": [
+        0.7527082855542006,
+        0.9244445941573516
+       ],
+       "ci_method": "Clopper-Pearson exact, 95%",
+       "mean_width": 2.4825787634700256,
+       "median_width": 1.7209722517199157
+      }
+     },
+     "jackknife_plus": {
+      "90": {
+       "coverage": 0.9066666666666666,
+       "hits": 68,
+       "n": 75,
+       "ci95": [
+        0.8171064734437357,
+        0.9616460934582725
+       ],
+       "ci_method": "Clopper-Pearson exact, 95%",
+       "mean_width": 2.358370825080671,
+       "median_width": 2.4199488104214204
+      },
+      "95": {
+       "coverage": 0.96,
+       "hits": 72,
+       "n": 75,
+       "ci95": [
+        0.8875231782399902,
+        0.9916738343339206
+       ],
+       "ci_method": "Clopper-Pearson exact, 95%",
+       "mean_width": 3.9260471197571847,
+       "median_width": 4.401318388448606
+      }
+     },
+     "scaled_jackknife_plus": {
+      "90": {
+       "coverage": 0.8266666666666667,
+       "hits": 62,
+       "n": 75,
+       "ci95": [
+        0.7218512839541988,
+        0.9043493790621072
+       ],
+       "ci_method": "Clopper-Pearson exact, 95%",
+       "mean_width": 2.7724817555612615,
+       "median_width": 2.4633187773905822
+      },
+      "95": {
+       "coverage": 0.92,
+       "hits": 69,
+       "n": 75,
+       "ci95": [
+        0.8339631287011778,
+        0.9700748552659225
+       ],
+       "ci_method": "Clopper-Pearson exact, 95%",
+       "mean_width": 6.839972858695027,
+       "median_width": 4.634739116293
+      }
+     },
+     "jackknife_plus_per_level": {
+      "PVDF": {
+       "90": {
+        "coverage": 1.0,
+        "hits": 15,
+        "n": 15,
+        "ci95": [
+         0.7819806390894659,
+         1.0
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 2.476031644199934,
+        "median_width": 2.4760316441999333
+       },
+       "95": {
+        "coverage": 1.0,
+        "hits": 15,
+        "n": 15,
+        "ci95": [
+         0.7819806390894659,
+         1.0
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 5.1772642154625474,
+        "median_width": 5.229033662077443
+       }
+      },
+      "PVDF+BaTiO3": {
+       "90": {
+        "coverage": 0.7333333333333333,
+        "hits": 11,
+        "n": 15,
+        "ci95": [
+         0.4489967589630295,
+         0.9221284537089564
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 1.228839980023811,
+        "median_width": 1.1925381857051374
+       },
+       "95": {
+        "coverage": 0.9333333333333333,
+        "hits": 14,
+        "n": 15,
+        "ci95": [
+         0.6805154334216966,
+         0.9983135697586473
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 2.186400870671844,
+        "median_width": 2.1629618049884662
+       }
+      },
+      "PVDF+BaTiO3+%1CNT": {
+       "90": {
+        "coverage": 0.9333333333333333,
+        "hits": 14,
+        "n": 15,
+        "ci95": [
+         0.6805154334216966,
+         0.9983135697586473
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 3.489316907209655,
+        "median_width": 3.5384772060181025
+       },
+       "95": {
+        "coverage": 0.9333333333333333,
+        "hits": 14,
+        "n": 15,
+        "ci95": [
+         0.6805154334216966,
+         0.9983135697586473
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 4.462495965516429,
+        "median_width": 4.481857043962481
+       }
+      },
+      "PVDF+BaTiO3+%2CNT": {
+       "90": {
+        "coverage": 0.9333333333333333,
+        "hits": 14,
+        "n": 15,
+        "ci95": [
+         0.6805154334216966,
+         0.9983135697586473
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 2.401520055969494,
+        "median_width": 2.4199488104214204
+       },
+       "95": {
+        "coverage": 0.9333333333333333,
+        "hits": 14,
+        "n": 15,
+        "ci95": [
+         0.6805154334216966,
+         0.9983135697586473
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 3.443941282369402,
+        "median_width": 3.4462457513443945
+       }
+      },
+      "PVDF+BaTiO3+%3CNT": {
+       "90": {
+        "coverage": 0.9333333333333333,
+        "hits": 14,
+        "n": 15,
+        "ci95": [
+         0.6805154334216966,
+         0.9983135697586473
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 2.1961455380004624,
+        "median_width": 2.133302283910225
+       },
+       "95": {
+        "coverage": 1.0,
+        "hits": 15,
+        "n": 15,
+        "ci95": [
+         0.7819806390894659,
+         1.0
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 4.360133264765698,
+        "median_width": 4.406049302984991
+       }
+      }
+     }
+    },
+    "force": {
+     "raw": {
+      "90": {
+       "coverage": 0.8666666666666667,
+       "hits": 65,
+       "n": 75,
+       "ci95": [
+        0.7684335581029383,
+        0.9341661663210497
+       ],
+       "ci_method": "Clopper-Pearson exact, 95%",
+       "mean_width": 3.810787639822669,
+       "median_width": 3.198462132025399
+      },
+      "95": {
+       "coverage": 0.9333333333333333,
+       "hits": 70,
+       "n": 75,
+       "ci95": [
+        0.8512395208422177,
+        0.9780007475302044
+       ],
+       "ci_method": "Clopper-Pearson exact, 95%",
+       "mean_width": 4.540833545551213,
+       "median_width": 3.811202700329959
+      }
+     },
+     "jackknife_plus": {
+      "90": {
+       "coverage": 0.8666666666666667,
+       "hits": 65,
+       "n": 75,
+       "ci95": [
+        0.7684335581029383,
+        0.9341661663210497
+       ],
+       "ci_method": "Clopper-Pearson exact, 95%",
+       "mean_width": 2.351719370336253,
+       "median_width": 2.4700631270226987
+      },
+      "95": {
+       "coverage": 0.88,
+       "hits": 66,
+       "n": 75,
+       "ci95": [
+        0.7843868764834109,
+        0.94363371577468
+       ],
+       "ci_method": "Clopper-Pearson exact, 95%",
+       "mean_width": 4.206046044730061,
+       "median_width": 5.200588369133543
+      }
+     },
+     "scaled_jackknife_plus": {
+      "90": {
+       "coverage": 0.88,
+       "hits": 66,
+       "n": 75,
+       "ci95": [
+        0.7843868764834109,
+        0.94363371577468
+       ],
+       "ci_method": "Clopper-Pearson exact, 95%",
+       "mean_width": 4.896641814009619,
+       "median_width": 5.169154508762922
+      },
+      "95": {
+       "coverage": 0.96,
+       "hits": 72,
+       "n": 75,
+       "ci95": [
+        0.8875231782399902,
+        0.9916738343339206
+       ],
+       "ci_method": "Clopper-Pearson exact, 95%",
+       "mean_width": 13.61625061331633,
+       "median_width": 12.322079819757475
+      }
+     },
+     "jackknife_plus_per_level": {
+      "1": {
+       "90": {
+        "coverage": 1.0,
+        "hits": 25,
+        "n": 25,
+        "ci95": [
+         0.8628148284692875,
+         1.0
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 3.0394306240045705,
+        "median_width": 3.061528750075576
+       },
+       "95": {
+        "coverage": 1.0,
+        "hits": 25,
+        "n": 25,
+        "ci95": [
+         0.8628148284692875,
+         1.0
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 5.225377666762828,
+        "median_width": 5.200588369133543
+       }
+      },
+      "2": {
+       "90": {
+        "coverage": 0.92,
+        "hits": 23,
+        "n": 25,
+        "ci95": [
+         0.7396941578947858,
+         0.9901604099812025
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 2.4700631270226987,
+        "median_width": 2.4700631270226987
+       },
+       "95": {
+        "coverage": 0.92,
+        "hits": 23,
+        "n": 25,
+        "ci95": [
+         0.7396941578947858,
+         0.9901604099812025
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 5.444951421036157,
+        "median_width": 5.444951421036157
+       }
+      },
+      "3": {
+       "90": {
+        "coverage": 0.68,
+        "hits": 17,
+        "n": 25,
+        "ci95": [
+         0.4649992825026277,
+         0.8505045773864304
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 1.5456643599814897,
+        "median_width": 1.5484403781306137
+       },
+       "95": {
+        "coverage": 0.72,
+        "hits": 18,
+        "n": 25,
+        "ci95": [
+         0.5061231781937445,
+         0.8792833114959333
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 1.9478090463911952,
+        "median_width": 1.9711333866155525
+       }
+      }
+     }
+    },
+    "frequency": {
+     "raw": {
+      "90": {
+       "coverage": 0.72,
+       "hits": 54,
+       "n": 75,
+       "ci95": [
+        0.6043695782022739,
+        0.817594578510942
+       ],
+       "ci_method": "Clopper-Pearson exact, 95%",
+       "mean_width": 3.931551267543009,
+       "median_width": 5.012776322611115
+      },
+      "95": {
+       "coverage": 0.7333333333333333,
+       "hits": 55,
+       "n": 75,
+       "ci95": [
+        0.6186272795170771,
+        0.8288894608555408
+       ],
+       "ci_method": "Clopper-Pearson exact, 95%",
+       "mean_width": 4.684732283466848,
+       "median_width": 5.973091400893864
+      }
+     },
+     "jackknife_plus": {
+      "90": {
+       "coverage": 0.6533333333333333,
+       "hits": 49,
+       "n": 75,
+       "ci95": [
+        0.5345790287409042,
+        0.7595683545480995
+       ],
+       "ci_method": "Clopper-Pearson exact, 95%",
+       "mean_width": 2.270656119452312,
+       "median_width": 2.612175595063404
+      },
+      "95": {
+       "coverage": 0.76,
+       "hits": 57,
+       "n": 75,
+       "ci95": [
+        0.647476043844978,
+        0.8511307824851023
+       ],
+       "ci_method": "Clopper-Pearson exact, 95%",
+       "mean_width": 3.923010304612172,
+       "median_width": 4.5442390877996885
+      }
+     },
+     "scaled_jackknife_plus": {
+      "90": {
+       "coverage": 0.7333333333333333,
+       "hits": 55,
+       "n": 75,
+       "ci95": [
+        0.6186272795170771,
+        0.8288894608555408
+       ],
+       "ci_method": "Clopper-Pearson exact, 95%",
+       "mean_width": 5.5178704507164,
+       "median_width": 6.717152895566056
+      },
+      "95": {
+       "coverage": 0.8666666666666667,
+       "hits": 65,
+       "n": 75,
+       "ci95": [
+        0.7684335581029383,
+        0.9341661663210497
+       ],
+       "ci_method": "Clopper-Pearson exact, 95%",
+       "mean_width": 13.170346138770958,
+       "median_width": 15.589402467220328
+      }
+     },
+     "jackknife_plus_per_level": {
+      "10": {
+       "90": {
+        "coverage": 1.0,
+        "hits": 15,
+        "n": 15,
+        "ci95": [
+         0.7819806390894659,
+         1.0
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 2.632124176486982,
+        "median_width": 2.6297577677980017
+       },
+       "95": {
+        "coverage": 1.0,
+        "hits": 15,
+        "n": 15,
+        "ci95": [
+         0.7819806390894659,
+         1.0
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 4.47866806765574,
+        "median_width": 4.494792161116754
+       }
+      },
+      "15": {
+       "90": {
+        "coverage": 1.0,
+        "hits": 15,
+        "n": 15,
+        "ci95": [
+         0.7819806390894659,
+         1.0
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 3.075884622940966,
+        "median_width": 2.890079135934368
+       },
+       "95": {
+        "coverage": 1.0,
+        "hits": 15,
+        "n": 15,
+        "ci95": [
+         0.7819806390894659,
+         1.0
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 4.679592969460558,
+        "median_width": 4.555767409551374
+       }
+      },
+      "20": {
+       "90": {
+        "coverage": 0.26666666666666666,
+        "hits": 4,
+        "n": 15,
+        "ci95": [
+         0.07787154629104358,
+         0.5510032410369705
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 0.8792993766620107,
+        "median_width": 0.87727977588956
+       },
+       "95": {
+        "coverage": 0.3333333333333333,
+        "hits": 5,
+        "n": 15,
+        "ci95": [
+         0.11824110336688091,
+         0.6161962674588458
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 1.056901914155613,
+        "median_width": 1.0459274771056668
+       }
+      },
+      "25": {
+       "90": {
+        "coverage": 0.0,
+        "hits": 0,
+        "n": 15,
+        "ci95": [
+         0.0,
+         0.218019360910534
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 2.1573329087787365,
+        "median_width": 2.1761793805476906
+       },
+       "95": {
+        "coverage": 0.4666666666666667,
+        "hits": 7,
+        "n": 15,
+        "ci95": [
+         0.2126667295193079,
+         0.7341386527226034
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 4.855649483989262,
+        "median_width": 4.82808954504932
+       }
+      },
+      "5": {
+       "90": {
+        "coverage": 1.0,
+        "hits": 15,
+        "n": 15,
+        "ci95": [
+         0.7819806390894659,
+         1.0
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 2.608639512392864,
+        "median_width": 2.612601938240173
+       },
+       "95": {
+        "coverage": 1.0,
+        "hits": 15,
+        "n": 15,
+        "ci95": [
+         0.7819806390894659,
+         1.0
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 4.544239087799688,
+        "median_width": 4.5442390877996885
+       }
+      }
+     }
+    }
+   },
+   "physgp": {
+    "composition": {
+     "raw": {
+      "90": {
+       "coverage": 0.6933333333333334,
+       "hits": 52,
+       "n": 75,
+       "ci95": [
+        0.5761644670009377,
+        0.7946824116201112
+       ],
+       "ci_method": "Clopper-Pearson exact, 95%",
+       "mean_width": 1.3648530829468581,
+       "median_width": 1.286916620213069
+      },
+      "95": {
+       "coverage": 0.7733333333333333,
+       "hits": 58,
+       "n": 75,
+       "ci95": [
+        0.6620783862959236,
+        0.8620644323678299
+       ],
+       "ci_method": "Clopper-Pearson exact, 95%",
+       "mean_width": 1.6263227578019765,
+       "median_width": 1.5334557345375526
+      }
+     },
+     "jackknife_plus": {
+      "90": {
+       "coverage": 0.84,
+       "hits": 63,
+       "n": 75,
+       "ci95": [
+        0.7371872689820966,
+        0.9144979728687841
+       ],
+       "ci_method": "Clopper-Pearson exact, 95%",
+       "mean_width": 2.3372584678022004,
+       "median_width": 2.3716140652288935
+      },
+      "95": {
+       "coverage": 0.92,
+       "hits": 69,
+       "n": 75,
+       "ci95": [
+        0.8339631287011778,
+        0.9700748552659225
+       ],
+       "ci_method": "Clopper-Pearson exact, 95%",
+       "mean_width": 3.5657640569879465,
+       "median_width": 3.7685133301048834
+      }
+     },
+     "scaled_jackknife_plus": {
+      "90": {
+       "coverage": 0.8266666666666667,
+       "hits": 62,
+       "n": 75,
+       "ci95": [
+        0.7218512839541988,
+        0.9043493790621072
+       ],
+       "ci_method": "Clopper-Pearson exact, 95%",
+       "mean_width": 2.02095171034186,
+       "median_width": 2.099228216123633
+      },
+      "95": {
+       "coverage": 0.9066666666666666,
+       "hits": 68,
+       "n": 75,
+       "ci95": [
+        0.8171064734437357,
+        0.9616460934582725
+       ],
+       "ci_method": "Clopper-Pearson exact, 95%",
+       "mean_width": 3.7789261145984248,
+       "median_width": 3.406481054862399
+      }
+     },
+     "jackknife_plus_per_level": {
+      "PVDF": {
+       "90": {
+        "coverage": 0.9333333333333333,
+        "hits": 14,
+        "n": 15,
+        "ci95": [
+         0.6805154334216966,
+         0.9983135697586473
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 2.3301625561986543,
+        "median_width": 2.3716140652288935
+       },
+       "95": {
+        "coverage": 1.0,
+        "hits": 15,
+        "n": 15,
+        "ci95": [
+         0.7819806390894659,
+         1.0
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 4.540880873901843,
+        "median_width": 4.552813961350157
+       }
+      },
+      "PVDF+BaTiO3": {
+       "90": {
+        "coverage": 0.8666666666666667,
+        "hits": 13,
+        "n": 15,
+        "ci95": [
+         0.5953973033966279,
+         0.9834240865599164
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 1.6146467267280173,
+        "median_width": 1.5813108326448129
+       },
+       "95": {
+        "coverage": 0.9333333333333333,
+        "hits": 14,
+        "n": 15,
+        "ci95": [
+         0.6805154334216966,
+         0.9983135697586473
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 2.56298580514034,
+        "median_width": 2.544062575463402
+       }
+      },
+      "PVDF+BaTiO3+%1CNT": {
+       "90": {
+        "coverage": 0.8666666666666667,
+        "hits": 13,
+        "n": 15,
+        "ci95": [
+         0.5953973033966279,
+         0.9834240865599164
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 2.879967451842007,
+        "median_width": 3.0350946253991022
+       },
+       "95": {
+        "coverage": 0.9333333333333333,
+        "hits": 14,
+        "n": 15,
+        "ci95": [
+         0.6805154334216966,
+         0.9983135697586473
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 3.868442323036285,
+        "median_width": 3.9216540704794514
+       }
+      },
+      "PVDF+BaTiO3+%2CNT": {
+       "90": {
+        "coverage": 0.9333333333333333,
+        "hits": 14,
+        "n": 15,
+        "ci95": [
+         0.6805154334216966,
+         0.9983135697586473
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 2.0481242767017913,
+        "median_width": 2.039233417141855
+       },
+       "95": {
+        "coverage": 0.9333333333333333,
+        "hits": 14,
+        "n": 15,
+        "ci95": [
+         0.6805154334216966,
+         0.9983135697586473
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 3.06300957142762,
+        "median_width": 3.097239353273163
+       }
+      },
+      "PVDF+BaTiO3+%3CNT": {
+       "90": {
+        "coverage": 0.6,
+        "hits": 9,
+        "n": 15,
+        "ci95": [
+         0.3228697662062816,
+         0.8366356761404865
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 2.8133913275405353,
+        "median_width": 2.935026025777967
+       },
+       "95": {
+        "coverage": 0.8,
+        "hits": 12,
+        "n": 15,
+        "ci95": [
+         0.5191088661931469,
+         0.9566879948941633
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 3.7935017114336405,
+        "median_width": 3.7781441698481935
+       }
+      }
+     }
+    },
+    "force": {
+     "raw": {
+      "90": {
+       "coverage": 0.7866666666666666,
+       "hits": 59,
+       "n": 75,
+       "ci95": [
+        0.6768083243381808,
+        0.8728632011272364
+       ],
+       "ci_method": "Clopper-Pearson exact, 95%",
+       "mean_width": 1.8203838063097646,
+       "median_width": 1.8123741057778577
+      },
+      "95": {
+       "coverage": 0.88,
+       "hits": 66,
+       "n": 75,
+       "ci95": [
+        0.7843868764834109,
+        0.94363371577468
+       ],
+       "ci_method": "Clopper-Pearson exact, 95%",
+       "mean_width": 2.1691210937837084,
+       "median_width": 2.1595769469293855
+      }
+     },
+     "jackknife_plus": {
+      "90": {
+       "coverage": 0.8533333333333334,
+       "hits": 64,
+       "n": 75,
+       "ci95": [
+        0.7527082855542006,
+        0.9244445941573516
+       ],
+       "ci_method": "Clopper-Pearson exact, 95%",
+       "mean_width": 2.6256422664234753,
+       "median_width": 3.133023690886988
+      },
+      "95": {
+       "coverage": 0.9733333333333334,
+       "hits": 73,
+       "n": 75,
+       "ci95": [
+        0.9069684677792744,
+        0.9967540690710339
+       ],
+       "ci_method": "Clopper-Pearson exact, 95%",
+       "mean_width": 3.933905198619491,
+       "median_width": 4.379472217990943
+      }
+     },
+     "scaled_jackknife_plus": {
+      "90": {
+       "coverage": 0.9466666666666667,
+       "hits": 71,
+       "n": 75,
+       "ci95": [
+        0.8690391927215253,
+        0.9852792353408218
+       ],
+       "ci_method": "Clopper-Pearson exact, 95%",
+       "mean_width": 2.8131060010598383,
+       "median_width": 3.0186564957630506
+      },
+      "95": {
+       "coverage": 0.9733333333333334,
+       "hits": 73,
+       "n": 75,
+       "ci95": [
+        0.9069684677792744,
+        0.9967540690710339
+       ],
+       "ci_method": "Clopper-Pearson exact, 95%",
+       "mean_width": 5.003709443884204,
+       "median_width": 5.229893727914814
+      }
+     },
+     "jackknife_plus_per_level": {
+      "1": {
+       "90": {
+        "coverage": 1.0,
+        "hits": 25,
+        "n": 25,
+        "ci95": [
+         0.8628148284692875,
+         1.0
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 3.105888327376773,
+        "median_width": 3.1513342015323897
+       },
+       "95": {
+        "coverage": 1.0,
+        "hits": 25,
+        "n": 25,
+        "ci95": [
+         0.8628148284692875,
+         1.0
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 4.385660908969497,
+        "median_width": 4.379472217990943
+       }
+      },
+      "2": {
+       "90": {
+        "coverage": 1.0,
+        "hits": 25,
+        "n": 25,
+        "ci95": [
+         0.8628148284692875,
+         1.0
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 3.1537912787852647,
+        "median_width": 3.209433879329424
+       },
+       "95": {
+        "coverage": 1.0,
+        "hits": 25,
+        "n": 25,
+        "ci95": [
+         0.8628148284692875,
+         1.0
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 5.158429373779114,
+        "median_width": 5.103952745780925
+       }
+      },
+      "3": {
+       "90": {
+        "coverage": 0.56,
+        "hits": 14,
+        "n": 25,
+        "ci95": [
+         0.34928163399133577,
+         0.7559763348527919
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 1.6172471931083885,
+        "median_width": 1.626365926081936
+       },
+       "95": {
+        "coverage": 0.92,
+        "hits": 23,
+        "n": 25,
+        "ci95": [
+         0.7396941578947858,
+         0.9901604099812025
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 2.257625313109861,
+        "median_width": 2.169805498984709
+       }
+      }
+     }
+    },
+    "frequency": {
+     "raw": {
+      "90": {
+       "coverage": 0.48,
+       "hits": 36,
+       "n": 75,
+       "ci95": [
+        0.36313525427902166,
+        0.59849237768461
+       ],
+       "ci_method": "Clopper-Pearson exact, 95%",
+       "mean_width": 1.587984988815504,
+       "median_width": 1.8069118331811387
+      },
+      "95": {
+       "coverage": 0.48,
+       "hits": 36,
+       "n": 75,
+       "ci95": [
+        0.36313525427902166,
+        0.59849237768461
+       ],
+       "ci_method": "Clopper-Pearson exact, 95%",
+       "mean_width": 1.892200822657427,
+       "median_width": 2.153068247682298
+      }
+     },
+     "jackknife_plus": {
+      "90": {
+       "coverage": 0.48,
+       "hits": 36,
+       "n": 75,
+       "ci95": [
+        0.36313525427902166,
+        0.59849237768461
+       ],
+       "ci_method": "Clopper-Pearson exact, 95%",
+       "mean_width": 2.469216860528355,
+       "median_width": 3.0008864067574956
+      },
+      "95": {
+       "coverage": 0.52,
+       "hits": 39,
+       "n": 75,
+       "ci95": [
+        0.4015076223153899,
+        0.6368647457209783
+       ],
+       "ci_method": "Clopper-Pearson exact, 95%",
+       "mean_width": 3.4293983835347284,
+       "median_width": 3.874577777370927
+      }
+     },
+     "scaled_jackknife_plus": {
+      "90": {
+       "coverage": 0.48,
+       "hits": 36,
+       "n": 75,
+       "ci95": [
+        0.36313525427902166,
+        0.59849237768461
+       ],
+       "ci_method": "Clopper-Pearson exact, 95%",
+       "mean_width": 2.8507929003223307,
+       "median_width": 3.4674237151143665
+      },
+      "95": {
+       "coverage": 0.5466666666666666,
+       "hits": 41,
+       "n": 75,
+       "ci95": [
+        0.4274789092220848,
+        0.6620557210953415
+       ],
+       "ci_method": "Clopper-Pearson exact, 95%",
+       "mean_width": 4.648699180849932,
+       "median_width": 5.828872330576978
+      }
+     },
+     "jackknife_plus_per_level": {
+      "10": {
+       "90": {
+        "coverage": 1.0,
+        "hits": 15,
+        "n": 15,
+        "ci95": [
+         0.7819806390894659,
+         1.0
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 3.000886406757495,
+        "median_width": 3.0008864067574956
+       },
+       "95": {
+        "coverage": 1.0,
+        "hits": 15,
+        "n": 15,
+        "ci95": [
+         0.7819806390894659,
+         1.0
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 4.244398693462811,
+        "median_width": 4.244398693462809
+       }
+      },
+      "15": {
+       "90": {
+        "coverage": 0.13333333333333333,
+        "hits": 2,
+        "n": 15,
+        "ci95": [
+         0.016575913440083623,
+         0.40460269660337206
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 3.092032104204434,
+        "median_width": 3.1185503867580664
+       },
+       "95": {
+        "coverage": 0.3333333333333333,
+        "hits": 5,
+        "n": 15,
+        "ci95": [
+         0.11824110336688091,
+         0.6161962674588458
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 4.026592274739291,
+        "median_width": 3.874577777370927
+       }
+      },
+      "20": {
+       "90": {
+        "coverage": 0.26666666666666666,
+        "hits": 4,
+        "n": 15,
+        "ci95": [
+         0.07787154629104358,
+         0.5510032410369705
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 0.7738194229024346,
+        "median_width": 0.7620410978104615
+       },
+       "95": {
+        "coverage": 0.26666666666666666,
+        "hits": 4,
+        "n": 15,
+        "ci95": [
+         0.07787154629104358,
+         0.5510032410369705
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 1.027976061411437,
+        "median_width": 1.0146919131130663
+       }
+      },
+      "25": {
+       "90": {
+        "coverage": 0.0,
+        "hits": 0,
+        "n": 15,
+        "ci95": [
+         0.0,
+         0.218019360910534
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 2.3124217181731597,
+        "median_width": 2.2960150390257272
+       },
+       "95": {
+        "coverage": 0.0,
+        "hits": 0,
+        "n": 15,
+        "ci95": [
+         0.0,
+         0.218019360910534
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 3.497761413234115,
+        "median_width": 3.509882952274072
+       }
+      },
+      "5": {
+       "90": {
+        "coverage": 1.0,
+        "hits": 15,
+        "n": 15,
+        "ci95": [
+         0.7819806390894659,
+         1.0
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 3.1669246506042565,
+        "median_width": 3.1669246506042557
+       },
+       "95": {
+        "coverage": 1.0,
+        "hits": 15,
+        "n": 15,
+        "ci95": [
+         0.7819806390894659,
+         1.0
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 4.350263474825992,
+        "median_width": 4.347750578330267
+       }
+      }
+     }
+    }
+   }
+  },
+  "Vmax": {
+   "gp": {
+    "composition": {
+     "raw": {
+      "90": {
+       "coverage": 0.7733333333333333,
+       "hits": 58,
+       "n": 75,
+       "ci95": [
+        0.6620783862959236,
+        0.8620644323678299
+       ],
+       "ci_method": "Clopper-Pearson exact, 95%",
+       "mean_width": 1.41618717367444,
+       "median_width": 1.12020836822125
+      },
+      "95": {
+       "coverage": 0.7866666666666666,
+       "hits": 59,
+       "n": 75,
+       "ci95": [
+        0.6768083243381808,
+        0.8728632011272364
+       ],
+       "ci_method": "Clopper-Pearson exact, 95%",
+       "mean_width": 1.6874910996875978,
+       "median_width": 1.3348106001159752
+      }
+     },
+     "jackknife_plus": {
+      "90": {
+       "coverage": 0.84,
+       "hits": 63,
+       "n": 75,
+       "ci95": [
+        0.7371872689820966,
+        0.9144979728687841
+       ],
+       "ci_method": "Clopper-Pearson exact, 95%",
+       "mean_width": 1.4866441340657224,
+       "median_width": 1.3707633018377363
+      },
+      "95": {
+       "coverage": 0.9466666666666667,
+       "hits": 71,
+       "n": 75,
+       "ci95": [
+        0.8690391927215253,
+        0.9852792353408218
+       ],
+       "ci_method": "Clopper-Pearson exact, 95%",
+       "mean_width": 2.1520950680380104,
+       "median_width": 2.068556107332627
+      }
+     },
+     "scaled_jackknife_plus": {
+      "90": {
+       "coverage": 0.8266666666666667,
+       "hits": 62,
+       "n": 75,
+       "ci95": [
+        0.7218512839541988,
+        0.9043493790621072
+       ],
+       "ci_method": "Clopper-Pearson exact, 95%",
+       "mean_width": 1.9987078201442872,
+       "median_width": 1.592355308876471
+      },
+      "95": {
+       "coverage": 0.8933333333333333,
+       "hits": 67,
+       "n": 75,
+       "ci95": [
+        0.8005982557973285,
+        0.9528100482599416
+       ],
+       "ci_method": "Clopper-Pearson exact, 95%",
+       "mean_width": 3.0413433304201702,
+       "median_width": 2.318353384661859
+      }
+     },
+     "jackknife_plus_per_level": {
+      "PVDF": {
+       "90": {
+        "coverage": 1.0,
+        "hits": 15,
+        "n": 15,
+        "ci95": [
+         0.7819806390894659,
+         1.0
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 1.368235001490826,
+        "median_width": 1.3707633018377363
+       },
+       "95": {
+        "coverage": 1.0,
+        "hits": 15,
+        "n": 15,
+        "ci95": [
+         0.7819806390894659,
+         1.0
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 1.9723238413473714,
+        "median_width": 2.003343493950121
+       }
+      },
+      "PVDF+BaTiO3": {
+       "90": {
+        "coverage": 0.7333333333333333,
+        "hits": 11,
+        "n": 15,
+        "ci95": [
+         0.4489967589630295,
+         0.9221284537089564
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 0.9239098808098954,
+        "median_width": 0.9246178315006537
+       },
+       "95": {
+        "coverage": 0.9333333333333333,
+        "hits": 14,
+        "n": 15,
+        "ci95": [
+         0.6805154334216966,
+         0.9983135697586473
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 1.7519505349567948,
+        "median_width": 1.7519505349567952
+       }
+      },
+      "PVDF+BaTiO3+%1CNT": {
+       "90": {
+        "coverage": 0.9333333333333333,
+        "hits": 14,
+        "n": 15,
+        "ci95": [
+         0.6805154334216966,
+         0.9983135697586473
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 1.999119948605702,
+        "median_width": 2.1171459002640147
+       },
+       "95": {
+        "coverage": 1.0,
+        "hits": 15,
+        "n": 15,
+        "ci95": [
+         0.7819806390894659,
+         1.0
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 2.4997333606691465,
+        "median_width": 2.4918867053854084
+       }
+      },
+      "PVDF+BaTiO3+%2CNT": {
+       "90": {
+        "coverage": 0.7333333333333333,
+        "hits": 11,
+        "n": 15,
+        "ci95": [
+         0.4489967589630295,
+         0.9221284537089564
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 1.2406009357723158,
+        "median_width": 1.2454942283524868
+       },
+       "95": {
+        "coverage": 0.8666666666666667,
+        "hits": 13,
+        "n": 15,
+        "ci95": [
+         0.5953973033966279,
+         0.9834240865599164
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 2.0708872918500956,
+        "median_width": 2.068556107332627
+       }
+      },
+      "PVDF+BaTiO3+%3CNT": {
+       "90": {
+        "coverage": 0.8,
+        "hits": 12,
+        "n": 15,
+        "ci95": [
+         0.5191088661931469,
+         0.9566879948941633
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 1.9013549036498738,
+        "median_width": 1.9494323390675907
+       },
+       "95": {
+        "coverage": 0.9333333333333333,
+        "hits": 14,
+        "n": 15,
+        "ci95": [
+         0.6805154334216966,
+         0.9983135697586473
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 2.465580311366644,
+        "median_width": 2.470323038688128
+       }
+      }
+     }
+    },
+    "force": {
+     "raw": {
+      "90": {
+       "coverage": 0.8266666666666667,
+       "hits": 62,
+       "n": 75,
+       "ci95": [
+        0.7218512839541988,
+        0.9043493790621072
+       ],
+       "ci_method": "Clopper-Pearson exact, 95%",
+       "mean_width": 2.132060126726327,
+       "median_width": 2.0351188881233027
+      },
+      "95": {
+       "coverage": 0.88,
+       "hits": 66,
+       "n": 75,
+       "ci95": [
+        0.7843868764834109,
+        0.94363371577468
+       ],
+       "ci_method": "Clopper-Pearson exact, 95%",
+       "mean_width": 2.540506336118374,
+       "median_width": 2.424993725655415
+      }
+     },
+     "jackknife_plus": {
+      "90": {
+       "coverage": 0.84,
+       "hits": 63,
+       "n": 75,
+       "ci95": [
+        0.7371872689820966,
+        0.9144979728687841
+       ],
+       "ci_method": "Clopper-Pearson exact, 95%",
+       "mean_width": 1.5722548614853216,
+       "median_width": 1.756465599126146
+      },
+      "95": {
+       "coverage": 0.88,
+       "hits": 66,
+       "n": 75,
+       "ci95": [
+        0.7843868764834109,
+        0.94363371577468
+       ],
+       "ci_method": "Clopper-Pearson exact, 95%",
+       "mean_width": 2.279716190441281,
+       "median_width": 2.4649225915743744
+      }
+     },
+     "scaled_jackknife_plus": {
+      "90": {
+       "coverage": 0.8933333333333333,
+       "hits": 67,
+       "n": 75,
+       "ci95": [
+        0.8005982557973285,
+        0.9528100482599416
+       ],
+       "ci_method": "Clopper-Pearson exact, 95%",
+       "mean_width": 2.94497691567862,
+       "median_width": 2.4839660390085143
+      },
+      "95": {
+       "coverage": 0.9333333333333333,
+       "hits": 70,
+       "n": 75,
+       "ci95": [
+        0.8512395208422177,
+        0.9780007475302044
+       ],
+       "ci_method": "Clopper-Pearson exact, 95%",
+       "mean_width": 4.969455082581603,
+       "median_width": 4.175961674475609
+      }
+     },
+     "jackknife_plus_per_level": {
+      "1": {
+       "90": {
+        "coverage": 0.92,
+        "hits": 23,
+        "n": 25,
+        "ci95": [
+         0.7396941578947858,
+         0.9901604099812025
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 1.7610184602978964,
+        "median_width": 1.7674386668278208
+       },
+       "95": {
+        "coverage": 0.96,
+        "hits": 24,
+        "n": 25,
+        "ci95": [
+         0.796483086077586,
+         0.9989878003006891
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 2.6794154733848132,
+        "median_width": 2.650016985916885
+       }
+      },
+      "2": {
+       "90": {
+        "coverage": 0.88,
+        "hits": 22,
+        "n": 25,
+        "ci95": [
+         0.6878096927137646,
+         0.9745346033522668
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 1.8370833515857088,
+        "median_width": 1.8007305608221904
+       },
+       "95": {
+        "coverage": 0.96,
+        "hits": 24,
+        "n": 25,
+        "ci95": [
+         0.796483086077586,
+         0.9989878003006891
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 2.549594666439762,
+        "median_width": 2.4649652730671625
+       }
+      },
+      "3": {
+       "90": {
+        "coverage": 0.72,
+        "hits": 18,
+        "n": 25,
+        "ci95": [
+         0.5061231781937445,
+         0.8792833114959333
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 1.1186627725723601,
+        "median_width": 1.1118143333193151
+       },
+       "95": {
+        "coverage": 0.72,
+        "hits": 18,
+        "n": 25,
+        "ci95": [
+         0.5061231781937445,
+         0.8792833114959333
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 1.610138431499268,
+        "median_width": 1.5933113107553973
+       }
+      }
+     }
+    },
+    "frequency": {
+     "raw": {
+      "90": {
+       "coverage": 0.7066666666666667,
+       "hits": 53,
+       "n": 75,
+       "ci95": [
+        0.5902166511126432,
+        0.8061907155358399
+       ],
+       "ci_method": "Clopper-Pearson exact, 95%",
+       "mean_width": 2.217823971143837,
+       "median_width": 2.748340555917312
+      },
+      "95": {
+       "coverage": 0.7066666666666667,
+       "hits": 53,
+       "n": 75,
+       "ci95": [
+        0.5902166511126432,
+        0.8061907155358399
+       ],
+       "ci_method": "Clopper-Pearson exact, 95%",
+       "mean_width": 2.6427002599300375,
+       "median_width": 3.2748497608460108
+      }
+     },
+     "jackknife_plus": {
+      "90": {
+       "coverage": 0.6933333333333334,
+       "hits": 52,
+       "n": 75,
+       "ci95": [
+        0.5761644670009377,
+        0.7946824116201112
+       ],
+       "ci_method": "Clopper-Pearson exact, 95%",
+       "mean_width": 1.5586415022457083,
+       "median_width": 1.79771532091437
+      },
+      "95": {
+       "coverage": 0.7066666666666667,
+       "hits": 53,
+       "n": 75,
+       "ci95": [
+        0.5902166511126432,
+        0.8061907155358399
+       ],
+       "ci_method": "Clopper-Pearson exact, 95%",
+       "mean_width": 1.8849128101246875,
+       "median_width": 2.191968689717916
+      }
+     },
+     "scaled_jackknife_plus": {
+      "90": {
+       "coverage": 0.7333333333333333,
+       "hits": 55,
+       "n": 75,
+       "ci95": [
+        0.6186272795170771,
+        0.8288894608555408
+       ],
+       "ci_method": "Clopper-Pearson exact, 95%",
+       "mean_width": 3.430216573298858,
+       "median_width": 4.193404786810499
+      },
+      "95": {
+       "coverage": 0.7466666666666667,
+       "hits": 56,
+       "n": 75,
+       "ci95": [
+        0.6329943504441866,
+        0.8400701769842209
+       ],
+       "ci_method": "Clopper-Pearson exact, 95%",
+       "mean_width": 5.000072600877055,
+       "median_width": 6.561384259164488
+      }
+     },
+     "jackknife_plus_per_level": {
+      "10": {
+       "90": {
+        "coverage": 1.0,
+        "hits": 15,
+        "n": 15,
+        "ci95": [
+         0.7819806390894659,
+         1.0
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 2.0020842083806185,
+        "median_width": 1.9978289055934986
+       },
+       "95": {
+        "coverage": 1.0,
+        "hits": 15,
+        "n": 15,
+        "ci95": [
+         0.7819806390894659,
+         1.0
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 2.204799225716175,
+        "median_width": 2.191968689717916
+       }
+      },
+      "15": {
+       "90": {
+        "coverage": 1.0,
+        "hits": 15,
+        "n": 15,
+        "ci95": [
+         0.7819806390894659,
+         1.0
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 1.8213586450119708,
+        "median_width": 1.79771532091437
+       },
+       "95": {
+        "coverage": 1.0,
+        "hits": 15,
+        "n": 15,
+        "ci95": [
+         0.7819806390894659,
+         1.0
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 2.4284334712858517,
+        "median_width": 2.3997756494434395
+       }
+      },
+      "20": {
+       "90": {
+        "coverage": 0.26666666666666666,
+        "hits": 4,
+        "n": 15,
+        "ci95": [
+         0.07787154629104358,
+         0.5510032410369705
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 0.6312466028580851,
+        "median_width": 0.6339245463627093
+       },
+       "95": {
+        "coverage": 0.3333333333333333,
+        "hits": 5,
+        "n": 15,
+        "ci95": [
+         0.11824110336688091,
+         0.6161962674588458
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 0.7045602817279568,
+        "median_width": 0.6912961752601143
+       }
+      },
+      "25": {
+       "90": {
+        "coverage": 0.2,
+        "hits": 3,
+        "n": 15,
+        "ci95": [
+         0.0433120051058366,
+         0.48089113380685305
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 1.3523149770355272,
+        "median_width": 1.3509047856899215
+       },
+       "95": {
+        "coverage": 0.2,
+        "hits": 3,
+        "n": 15,
+        "ci95": [
+         0.0433120051058366,
+         0.48089113380685305
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 1.8668050672011602,
+        "median_width": 1.8596308466824123
+       }
+      },
+      "5": {
+       "90": {
+        "coverage": 1.0,
+        "hits": 15,
+        "n": 15,
+        "ci95": [
+         0.7819806390894659,
+         1.0
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 1.9862030779423412,
+        "median_width": 1.986905863249154
+       },
+       "95": {
+        "coverage": 1.0,
+        "hits": 15,
+        "n": 15,
+        "ci95": [
+         0.7819806390894659,
+         1.0
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 2.2199660046922918,
+        "median_width": 2.2189729314771576
+       }
+      }
+     }
+    }
+   },
+   "physgp": {
+    "composition": {
+     "raw": {
+      "90": {
+       "coverage": 0.6533333333333333,
+       "hits": 49,
+       "n": 75,
+       "ci95": [
+        0.5345790287409042,
+        0.7595683545480995
+       ],
+       "ci_method": "Clopper-Pearson exact, 95%",
+       "mean_width": 0.9233394736779342,
+       "median_width": 0.8990057924744175
+      },
+      "95": {
+       "coverage": 0.6666666666666666,
+       "hits": 50,
+       "n": 75,
+       "ci95": [
+        0.548348583660696,
+        0.7713679382849695
+       ],
+       "ci_method": "Clopper-Pearson exact, 95%",
+       "mean_width": 1.1002268434468496,
+       "median_width": 1.0712314738962072
+      }
+     },
+     "jackknife_plus": {
+      "90": {
+       "coverage": 0.6933333333333334,
+       "hits": 52,
+       "n": 75,
+       "ci95": [
+        0.5761644670009377,
+        0.7946824116201112
+       ],
+       "ci_method": "Clopper-Pearson exact, 95%",
+       "mean_width": 1.3727494186539657,
+       "median_width": 1.2341519237957206
+      },
+      "95": {
+       "coverage": 0.84,
+       "hits": 63,
+       "n": 75,
+       "ci95": [
+        0.7371872689820966,
+        0.9144979728687841
+       ],
+       "ci_method": "Clopper-Pearson exact, 95%",
+       "mean_width": 1.9207489484380218,
+       "median_width": 1.9888370432999838
+      }
+     },
+     "scaled_jackknife_plus": {
+      "90": {
+       "coverage": 0.6933333333333334,
+       "hits": 52,
+       "n": 75,
+       "ci95": [
+        0.5761644670009377,
+        0.7946824116201112
+       ],
+       "ci_method": "Clopper-Pearson exact, 95%",
+       "mean_width": 1.2640810387716794,
+       "median_width": 1.2371913601490343
+      },
+      "95": {
+       "coverage": 0.8266666666666667,
+       "hits": 62,
+       "n": 75,
+       "ci95": [
+        0.7218512839541988,
+        0.9043493790621072
+       ],
+       "ci_method": "Clopper-Pearson exact, 95%",
+       "mean_width": 1.9123299310955422,
+       "median_width": 1.8299359815888259
+      }
+     },
+     "jackknife_plus_per_level": {
+      "PVDF": {
+       "90": {
+        "coverage": 0.9333333333333333,
+        "hits": 14,
+        "n": 15,
+        "ci95": [
+         0.6805154334216966,
+         0.9983135697586473
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 1.6886446018927612,
+        "median_width": 1.731318286951713
+       },
+       "95": {
+        "coverage": 1.0,
+        "hits": 15,
+        "n": 15,
+        "ci95": [
+         0.7819806390894659,
+         1.0
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 2.2442764248990184,
+        "median_width": 2.272028867559645
+       }
+      },
+      "PVDF+BaTiO3": {
+       "90": {
+        "coverage": 0.8,
+        "hits": 12,
+        "n": 15,
+        "ci95": [
+         0.5191088661931469,
+         0.9566879948941633
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 1.1387475347637737,
+        "median_width": 1.1248673481252747
+       },
+       "95": {
+        "coverage": 0.9333333333333333,
+        "hits": 14,
+        "n": 15,
+        "ci95": [
+         0.6805154334216966,
+         0.9983135697586473
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 1.5058498022684939,
+        "median_width": 1.490945875920263
+       }
+      },
+      "PVDF+BaTiO3+%1CNT": {
+       "90": {
+        "coverage": 0.6666666666666666,
+        "hits": 10,
+        "n": 15,
+        "ci95": [
+         0.38380373254115413,
+         0.881758896633119
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 1.6568912267753346,
+        "median_width": 1.7434664882011264
+       },
+       "95": {
+        "coverage": 0.8666666666666667,
+        "hits": 13,
+        "n": 15,
+        "ci95": [
+         0.5953973033966279,
+         0.9834240865599164
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 2.084255707160299,
+        "median_width": 2.0806713076432497
+       }
+      },
+      "PVDF+BaTiO3+%2CNT": {
+       "90": {
+        "coverage": 0.7333333333333333,
+        "hits": 11,
+        "n": 15,
+        "ci95": [
+         0.4489967589630295,
+         0.9221284537089564
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 1.1823968134462997,
+        "median_width": 1.186290124828969
+       },
+       "95": {
+        "coverage": 0.8666666666666667,
+        "hits": 13,
+        "n": 15,
+        "ci95": [
+         0.5953973033966279,
+         0.9834240865599164
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 2.010321786980802,
+        "median_width": 1.9888370432999838
+       }
+      },
+      "PVDF+BaTiO3+%3CNT": {
+       "90": {
+        "coverage": 0.3333333333333333,
+        "hits": 5,
+        "n": 15,
+        "ci95": [
+         0.11824110336688091,
+         0.6161962674588458
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 1.1970669163916603,
+        "median_width": 1.2307847932323972
+       },
+       "95": {
+        "coverage": 0.5333333333333333,
+        "hits": 8,
+        "n": 15,
+        "ci95": [
+         0.2658613472773966,
+         0.7873332704806921
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 1.7590410208814953,
+        "median_width": 1.7700856824689033
+       }
+      }
+     }
+    },
+    "force": {
+     "raw": {
+      "90": {
+       "coverage": 0.8266666666666667,
+       "hits": 62,
+       "n": 75,
+       "ci95": [
+        0.7218512839541988,
+        0.9043493790621072
+       ],
+       "ci_method": "Clopper-Pearson exact, 95%",
+       "mean_width": 1.0141835692886672,
+       "median_width": 0.9269015048857561
+      },
+      "95": {
+       "coverage": 0.88,
+       "hits": 66,
+       "n": 75,
+       "ci95": [
+        0.7843868764834109,
+        0.94363371577468
+       ],
+       "ci_method": "Clopper-Pearson exact, 95%",
+       "mean_width": 1.208474259926786,
+       "median_width": 1.1044712654213922
+      }
+     },
+     "jackknife_plus": {
+      "90": {
+       "coverage": 0.8666666666666667,
+       "hits": 65,
+       "n": 75,
+       "ci95": [
+        0.7684335581029383,
+        0.9341661663210497
+       ],
+       "ci_method": "Clopper-Pearson exact, 95%",
+       "mean_width": 1.3296627374714525,
+       "median_width": 1.2965502160232272
+      },
+      "95": {
+       "coverage": 0.9866666666666667,
+       "hits": 74,
+       "n": 75,
+       "ci95": [
+        0.9279365027568325,
+        0.9996624861974789
+       ],
+       "ci_method": "Clopper-Pearson exact, 95%",
+       "mean_width": 2.234707848463632,
+       "median_width": 2.2015306646601176
+      }
+     },
+     "scaled_jackknife_plus": {
+      "90": {
+       "coverage": 0.88,
+       "hits": 66,
+       "n": 75,
+       "ci95": [
+        0.7843868764834109,
+        0.94363371577468
+       ],
+       "ci_method": "Clopper-Pearson exact, 95%",
+       "mean_width": 1.356131945951324,
+       "median_width": 1.29766622151684
+      },
+      "95": {
+       "coverage": 0.9866666666666667,
+       "hits": 74,
+       "n": 75,
+       "ci95": [
+        0.9279365027568325,
+        0.9996624861974789
+       ],
+       "ci_method": "Clopper-Pearson exact, 95%",
+       "mean_width": 2.5668893171995304,
+       "median_width": 2.668505277996923
+      }
+     },
+     "jackknife_plus_per_level": {
+      "1": {
+       "90": {
+        "coverage": 0.92,
+        "hits": 23,
+        "n": 25,
+        "ci95": [
+         0.7396941578947858,
+         0.9901604099812025
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 1.2963438611799327,
+        "median_width": 1.2707248902313582
+       },
+       "95": {
+        "coverage": 0.96,
+        "hits": 24,
+        "n": 25,
+        "ci95": [
+         0.796483086077586,
+         0.9989878003006891
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 2.209376313787495,
+        "median_width": 2.15878640541439
+       }
+      },
+      "2": {
+       "90": {
+        "coverage": 0.92,
+        "hits": 23,
+        "n": 25,
+        "ci95": [
+         0.7396941578947858,
+         0.9901604099812025
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 1.449165641128425,
+        "median_width": 1.4339640901221524
+       },
+       "95": {
+        "coverage": 1.0,
+        "hits": 25,
+        "n": 25,
+        "ci95": [
+         0.8628148284692875,
+         1.0
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 2.2991176579040937,
+        "median_width": 2.284961444787772
+       }
+      },
+      "3": {
+       "90": {
+        "coverage": 0.76,
+        "hits": 19,
+        "n": 25,
+        "ci95": [
+         0.5487119821833135,
+         0.9064355606682571
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 1.243478710106,
+        "median_width": 1.2429443428338995
+       },
+       "95": {
+        "coverage": 1.0,
+        "hits": 25,
+        "n": 25,
+        "ci95": [
+         0.8628148284692875,
+         1.0
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 2.1956295736993074,
+        "median_width": 2.2015306646601176
+       }
+      }
+     }
+    },
+    "frequency": {
+     "raw": {
+      "90": {
+       "coverage": 0.4666666666666667,
+       "hits": 35,
+       "n": 75,
+       "ci95": [
+        0.35050049030628766,
+        0.5855458179220885
+       ],
+       "ci_method": "Clopper-Pearson exact, 95%",
+       "mean_width": 1.0056166158340847,
+       "median_width": 1.1282115172444502
+      },
+      "95": {
+       "coverage": 0.49333333333333335,
+       "hits": 37,
+       "n": 75,
+       "ci95": [
+        0.375848163828701,
+        0.6113610214084806
+       ],
+       "ci_method": "Clopper-Pearson exact, 95%",
+       "mean_width": 1.1982661052599588,
+       "median_width": 1.3443469403661723
+      }
+     },
+     "jackknife_plus": {
+      "90": {
+       "coverage": 0.52,
+       "hits": 39,
+       "n": 75,
+       "ci95": [
+        0.4015076223153899,
+        0.6368647457209783
+       ],
+       "ci_method": "Clopper-Pearson exact, 95%",
+       "mean_width": 1.4958931754688654,
+       "median_width": 1.5906031745217968
+      },
+      "95": {
+       "coverage": 0.56,
+       "hits": 42,
+       "n": 75,
+       "ci95": [
+        0.4405822220332352,
+        0.6745328019841268
+       ],
+       "ci_method": "Clopper-Pearson exact, 95%",
+       "mean_width": 1.9572343782099046,
+       "median_width": 2.1537181506322947
+      }
+     },
+     "scaled_jackknife_plus": {
+      "90": {
+       "coverage": 0.5333333333333333,
+       "hits": 40,
+       "n": 75,
+       "ci95": [
+        0.41445418207791157,
+        0.6494995096937124
+       ],
+       "ci_method": "Clopper-Pearson exact, 95%",
+       "mean_width": 1.579079688030122,
+       "median_width": 1.6628167779160525
+      },
+      "95": {
+       "coverage": 0.5866666666666667,
+       "hits": 44,
+       "n": 75,
+       "ci95": [
+        0.4670271413403791,
+        0.6992463663109483
+       ],
+       "ci_method": "Clopper-Pearson exact, 95%",
+       "mean_width": 2.129342767813683,
+       "median_width": 2.311216538615283
+      }
+     },
+     "jackknife_plus_per_level": {
+      "10": {
+       "90": {
+        "coverage": 1.0,
+        "hits": 15,
+        "n": 15,
+        "ci95": [
+         0.7819806390894659,
+         1.0
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 1.5947668052002657,
+        "median_width": 1.5906031745217968
+       },
+       "95": {
+        "coverage": 1.0,
+        "hits": 15,
+        "n": 15,
+        "ci95": [
+         0.7819806390894659,
+         1.0
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 2.077032837947455,
+        "median_width": 2.0847552580494
+       }
+      },
+      "15": {
+       "90": {
+        "coverage": 0.26666666666666666,
+        "hits": 4,
+        "n": 15,
+        "ci95": [
+         0.07787154629104358,
+         0.5510032410369705
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 1.82365231162875,
+        "median_width": 1.8207699083712807
+       },
+       "95": {
+        "coverage": 0.4,
+        "hits": 6,
+        "n": 15,
+        "ci95": [
+         0.16336432385951347,
+         0.6771302337937184
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 2.393935516231307,
+        "median_width": 2.393106903001443
+       }
+      },
+      "20": {
+       "90": {
+        "coverage": 0.3333333333333333,
+        "hits": 5,
+        "n": 15,
+        "ci95": [
+         0.11824110336688091,
+         0.6161962674588458
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 0.7508959883997047,
+        "median_width": 0.7506787222260689
+       },
+       "95": {
+        "coverage": 0.3333333333333333,
+        "hits": 5,
+        "n": 15,
+        "ci95": [
+         0.11824110336688091,
+         0.6161962674588458
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 0.9238362706960016,
+        "median_width": 0.9153782496909288
+       }
+      },
+      "25": {
+       "90": {
+        "coverage": 0.0,
+        "hits": 0,
+        "n": 15,
+        "ci95": [
+         0.0,
+         0.218019360910534
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 1.573184939382366,
+        "median_width": 1.543095540968502
+       },
+       "95": {
+        "coverage": 0.06666666666666667,
+        "hits": 1,
+        "n": 15,
+        "ci95": [
+         0.0016864302413527013,
+         0.3194845665783034
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 2.1889471122236395,
+        "median_width": 2.2514353666323093
+       }
+      },
+      "5": {
+       "90": {
+        "coverage": 1.0,
+        "hits": 15,
+        "n": 15,
+        "ci95": [
+         0.7819806390894659,
+         1.0
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 1.7369658327332393,
+        "median_width": 1.7369898230196854
+       },
+       "95": {
+        "coverage": 1.0,
+        "hits": 15,
+        "n": 15,
+        "ci95": [
+         0.7819806390894659,
+         1.0
+        ],
+        "ci_method": "Clopper-Pearson exact, 95%",
+        "mean_width": 2.202420153951122,
+        "median_width": 2.2146245270756726
+       }
+      }
+     }
+    }
+   }
+  }
+ },
+ "within_grid_mcnemar": {
+  "rms_Voc": {
+   "90": {
+    "jk_only_hits_b": 6,
+    "raw_only_hits_c": 1,
+    "discordant": 7,
+    "exact_two_sided_p": 0.125,
+    "test": "exact McNemar (binomial on discordant pairs, two-sided)"
+   },
+   "95": {
+    "jk_only_hits_b": 7,
+    "raw_only_hits_c": 1,
+    "discordant": 8,
+    "exact_two_sided_p": 0.0703125,
+    "test": "exact McNemar (binomial on discordant pairs, two-sided)"
+   }
+  },
+  "Vpp": {
+   "90": {
+    "jk_only_hits_b": 0,
+    "raw_only_hits_c": 0,
+    "discordant": 0,
+    "exact_two_sided_p": 1.0,
+    "test": "exact McNemar (binomial on discordant pairs, two-sided)"
+   },
+   "95": {
+    "jk_only_hits_b": 4,
+    "raw_only_hits_c": 0,
+    "discordant": 4,
+    "exact_two_sided_p": 0.125,
+    "test": "exact McNemar (binomial on discordant pairs, two-sided)"
+   }
+  },
+  "Vmax": {
+   "90": {
+    "jk_only_hits_b": 4,
+    "raw_only_hits_c": 0,
+    "discordant": 4,
+    "exact_two_sided_p": 0.125,
+    "test": "exact McNemar (binomial on discordant pairs, two-sided)"
+   },
+   "95": {
+    "jk_only_hits_b": 6,
+    "raw_only_hits_c": 0,
+    "discordant": 6,
+    "exact_two_sided_p": 0.03125,
+    "test": "exact McNemar (binomial on discordant pairs, two-sided)"
+   }
+  }
+ },
+ "within_grid_recomputed": {
+  "rms_Voc": {
+   "raw_gp": {
+    "90": {
+     "coverage": 0.84,
+     "hits": 63,
+     "n": 75,
+     "ci95": [
+      0.7371872689820966,
+      0.9144979728687841
+     ],
+     "ci_method": "Clopper-Pearson exact, 95%",
+     "mean_width": 0.06683142243155127,
+     "median_width": 0.06697777713832055
+    },
+    "95": {
+     "coverage": 0.88,
+     "hits": 66,
+     "n": 75,
+     "ci95": [
+      0.7843868764834109,
+      0.94363371577468
+     ],
+     "ci_method": "Clopper-Pearson exact, 95%",
+     "mean_width": 0.07963455158267845,
+     "median_width": 0.07980894397208962
+    }
+   },
+   "jackknife_plus": {
+    "90": {
+     "coverage": 0.9066666666666666,
+     "hits": 68,
+     "n": 75,
+     "ci95": [
+      0.8171064734437357,
+      0.9616460934582725
+     ],
+     "ci_method": "Clopper-Pearson exact, 95%",
+     "mean_width": 0.07174135582564124,
+     "median_width": 0.07179676469481475
+    },
+    "95": {
+     "coverage": 0.96,
+     "hits": 72,
+     "n": 75,
+     "ci95": [
+      0.8875231782399902,
+      0.9916738343339206
+     ],
+     "ci_method": "Clopper-Pearson exact, 95%",
+     "mean_width": 0.0913713018298926,
+     "median_width": 0.08801101957279645
+    }
+   },
+   "scaled_jackknife_plus": {
+    "90": {
+     "coverage": 0.9066666666666666,
+     "hits": 68,
+     "n": 75,
+     "ci95": [
+      0.8171064734437357,
+      0.9616460934582725
+     ],
+     "ci_method": "Clopper-Pearson exact, 95%",
+     "mean_width": 0.084421869232636,
+     "median_width": 0.08677379747866018
+    },
+    "95": {
+     "coverage": 0.96,
+     "hits": 72,
+     "n": 75,
+     "ci95": [
+      0.8875231782399902,
+      0.9916738343339206
+     ],
+     "ci_method": "Clopper-Pearson exact, 95%",
+     "mean_width": 0.10567593384834462,
+     "median_width": 0.1052962728410457
+    }
+   }
+  },
+  "Vpp": {
+   "raw_gp": {
+    "90": {
+     "coverage": 0.9066666666666666,
+     "hits": 68,
+     "n": 75,
+     "ci95": [
+      0.8171064734437357,
+      0.9616460934582725
+     ],
+     "ci_method": "Clopper-Pearson exact, 95%",
+     "mean_width": 1.8161826604750173,
+     "median_width": 1.786720134216039
+    },
+    "95": {
+     "coverage": 0.9066666666666666,
+     "hits": 68,
+     "n": 75,
+     "ci95": [
+      0.8171064734437357,
+      0.9616460934582725
+     ],
+     "ci_method": "Clopper-Pearson exact, 95%",
+     "mean_width": 2.1641151197596447,
+     "median_width": 2.1290083543824805
+    }
+   },
+   "jackknife_plus": {
+    "90": {
+     "coverage": 0.9066666666666666,
+     "hits": 68,
+     "n": 75,
+     "ci95": [
+      0.8171064734437357,
+      0.9616460934582725
+     ],
+     "ci_method": "Clopper-Pearson exact, 95%",
+     "mean_width": 2.3073682809658758,
+     "median_width": 2.2945986900877955
+    },
+    "95": {
+     "coverage": 0.96,
+     "hits": 72,
+     "n": 75,
+     "ci95": [
+      0.8875231782399902,
+      0.9916738343339206
+     ],
+     "ci_method": "Clopper-Pearson exact, 95%",
+     "mean_width": 4.471017084334378,
+     "median_width": 4.551904085748596
+    }
+   },
+   "scaled_jackknife_plus": {
+    "90": {
+     "coverage": 0.9066666666666666,
+     "hits": 68,
+     "n": 75,
+     "ci95": [
+      0.8171064734437357,
+      0.9616460934582725
+     ],
+     "ci_method": "Clopper-Pearson exact, 95%",
+     "mean_width": 2.1102523616616695,
+     "median_width": 2.0542086875306653
+    },
+    "95": {
+     "coverage": 0.96,
+     "hits": 72,
+     "n": 75,
+     "ci95": [
+      0.8875231782399902,
+      0.9916738343339206
+     ],
+     "ci_method": "Clopper-Pearson exact, 95%",
+     "mean_width": 5.577124829030492,
+     "median_width": 5.258289408445252
+    }
+   }
+  },
+  "Vmax": {
+   "raw_gp": {
+    "90": {
+     "coverage": 0.8533333333333334,
+     "hits": 64,
+     "n": 75,
+     "ci95": [
+      0.7527082855542006,
+      0.9244445941573516
+     ],
+     "ci_method": "Clopper-Pearson exact, 95%",
+     "mean_width": 1.1647759518408358,
+     "median_width": 1.1304441018144524
+    },
+    "95": {
+     "coverage": 0.8933333333333333,
+     "hits": 67,
+     "n": 75,
+     "ci95": [
+      0.8005982557973285,
+      0.9528100482599416
+     ],
+     "ci_method": "Clopper-Pearson exact, 95%",
+     "mean_width": 1.3879161514799951,
+     "median_width": 1.3470072289644675
+    }
+   },
+   "jackknife_plus": {
+    "90": {
+     "coverage": 0.9066666666666666,
+     "hits": 68,
+     "n": 75,
+     "ci95": [
+      0.8171064734437357,
+      0.9616460934582725
+     ],
+     "ci_method": "Clopper-Pearson exact, 95%",
+     "mean_width": 1.5456592948530439,
+     "median_width": 1.5509634145474305
+    },
+    "95": {
+     "coverage": 0.9733333333333334,
+     "hits": 73,
+     "n": 75,
+     "ci95": [
+      0.9069684677792744,
+      0.9967540690710339
+     ],
+     "ci_method": "Clopper-Pearson exact, 95%",
+     "mean_width": 2.2869621031131273,
+     "median_width": 2.2637503711469913
+    }
+   },
+   "scaled_jackknife_plus": {
+    "90": {
+     "coverage": 0.9066666666666666,
+     "hits": 68,
+     "n": 75,
+     "ci95": [
+      0.8171064734437357,
+      0.9616460934582725
+     ],
+     "ci_method": "Clopper-Pearson exact, 95%",
+     "mean_width": 1.6132768789601803,
+     "median_width": 1.6123657488255247
+    },
+    "95": {
+     "coverage": 0.96,
+     "hits": 72,
+     "n": 75,
+     "ci95": [
+      0.8875231782399902,
+      0.9916738343339206
+     ],
+     "ci_method": "Clopper-Pearson exact, 95%",
+     "mean_width": 2.6333906550627426,
+     "median_width": 2.619947805057029
+    }
+   }
+  }
+ },
+ "legacy_check_rms_gp": {
+  "rms_Voc.gp.composition.90": {
+   "legacy_coverage": 0.6266666666666667,
+   "recomputed_coverage": 0.6266666666666667,
+   "legacy_mean_width": 0.07731639442939717,
+   "recomputed_mean_width": 0.0773163943831328,
+   "coverage_equal": true
+  },
+  "rms_Voc.gp.composition.95": {
+   "legacy_coverage": 0.88,
+   "recomputed_coverage": 0.88,
+   "legacy_mean_width": 0.10854072484730243,
+   "recomputed_mean_width": 0.10854072482865573,
+   "coverage_equal": true
+  },
+  "rms_Voc.gp.force.90": {
+   "legacy_coverage": 0.6666666666666666,
+   "recomputed_coverage": 0.6666666666666666,
+   "legacy_mean_width": 0.06953673192114107,
+   "recomputed_mean_width": 0.06953672853052797,
+   "coverage_equal": true
+  },
+  "rms_Voc.gp.force.95": {
+   "legacy_coverage": 0.8,
+   "recomputed_coverage": 0.8,
+   "legacy_mean_width": 0.12245807252701338,
+   "recomputed_mean_width": 0.12245805166989333,
+   "coverage_equal": true
+  },
+  "rms_Voc.gp.frequency.90": {
+   "legacy_coverage": 0.28,
+   "recomputed_coverage": 0.28,
+   "legacy_mean_width": 0.07011493001319657,
+   "recomputed_mean_width": 0.0701149300555587,
+   "coverage_equal": true
+  },
+  "rms_Voc.gp.frequency.95": {
+   "legacy_coverage": 0.4,
+   "recomputed_coverage": 0.4,
+   "legacy_mean_width": 0.08922880430321964,
+   "recomputed_mean_width": 0.08922880438252807,
+   "coverage_equal": true
+  }
+ },
+ "seed": 0,
+ "models": {
+  "gp": "legacy physgp_analysis.gp(), standardized inputs",
+  "physgp": "legacy law refitted by bounded curve_fit inside every training set"
+ }
+}

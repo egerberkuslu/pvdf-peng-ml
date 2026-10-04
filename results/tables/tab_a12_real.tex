@@ -1,0 +1,19 @@
+\begin{tabular}{l l r r r r c c c r r}
+\toprule
+Target & Axis & Levels & \GP & \LawGP & Gain & Truth & Picks & Verdict & Audit $R^2$ & a2 picks \\
+\midrule
+\RMS & comp. & 5 & 0.71 & 0.11 & $-$0.60 & hurts & 1/5 & hurts & 0.68 & 1/5 \\
+ & force & 3 & 0.52 & 0.73 & 0.21 & helps & 3/3 & helps & 0.73 & 3/3 \\
+ & freq. & 5 & $-$1.10 & $-$2.84 & $-$1.74 & hurts & 3/5 & helps$^{\dagger}$ & $-$2.91 & 3/5 \\
+\addlinespace
+\Vpp & comp. & 5 & 0.77 & 0.29 & $-$0.49 & hurts & 2/5 & hurts & 0.31 & 2/5 \\
+ & force & 3 & $-$0.08 & 0.73 & 0.81 & helps & 3/3 & helps & 0.73 & 3/3 \\
+ & freq. & 5 & $-$1.32 & $-$8.33 & $-$7.01 & hurts & 1/5 & hurts & $-$7.22 & 1/5 \\
+\addlinespace
+\Vmax & comp. & 5 & 0.64 & $-$0.06 & $-$0.70 & hurts & 2/5 & hurts & 0.01 & 2/5 \\
+ & force & 3 & $-$0.13 & 0.77 & 0.90 & helps & 3/3 & helps & 0.77 & 3/3 \\
+ & freq. & 5 & $-$1.19 & $-$2.90 & $-$1.71 & hurts & 1/5 & hurts & $-$2.25 & 1/5 \\
+\midrule
+\multicolumn{11}{l}{\footnotesize $^{\dagger}$ Audit miss at $n=75$: \RMS freq. verdict helps (3/5 folds pick \LawGP) while \LawGP hurts (gain $-$1.74); at $n=72$ 1/5 picks, verdict hurts, right.} \\
+\bottomrule
+\end{tabular}

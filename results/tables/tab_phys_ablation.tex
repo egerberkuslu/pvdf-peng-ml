@@ -1,0 +1,28 @@
+\begin{tabular}{l rr rr rr}
+\toprule
+ & \multicolumn{2}{c}{\RMS} & \multicolumn{2}{c}{\Vpp} & \multicolumn{2}{c}{\Vmax} \\
+\cmidrule(lr){2-3} \cmidrule(lr){4-5} \cmidrule(lr){6-7}
+Mean function & $R^2$ & MAE (\si{\volt}) & $R^2$ & MAE (\si{\volt}) & $R^2$ & MAE (\si{\volt}) \\
+\midrule
+\multicolumn{7}{l}{Held-out composition, pooled} \\
+Plain GP & 0.71 & 0.033 & 0.77 & \textbf{0.427} & 0.64 & 0.401 \\
+GP, linear-in-force mean & \textbf{0.75} & \textbf{0.031} & \textbf{0.79} & 0.438 & \textbf{0.66} & \textbf{0.390} \\
+Law alone & 0.11 & 0.050 & 0.22 & 0.832 & $-$0.05 & 0.603 \\
+PhysGP & 0.11 & 0.049 & 0.29 & 0.656 & $-$0.06 & 0.556 \\
+PhysGP with additive offset & 0.11 & 0.047 & 0.22 & 0.660 & $-$0.05 & 0.544 \\
+\midrule
+\multicolumn{7}{l}{Held-out force level, pooled} \\
+Plain GP & 0.52 & 0.034 & $-$0.08 & 0.927 & $-$0.13 & 0.601 \\
+GP, linear-in-force mean & 0.63 & 0.034 & 0.30 & 0.813 & 0.37 & 0.520 \\
+Law alone & 0.73 & 0.033 & 0.72 & 0.559 & 0.76 & 0.335 \\
+PhysGP & 0.73 & 0.031 & 0.73 & 0.533 & \textbf{0.77} & \textbf{0.303} \\
+PhysGP with additive offset & \textbf{0.76} & \textbf{0.029} & \textbf{0.73} & \textbf{0.513} & 0.76 & 0.335 \\
+\midrule
+\multicolumn{7}{l}{Held-out frequency level, pooled} \\
+Plain GP & $-$1.10 & 0.080 & $-$1.32 & \textbf{1.385} & \textbf{$-$1.19} & \textbf{0.824} \\
+GP, linear-in-force mean & \textbf{$-$0.89} & \textbf{0.073} & \textbf{$-$1.29} & 1.480 & $-$1.31 & 0.913 \\
+Law alone & $-$2.98 & 0.109 & $-$8.36 & 2.786 & $-$2.93 & 1.200 \\
+PhysGP & $-$2.84 & 0.100 & $-$8.33 & 2.689 & $-$2.90 & 1.142 \\
+PhysGP with additive offset & $-$3.76 & 0.109 & $-$11.04 & 3.042 & $-$2.17 & 1.063 \\
+\bottomrule
+\end{tabular}

@@ -1,0 +1,32 @@
+\begin{tabular}{l l r r r r r r r}
+\toprule
+ & & \multicolumn{3}{c}{Pooled $R^2$} & & \multicolumn{2}{c}{Jackknife+ hits (95\,\%)} & \\
+\cmidrule(lr){3-5} \cmidrule(lr){7-8}
+Dataset & Scheme & \GP & \LawGP & Law & Levels & \GP & \LawGP & $n$ \\
+\midrule
+Salama 2024, impulse & LOO & \textbf{0.89} & 0.81 & 0.71 & -- & 65/68 & 65/68 & 68 \\
+ & comp. & 0.03 & \textbf{0.62} & 0.61 & 7 &  &  &  \\
+ & force & \textbf{0.82} & 0.75 & 0.74 & 5 &  &  &  \\
+ & freq. & $-$0.01 & \textbf{0.73} & 0.73 & 2 &  &  &  \\
+\addlinespace
+Salama 2024, frequency & LOO & 0.96 & \textbf{0.97} & 0.83 & -- & 29/30 & 29/30 & 30 \\
+ & comp. & 0.18 & \textbf{0.76} & 0.76 & 6 &  &  &  \\
+ & freq. & 0.97 & \textbf{0.97} & 0.86 & 5 &  &  &  \\
+\addlinespace
+Shi 2025 & LOO & \textbf{1.00} & 1.00 & 0.86 & -- & 48/50 & 49/50 & 50 \\
+ & comp. & 0.60 & \textbf{0.64} & 0.65 & 6 &  &  &  \\
+ & force & \textbf{1.00} & 0.99 & 0.88 & 10 &  &  &  \\
+\addlinespace
+Li 2022 & LOO & \textbf{0.99} & 0.99 & 0.99 & -- & 18/19 & 18/19 & 19 \\
+ & comp. & \textbf{$-$0.12} & $-$0.13 & $-$0.12 & 2 &  &  &  \\
+ & force & 0.99 & \textbf{0.99} & 0.99 & 10 &  &  &  \\
+\addlinespace
+Park 2017, G/PVDF/G$^{\dagger}$ & LOO & 0.86 & \textbf{0.87} & 0.47 & -- & 227/234 & 226/234 & 234 \\
+ & preload & \textbf{0.59} & 0.09 & 0.00 & 6 &  &  &  \\
+ & freq. & \textbf{$-$0.05} & $-$0.12 & $-$0.34 & 5 &  &  &  \\
+\addlinespace
+Park 2017, P(VDF-TrFE)$^{\dagger}$ & LOO & 0.86 & \textbf{0.87} & 0.44 & -- & 164/169 & 162/169 & 169 \\
+ & preload & \textbf{$-$0.16} & $-$1.80 & $-$1.63 & 3 &  &  &  \\
+ & freq. & 0.14 & \textbf{0.32} & 0.22 & 5 &  &  &  \\
+\bottomrule
+\end{tabular}

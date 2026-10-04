@@ -1,0 +1,26 @@
+\footnotesize\setlength{\tabcolsep}{3pt}%
+\begin{tabular}{@{}lllccccc@{}}
+\toprule
+Folds & $f$ input & Model & $R^2$ at 20 Hz & MAE (V) & Bias (V) & $f_0$ (Hz) & Pooled $R^2$ \\
+\midrule
+label folds (round 1) & nominal label & \LawGP & $-$0.15 & 0.092 & $-$0.092 & -- & $-$2.84 \\
+ &  & Law mean & $-$0.25 & 0.096 & $-$0.095 & 16.5 & $-$2.98 \\
+ &  & Hier.\ law mean & $-$0.25 & 0.096 & $-$0.095 & 16.5 & $-$3.15 \\
+ &  & Hier.\ LawGP & $-$0.15 & 0.092 & $-$0.092 & 16.5 & $-$3.04 \\
+\addlinespace[2pt]
+label folds (round 1) & measured rate & \LawGP & $-$0.86 & 0.116 & $-$0.116 & -- & $-$0.16 \\
+ &  & Law mean & $-$0.92 & 0.119 & $-$0.119 & 15.0 & $-$0.10 \\
+ &  & Hier.\ law mean & $-$0.92 & 0.119 & $-$0.119 & 15.0 & $-$0.76 \\
+ &  & Hier.\ LawGP & $-$0.86 & 0.116 & $-$0.116 & 15.0 & $-$0.80 \\
+\addlinespace[2pt]
+measured-rate bands & measured rate & \LawGP & $-$0.65 & 0.072 & $-$0.051 & -- & 0.02 \\
+ &  & Law mean & $-$0.66 & 0.073 & $-$0.052 & 12.9 & 0.02 \\
+ &  & Hier.\ law mean & $-$0.66 & 0.073 & $-$0.052 & 12.9 & 0.02 \\
+ &  & Hier.\ LawGP & $-$0.65 & 0.072 & $-$0.051 & 12.9 & 0.02 \\
+\addlinespace[2pt]
+clean subset, label folds & nominal label & \LawGP & $-$0.16 & 0.063 & $-$0.063 & -- & $-$2.85 \\
+ &  & Law mean & $-$0.34 & 0.069 & $-$0.068 & 16.5 & $-$3.27 \\
+ &  & Hier.\ law mean & $-$0.13 & 0.056 & $-$0.055 & 16.6 & $-$3.46 \\
+ &  & Hier.\ LawGP & $-$0.16 & 0.063 & $-$0.063 & 16.5 & $-$3.17 \\
+\bottomrule
+\end{tabular}

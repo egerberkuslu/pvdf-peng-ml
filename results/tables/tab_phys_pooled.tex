@@ -1,0 +1,13 @@
+\begin{tabular}{l rrrr rrrr rrrr}
+\toprule
+ & \multicolumn{4}{c}{\RMS} & \multicolumn{4}{c}{\Vpp} & \multicolumn{4}{c}{\Vmax} \\
+\cmidrule(lr){2-5} \cmidrule(lr){6-9} \cmidrule(lr){10-13}
+ & \multicolumn{2}{c}{$R^2$} & \multicolumn{2}{c}{MAE (\si{\volt})} & \multicolumn{2}{c}{$R^2$} & \multicolumn{2}{c}{MAE (\si{\volt})} & \multicolumn{2}{c}{$R^2$} & \multicolumn{2}{c}{MAE (\si{\volt})} \\
+Validation scheme & GP & PhysGP & GP & PhysGP & GP & PhysGP & GP & PhysGP & GP & PhysGP & GP & PhysGP \\
+\midrule
+Within-grid LOO & \textbf{0.914} & 0.887 & \textbf{0.018} & 0.019 & \textbf{0.777} & 0.737 & \textbf{0.381} & 0.462 & 0.778 & \textbf{0.789} & \textbf{0.270} & 0.272 \\
+Held-out composition & \textbf{0.71} & 0.11 & \textbf{0.033} & 0.049 & \textbf{0.77} & 0.29 & \textbf{0.427} & 0.656 & \textbf{0.64} & $-$0.06 & \textbf{0.401} & 0.556 \\
+Held-out force level & 0.52 & \textbf{0.73} & 0.034 & \textbf{0.031} & $-$0.08 & \textbf{0.73} & 0.927 & \textbf{0.533} & $-$0.13 & \textbf{0.77} & 0.601 & \textbf{0.303} \\
+Held-out frequency level & \textbf{$-$1.10} & $-$2.84 & \textbf{0.080} & 0.100 & \textbf{$-$1.32} & $-$8.33 & \textbf{1.385} & 2.689 & \textbf{$-$1.19} & $-$2.90 & \textbf{0.824} & 1.142 \\
+\bottomrule
+\end{tabular}

@@ -1,0 +1,996 @@
+{
+ "best_measured": {
+  "rms_Voc": {
+   "value": 0.4337970382398568,
+   "composition": "PVDF+BaTiO3+%2CNT",
+   "cnt_pct": 2.0,
+   "force_N": 3.0,
+   "freq_Hz": 20.0
+  },
+  "Vpp": {
+   "value": 8.41102520941707,
+   "composition": "PVDF+BaTiO3+%2CNT",
+   "cnt_pct": 2.0,
+   "force_N": 3.0,
+   "freq_Hz": 20.0
+  },
+  "Vmax": {
+   "value": 4.56586646613916,
+   "composition": "PVDF+BaTiO3+%2CNT",
+   "cnt_pct": 2.0,
+   "force_N": 3.0,
+   "freq_Hz": 20.0
+  }
+ },
+ "pearson": {
+  "cnt_pct__force_N": 1.0571437693441228e-16,
+  "cnt_pct__freq_Hz": 2.470090946967294e-16,
+  "cnt_pct__rms_Voc": 0.16576127604159088,
+  "cnt_pct__Vpp": 0.15896203302899362,
+  "cnt_pct__Vmax": 0.18216757206261702,
+  "force_N__freq_Hz": 4.922784477141924e-17,
+  "force_N__rms_Voc": 0.493251320541076,
+  "force_N__Vpp": 0.4280485314881675,
+  "force_N__Vmax": 0.43870191755401367,
+  "freq_Hz__rms_Voc": 0.2832662623570399,
+  "freq_Hz__Vpp": 0.24443782753302915,
+  "freq_Hz__Vmax": 0.2400658540241643,
+  "rms_Voc__Vpp": 0.9643000621831326,
+  "rms_Voc__Vmax": 0.9649821177641588,
+  "Vpp__Vmax": 0.9781658402905538
+ },
+ "eda": {
+  "map_3N_max_V": 0.4337970382398568,
+  "freq_resp_force_mean_max_V": 0.2734867398215805
+ },
+ "cnt_effect_3N": {
+  "mean_over_freq_V": {
+   "0.0": 0.1265474462481441,
+   "1.0": 0.14427932086747927,
+   "2.0": 0.21410812587297082,
+   "3.0": 0.1696225486460054
+  },
+  "argmax_cnt_pct": 2.0
+ },
+ "surface_2wt": {
+  "gp_rms_max_V": 0.4312510654138436,
+  "gp_rms_argmax_force_N": 3.0,
+  "gp_rms_argmax_freq_Hz": 19.8,
+  "rf_vpp_max_V": 7.198884792788773,
+  "rf_vpp_argmax_force_N": 2.5125,
+  "rf_vpp_argmax_freq_Hz": 17.6,
+  "rf_settings": "RandomForestRegressor(n_estimators=400, random_state=42)",
+  "grid": "force 1-3 N (161 pts) x frequency 5-25 Hz (201 pts), cnt 2 wt%"
+ },
+ "gp_rms_full_fit": {
+  "kernel": "1.26**2 * Matern(length_scale=[1.54, 19, 2.73, 0.835], nu=2.5) + WhiteKernel(noise_level=0.00778)",
+  "length_scale_standardized": [
+   1.5404814453834177,
+   19.007452016106225,
+   2.7288631257625906,
+   0.8348864389861682
+  ],
+  "length_scale_original_units": {
+   "cnt_pct": 1.7964946405864932,
+   "is_pristine": 7.60298080644249,
+   "force_N": 2.2281074120049027,
+   "freq_Hz": 5.903538625278084
+  }
+ },
+ "unc_2wt": {
+  "sd_min_V": 0.00935382080995415,
+  "sd_max_V": 0.023775337841470314,
+  "sd_ratio_max_over_min": 2.541778202140571,
+  "sd_median_V": 0.017889509910038865,
+  "sd_at_measured_mean_V": 0.009419060708329898,
+  "n_measured_nodes_in_grid": 15,
+  "sd_min_force_N": 2.0,
+  "sd_min_freq_Hz": 15.0,
+  "sd_max_force_N": 1.4875,
+  "sd_max_freq_Hz": 7.4
+ },
+ "resonance": {
+  "source": "results/baseline/revision_experiments.json -> lorentzian_uncertainty",
+  "fit_data": "per composition, V_rms averaged over the three forces at each of the five frequencies (five points, three parameters, 2 residual df)",
+  "per_material": {
+   "PVDF": {
+    "f0": 18.522170382326376,
+    "f0_se": 1.0407305126843702,
+    "gamma": 13.153982359790415,
+    "gamma_se": 3.6328466629851714,
+    "Q": 1.408103635515404,
+    "resid_df": 2
+   },
+   "PVDF+BaTiO3": {
+    "f0": 18.35392631694383,
+    "f0_se": 1.1333330640841712,
+    "gamma": 13.404236218827636,
+    "gamma_se": 4.061527714880658,
+    "Q": 1.3692631208008588,
+    "resid_df": 2
+   },
+   "PVDF+BaTiO3+%1CNT": {
+    "f0": 18.34844211795926,
+    "f0_se": 0.9070504335122855,
+    "gamma": 12.04843779121927,
+    "gamma_se": 3.266849628458062,
+    "Q": 1.5228897252830025,
+    "resid_df": 2
+   },
+   "PVDF+BaTiO3+%2CNT": {
+    "f0": 19.040939635106817,
+    "f0_se": 1.0724310138237336,
+    "gamma": 10.396433905247356,
+    "gamma_se": 3.047757567678753,
+    "Q": 1.83148758590158,
+    "resid_df": 2
+   },
+   "PVDF+BaTiO3+%3CNT": {
+    "f0": 18.917230259523883,
+    "f0_se": 0.9969245494522505,
+    "gamma": 10.476291568946833,
+    "gamma_se": 2.971027899459267,
+    "Q": 1.8057181909290452,
+    "resid_df": 2
+   }
+  },
+  "global_law_rms": {
+   "f0": 18.765474452275377,
+   "f0_se": 0.41630173879312615,
+   "gamma": 11.0287740022521,
+   "gamma_se": 0.9306302105500979
+  },
+  "refit_check": {
+   "PVDF": {
+    "A": 0.1511790540705677,
+    "f0": 18.52217037734984,
+    "gamma": 13.153982327496427
+   },
+   "PVDF+BaTiO3": {
+    "A": 0.17727873688126453,
+    "f0": 18.353926313848564,
+    "gamma": 13.404236177335557
+   },
+   "PVDF+BaTiO3+%1CNT": {
+    "A": 0.17102879579937652,
+    "f0": 18.34844211773442,
+    "gamma": 12.048437759920256
+   },
+   "PVDF+BaTiO3+%2CNT": {
+    "A": 0.27059579884013185,
+    "f0": 19.04093962739574,
+    "gamma": 10.396433874019982
+   },
+   "PVDF+BaTiO3+%3CNT": {
+    "A": 0.23240910468186793,
+    "f0": 18.91723025359447,
+    "gamma": 10.476291545513119
+   }
+  }
+ },
+ "anova": {
+  "source": "results/baseline/anova_results.json",
+  "residual_df": {
+   "log_rms": 32,
+   "rms_Voc": 32,
+   "Vpp": 32
+  },
+  "partial_eta2": {
+   "log_rms": {
+    "composition": 0.6268412136819487,
+    "force": 0.9179705117409649,
+    "frequency": 0.9254526616821352,
+    "composition:force": 0.8005909861705238,
+    "composition:frequency": 0.21144072409984424,
+    "force:frequency": 0.31174714058006064
+   },
+   "rms_Voc": {
+    "composition": 0.5475321029355154,
+    "force": 0.8456970783882136,
+    "frequency": 0.910987017792334,
+    "composition:force": 0.6477227503824975,
+    "composition:frequency": 0.40004502097092187,
+    "force:frequency": 0.6586090570631135
+   },
+   "Vpp": {
+    "composition": 0.37650082258331646,
+    "force": 0.7560770928219636,
+    "frequency": 0.8829966632913145,
+    "composition:force": 0.5057268522712169,
+    "composition:frequency": 0.4167529903191692,
+    "force:frequency": 0.7282635294887082
+   }
+  },
+  "p_values": {
+   "log_rms": {
+    "composition": 1.5590246331198144e-06,
+    "force": 4.202619152748547e-18,
+    "frequency": 1.438038079606487e-17,
+    "composition:force": 3.2483777497039376e-09,
+    "composition:frequency": 0.906380790119339,
+    "force:frequency": 0.11135524034953237
+   },
+   "rms_Voc": {
+    "composition": 3.0121528829748497e-05,
+    "force": 1.0327290342137231e-13,
+    "frequency": 2.419378241390451e-16,
+    "composition:force": 1.6323148650264203e-05,
+    "composition:frequency": 0.23713489652823383,
+    "force:frequency": 1.0337136532507662e-05
+   },
+   "Vpp": {
+    "composition": 0.003664033824983085,
+    "force": 1.5705125092743465e-10,
+    "frequency": 1.8661731548934083e-14,
+    "composition:force": 0.0018961872326915279,
+    "composition:frequency": 0.18988223537278193,
+    "force:frequency": 3.5349530916317276e-07
+   }
+  }
+ },
+ "waveforms_2wt_3N": {
+  "5": {
+   "min_V": -0.297635087034053,
+   "max_V": 0.701819636119465
+  },
+  "10": {
+   "min_V": -0.63479796722715,
+   "max_V": 1.10754206956471
+  },
+  "15": {
+   "min_V": -0.724064973866725,
+   "max_V": 2.62761530230546
+  },
+  "20": {
+   "min_V": -4.57729590785153,
+   "max_V": 3.83372930156554
+  },
+  "25": {
+   "min_V": -0.337614278459758,
+   "max_V": 0.992865438657802
+  }
+ },
+ "optima": {
+  "grid": "cnt 0-3 wt% step 0.25, force 1-3 N step 0.1, frequency 5-25 Hz step 0.5, BaTiO3 series (regression/reg_02_surface.py grid)",
+  "plateau_definition": "all grid points whose prediction is within 1% of the model maximum",
+  "targets": {
+   "rms_Voc": {
+    "model": "GP",
+    "pred_max_V": 0.43167231179446314,
+    "argmax": {
+     "cnt": 2.25,
+     "force": 3.0,
+     "freq": 20.0
+    },
+    "plateau_1pct": {
+     "cnt": [
+      2.0,
+      2.25
+     ],
+     "force": [
+      2.8,
+      3.0
+     ],
+     "freq": [
+      19.5,
+      20.0
+     ],
+     "n_points": 10
+    }
+   },
+   "Vpp": {
+    "model": "RF",
+    "pred_max_V": 7.356007545220284,
+    "argmax": {
+     "cnt": 2.25,
+     "force": 2.6,
+     "freq": 18.0
+    },
+    "plateau_1pct": {
+     "cnt": [
+      2.25,
+      2.5
+     ],
+     "force": [
+      2.6,
+      3.0
+     ],
+     "freq": [
+      18.0,
+      22.5
+     ],
+     "n_points": 100
+    }
+   },
+   "Vmax": {
+    "model": "RF",
+    "pred_max_V": 4.195324685978786,
+    "argmax": {
+     "cnt": 2.25,
+     "force": 2.6,
+     "freq": 18.0
+    },
+    "plateau_1pct": {
+     "cnt": [
+      2.25,
+      2.5
+     ],
+     "force": [
+      2.6,
+      3.0
+     ],
+     "freq": [
+      18.0,
+      22.5
+     ],
+     "n_points": 100
+    }
+   }
+  },
+  "submitted_table8": {
+   "rms_Voc": 0.432,
+   "Vpp": 7.36,
+   "Vmax": 4.2
+  },
+  "ga": {
+   "source": "results/baseline/ga_search.json",
+   "n_runs": 10,
+   "cnt_range": [
+    2.120105557529143,
+    2.148571719740002
+   ],
+   "force_range": [
+    2.9583629971708625,
+    3.0
+   ],
+   "freq_range": [
+    19.671405096431954,
+    19.79884234380636
+   ],
+   "pred_rms_range_V": [
+    0.4348692091623695,
+    0.4349923786976153
+   ]
+  }
+ },
+ "macros": {
+  "descBestRms": "0.434",
+  "descBestVpp": "8.41",
+  "descBestVmax": "4.57",
+  "descBestCnt": "2",
+  "descBestForce": "3",
+  "descBestFreq": "20",
+  "descMapMaxRms": "0.434",
+  "descCntMeanRmsZero": "0.127",
+  "descCntMeanRmsOne": "0.144",
+  "descCntMeanRmsTwo": "0.214",
+  "descCntMeanRmsThree": "0.170",
+  "descCntArgmax": "2",
+  "descSurfRmsMax": "0.431",
+  "descSurfRmsMaxForce": "3.00",
+  "descSurfRmsMaxFreq": "19.8",
+  "descSurfVppMax": "7.20",
+  "descSdMinRms": "0.0094",
+  "descSdMaxRms": "0.0238",
+  "descSdRatioRms": "2.5",
+  "descSdMedianRms": "0.0179",
+  "descLsCnt": "1.8",
+  "descLsForce": "2.2",
+  "descLsFreq": "5.9",
+  "descFzeroPvdf": "18.5",
+  "descFzeroSePvdf": "1.0",
+  "descGammaPvdf": "13.2",
+  "descGammaSePvdf": "3.6",
+  "descFzeroBto": "18.4",
+  "descFzeroSeBto": "1.1",
+  "descGammaBto": "13.4",
+  "descGammaSeBto": "4.1",
+  "descFzeroCntOne": "18.3",
+  "descFzeroSeCntOne": "0.9",
+  "descGammaCntOne": "12.0",
+  "descGammaSeCntOne": "3.3",
+  "descFzeroCntTwo": "19.0",
+  "descFzeroSeCntTwo": "1.1",
+  "descGammaCntTwo": "10.4",
+  "descGammaSeCntTwo": "3.0",
+  "descFzeroCntThree": "18.9",
+  "descFzeroSeCntThree": "1.0",
+  "descGammaCntThree": "10.5",
+  "descGammaSeCntThree": "3.0",
+  "descFzeroMin": "18.3",
+  "descFzeroMax": "19.0",
+  "descGammaMin": "10.4",
+  "descGammaMax": "13.4",
+  "descFzeroGlobal": "18.8",
+  "descFzeroSeGlobal": "0.4",
+  "descGammaGlobal": "11.0",
+  "descGammaSeGlobal": "0.9",
+  "descEtaLogRmsComp": "0.63",
+  "descPLogRmsComp": "<0.001",
+  "descEtaLogRmsForce": "0.92",
+  "descPLogRmsForce": "<0.001",
+  "descEtaLogRmsFreq": "0.93",
+  "descPLogRmsFreq": "<0.001",
+  "descEtaLogRmsCompForce": "0.80",
+  "descPLogRmsCompForce": "<0.001",
+  "descEtaLogRmsCompFreq": "0.21",
+  "descPLogRmsCompFreq": "0.91",
+  "descEtaLogRmsForceFreq": "0.31",
+  "descPLogRmsForceFreq": "0.11",
+  "descEtaRmsComp": "0.55",
+  "descPRmsComp": "<0.001",
+  "descEtaRmsForce": "0.85",
+  "descPRmsForce": "<0.001",
+  "descEtaRmsFreq": "0.91",
+  "descPRmsFreq": "<0.001",
+  "descEtaRmsCompForce": "0.65",
+  "descPRmsCompForce": "<0.001",
+  "descEtaRmsCompFreq": "0.40",
+  "descPRmsCompFreq": "0.24",
+  "descEtaRmsForceFreq": "0.66",
+  "descPRmsForceFreq": "<0.001",
+  "descEtaVppComp": "0.38",
+  "descPVppComp": "0.004",
+  "descEtaVppForce": "0.76",
+  "descPVppForce": "<0.001",
+  "descEtaVppFreq": "0.88",
+  "descPVppFreq": "<0.001",
+  "descEtaVppCompForce": "0.51",
+  "descPVppCompForce": "0.002",
+  "descEtaVppCompFreq": "0.42",
+  "descPVppCompFreq": "0.19",
+  "descEtaVppForceFreq": "0.73",
+  "descPVppForceFreq": "<0.001",
+  "descAnovaResidDf": "32",
+  "descOptRmsPred": "0.432",
+  "descOptRmsCntLo": "2.00",
+  "descOptRmsCntHi": "2.25",
+  "descOptRmsForceLo": "2.8",
+  "descOptRmsForceHi": "3.0",
+  "descOptRmsFreqLo": "19.5",
+  "descOptRmsFreqHi": "20.0",
+  "descOptVppPred": "7.36",
+  "descOptVppCntLo": "2.25",
+  "descOptVppCntHi": "2.50",
+  "descOptVppForceLo": "2.6",
+  "descOptVppForceHi": "3.0",
+  "descOptVppFreqLo": "18.0",
+  "descOptVppFreqHi": "22.5",
+  "descOptVmaxPred": "4.20",
+  "descOptVmaxCntLo": "2.25",
+  "descOptVmaxCntHi": "2.50",
+  "descOptVmaxForceLo": "2.6",
+  "descOptVmaxForceHi": "3.0",
+  "descOptVmaxFreqLo": "18.0",
+  "descOptVmaxFreqHi": "22.5",
+  "descGaRuns": "10",
+  "descGaCntLo": "2.12",
+  "descGaCntHi": "2.15",
+  "descGaForceLo": "2.96",
+  "descGaForceHi": "3.00",
+  "descGaFreqLo": "19.7",
+  "descGaFreqHi": "19.8",
+  "descGaRmsLo": "0.435",
+  "descGaRmsHi": "0.435",
+  "descCorrForceRms": "0.49",
+  "descCorrFreqRms": "0.28",
+  "descCorrCntRms": "0.17",
+  "descCorrRmsVpp": "0.96",
+  "descCorrVppVmax": "0.98"
+ },
+ "spectral_check": {
+  "definition": "dominant FFT component in 3-60 Hz of the mean-removed 1 s recording within +-1 Hz of the nominal frequency",
+  "n_match": 19,
+  "n_total": 75,
+  "n_match_by_nominal_Hz": {
+   "5": 0,
+   "10": 1,
+   "15": 5,
+   "20": 6,
+   "25": 7
+  },
+  "per_recording": [
+   {
+    "material": "PVDF",
+    "force": "1 N",
+    "freq_Hz": 5,
+    "dominant_Hz": 60.0
+   },
+   {
+    "material": "PVDF",
+    "force": "1 N",
+    "freq_Hz": 10,
+    "dominant_Hz": 20.0
+   },
+   {
+    "material": "PVDF",
+    "force": "1 N",
+    "freq_Hz": 15,
+    "dominant_Hz": 31.0
+   },
+   {
+    "material": "PVDF",
+    "force": "1 N",
+    "freq_Hz": 20,
+    "dominant_Hz": 20.0
+   },
+   {
+    "material": "PVDF",
+    "force": "1 N",
+    "freq_Hz": 25,
+    "dominant_Hz": 25.0
+   },
+   {
+    "material": "PVDF",
+    "force": "2 N",
+    "freq_Hz": 5,
+    "dominant_Hz": 17.0
+   },
+   {
+    "material": "PVDF",
+    "force": "2 N",
+    "freq_Hz": 10,
+    "dominant_Hz": 22.0
+   },
+   {
+    "material": "PVDF",
+    "force": "2 N",
+    "freq_Hz": 15,
+    "dominant_Hz": 31.0
+   },
+   {
+    "material": "PVDF",
+    "force": "2 N",
+    "freq_Hz": 20,
+    "dominant_Hz": 20.0
+   },
+   {
+    "material": "PVDF",
+    "force": "2 N",
+    "freq_Hz": 25,
+    "dominant_Hz": 42.0
+   },
+   {
+    "material": "PVDF",
+    "force": "3 N",
+    "freq_Hz": 5,
+    "dominant_Hz": 26.0
+   },
+   {
+    "material": "PVDF",
+    "force": "3 N",
+    "freq_Hz": 10,
+    "dominant_Hz": 30.0
+   },
+   {
+    "material": "PVDF",
+    "force": "3 N",
+    "freq_Hz": 15,
+    "dominant_Hz": 19.0
+   },
+   {
+    "material": "PVDF",
+    "force": "3 N",
+    "freq_Hz": 20,
+    "dominant_Hz": 20.0
+   },
+   {
+    "material": "PVDF",
+    "force": "3 N",
+    "freq_Hz": 25,
+    "dominant_Hz": 46.0
+   },
+   {
+    "material": "PVDF+BaTiO3",
+    "force": "1 N",
+    "freq_Hz": 5,
+    "dominant_Hz": 28.0
+   },
+   {
+    "material": "PVDF+BaTiO3",
+    "force": "1 N",
+    "freq_Hz": 10,
+    "dominant_Hz": 39.0
+   },
+   {
+    "material": "PVDF+BaTiO3",
+    "force": "1 N",
+    "freq_Hz": 15,
+    "dominant_Hz": 31.0
+   },
+   {
+    "material": "PVDF+BaTiO3",
+    "force": "1 N",
+    "freq_Hz": 20,
+    "dominant_Hz": 60.0
+   },
+   {
+    "material": "PVDF+BaTiO3",
+    "force": "1 N",
+    "freq_Hz": 25,
+    "dominant_Hz": 47.0
+   },
+   {
+    "material": "PVDF+BaTiO3",
+    "force": "2 N",
+    "freq_Hz": 5,
+    "dominant_Hz": 17.0
+   },
+   {
+    "material": "PVDF+BaTiO3",
+    "force": "2 N",
+    "freq_Hz": 10,
+    "dominant_Hz": 44.0
+   },
+   {
+    "material": "PVDF+BaTiO3",
+    "force": "2 N",
+    "freq_Hz": 15,
+    "dominant_Hz": 15.0
+   },
+   {
+    "material": "PVDF+BaTiO3",
+    "force": "2 N",
+    "freq_Hz": 20,
+    "dominant_Hz": 59.0
+   },
+   {
+    "material": "PVDF+BaTiO3",
+    "force": "2 N",
+    "freq_Hz": 25,
+    "dominant_Hz": 49.0
+   },
+   {
+    "material": "PVDF+BaTiO3",
+    "force": "3 N",
+    "freq_Hz": 5,
+    "dominant_Hz": 16.0
+   },
+   {
+    "material": "PVDF+BaTiO3",
+    "force": "3 N",
+    "freq_Hz": 10,
+    "dominant_Hz": 20.0
+   },
+   {
+    "material": "PVDF+BaTiO3",
+    "force": "3 N",
+    "freq_Hz": 15,
+    "dominant_Hz": 47.0
+   },
+   {
+    "material": "PVDF+BaTiO3",
+    "force": "3 N",
+    "freq_Hz": 20,
+    "dominant_Hz": 15.0
+   },
+   {
+    "material": "PVDF+BaTiO3",
+    "force": "3 N",
+    "freq_Hz": 25,
+    "dominant_Hz": 23.0
+   },
+   {
+    "material": "PVDF+BaTiO3+%1CNT",
+    "force": "1 N",
+    "freq_Hz": 5,
+    "dominant_Hz": 25.0
+   },
+   {
+    "material": "PVDF+BaTiO3+%1CNT",
+    "force": "1 N",
+    "freq_Hz": 10,
+    "dominant_Hz": 31.0
+   },
+   {
+    "material": "PVDF+BaTiO3+%1CNT",
+    "force": "1 N",
+    "freq_Hz": 15,
+    "dominant_Hz": 44.0
+   },
+   {
+    "material": "PVDF+BaTiO3+%1CNT",
+    "force": "1 N",
+    "freq_Hz": 20,
+    "dominant_Hz": 58.0
+   },
+   {
+    "material": "PVDF+BaTiO3+%1CNT",
+    "force": "1 N",
+    "freq_Hz": 25,
+    "dominant_Hz": 26.0
+   },
+   {
+    "material": "PVDF+BaTiO3+%1CNT",
+    "force": "2 N",
+    "freq_Hz": 5,
+    "dominant_Hz": 31.0
+   },
+   {
+    "material": "PVDF+BaTiO3+%1CNT",
+    "force": "2 N",
+    "freq_Hz": 10,
+    "dominant_Hz": 11.0
+   },
+   {
+    "material": "PVDF+BaTiO3+%1CNT",
+    "force": "2 N",
+    "freq_Hz": 15,
+    "dominant_Hz": 15.0
+   },
+   {
+    "material": "PVDF+BaTiO3+%1CNT",
+    "force": "2 N",
+    "freq_Hz": 20,
+    "dominant_Hz": 60.0
+   },
+   {
+    "material": "PVDF+BaTiO3+%1CNT",
+    "force": "2 N",
+    "freq_Hz": 25,
+    "dominant_Hz": 48.0
+   },
+   {
+    "material": "PVDF+BaTiO3+%1CNT",
+    "force": "3 N",
+    "freq_Hz": 5,
+    "dominant_Hz": 20.0
+   },
+   {
+    "material": "PVDF+BaTiO3+%1CNT",
+    "force": "3 N",
+    "freq_Hz": 10,
+    "dominant_Hz": 31.0
+   },
+   {
+    "material": "PVDF+BaTiO3+%1CNT",
+    "force": "3 N",
+    "freq_Hz": 15,
+    "dominant_Hz": 49.0
+   },
+   {
+    "material": "PVDF+BaTiO3+%1CNT",
+    "force": "3 N",
+    "freq_Hz": 20,
+    "dominant_Hz": 31.0
+   },
+   {
+    "material": "PVDF+BaTiO3+%1CNT",
+    "force": "3 N",
+    "freq_Hz": 25,
+    "dominant_Hz": 24.0
+   },
+   {
+    "material": "PVDF+BaTiO3+%2CNT",
+    "force": "1 N",
+    "freq_Hz": 5,
+    "dominant_Hz": 25.0
+   },
+   {
+    "material": "PVDF+BaTiO3+%2CNT",
+    "force": "1 N",
+    "freq_Hz": 10,
+    "dominant_Hz": 32.0
+   },
+   {
+    "material": "PVDF+BaTiO3+%2CNT",
+    "force": "1 N",
+    "freq_Hz": 15,
+    "dominant_Hz": 15.0
+   },
+   {
+    "material": "PVDF+BaTiO3+%2CNT",
+    "force": "1 N",
+    "freq_Hz": 20,
+    "dominant_Hz": 20.0
+   },
+   {
+    "material": "PVDF+BaTiO3+%2CNT",
+    "force": "1 N",
+    "freq_Hz": 25,
+    "dominant_Hz": 25.0
+   },
+   {
+    "material": "PVDF+BaTiO3+%2CNT",
+    "force": "2 N",
+    "freq_Hz": 5,
+    "dominant_Hz": 25.0
+   },
+   {
+    "material": "PVDF+BaTiO3+%2CNT",
+    "force": "2 N",
+    "freq_Hz": 10,
+    "dominant_Hz": 32.0
+   },
+   {
+    "material": "PVDF+BaTiO3+%2CNT",
+    "force": "2 N",
+    "freq_Hz": 15,
+    "dominant_Hz": 15.0
+   },
+   {
+    "material": "PVDF+BaTiO3+%2CNT",
+    "force": "2 N",
+    "freq_Hz": 20,
+    "dominant_Hz": 20.0
+   },
+   {
+    "material": "PVDF+BaTiO3+%2CNT",
+    "force": "2 N",
+    "freq_Hz": 25,
+    "dominant_Hz": 25.0
+   },
+   {
+    "material": "PVDF+BaTiO3+%2CNT",
+    "force": "3 N",
+    "freq_Hz": 5,
+    "dominant_Hz": 25.0
+   },
+   {
+    "material": "PVDF+BaTiO3+%2CNT",
+    "force": "3 N",
+    "freq_Hz": 10,
+    "dominant_Hz": 32.0
+   },
+   {
+    "material": "PVDF+BaTiO3+%2CNT",
+    "force": "3 N",
+    "freq_Hz": 15,
+    "dominant_Hz": 32.0
+   },
+   {
+    "material": "PVDF+BaTiO3+%2CNT",
+    "force": "3 N",
+    "freq_Hz": 20,
+    "dominant_Hz": 17.0
+   },
+   {
+    "material": "PVDF+BaTiO3+%2CNT",
+    "force": "3 N",
+    "freq_Hz": 25,
+    "dominant_Hz": 25.0
+   },
+   {
+    "material": "PVDF+BaTiO3+%3CNT",
+    "force": "1 N",
+    "freq_Hz": 5,
+    "dominant_Hz": 29.0
+   },
+   {
+    "material": "PVDF+BaTiO3+%3CNT",
+    "force": "1 N",
+    "freq_Hz": 10,
+    "dominant_Hz": 31.0
+   },
+   {
+    "material": "PVDF+BaTiO3+%3CNT",
+    "force": "1 N",
+    "freq_Hz": 15,
+    "dominant_Hz": 16.0
+   },
+   {
+    "material": "PVDF+BaTiO3+%3CNT",
+    "force": "1 N",
+    "freq_Hz": 20,
+    "dominant_Hz": 19.0
+   },
+   {
+    "material": "PVDF+BaTiO3+%3CNT",
+    "force": "1 N",
+    "freq_Hz": 25,
+    "dominant_Hz": 25.0
+   },
+   {
+    "material": "PVDF+BaTiO3+%3CNT",
+    "force": "2 N",
+    "freq_Hz": 5,
+    "dominant_Hz": 28.0
+   },
+   {
+    "material": "PVDF+BaTiO3+%3CNT",
+    "force": "2 N",
+    "freq_Hz": 10,
+    "dominant_Hz": 32.0
+   },
+   {
+    "material": "PVDF+BaTiO3+%3CNT",
+    "force": "2 N",
+    "freq_Hz": 15,
+    "dominant_Hz": 51.0
+   },
+   {
+    "material": "PVDF+BaTiO3+%3CNT",
+    "force": "2 N",
+    "freq_Hz": 20,
+    "dominant_Hz": 48.0
+   },
+   {
+    "material": "PVDF+BaTiO3+%3CNT",
+    "force": "2 N",
+    "freq_Hz": 25,
+    "dominant_Hz": 18.0
+   },
+   {
+    "material": "PVDF+BaTiO3+%3CNT",
+    "force": "3 N",
+    "freq_Hz": 5,
+    "dominant_Hz": 32.0
+   },
+   {
+    "material": "PVDF+BaTiO3+%3CNT",
+    "force": "3 N",
+    "freq_Hz": 10,
+    "dominant_Hz": 15.0
+   },
+   {
+    "material": "PVDF+BaTiO3+%3CNT",
+    "force": "3 N",
+    "freq_Hz": 15,
+    "dominant_Hz": 49.0
+   },
+   {
+    "material": "PVDF+BaTiO3+%3CNT",
+    "force": "3 N",
+    "freq_Hz": 20,
+    "dominant_Hz": 17.0
+   },
+   {
+    "material": "PVDF+BaTiO3+%3CNT",
+    "force": "3 N",
+    "freq_Hz": 25,
+    "dominant_Hz": 19.0
+   }
+  ]
+ },
+ "seed": 0,
+ "index": {
+  "fig_desc_eda": [
+   "best_measured",
+   "eda",
+   "pearson"
+  ],
+  "fig_desc_cnt": [
+   "cnt_effect_3N"
+  ],
+  "fig_desc_surface": [
+   "surface_2wt",
+   "gp_rms_full_fit"
+  ],
+  "fig_desc_unc": [
+   "unc_2wt",
+   "gp_rms_full_fit"
+  ],
+  "fig_desc_resonance": [
+   "resonance"
+  ],
+  "fig_desc_anova": [
+   "anova"
+  ],
+  "fig_desc_waveforms": [
+   "waveforms_2wt_3N"
+  ],
+  "tab_desc_optima": [
+   "optima",
+   "best_measured"
+  ],
+  "numbers_a4.tex": [
+   "macros"
+  ],
+  "board finding on periodicity": [
+   "spectral_check"
+  ],
+  "macro prefixes": {
+   "descBest*": "best_measured",
+   "descMapMaxRms": "eda.map_3N_max_V",
+   "descCntMeanRms*, descCntArgmax": "cnt_effect_3N",
+   "descSurf*": "surface_2wt",
+   "descSd*": "unc_2wt",
+   "descLs*": "gp_rms_full_fit.length_scale_original_units",
+   "descFzero*, descGamma*": "resonance.per_material, resonance.global_law_rms",
+   "descEta*, descP*, descAnovaResidDf": "anova",
+   "descOpt*": "optima.targets",
+   "descGa*": "optima.ga",
+   "descCorr*": "pearson"
+  }
+ }
+}

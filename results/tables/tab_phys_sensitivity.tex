@@ -1,0 +1,20 @@
+\begin{tabular}{l c rrrr rrrr rrrr}
+\toprule
+ & & \multicolumn{4}{c}{\RMS} & \multicolumn{4}{c}{\Vpp} & \multicolumn{4}{c}{\Vmax} \\
+\cmidrule(lr){3-6} \cmidrule(lr){7-10} \cmidrule(lr){11-14}
+ & & \multicolumn{2}{c}{GP} & \multicolumn{2}{c}{PhysGP} & \multicolumn{2}{c}{GP} & \multicolumn{2}{c}{PhysGP} & \multicolumn{2}{c}{GP} & \multicolumn{2}{c}{PhysGP} \\
+\cmidrule(lr){3-4} \cmidrule(lr){5-6} \cmidrule(lr){7-8} \cmidrule(lr){9-10} \cmidrule(lr){11-12} \cmidrule(lr){13-14}
+$R^2$ & $n$ & 75 & 72 & 75 & 72 & 75 & 72 & 75 & 72 & 75 & 72 & 75 & 72 \\
+\midrule
+Within-grid LOO & 75/72 & 0.914 & 0.905 & 0.887 & 0.859 & 0.777 & 0.693 & 0.737 & 0.669 & 0.778 & 0.697 & 0.789 & 0.726 \\
+Held-out composition, pooled & 75/72 & 0.71 & 0.64 & 0.11 & 0.09 & 0.77 & 0.75 & 0.29 & 0.37 & 0.64 & 0.58 & $-$0.06 & 0.00 \\
+Held-out force level, pooled & 75/72 & 0.52 & 0.58 & 0.73 & 0.70 & $-$0.08 & $-$0.08 & 0.73 & 0.68 & $-$0.13 & $-$0.17 & 0.77 & 0.73 \\
+\quad held-out \SI{1}{\newton} & 25/25 & $-$0.98 & $-$1.21 & $-$0.48 & $-$0.39 & $-$2.00 & $-$2.00 & $-$0.39 & $-$0.40 & $-$3.41 & $-$3.77 & $-$0.55 & $-$0.53 \\
+\quad held-out \SI{2}{\newton} & 25/23 & 0.87 & 0.88 & 0.86 & 0.84 & $-$0.02 & $-$0.06 & 0.73 & 0.72 & $-$0.03 & $-$0.05 & 0.74 & 0.73 \\
+\quad held-out \SI{3}{\newton} & 25/24 & 0.29 & 0.46 & 0.69 & 0.64 & $-$0.29 & $-$0.25 & 0.72 & 0.65 & $-$0.33 & $-$0.31 & 0.81 & 0.76 \\
+Held-out frequency level, pooled & 75/72 & $-$1.10 & $-$1.27 & $-$2.84 & $-$3.35 & $-$1.32 & $-$1.60 & $-$8.33 & $-$10.44 & $-$1.19 & $-$1.19 & $-$2.90 & $-$5.64 \\
+\midrule
+\multicolumn{14}{l}{Force-axis ablation, GP columns linear-in-force mean, PhysGP columns law alone} \\
+Held-out force level & 75/72 & 0.63 & 0.60 & 0.73 & 0.69 & 0.30 & 0.33 & 0.72 & 0.66 & 0.37 & 0.26 & 0.76 & 0.72 \\
+\bottomrule
+\end{tabular}

@@ -1,0 +1,24 @@
+\begin{tabular}{l rrr}
+\toprule
+Comparison, maximum over 75 LOO folds & \RMS & \Vpp & \Vmax \\
+\midrule
+\multicolumn{4}{l}{Absolute difference (\si{\volt})} \\
+Law mean, five vs six parameters, tolerance $10^{-15}$ & \num{3.7e-09} & \num{4.8e-08} & \num{2.9e-08} \\
+Law mean, five vs six parameters, tolerance $10^{-8}$ & \num{9.8e-06} & \num{1.6e-04} & \num{1.5e-04} \\
+PhysGP, five vs six parameters, tolerance $10^{-15}$ & \num{1.3e-06} & \num{3.8e-01} & \num{3.5e-06} \\
+PhysGP, five vs six parameters, tolerance $10^{-8}$ & \num{4.9e-06} & \num{2.8e-05} & \num{2.4e-05} \\
+PhysGP, five at $10^{-15}$ vs six at $10^{-8}$ & \num{2.9e-06} & \num{3.8e-05} & \num{1.0e-01} \\
+PhysGP, five vs six parameters, four optimizer restarts & \num{1.4e-06} & \num{3.7e-01} & \num{1.5e-02} \\
+PhysGP five vs submitted predictions & \num{3.4e-06} & -- & -- \\
+Legacy code rerun vs submitted predictions & \num{4.9e-06} & -- & -- \\
+Plain GP after a \num{3.7e-09}~\si{\volt} target perturbation & \num{5.3e-07} & -- & -- \\
+\midrule
+\multicolumn{4}{l}{LOO $R^2$} \\
+PhysGP five, tolerance $10^{-15}$, reported & 0.887 & 0.737 & 0.789 \\
+PhysGP six, tolerance $10^{-15}$ & 0.887 & 0.744 & 0.789 \\
+PhysGP six, tolerance $10^{-8}$ & 0.887 & 0.737 & 0.787 \\
+PhysGP five, four optimizer restarts & 0.887 & 0.733 & 0.784 \\
+Plain GP, reported & 0.914 & 0.777 & 0.778 \\
+Plain GP, four optimizer restarts & 0.914 & 0.775 & 0.788 \\
+\bottomrule
+\end{tabular}

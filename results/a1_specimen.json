@@ -1,0 +1,5224 @@
+{
+ "meta": {
+  "task": "A1",
+  "seed": 0,
+  "n_boot": 2000,
+  "inputs": [
+   "data/long.parquet",
+   "data/series_index.parquet",
+   "data/targets_design.parquet"
+  ],
+  "target_definitions": "after subtracting the segment mean: V_rms = RMS, V_pp = max-min, |V|_max = max|v|; reproduce targets_design.parquet to max abs error listed in descriptor_check",
+  "descriptor_check_max_abs_error": {
+   "rms_Voc": 1.6653345369377348e-16,
+   "Vpp": 5.329070518200751e-15,
+   "Vmax": 4.440892098500626e-15
+  },
+  "design": "5 specimens (one per composition) x 3 forces x 5 frequencies, one 1 s recording (1000 samples at 1 kHz) per condition; specimen and composition are confounded",
+  "exclude_duplicates": false,
+  "n_conditions_analyzed": 75,
+  "condition_ids_analyzed": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   11,
+   12,
+   13,
+   14,
+   15,
+   16,
+   17,
+   18,
+   19,
+   20,
+   21,
+   22,
+   23,
+   24,
+   25,
+   26,
+   27,
+   28,
+   29,
+   30,
+   31,
+   32,
+   33,
+   34,
+   35,
+   36,
+   37,
+   38,
+   39,
+   40,
+   41,
+   42,
+   43,
+   44,
+   45,
+   46,
+   47,
+   48,
+   49,
+   50,
+   51,
+   52,
+   53,
+   54,
+   55,
+   56,
+   57,
+   58,
+   59,
+   60,
+   61,
+   62,
+   63,
+   64,
+   65,
+   66,
+   67,
+   68,
+   69,
+   70,
+   71,
+   72,
+   73,
+   74
+  ],
+  "condition_id_note": "condition_id = row index of data/targets_design.parquet (0-74) in every output"
+ },
+ "duplicates": {
+  "method": "Pearson r between every pair of recording-demeaned waveforms at lags -30..30 samples on the overlapping part, best |r| per pair; pairs with |r| >= 0.95 are listed with the least-squares scale copy = scale x original at the best lag and the relative residual ||copy - scale x original|| / ||copy||; the later condition id is called the copy; exact if residual < 1e-09",
+  "n_pairs_tested": 2775,
+  "pairs": [
+   {
+    "copy": 52,
+    "original": 47,
+    "copy_condition": "+2 wt% MWCNT, 2 N, 15 Hz",
+    "original_condition": "+2 wt% MWCNT, 1 N, 15 Hz",
+    "lag_samples": 0,
+    "r": 1.0000000000000009,
+    "scale": 2.9636125143626404,
+    "relative_residual": 9.792641020860745e-16,
+    "exact": true
+   },
+   {
+    "copy": 54,
+    "original": 49,
+    "copy_condition": "+2 wt% MWCNT, 2 N, 25 Hz",
+    "original_condition": "+2 wt% MWCNT, 1 N, 25 Hz",
+    "lag_samples": 0,
+    "r": 1.0,
+    "scale": 1.7423696361251402,
+    "relative_residual": 1.2177081713169074e-15,
+    "exact": true
+   },
+   {
+    "copy": 73,
+    "original": 5,
+    "copy_condition": "+3 wt% MWCNT, 3 N, 20 Hz",
+    "original_condition": "PVDF, 2 N, 5 Hz",
+    "lag_samples": 0,
+    "r": 0.987974506976532,
+    "scale": 7.341065461945385,
+    "relative_residual": 0.15461686054398613,
+    "exact": false
+   }
+  ],
+  "n_pairs": 3,
+  "n_exact": 2,
+  "max_abs_r_other_pairs": 0.5660591302839101,
+  "exclude_list": [
+   52,
+   54,
+   73
+  ],
+  "copies_found": [
+   52,
+   54,
+   73
+  ]
+ },
+ "repeatability": {
+  "segmentation": {
+   "method": "fixed-period windows of one tap period, phase-aligned to the minimum of the folded mean-square profile; truncated edge windows kept only if they retain >= 0.95 of the folded energy",
+   "period_rule": "tap period = nominal 1/f unless the envelope-autocorrelation period folds the signal with a phase-lock concentration higher by >= 0.05; recordings whose chosen tap rate differs from the nominal label by more than 10% are listed as rate_deviates (data finding, not dropped)",
+   "why_not_peak_detection": "excursions are one-sample spikes of very unequal height; a height-thresholded peak detector (distance 0.8/f s, height >= 0.20 max|v|) finds fewer peaks than cycles at high f, dropping small cycles and biasing the CV downward; its count is kept as a cross-check",
+   "flag_rule": "segmentation_failed if phase-lock concentration at the chosen period < 0.60 or fewer than 3 cycles; failed and rate-deviating recordings stay in the primary summary and are excluded in sensitivity summaries",
+   "n_period_from_acf": 44,
+   "rate_estimator": "the deviation count n_rate_deviates uses the tap period chosen for segmentation: envelope-autocorrelation lag (smallest local maximum >= 0.8 of the largest, 30-260 samples) with the half-period check (accept P/2 if parity >= 0.60 and ACF(P/2)/ACF(P) >= 0.50), then kept only if it phase-locks at least 0.05 better than the nominal period; n_rate_deviates_spectral is an independent cross-check from the dominant frequency of the rectified signal spectrum in 3-30 Hz, which can land on a harmonic",
+   "n_half_period_accepted": 4,
+   "half_period_accepted_ids": [
+    9,
+    39,
+    44,
+    67
+   ],
+   "n_rate_deviates_spectral": 30,
+   "n_rate_deviates_both": 20,
+   "n_rate_deviates_excluding_copies": 21,
+   "n_rate_deviates": 22,
+   "n_clean": 52,
+   "rate_deviating_recordings": [
+    {
+     "condition_id": 5,
+     "composition": "PVDF",
+     "force_N": 2,
+     "freq_Hz": 5,
+     "tap_rate_used_Hz": 5.747126436781609,
+     "rate_rel_dev_from_nominal": 0.14942528735632177,
+     "lock_concentration_nominal": 0.6786657430176265,
+     "lock_concentration_acf": 0.962674015479579,
+     "half_period_accepted": false,
+     "spectral_rate_Hz": 5.79833984375,
+     "n_cycles": 5,
+     "duplicate_copy_of": -1,
+     "explained_by": ""
+    },
+    {
+     "condition_id": 6,
+     "composition": "PVDF",
+     "force_N": 2,
+     "freq_Hz": 10,
+     "tap_rate_used_Hz": 11.235955056179776,
+     "rate_rel_dev_from_nominal": 0.12359550561797761,
+     "lock_concentration_nominal": 0.63494095913503,
+     "lock_concentration_acf": 0.8756386178790602,
+     "half_period_accepted": false,
+     "spectral_rate_Hz": 10.833740234375,
+     "n_cycles": 10,
+     "duplicate_copy_of": -1,
+     "explained_by": ""
+    },
+    {
+     "condition_id": 9,
+     "composition": "PVDF",
+     "force_N": 2,
+     "freq_Hz": 25,
+     "tap_rate_used_Hz": 20.833333333333332,
+     "rate_rel_dev_from_nominal": -0.16666666666666663,
+     "lock_concentration_nominal": 0.5613713446009624,
+     "lock_concentration_acf": 0.8723202424770018,
+     "half_period_accepted": true,
+     "spectral_rate_Hz": 20.751953125,
+     "n_cycles": 20,
+     "duplicate_copy_of": -1,
+     "explained_by": ""
+    },
+    {
+     "condition_id": 12,
+     "composition": "PVDF",
+     "force_N": 3,
+     "freq_Hz": 15,
+     "tap_rate_used_Hz": 19.23076923076923,
+     "rate_rel_dev_from_nominal": 0.28205128205128216,
+     "lock_concentration_nominal": 0.544034717706095,
+     "lock_concentration_acf": 0.9700984636553099,
+     "half_period_accepted": false,
+     "spectral_rate_Hz": 19.073486328125,
+     "n_cycles": 18,
+     "duplicate_copy_of": -1,
+     "explained_by": ""
+    },
+    {
+     "condition_id": 14,
+     "composition": "PVDF",
+     "force_N": 3,
+     "freq_Hz": 25,
+     "tap_rate_used_Hz": 15.384615384615385,
+     "rate_rel_dev_from_nominal": -0.3846153846153846,
+     "lock_concentration_nominal": 0.691882405131674,
+     "lock_concentration_acf": 0.7889129583591153,
+     "half_period_accepted": false,
+     "spectral_rate_Hz": 15.31982421875,
+     "n_cycles": 15,
+     "duplicate_copy_of": -1,
+     "explained_by": ""
+    },
+    {
+     "condition_id": 15,
+     "composition": "PVDF+BaTiO3",
+     "force_N": 1,
+     "freq_Hz": 5,
+     "tap_rate_used_Hz": 5.555555555555555,
+     "rate_rel_dev_from_nominal": 0.11111111111111116,
+     "lock_concentration_nominal": 0.610896862795269,
+     "lock_concentration_acf": 0.6628844856236623,
+     "half_period_accepted": false,
+     "spectral_rate_Hz": 16.510009765625,
+     "n_cycles": 5,
+     "duplicate_copy_of": -1,
+     "explained_by": ""
+    },
+    {
+     "condition_id": 20,
+     "composition": "PVDF+BaTiO3",
+     "force_N": 2,
+     "freq_Hz": 5,
+     "tap_rate_used_Hz": 5.58659217877095,
+     "rate_rel_dev_from_nominal": 0.11731843575418988,
+     "lock_concentration_nominal": 0.7963672931983089,
+     "lock_concentration_acf": 0.871011648813864,
+     "half_period_accepted": false,
+     "spectral_rate_Hz": 16.754150390625,
+     "n_cycles": 5,
+     "duplicate_copy_of": -1,
+     "explained_by": ""
+    },
+    {
+     "condition_id": 21,
+     "composition": "PVDF+BaTiO3",
+     "force_N": 2,
+     "freq_Hz": 10,
+     "tap_rate_used_Hz": 11.11111111111111,
+     "rate_rel_dev_from_nominal": 0.11111111111111116,
+     "lock_concentration_nominal": 0.8037011808076358,
+     "lock_concentration_acf": 0.989889858284986,
+     "half_period_accepted": false,
+     "spectral_rate_Hz": 11.016845703125,
+     "n_cycles": 10,
+     "duplicate_copy_of": -1,
+     "explained_by": ""
+    },
+    {
+     "condition_id": 27,
+     "composition": "PVDF+BaTiO3",
+     "force_N": 3,
+     "freq_Hz": 15,
+     "tap_rate_used_Hz": 7.8125,
+     "rate_rel_dev_from_nominal": -0.47916666666666663,
+     "lock_concentration_nominal": 0.6741835331148974,
+     "lock_concentration_acf": 0.8358458549671917,
+     "half_period_accepted": false,
+     "spectral_rate_Hz": 15.655517578125,
+     "n_cycles": 7,
+     "duplicate_copy_of": -1,
+     "explained_by": ""
+    },
+    {
+     "condition_id": 40,
+     "composition": "PVDF+BaTiO3+%1CNT",
+     "force_N": 3,
+     "freq_Hz": 5,
+     "tap_rate_used_Hz": 20.408163265306122,
+     "rate_rel_dev_from_nominal": 3.0816326530612246,
+     "lock_concentration_nominal": 0.5962968806151311,
+     "lock_concentration_acf": 0.798127804823093,
+     "half_period_accepted": false,
+     "spectral_rate_Hz": 20.263671875,
+     "n_cycles": 20,
+     "duplicate_copy_of": -1,
+     "explained_by": ""
+    },
+    {
+     "condition_id": 43,
+     "composition": "PVDF+BaTiO3+%1CNT",
+     "force_N": 3,
+     "freq_Hz": 20,
+     "tap_rate_used_Hz": 15.625,
+     "rate_rel_dev_from_nominal": -0.21875,
+     "lock_concentration_nominal": 0.6646369350806979,
+     "lock_concentration_acf": 0.9089302639960564,
+     "half_period_accepted": false,
+     "spectral_rate_Hz": 15.411376953125,
+     "n_cycles": 15,
+     "duplicate_copy_of": -1,
+     "explained_by": ""
+    },
+    {
+     "condition_id": 57,
+     "composition": "PVDF+BaTiO3+%2CNT",
+     "force_N": 3,
+     "freq_Hz": 15,
+     "tap_rate_used_Hz": 10.638297872340425,
+     "rate_rel_dev_from_nominal": -0.2907801418439716,
+     "lock_concentration_nominal": 0.5892720694936991,
+     "lock_concentration_acf": 0.7790833682696431,
+     "half_period_accepted": false,
+     "spectral_rate_Hz": 10.711669921875,
+     "n_cycles": 10,
+     "duplicate_copy_of": -1,
+     "explained_by": ""
+    },
+    {
+     "condition_id": 58,
+     "composition": "PVDF+BaTiO3+%2CNT",
+     "force_N": 3,
+     "freq_Hz": 20,
+     "tap_rate_used_Hz": 5.747126436781609,
+     "rate_rel_dev_from_nominal": -0.7126436781609196,
+     "lock_concentration_nominal": 0.562814336065505,
+     "lock_concentration_acf": 0.9489408632983006,
+     "half_period_accepted": false,
+     "spectral_rate_Hz": 5.79833984375,
+     "n_cycles": 6,
+     "duplicate_copy_of": -1,
+     "explained_by": ""
+    },
+    {
+     "condition_id": 60,
+     "composition": "PVDF+BaTiO3+%3CNT",
+     "force_N": 1,
+     "freq_Hz": 5,
+     "tap_rate_used_Hz": 5.847953216374269,
+     "rate_rel_dev_from_nominal": 0.16959064327485374,
+     "lock_concentration_nominal": 0.5713943375131614,
+     "lock_concentration_acf": 0.8599077345026008,
+     "half_period_accepted": false,
+     "spectral_rate_Hz": 17.486572265625,
+     "n_cycles": 5,
+     "duplicate_copy_of": -1,
+     "explained_by": ""
+    },
+    {
+     "condition_id": 65,
+     "composition": "PVDF+BaTiO3+%3CNT",
+     "force_N": 2,
+     "freq_Hz": 5,
+     "tap_rate_used_Hz": 5.617977528089888,
+     "rate_rel_dev_from_nominal": 0.12359550561797761,
+     "lock_concentration_nominal": 0.6022475265221042,
+     "lock_concentration_acf": 0.7417271430462679,
+     "half_period_accepted": false,
+     "spectral_rate_Hz": 27.923583984375,
+     "n_cycles": 5,
+     "duplicate_copy_of": -1,
+     "explained_by": ""
+    },
+    {
+     "condition_id": 67,
+     "composition": "PVDF+BaTiO3+%3CNT",
+     "force_N": 2,
+     "freq_Hz": 15,
+     "tap_rate_used_Hz": 17.094017094017094,
+     "rate_rel_dev_from_nominal": 0.13960113960113962,
+     "lock_concentration_nominal": 0.6037207685489832,
+     "lock_concentration_acf": 0.9357033160250972,
+     "half_period_accepted": true,
+     "spectral_rate_Hz": 17.08984375,
+     "n_cycles": 16,
+     "duplicate_copy_of": -1,
+     "explained_by": ""
+    },
+    {
+     "condition_id": 68,
+     "composition": "PVDF+BaTiO3+%3CNT",
+     "force_N": 2,
+     "freq_Hz": 20,
+     "tap_rate_used_Hz": 16.129032258064516,
+     "rate_rel_dev_from_nominal": -0.19354838709677424,
+     "lock_concentration_nominal": 0.6168599676335745,
+     "lock_concentration_acf": 0.9560679547165211,
+     "half_period_accepted": false,
+     "spectral_rate_Hz": 15.869140625,
+     "n_cycles": 16,
+     "duplicate_copy_of": -1,
+     "explained_by": ""
+    },
+    {
+     "condition_id": 69,
+     "composition": "PVDF+BaTiO3+%3CNT",
+     "force_N": 2,
+     "freq_Hz": 25,
+     "tap_rate_used_Hz": 17.54385964912281,
+     "rate_rel_dev_from_nominal": -0.29824561403508776,
+     "lock_concentration_nominal": 0.6057723603155285,
+     "lock_concentration_acf": 0.897021539950226,
+     "half_period_accepted": false,
+     "spectral_rate_Hz": 17.88330078125,
+     "n_cycles": 17,
+     "duplicate_copy_of": -1,
+     "explained_by": ""
+    },
+    {
+     "condition_id": 70,
+     "composition": "PVDF+BaTiO3+%3CNT",
+     "force_N": 3,
+     "freq_Hz": 5,
+     "tap_rate_used_Hz": 10.638297872340425,
+     "rate_rel_dev_from_nominal": 1.127659574468085,
+     "lock_concentration_nominal": 0.5274380034260688,
+     "lock_concentration_acf": 0.8388278908386966,
+     "half_period_accepted": false,
+     "spectral_rate_Hz": 10.650634765625,
+     "n_cycles": 10,
+     "duplicate_copy_of": -1,
+     "explained_by": ""
+    },
+    {
+     "condition_id": 71,
+     "composition": "PVDF+BaTiO3+%3CNT",
+     "force_N": 3,
+     "freq_Hz": 10,
+     "tap_rate_used_Hz": 15.384615384615385,
+     "rate_rel_dev_from_nominal": 0.5384615384615385,
+     "lock_concentration_nominal": 0.5607337800822487,
+     "lock_concentration_acf": 0.9117859827568798,
+     "half_period_accepted": false,
+     "spectral_rate_Hz": 15.472412109375,
+     "n_cycles": 15,
+     "duplicate_copy_of": -1,
+     "explained_by": ""
+    },
+    {
+     "condition_id": 73,
+     "composition": "PVDF+BaTiO3+%3CNT",
+     "force_N": 3,
+     "freq_Hz": 20,
+     "tap_rate_used_Hz": 5.747126436781609,
+     "rate_rel_dev_from_nominal": -0.7126436781609196,
+     "lock_concentration_nominal": 0.7398113073119887,
+     "lock_concentration_acf": 0.9620994208805651,
+     "half_period_accepted": false,
+     "spectral_rate_Hz": 5.79833984375,
+     "n_cycles": 5,
+     "duplicate_copy_of": 5,
+     "explained_by": "scaled copy of condition 5, not a tapping effect"
+    },
+    {
+     "condition_id": 74,
+     "composition": "PVDF+BaTiO3+%3CNT",
+     "force_N": 3,
+     "freq_Hz": 25,
+     "tap_rate_used_Hz": 19.607843137254903,
+     "rate_rel_dev_from_nominal": -0.21568627450980393,
+     "lock_concentration_nominal": 0.6589569797512367,
+     "lock_concentration_acf": 0.9164629659228948,
+     "half_period_accepted": false,
+     "spectral_rate_Hz": 19.500732421875,
+     "n_cycles": 20,
+     "duplicate_copy_of": -1,
+     "explained_by": ""
+    }
+   ],
+   "rate_deviates_by_freq": {
+    "5": 7,
+    "10": 3,
+    "15": 4,
+    "20": 4,
+    "25": 4
+   },
+   "n_recordings": 75,
+   "n_cycles_total": 1045,
+   "n_cycles_min": 4,
+   "n_cycles_max": 26,
+   "n_recordings_all_expected_cycles": 29,
+   "n_recordings_one_short": 46,
+   "cycles_per_freq": {
+    "5": {
+     "nominal": 5,
+     "min": 4,
+     "max": 20
+    },
+    "10": {
+     "nominal": 10,
+     "min": 9,
+     "max": 15
+    },
+    "15": {
+     "nominal": 15,
+     "min": 7,
+     "max": 18
+    },
+    "20": {
+     "nominal": 20,
+     "min": 5,
+     "max": 20
+    },
+    "25": {
+     "nominal": 25,
+     "min": 15,
+     "max": 26
+    }
+   },
+   "peaks_crosscheck_per_freq": {
+    "5": {
+     "min": 4,
+     "median": 5.0,
+     "max": 18
+    },
+    "10": {
+     "min": 8,
+     "median": 11.0,
+     "max": 15
+    },
+    "15": {
+     "min": 7,
+     "median": 15.0,
+     "max": 19
+    },
+    "20": {
+     "min": 6,
+     "median": 17.0,
+     "max": 20
+    },
+    "25": {
+     "min": 11,
+     "median": 23.0,
+     "max": 25
+    }
+   },
+   "n_failed": 1,
+   "failed_recordings": [
+    {
+     "condition_id": 39,
+     "composition": "PVDF+BaTiO3+%1CNT",
+     "force_N": 2,
+     "freq_Hz": 25,
+     "n_cycles": 24,
+     "lock_concentration": 0.5820536668395944
+    }
+   ],
+   "per_recording": [
+    {
+     "condition_id": 0,
+     "composition": "PVDF",
+     "force_N": 1,
+     "freq_Hz": 5,
+     "expected_cycles_nominal": 5,
+     "period_source": "nominal",
+     "tap_rate_used_Hz": 5.0,
+     "rate_rel_dev_from_nominal": 0.0,
+     "expected_cycles_used": 5,
+     "n_cycles": 5,
+     "n_full_cycles": 4,
+     "n_peaks_crosscheck": 5,
+     "lock_concentration": 0.9455365639965886,
+     "flag_rate_deviates": false,
+     "segmentation_failed": false
+    },
+    {
+     "condition_id": 1,
+     "composition": "PVDF",
+     "force_N": 1,
+     "freq_Hz": 10,
+     "expected_cycles_nominal": 10,
+     "period_source": "nominal",
+     "tap_rate_used_Hz": 10.0,
+     "rate_rel_dev_from_nominal": 0.0,
+     "expected_cycles_used": 10,
+     "n_cycles": 9,
+     "n_full_cycles": 9,
+     "n_peaks_crosscheck": 8,
+     "lock_concentration": 0.678735935501185,
+     "flag_rate_deviates": false,
+     "segmentation_failed": false
+    },
+    {
+     "condition_id": 2,
+     "composition": "PVDF",
+     "force_N": 1,
+     "freq_Hz": 15,
+     "expected_cycles_nominal": 15,
+     "period_source": "acf",
+     "tap_rate_used_Hz": 15.384615384615385,
+     "rate_rel_dev_from_nominal": 0.025641025641025772,
+     "expected_cycles_used": 15,
+     "n_cycles": 15,
+     "n_full_cycles": 15,
+     "n_peaks_crosscheck": 15,
+     "lock_concentration": 0.9548364772742782,
+     "flag_rate_deviates": false,
+     "segmentation_failed": false
+    },
+    {
+     "condition_id": 3,
+     "composition": "PVDF",
+     "force_N": 1,
+     "freq_Hz": 20,
+     "expected_cycles_nominal": 20,
+     "period_source": "nominal",
+     "tap_rate_used_Hz": 20.0,
+     "rate_rel_dev_from_nominal": 0.0,
+     "expected_cycles_used": 20,
+     "n_cycles": 19,
+     "n_full_cycles": 19,
+     "n_peaks_crosscheck": 20,
+     "lock_concentration": 0.9182669963725667,
+     "flag_rate_deviates": false,
+     "segmentation_failed": false
+    },
+    {
+     "condition_id": 4,
+     "composition": "PVDF",
+     "force_N": 1,
+     "freq_Hz": 25,
+     "expected_cycles_nominal": 25,
+     "period_source": "nominal",
+     "tap_rate_used_Hz": 25.0,
+     "rate_rel_dev_from_nominal": 0.0,
+     "expected_cycles_used": 25,
+     "n_cycles": 25,
+     "n_full_cycles": 24,
+     "n_peaks_crosscheck": 18,
+     "lock_concentration": 0.7826206083241748,
+     "flag_rate_deviates": false,
+     "segmentation_failed": false
+    },
+    {
+     "condition_id": 5,
+     "composition": "PVDF",
+     "force_N": 2,
+     "freq_Hz": 5,
+     "expected_cycles_nominal": 5,
+     "period_source": "acf",
+     "tap_rate_used_Hz": 5.747126436781609,
+     "rate_rel_dev_from_nominal": 0.14942528735632177,
+     "expected_cycles_used": 6,
+     "n_cycles": 5,
+     "n_full_cycles": 5,
+     "n_peaks_crosscheck": 6,
+     "lock_concentration": 0.962674015479579,
+     "flag_rate_deviates": true,
+     "segmentation_failed": false
+    },
+    {
+     "condition_id": 6,
+     "composition": "PVDF",
+     "force_N": 2,
+     "freq_Hz": 10,
+     "expected_cycles_nominal": 10,
+     "period_source": "acf",
+     "tap_rate_used_Hz": 11.235955056179776,
+     "rate_rel_dev_from_nominal": 0.12359550561797761,
+     "expected_cycles_used": 11,
+     "n_cycles": 10,
+     "n_full_cycles": 10,
+     "n_peaks_crosscheck": 10,
+     "lock_concentration": 0.8756386178790602,
+     "flag_rate_deviates": true,
+     "segmentation_failed": false
+    },
+    {
+     "condition_id": 7,
+     "composition": "PVDF",
+     "force_N": 2,
+     "freq_Hz": 15,
+     "expected_cycles_nominal": 15,
+     "period_source": "acf",
+     "tap_rate_used_Hz": 15.384615384615385,
+     "rate_rel_dev_from_nominal": 0.025641025641025772,
+     "expected_cycles_used": 15,
+     "n_cycles": 15,
+     "n_full_cycles": 14,
+     "n_peaks_crosscheck": 16,
+     "lock_concentration": 0.9291790217057931,
+     "flag_rate_deviates": false,
+     "segmentation_failed": false
+    },
+    {
+     "condition_id": 8,
+     "composition": "PVDF",
+     "force_N": 2,
+     "freq_Hz": 20,
+     "expected_cycles_nominal": 20,
+     "period_source": "nominal",
+     "tap_rate_used_Hz": 20.0,
+     "rate_rel_dev_from_nominal": 0.0,
+     "expected_cycles_used": 20,
+     "n_cycles": 20,
+     "n_full_cycles": 19,
+     "n_peaks_crosscheck": 17,
+     "lock_concentration": 0.887249247993734,
+     "flag_rate_deviates": false,
+     "segmentation_failed": false
+    },
+    {
+     "condition_id": 9,
+     "composition": "PVDF",
+     "force_N": 2,
+     "freq_Hz": 25,
+     "expected_cycles_nominal": 25,
+     "period_source": "acf",
+     "tap_rate_used_Hz": 20.833333333333332,
+     "rate_rel_dev_from_nominal": -0.16666666666666663,
+     "expected_cycles_used": 21,
+     "n_cycles": 20,
+     "n_full_cycles": 20,
+     "n_peaks_crosscheck": 21,
+     "lock_concentration": 0.8723202424770018,
+     "flag_rate_deviates": true,
+     "segmentation_failed": false
+    },
+    {
+     "condition_id": 10,
+     "composition": "PVDF",
+     "force_N": 3,
+     "freq_Hz": 5,
+     "expected_cycles_nominal": 5,
+     "period_source": "nominal",
+     "tap_rate_used_Hz": 5.0,
+     "rate_rel_dev_from_nominal": 0.0,
+     "expected_cycles_used": 5,
+     "n_cycles": 4,
+     "n_full_cycles": 4,
+     "n_peaks_crosscheck": 5,
+     "lock_concentration": 0.7462447261963441,
+     "flag_rate_deviates": false,
+     "segmentation_failed": false
+    },
+    {
+     "condition_id": 11,
+     "composition": "PVDF",
+     "force_N": 3,
+     "freq_Hz": 10,
+     "expected_cycles_nominal": 10,
+     "period_source": "nominal",
+     "tap_rate_used_Hz": 10.0,
+     "rate_rel_dev_from_nominal": 0.0,
+     "expected_cycles_used": 10,
+     "n_cycles": 9,
+     "n_full_cycles": 9,
+     "n_peaks_crosscheck": 11,
+     "lock_concentration": 0.7689931294415716,
+     "flag_rate_deviates": false,
+     "segmentation_failed": false
+    },
+    {
+     "condition_id": 12,
+     "composition": "PVDF",
+     "force_N": 3,
+     "freq_Hz": 15,
+     "expected_cycles_nominal": 15,
+     "period_source": "acf",
+     "tap_rate_used_Hz": 19.23076923076923,
+     "rate_rel_dev_from_nominal": 0.28205128205128216,
+     "expected_cycles_used": 19,
+     "n_cycles": 18,
+     "n_full_cycles": 18,
+     "n_peaks_crosscheck": 19,
+     "lock_concentration": 0.9700984636553099,
+     "flag_rate_deviates": true,
+     "segmentation_failed": false
+    },
+    {
+     "condition_id": 13,
+     "composition": "PVDF",
+     "force_N": 3,
+     "freq_Hz": 20,
+     "expected_cycles_nominal": 20,
+     "period_source": "nominal",
+     "tap_rate_used_Hz": 20.0,
+     "rate_rel_dev_from_nominal": 0.0,
+     "expected_cycles_used": 20,
+     "n_cycles": 19,
+     "n_full_cycles": 19,
+     "n_peaks_crosscheck": 16,
+     "lock_concentration": 0.8290110633881992,
+     "flag_rate_deviates": false,
+     "segmentation_failed": false
+    },
+    {
+     "condition_id": 14,
+     "composition": "PVDF",
+     "force_N": 3,
+     "freq_Hz": 25,
+     "expected_cycles_nominal": 25,
+     "period_source": "acf",
+     "tap_rate_used_Hz": 15.384615384615385,
+     "rate_rel_dev_from_nominal": -0.3846153846153846,
+     "expected_cycles_used": 15,
+     "n_cycles": 15,
+     "n_full_cycles": 15,
+     "n_peaks_crosscheck": 11,
+     "lock_concentration": 0.7889129583591153,
+     "flag_rate_deviates": true,
+     "segmentation_failed": false
+    },
+    {
+     "condition_id": 15,
+     "composition": "PVDF+BaTiO3",
+     "force_N": 1,
+     "freq_Hz": 5,
+     "expected_cycles_nominal": 5,
+     "period_source": "acf",
+     "tap_rate_used_Hz": 5.555555555555555,
+     "rate_rel_dev_from_nominal": 0.11111111111111116,
+     "expected_cycles_used": 6,
+     "n_cycles": 5,
+     "n_full_cycles": 5,
+     "n_peaks_crosscheck": 5,
+     "lock_concentration": 0.6628844856236623,
+     "flag_rate_deviates": true,
+     "segmentation_failed": false
+    },
+    {
+     "condition_id": 16,
+     "composition": "PVDF+BaTiO3",
+     "force_N": 1,
+     "freq_Hz": 10,
+     "expected_cycles_nominal": 10,
+     "period_source": "acf",
+     "tap_rate_used_Hz": 9.70873786407767,
+     "rate_rel_dev_from_nominal": -0.029126213592232997,
+     "expected_cycles_used": 10,
+     "n_cycles": 9,
+     "n_full_cycles": 9,
+     "n_peaks_crosscheck": 10,
+     "lock_concentration": 0.7600879747911323,
+     "flag_rate_deviates": false,
+     "segmentation_failed": false
+    },
+    {
+     "condition_id": 17,
+     "composition": "PVDF+BaTiO3",
+     "force_N": 1,
+     "freq_Hz": 15,
+     "expected_cycles_nominal": 15,
+     "period_source": "acf",
+     "tap_rate_used_Hz": 15.384615384615385,
+     "rate_rel_dev_from_nominal": 0.025641025641025772,
+     "expected_cycles_used": 15,
+     "n_cycles": 15,
+     "n_full_cycles": 15,
+     "n_peaks_crosscheck": 16,
+     "lock_concentration": 0.9784393949848226,
+     "flag_rate_deviates": false,
+     "segmentation_failed": false
+    },
+    {
+     "condition_id": 18,
+     "composition": "PVDF+BaTiO3",
+     "force_N": 1,
+     "freq_Hz": 20,
+     "expected_cycles_nominal": 20,
+     "period_source": "nominal",
+     "tap_rate_used_Hz": 20.0,
+     "rate_rel_dev_from_nominal": 0.0,
+     "expected_cycles_used": 20,
+     "n_cycles": 19,
+     "n_full_cycles": 19,
+     "n_peaks_crosscheck": 18,
+     "lock_concentration": 0.947093189925577,
+     "flag_rate_deviates": false,
+     "segmentation_failed": false
+    },
+    {
+     "condition_id": 19,
+     "composition": "PVDF+BaTiO3",
+     "force_N": 1,
+     "freq_Hz": 25,
+     "expected_cycles_nominal": 25,
+     "period_source": "acf",
+     "tap_rate_used_Hz": 23.80952380952381,
+     "rate_rel_dev_from_nominal": -0.04761904761904767,
+     "expected_cycles_used": 24,
+     "n_cycles": 24,
+     "n_full_cycles": 22,
+     "n_peaks_crosscheck": 24,
+     "lock_concentration": 0.8610694518427174,
+     "flag_rate_deviates": false,
+     "segmentation_failed": false
+    },
+    {
+     "condition_id": 20,
+     "composition": "PVDF+BaTiO3",
+     "force_N": 2,
+     "freq_Hz": 5,
+     "expected_cycles_nominal": 5,
+     "period_source": "acf",
+     "tap_rate_used_Hz": 5.58659217877095,
+     "rate_rel_dev_from_nominal": 0.11731843575418988,
+     "expected_cycles_used": 6,
+     "n_cycles": 5,
+     "n_full_cycles": 4,
+     "n_peaks_crosscheck": 5,
+     "lock_concentration": 0.871011648813864,
+     "flag_rate_deviates": true,
+     "segmentation_failed": false
+    },
+    {
+     "condition_id": 21,
+     "composition": "PVDF+BaTiO3",
+     "force_N": 2,
+     "freq_Hz": 10,
+     "expected_cycles_nominal": 10,
+     "period_source": "acf",
+     "tap_rate_used_Hz": 11.11111111111111,
+     "rate_rel_dev_from_nominal": 0.11111111111111116,
+     "expected_cycles_used": 11,
+     "n_cycles": 10,
+     "n_full_cycles": 10,
+     "n_peaks_crosscheck": 12,
+     "lock_concentration": 0.989889858284986,
+     "flag_rate_deviates": true,
+     "segmentation_failed": false
+    },
+    {
+     "condition_id": 22,
+     "composition": "PVDF+BaTiO3",
+     "force_N": 2,
+     "freq_Hz": 15,
+     "expected_cycles_nominal": 15,
+     "period_source": "nominal",
+     "tap_rate_used_Hz": 14.999999999999998,
+     "rate_rel_dev_from_nominal": 0.0,
+     "expected_cycles_used": 15,
+     "n_cycles": 15,
+     "n_full_cycles": 14,
+     "n_peaks_crosscheck": 15,
+     "lock_concentration": 0.8793408588235864,
+     "flag_rate_deviates": false,
+     "segmentation_failed": false
+    },
+    {
+     "condition_id": 23,
+     "composition": "PVDF+BaTiO3",
+     "force_N": 2,
+     "freq_Hz": 20,
+     "expected_cycles_nominal": 20,
+     "period_source": "nominal",
+     "tap_rate_used_Hz": 20.0,
+     "rate_rel_dev_from_nominal": 0.0,
+     "expected_cycles_used": 20,
+     "n_cycles": 20,
+     "n_full_cycles": 19,
+     "n_peaks_crosscheck": 18,
+     "lock_concentration": 0.7786434288791109,
+     "flag_rate_deviates": false,
+     "segmentation_failed": false
+    },
+    {
+     "condition_id": 24,
+     "composition": "PVDF+BaTiO3",
+     "force_N": 2,
+     "freq_Hz": 25,
+     "expected_cycles_nominal": 25,
+     "period_source": "acf",
+     "tap_rate_used_Hz": 24.390243902439025,
+     "rate_rel_dev_from_nominal": -0.024390243902439046,
+     "expected_cycles_used": 24,
+     "n_cycles": 24,
+     "n_full_cycles": 23,
+     "n_peaks_crosscheck": 25,
+     "lock_concentration": 0.8809650995981938,
+     "flag_rate_deviates": false,
+     "segmentation_failed": false
+    },
+    {
+     "condition_id": 25,
+     "composition": "PVDF+BaTiO3",
+     "force_N": 3,
+     "freq_Hz": 5,
+     "expected_cycles_nominal": 5,
+     "period_source": "acf",
+     "tap_rate_used_Hz": 5.319148936170213,
+     "rate_rel_dev_from_nominal": 0.06382978723404253,
+     "expected_cycles_used": 5,
+     "n_cycles": 5,
+     "n_full_cycles": 5,
+     "n_peaks_crosscheck": 5,
+     "lock_concentration": 0.688857124037388,
+     "flag_rate_deviates": false,
+     "segmentation_failed": false
+    },
+    {
+     "condition_id": 26,
+     "composition": "PVDF+BaTiO3",
+     "force_N": 3,
+     "freq_Hz": 10,
+     "expected_cycles_nominal": 10,
+     "period_source": "nominal",
+     "tap_rate_used_Hz": 10.0,
+     "rate_rel_dev_from_nominal": 0.0,
+     "expected_cycles_used": 10,
+     "n_cycles": 9,
+     "n_full_cycles": 9,
+     "n_peaks_crosscheck": 10,
+     "lock_concentration": 0.7564689634246052,
+     "flag_rate_deviates": false,
+     "segmentation_failed": false
+    },
+    {
+     "condition_id": 27,
+     "composition": "PVDF+BaTiO3",
+     "force_N": 3,
+     "freq_Hz": 15,
+     "expected_cycles_nominal": 15,
+     "period_source": "acf",
+     "tap_rate_used_Hz": 7.8125,
+     "rate_rel_dev_from_nominal": -0.47916666666666663,
+     "expected_cycles_used": 8,
+     "n_cycles": 7,
+     "n_full_cycles": 7,
+     "n_peaks_crosscheck": 7,
+     "lock_concentration": 0.8358458549671917,
+     "flag_rate_deviates": true,
+     "segmentation_failed": false
+    },
+    {
+     "condition_id": 28,
+     "composition": "PVDF+BaTiO3",
+     "force_N": 3,
+     "freq_Hz": 20,
+     "expected_cycles_nominal": 20,
+     "period_source": "nominal",
+     "tap_rate_used_Hz": 20.0,
+     "rate_rel_dev_from_nominal": 0.0,
+     "expected_cycles_used": 20,
+     "n_cycles": 19,
+     "n_full_cycles": 19,
+     "n_peaks_crosscheck": 11,
+     "lock_concentration": 0.6670142787238468,
+     "flag_rate_deviates": false,
+     "segmentation_failed": false
+    },
+    {
+     "condition_id": 29,
+     "composition": "PVDF+BaTiO3",
+     "force_N": 3,
+     "freq_Hz": 25,
+     "expected_cycles_nominal": 25,
+     "period_source": "acf",
+     "tap_rate_used_Hz": 23.25581395348837,
+     "rate_rel_dev_from_nominal": -0.06976744186046513,
+     "expected_cycles_used": 23,
+     "n_cycles": 23,
+     "n_full_cycles": 22,
+     "n_peaks_crosscheck": 23,
+     "lock_concentration": 0.8968582873960865,
+     "flag_rate_deviates": false,
+     "segmentation_failed": false
+    },
+    {
+     "condition_id": 30,
+     "composition": "PVDF+BaTiO3+%1CNT",
+     "force_N": 1,
+     "freq_Hz": 5,
+     "expected_cycles_nominal": 5,
+     "period_source": "nominal",
+     "tap_rate_used_Hz": 5.0,
+     "rate_rel_dev_from_nominal": 0.0,
+     "expected_cycles_used": 5,
+     "n_cycles": 4,
+     "n_full_cycles": 4,
+     "n_peaks_crosscheck": 6,
+     "lock_concentration": 0.8726731006447872,
+     "flag_rate_deviates": false,
+     "segmentation_failed": false
+    },
+    {
+     "condition_id": 31,
+     "composition": "PVDF+BaTiO3+%1CNT",
+     "force_N": 1,
+     "freq_Hz": 10,
+     "expected_cycles_nominal": 10,
+     "period_source": "acf",
+     "tap_rate_used_Hz": 10.204081632653061,
+     "rate_rel_dev_from_nominal": 0.020408163265306145,
+     "expected_cycles_used": 10,
+     "n_cycles": 10,
+     "n_full_cycles": 10,
+     "n_peaks_crosscheck": 10,
+     "lock_concentration": 0.6639103229339585,
+     "flag_rate_deviates": false,
+     "segmentation_failed": false
+    },
+    {
+     "condition_id": 32,
+     "composition": "PVDF+BaTiO3+%1CNT",
+     "force_N": 1,
+     "freq_Hz": 15,
+     "expected_cycles_nominal": 15,
+     "period_source": "nominal",
+     "tap_rate_used_Hz": 14.999999999999998,
+     "rate_rel_dev_from_nominal": 0.0,
+     "expected_cycles_used": 15,
+     "n_cycles": 14,
+     "n_full_cycles": 14,
+     "n_peaks_crosscheck": 13,
+     "lock_concentration": 0.8683900810339003,
+     "flag_rate_deviates": false,
+     "segmentation_failed": false
+    },
+    {
+     "condition_id": 33,
+     "composition": "PVDF+BaTiO3+%1CNT",
+     "force_N": 1,
+     "freq_Hz": 20,
+     "expected_cycles_nominal": 20,
+     "period_source": "acf",
+     "tap_rate_used_Hz": 19.23076923076923,
+     "rate_rel_dev_from_nominal": -0.038461538461538436,
+     "expected_cycles_used": 19,
+     "n_cycles": 19,
+     "n_full_cycles": 18,
+     "n_peaks_crosscheck": 16,
+     "lock_concentration": 0.9378354811313364,
+     "flag_rate_deviates": false,
+     "segmentation_failed": false
+    },
+    {
+     "condition_id": 34,
+     "composition": "PVDF+BaTiO3+%1CNT",
+     "force_N": 1,
+     "freq_Hz": 25,
+     "expected_cycles_nominal": 25,
+     "period_source": "acf",
+     "tap_rate_used_Hz": 26.31578947368421,
+     "rate_rel_dev_from_nominal": 0.05263157894736836,
+     "expected_cycles_used": 26,
+     "n_cycles": 26,
+     "n_full_cycles": 25,
+     "n_peaks_crosscheck": 24,
+     "lock_concentration": 0.7842459593650416,
+     "flag_rate_deviates": false,
+     "segmentation_failed": false
+    },
+    {
+     "condition_id": 35,
+     "composition": "PVDF+BaTiO3+%1CNT",
+     "force_N": 2,
+     "freq_Hz": 5,
+     "expected_cycles_nominal": 5,
+     "period_source": "nominal",
+     "tap_rate_used_Hz": 5.0,
+     "rate_rel_dev_from_nominal": 0.0,
+     "expected_cycles_used": 5,
+     "n_cycles": 4,
+     "n_full_cycles": 4,
+     "n_peaks_crosscheck": 4,
+     "lock_concentration": 0.7055429998808439,
+     "flag_rate_deviates": false,
+     "segmentation_failed": false
+    },
+    {
+     "condition_id": 36,
+     "composition": "PVDF+BaTiO3+%1CNT",
+     "force_N": 2,
+     "freq_Hz": 10,
+     "expected_cycles_nominal": 10,
+     "period_source": "nominal",
+     "tap_rate_used_Hz": 10.0,
+     "rate_rel_dev_from_nominal": 0.0,
+     "expected_cycles_used": 10,
+     "n_cycles": 9,
+     "n_full_cycles": 9,
+     "n_peaks_crosscheck": 11,
+     "lock_concentration": 0.7573074087513567,
+     "flag_rate_deviates": false,
+     "segmentation_failed": false
+    },
+    {
+     "condition_id": 37,
+     "composition": "PVDF+BaTiO3+%1CNT",
+     "force_N": 2,
+     "freq_Hz": 15,
+     "expected_cycles_nominal": 15,
+     "period_source": "acf",
+     "tap_rate_used_Hz": 15.151515151515152,
+     "rate_rel_dev_from_nominal": 0.010101010101010166,
+     "expected_cycles_used": 15,
+     "n_cycles": 14,
+     "n_full_cycles": 14,
+     "n_peaks_crosscheck": 16,
+     "lock_concentration": 0.8740028739942861,
+     "flag_rate_deviates": false,
+     "segmentation_failed": false
+    },
+    {
+     "condition_id": 38,
+     "composition": "PVDF+BaTiO3+%1CNT",
+     "force_N": 2,
+     "freq_Hz": 20,
+     "expected_cycles_nominal": 20,
+     "period_source": "nominal",
+     "tap_rate_used_Hz": 20.0,
+     "rate_rel_dev_from_nominal": 0.0,
+     "expected_cycles_used": 20,
+     "n_cycles": 19,
+     "n_full_cycles": 19,
+     "n_peaks_crosscheck": 20,
+     "lock_concentration": 0.8566367751502191,
+     "flag_rate_deviates": false,
+     "segmentation_failed": false
+    },
+    {
+     "condition_id": 39,
+     "composition": "PVDF+BaTiO3+%1CNT",
+     "force_N": 2,
+     "freq_Hz": 25,
+     "expected_cycles_nominal": 25,
+     "period_source": "nominal",
+     "tap_rate_used_Hz": 25.0,
+     "rate_rel_dev_from_nominal": 0.0,
+     "expected_cycles_used": 25,
+     "n_cycles": 24,
+     "n_full_cycles": 24,
+     "n_peaks_crosscheck": 16,
+     "lock_concentration": 0.5820536668395944,
+     "flag_rate_deviates": false,
+     "segmentation_failed": true
+    },
+    {
+     "condition_id": 40,
+     "composition": "PVDF+BaTiO3+%1CNT",
+     "force_N": 3,
+     "freq_Hz": 5,
+     "expected_cycles_nominal": 5,
+     "period_source": "acf",
+     "tap_rate_used_Hz": 20.408163265306122,
+     "rate_rel_dev_from_nominal": 3.0816326530612246,
+     "expected_cycles_used": 20,
+     "n_cycles": 20,
+     "n_full_cycles": 19,
+     "n_peaks_crosscheck": 18,
+     "lock_concentration": 0.798127804823093,
+     "flag_rate_deviates": true,
+     "segmentation_failed": false
+    },
+    {
+     "condition_id": 41,
+     "composition": "PVDF+BaTiO3+%1CNT",
+     "force_N": 3,
+     "freq_Hz": 10,
+     "expected_cycles_nominal": 10,
+     "period_source": "nominal",
+     "tap_rate_used_Hz": 10.0,
+     "rate_rel_dev_from_nominal": 0.0,
+     "expected_cycles_used": 10,
+     "n_cycles": 9,
+     "n_full_cycles": 9,
+     "n_peaks_crosscheck": 9,
+     "lock_concentration": 0.677383136046282,
+     "flag_rate_deviates": false,
+     "segmentation_failed": false
+    },
+    {
+     "condition_id": 42,
+     "composition": "PVDF+BaTiO3+%1CNT",
+     "force_N": 3,
+     "freq_Hz": 15,
+     "expected_cycles_nominal": 15,
+     "period_source": "acf",
+     "tap_rate_used_Hz": 16.39344262295082,
+     "rate_rel_dev_from_nominal": 0.09289617486338808,
+     "expected_cycles_used": 16,
+     "n_cycles": 15,
+     "n_full_cycles": 15,
+     "n_peaks_crosscheck": 16,
+     "lock_concentration": 0.7027655331139471,
+     "flag_rate_deviates": false,
+     "segmentation_failed": false
+    },
+    {
+     "condition_id": 43,
+     "composition": "PVDF+BaTiO3+%1CNT",
+     "force_N": 3,
+     "freq_Hz": 20,
+     "expected_cycles_nominal": 20,
+     "period_source": "acf",
+     "tap_rate_used_Hz": 15.625,
+     "rate_rel_dev_from_nominal": -0.21875,
+     "expected_cycles_used": 16,
+     "n_cycles": 15,
+     "n_full_cycles": 15,
+     "n_peaks_crosscheck": 13,
+     "lock_concentration": 0.9089302639960564,
+     "flag_rate_deviates": true,
+     "segmentation_failed": false
+    },
+    {
+     "condition_id": 44,
+     "composition": "PVDF+BaTiO3+%1CNT",
+     "force_N": 3,
+     "freq_Hz": 25,
+     "expected_cycles_nominal": 25,
+     "period_source": "nominal",
+     "tap_rate_used_Hz": 25.0,
+     "rate_rel_dev_from_nominal": 0.0,
+     "expected_cycles_used": 25,
+     "n_cycles": 25,
+     "n_full_cycles": 25,
+     "n_peaks_crosscheck": 22,
+     "lock_concentration": 0.6726271581798954,
+     "flag_rate_deviates": false,
+     "segmentation_failed": false
+    },
+    {
+     "condition_id": 45,
+     "composition": "PVDF+BaTiO3+%2CNT",
+     "force_N": 1,
+     "freq_Hz": 5,
+     "expected_cycles_nominal": 5,
+     "period_source": "nominal",
+     "tap_rate_used_Hz": 5.0,
+     "rate_rel_dev_from_nominal": 0.0,
+     "expected_cycles_used": 5,
+     "n_cycles": 5,
+     "n_full_cycles": 4,
+     "n_peaks_crosscheck": 5,
+     "lock_concentration": 0.8067555665545668,
+     "flag_rate_deviates": false,
+     "segmentation_failed": false
+    },
+    {
+     "condition_id": 46,
+     "composition": "PVDF+BaTiO3+%2CNT",
+     "force_N": 1,
+     "freq_Hz": 10,
+     "expected_cycles_nominal": 10,
+     "period_source": "acf",
+     "tap_rate_used_Hz": 10.638297872340425,
+     "rate_rel_dev_from_nominal": 0.06382978723404253,
+     "expected_cycles_used": 11,
+     "n_cycles": 10,
+     "n_full_cycles": 10,
+     "n_peaks_crosscheck": 11,
+     "lock_concentration": 0.8533685286264043,
+     "flag_rate_deviates": false,
+     "segmentation_failed": false
+    },
+    {
+     "condition_id": 47,
+     "composition": "PVDF+BaTiO3+%2CNT",
+     "force_N": 1,
+     "freq_Hz": 15,
+     "expected_cycles_nominal": 15,
+     "period_source": "acf",
+     "tap_rate_used_Hz": 14.492753623188406,
+     "rate_rel_dev_from_nominal": -0.033816425120772875,
+     "expected_cycles_used": 14,
+     "n_cycles": 14,
+     "n_full_cycles": 14,
+     "n_peaks_crosscheck": 12,
+     "lock_concentration": 0.9088340759281552,
+     "flag_rate_deviates": false,
+     "segmentation_failed": false
+    },
+    {
+     "condition_id": 48,
+     "composition": "PVDF+BaTiO3+%2CNT",
+     "force_N": 1,
+     "freq_Hz": 20,
+     "expected_cycles_nominal": 20,
+     "period_source": "nominal",
+     "tap_rate_used_Hz": 20.0,
+     "rate_rel_dev_from_nominal": 0.0,
+     "expected_cycles_used": 20,
+     "n_cycles": 20,
+     "n_full_cycles": 19,
+     "n_peaks_crosscheck": 20,
+     "lock_concentration": 0.9065868131546844,
+     "flag_rate_deviates": false,
+     "segmentation_failed": false
+    },
+    {
+     "condition_id": 49,
+     "composition": "PVDF+BaTiO3+%2CNT",
+     "force_N": 1,
+     "freq_Hz": 25,
+     "expected_cycles_nominal": 25,
+     "period_source": "nominal",
+     "tap_rate_used_Hz": 25.0,
+     "rate_rel_dev_from_nominal": 0.0,
+     "expected_cycles_used": 25,
+     "n_cycles": 24,
+     "n_full_cycles": 24,
+     "n_peaks_crosscheck": 25,
+     "lock_concentration": 0.8463687362775072,
+     "flag_rate_deviates": false,
+     "segmentation_failed": false
+    },
+    {
+     "condition_id": 50,
+     "composition": "PVDF+BaTiO3+%2CNT",
+     "force_N": 2,
+     "freq_Hz": 5,
+     "expected_cycles_nominal": 5,
+     "period_source": "nominal",
+     "tap_rate_used_Hz": 5.0,
+     "rate_rel_dev_from_nominal": 0.0,
+     "expected_cycles_used": 5,
+     "n_cycles": 5,
+     "n_full_cycles": 4,
+     "n_peaks_crosscheck": 5,
+     "lock_concentration": 0.8770407623695726,
+     "flag_rate_deviates": false,
+     "segmentation_failed": false
+    },
+    {
+     "condition_id": 51,
+     "composition": "PVDF+BaTiO3+%2CNT",
+     "force_N": 2,
+     "freq_Hz": 10,
+     "expected_cycles_nominal": 10,
+     "period_source": "acf",
+     "tap_rate_used_Hz": 10.638297872340425,
+     "rate_rel_dev_from_nominal": 0.06382978723404253,
+     "expected_cycles_used": 11,
+     "n_cycles": 10,
+     "n_full_cycles": 10,
+     "n_peaks_crosscheck": 11,
+     "lock_concentration": 0.7808199542728749,
+     "flag_rate_deviates": false,
+     "segmentation_failed": false
+    },
+    {
+     "condition_id": 52,
+     "composition": "PVDF+BaTiO3+%2CNT",
+     "force_N": 2,
+     "freq_Hz": 15,
+     "expected_cycles_nominal": 15,
+     "period_source": "acf",
+     "tap_rate_used_Hz": 14.492753623188406,
+     "rate_rel_dev_from_nominal": -0.033816425120772875,
+     "expected_cycles_used": 14,
+     "n_cycles": 14,
+     "n_full_cycles": 14,
+     "n_peaks_crosscheck": 12,
+     "lock_concentration": 0.9088340759281557,
+     "flag_rate_deviates": false,
+     "segmentation_failed": false
+    },
+    {
+     "condition_id": 53,
+     "composition": "PVDF+BaTiO3+%2CNT",
+     "force_N": 2,
+     "freq_Hz": 20,
+     "expected_cycles_nominal": 20,
+     "period_source": "nominal",
+     "tap_rate_used_Hz": 20.0,
+     "rate_rel_dev_from_nominal": 0.0,
+     "expected_cycles_used": 20,
+     "n_cycles": 19,
+     "n_full_cycles": 19,
+     "n_peaks_crosscheck": 19,
+     "lock_concentration": 0.8738324231356032,
+     "flag_rate_deviates": false,
+     "segmentation_failed": false
+    },
+    {
+     "condition_id": 54,
+     "composition": "PVDF+BaTiO3+%2CNT",
+     "force_N": 2,
+     "freq_Hz": 25,
+     "expected_cycles_nominal": 25,
+     "period_source": "nominal",
+     "tap_rate_used_Hz": 25.0,
+     "rate_rel_dev_from_nominal": 0.0,
+     "expected_cycles_used": 25,
+     "n_cycles": 24,
+     "n_full_cycles": 24,
+     "n_peaks_crosscheck": 25,
+     "lock_concentration": 0.8463687362775071,
+     "flag_rate_deviates": false,
+     "segmentation_failed": false
+    },
+    {
+     "condition_id": 55,
+     "composition": "PVDF+BaTiO3+%2CNT",
+     "force_N": 3,
+     "freq_Hz": 5,
+     "expected_cycles_nominal": 5,
+     "period_source": "nominal",
+     "tap_rate_used_Hz": 5.0,
+     "rate_rel_dev_from_nominal": 0.0,
+     "expected_cycles_used": 5,
+     "n_cycles": 4,
+     "n_full_cycles": 4,
+     "n_peaks_crosscheck": 5,
+     "lock_concentration": 0.7639385265237565,
+     "flag_rate_deviates": false,
+     "segmentation_failed": false
+    },
+    {
+     "condition_id": 56,
+     "composition": "PVDF+BaTiO3+%2CNT",
+     "force_N": 3,
+     "freq_Hz": 10,
+     "expected_cycles_nominal": 10,
+     "period_source": "acf",
+     "tap_rate_used_Hz": 10.638297872340425,
+     "rate_rel_dev_from_nominal": 0.06382978723404253,
+     "expected_cycles_used": 11,
+     "n_cycles": 10,
+     "n_full_cycles": 9,
+     "n_peaks_crosscheck": 11,
+     "lock_concentration": 0.8120066819667937,
+     "flag_rate_deviates": false,
+     "segmentation_failed": false
+    },
+    {
+     "condition_id": 57,
+     "composition": "PVDF+BaTiO3+%2CNT",
+     "force_N": 3,
+     "freq_Hz": 15,
+     "expected_cycles_nominal": 15,
+     "period_source": "acf",
+     "tap_rate_used_Hz": 10.638297872340425,
+     "rate_rel_dev_from_nominal": -0.2907801418439716,
+     "expected_cycles_used": 11,
+     "n_cycles": 10,
+     "n_full_cycles": 10,
+     "n_peaks_crosscheck": 10,
+     "lock_concentration": 0.7790833682696431,
+     "flag_rate_deviates": true,
+     "segmentation_failed": false
+    },
+    {
+     "condition_id": 58,
+     "composition": "PVDF+BaTiO3+%2CNT",
+     "force_N": 3,
+     "freq_Hz": 20,
+     "expected_cycles_nominal": 20,
+     "period_source": "acf",
+     "tap_rate_used_Hz": 5.747126436781609,
+     "rate_rel_dev_from_nominal": -0.7126436781609196,
+     "expected_cycles_used": 6,
+     "n_cycles": 6,
+     "n_full_cycles": 5,
+     "n_peaks_crosscheck": 6,
+     "lock_concentration": 0.9489408632983006,
+     "flag_rate_deviates": true,
+     "segmentation_failed": false
+    },
+    {
+     "condition_id": 59,
+     "composition": "PVDF+BaTiO3+%2CNT",
+     "force_N": 3,
+     "freq_Hz": 25,
+     "expected_cycles_nominal": 25,
+     "period_source": "nominal",
+     "tap_rate_used_Hz": 25.0,
+     "rate_rel_dev_from_nominal": 0.0,
+     "expected_cycles_used": 25,
+     "n_cycles": 24,
+     "n_full_cycles": 24,
+     "n_peaks_crosscheck": 23,
+     "lock_concentration": 0.8072997041936644,
+     "flag_rate_deviates": false,
+     "segmentation_failed": false
+    },
+    {
+     "condition_id": 60,
+     "composition": "PVDF+BaTiO3+%3CNT",
+     "force_N": 1,
+     "freq_Hz": 5,
+     "expected_cycles_nominal": 5,
+     "period_source": "acf",
+     "tap_rate_used_Hz": 5.847953216374269,
+     "rate_rel_dev_from_nominal": 0.16959064327485374,
+     "expected_cycles_used": 6,
+     "n_cycles": 5,
+     "n_full_cycles": 5,
+     "n_peaks_crosscheck": 6,
+     "lock_concentration": 0.8599077345026008,
+     "flag_rate_deviates": true,
+     "segmentation_failed": false
+    },
+    {
+     "condition_id": 61,
+     "composition": "PVDF+BaTiO3+%3CNT",
+     "force_N": 1,
+     "freq_Hz": 10,
+     "expected_cycles_nominal": 10,
+     "period_source": "nominal",
+     "tap_rate_used_Hz": 10.0,
+     "rate_rel_dev_from_nominal": 0.0,
+     "expected_cycles_used": 10,
+     "n_cycles": 9,
+     "n_full_cycles": 9,
+     "n_peaks_crosscheck": 11,
+     "lock_concentration": 0.8350784052214828,
+     "flag_rate_deviates": false,
+     "segmentation_failed": false
+    },
+    {
+     "condition_id": 62,
+     "composition": "PVDF+BaTiO3+%3CNT",
+     "force_N": 1,
+     "freq_Hz": 15,
+     "expected_cycles_nominal": 15,
+     "period_source": "acf",
+     "tap_rate_used_Hz": 16.129032258064516,
+     "rate_rel_dev_from_nominal": 0.07526881720430123,
+     "expected_cycles_used": 16,
+     "n_cycles": 16,
+     "n_full_cycles": 15,
+     "n_peaks_crosscheck": 17,
+     "lock_concentration": 0.9813031672280766,
+     "flag_rate_deviates": false,
+     "segmentation_failed": false
+    },
+    {
+     "condition_id": 63,
+     "composition": "PVDF+BaTiO3+%3CNT",
+     "force_N": 1,
+     "freq_Hz": 20,
+     "expected_cycles_nominal": 20,
+     "period_source": "acf",
+     "tap_rate_used_Hz": 18.867924528301888,
+     "rate_rel_dev_from_nominal": -0.05660377358490565,
+     "expected_cycles_used": 19,
+     "n_cycles": 18,
+     "n_full_cycles": 18,
+     "n_peaks_crosscheck": 19,
+     "lock_concentration": 0.960772181066668,
+     "flag_rate_deviates": false,
+     "segmentation_failed": false
+    },
+    {
+     "condition_id": 64,
+     "composition": "PVDF+BaTiO3+%3CNT",
+     "force_N": 1,
+     "freq_Hz": 25,
+     "expected_cycles_nominal": 25,
+     "period_source": "nominal",
+     "tap_rate_used_Hz": 25.0,
+     "rate_rel_dev_from_nominal": 0.0,
+     "expected_cycles_used": 25,
+     "n_cycles": 24,
+     "n_full_cycles": 24,
+     "n_peaks_crosscheck": 24,
+     "lock_concentration": 0.7353073043375108,
+     "flag_rate_deviates": false,
+     "segmentation_failed": false
+    },
+    {
+     "condition_id": 65,
+     "composition": "PVDF+BaTiO3+%3CNT",
+     "force_N": 2,
+     "freq_Hz": 5,
+     "expected_cycles_nominal": 5,
+     "period_source": "acf",
+     "tap_rate_used_Hz": 5.617977528089888,
+     "rate_rel_dev_from_nominal": 0.12359550561797761,
+     "expected_cycles_used": 6,
+     "n_cycles": 5,
+     "n_full_cycles": 5,
+     "n_peaks_crosscheck": 5,
+     "lock_concentration": 0.7417271430462679,
+     "flag_rate_deviates": true,
+     "segmentation_failed": false
+    },
+    {
+     "condition_id": 66,
+     "composition": "PVDF+BaTiO3+%3CNT",
+     "force_N": 2,
+     "freq_Hz": 10,
+     "expected_cycles_nominal": 10,
+     "period_source": "acf",
+     "tap_rate_used_Hz": 10.638297872340425,
+     "rate_rel_dev_from_nominal": 0.06382978723404253,
+     "expected_cycles_used": 11,
+     "n_cycles": 10,
+     "n_full_cycles": 10,
+     "n_peaks_crosscheck": 10,
+     "lock_concentration": 0.9660675562238791,
+     "flag_rate_deviates": false,
+     "segmentation_failed": false
+    },
+    {
+     "condition_id": 67,
+     "composition": "PVDF+BaTiO3+%3CNT",
+     "force_N": 2,
+     "freq_Hz": 15,
+     "expected_cycles_nominal": 15,
+     "period_source": "acf",
+     "tap_rate_used_Hz": 17.094017094017094,
+     "rate_rel_dev_from_nominal": 0.13960113960113962,
+     "expected_cycles_used": 17,
+     "n_cycles": 16,
+     "n_full_cycles": 16,
+     "n_peaks_crosscheck": 16,
+     "lock_concentration": 0.9357033160250972,
+     "flag_rate_deviates": true,
+     "segmentation_failed": false
+    },
+    {
+     "condition_id": 68,
+     "composition": "PVDF+BaTiO3+%3CNT",
+     "force_N": 2,
+     "freq_Hz": 20,
+     "expected_cycles_nominal": 20,
+     "period_source": "acf",
+     "tap_rate_used_Hz": 16.129032258064516,
+     "rate_rel_dev_from_nominal": -0.19354838709677424,
+     "expected_cycles_used": 16,
+     "n_cycles": 16,
+     "n_full_cycles": 15,
+     "n_peaks_crosscheck": 16,
+     "lock_concentration": 0.9560679547165211,
+     "flag_rate_deviates": true,
+     "segmentation_failed": false
+    },
+    {
+     "condition_id": 69,
+     "composition": "PVDF+BaTiO3+%3CNT",
+     "force_N": 2,
+     "freq_Hz": 25,
+     "expected_cycles_nominal": 25,
+     "period_source": "acf",
+     "tap_rate_used_Hz": 17.54385964912281,
+     "rate_rel_dev_from_nominal": -0.29824561403508776,
+     "expected_cycles_used": 18,
+     "n_cycles": 17,
+     "n_full_cycles": 16,
+     "n_peaks_crosscheck": 18,
+     "lock_concentration": 0.897021539950226,
+     "flag_rate_deviates": true,
+     "segmentation_failed": false
+    },
+    {
+     "condition_id": 70,
+     "composition": "PVDF+BaTiO3+%3CNT",
+     "force_N": 3,
+     "freq_Hz": 5,
+     "expected_cycles_nominal": 5,
+     "period_source": "acf",
+     "tap_rate_used_Hz": 10.638297872340425,
+     "rate_rel_dev_from_nominal": 1.127659574468085,
+     "expected_cycles_used": 11,
+     "n_cycles": 10,
+     "n_full_cycles": 10,
+     "n_peaks_crosscheck": 11,
+     "lock_concentration": 0.8388278908386966,
+     "flag_rate_deviates": true,
+     "segmentation_failed": false
+    },
+    {
+     "condition_id": 71,
+     "composition": "PVDF+BaTiO3+%3CNT",
+     "force_N": 3,
+     "freq_Hz": 10,
+     "expected_cycles_nominal": 10,
+     "period_source": "acf",
+     "tap_rate_used_Hz": 15.384615384615385,
+     "rate_rel_dev_from_nominal": 0.5384615384615385,
+     "expected_cycles_used": 15,
+     "n_cycles": 15,
+     "n_full_cycles": 15,
+     "n_peaks_crosscheck": 15,
+     "lock_concentration": 0.9117859827568798,
+     "flag_rate_deviates": true,
+     "segmentation_failed": false
+    },
+    {
+     "condition_id": 72,
+     "composition": "PVDF+BaTiO3+%3CNT",
+     "force_N": 3,
+     "freq_Hz": 15,
+     "expected_cycles_nominal": 15,
+     "period_source": "acf",
+     "tap_rate_used_Hz": 16.39344262295082,
+     "rate_rel_dev_from_nominal": 0.09289617486338808,
+     "expected_cycles_used": 16,
+     "n_cycles": 16,
+     "n_full_cycles": 15,
+     "n_peaks_crosscheck": 14,
+     "lock_concentration": 0.973714040400268,
+     "flag_rate_deviates": false,
+     "segmentation_failed": false
+    },
+    {
+     "condition_id": 73,
+     "composition": "PVDF+BaTiO3+%3CNT",
+     "force_N": 3,
+     "freq_Hz": 20,
+     "expected_cycles_nominal": 20,
+     "period_source": "acf",
+     "tap_rate_used_Hz": 5.747126436781609,
+     "rate_rel_dev_from_nominal": -0.7126436781609196,
+     "expected_cycles_used": 6,
+     "n_cycles": 5,
+     "n_full_cycles": 5,
+     "n_peaks_crosscheck": 6,
+     "lock_concentration": 0.9620994208805651,
+     "flag_rate_deviates": true,
+     "segmentation_failed": false
+    },
+    {
+     "condition_id": 74,
+     "composition": "PVDF+BaTiO3+%3CNT",
+     "force_N": 3,
+     "freq_Hz": 25,
+     "expected_cycles_nominal": 25,
+     "period_source": "acf",
+     "tap_rate_used_Hz": 19.607843137254903,
+     "rate_rel_dev_from_nominal": -0.21568627450980393,
+     "expected_cycles_used": 20,
+     "n_cycles": 20,
+     "n_full_cycles": 18,
+     "n_peaks_crosscheck": 18,
+     "lock_concentration": 0.9164629659228948,
+     "flag_rate_deviates": true,
+     "segmentation_failed": false
+    }
+   ]
+  },
+  "rms": {
+   "all": {
+    "n": 75,
+    "median": 21.09026260219109,
+    "q25": 16.007432407832006,
+    "q75": 28.144660876162085,
+    "min": 6.280796782296085,
+    "max": 52.78008390263102,
+    "mean": 22.220036317664082
+   },
+   "all_excluding_failed": {
+    "n": 74,
+    "median": 21.03363548375627,
+    "q25": 15.978056260865676,
+    "q75": 27.770278167369096,
+    "min": 6.280796782296085,
+    "max": 52.78008390263102,
+    "mean": 21.978334268591748
+   },
+   "all_nominal_period": {
+    "n": 75,
+    "median": 21.953677340665596,
+    "q25": 15.119230993343914,
+    "q75": 29.85263391704314,
+    "min": 5.129318121155483,
+    "max": 89.24988353016536,
+    "mean": 24.753985638170587
+   },
+   "clean_only": {
+    "n": 52,
+    "median": 21.03363548375627,
+    "q25": 15.836823885585822,
+    "q75": 28.0233994823019,
+    "min": 6.280796782296085,
+    "max": 52.78008390263102,
+    "mean": 21.717157487157714
+   },
+   "excluding_duplicates": {
+    "n": 72,
+    "median": 21.19273574131676,
+    "q25": 16.036808554798334,
+    "q75": 28.0233994823019,
+    "min": 6.280796782296085,
+    "max": 52.78008390263102,
+    "mean": 22.2190832915701
+   },
+   "by_freq": {
+    "5": {
+     "n": 15,
+     "median": 10.665667479259827,
+     "q25": 9.774152602629979,
+     "q75": 16.015139741321224,
+     "min": 6.280796782296085,
+     "max": 26.35712220986427,
+     "mean": 14.067181244750644
+    },
+    "10": {
+     "n": 15,
+     "median": 18.212384029926117,
+     "q25": 14.05531014083158,
+     "q75": 22.087933098071872,
+     "min": 8.345821974509247,
+     "max": 40.144065038311076,
+     "mean": 19.998436252129274
+    },
+    "15": {
+     "n": 15,
+     "median": 26.206659418321777,
+     "q25": 20.72573310355956,
+     "q75": 29.082406586610748,
+     "min": 16.247219719632945,
+     "max": 34.250809994283216,
+     "mean": 25.02835306223112
+    },
+    "20": {
+     "n": 15,
+     "median": 26.953102480175577,
+     "q25": 21.653226261907257,
+     "q75": 30.3992952675435,
+     "min": 12.742262434401972,
+     "max": 52.78008390263102,
+     "mean": 27.15231025983907
+    },
+    "25": {
+     "n": 15,
+     "median": 21.09026260219109,
+     "q25": 19.735654403073994,
+     "q75": 29.343754426175412,
+     "min": 13.17361510195107,
+     "max": 44.161526919185484,
+     "mean": 24.853900769370327
+    }
+   },
+   "by_force": {
+    "1": {
+     "n": 25,
+     "median": 21.09026260219109,
+     "q25": 15.033909972119185,
+     "q75": 21.953947392195143,
+     "min": 9.429849455092267,
+     "max": 34.250809994283216,
+     "mean": 20.417336185780805
+    },
+    "2": {
+     "n": 25,
+     "median": 24.83754476751955,
+     "q25": 19.735654403073987,
+     "q75": 29.798223603627285,
+     "min": 10.005976741545425,
+     "max": 40.144065038311076,
+     "mean": 25.053398555456468
+    },
+    "3": {
+     "n": 25,
+     "median": 19.52167791461401,
+     "q25": 13.17361510195107,
+     "q75": 26.35712220986427,
+     "min": 6.280796782296085,
+     "max": 52.78008390263102,
+     "mean": 21.189374211754984
+    }
+   },
+   "by_composition": {
+    "PVDF": {
+     "n": 15,
+     "median": 21.320371828010373,
+     "q25": 15.548710775474321,
+     "q75": 28.565651588460106,
+     "min": 9.421603436785606,
+     "max": 44.161526919185484,
+     "mean": 22.49167287641365
+    },
+    "PVDF+BaTiO3": {
+     "n": 15,
+     "median": 21.953947392195143,
+     "q25": 19.218239794965392,
+     "q75": 29.108398530143166,
+     "min": 6.280796782296085,
+     "max": 52.78008390263102,
+     "mean": 24.574166722106558
+    },
+    "PVDF+BaTiO3+%1CNT": {
+     "n": 15,
+     "median": 21.799631392310815,
+     "q25": 18.794454127394346,
+     "q75": 30.598433427122977,
+     "min": 10.408818118440207,
+     "max": 40.10598794901708,
+     "mean": 24.379379155927598
+    },
+    "PVDF+BaTiO3+%2CNT": {
+     "n": 15,
+     "median": 19.52167791461401,
+     "q25": 14.083215429591254,
+     "q75": 27.163900442163403,
+     "min": 8.345821974509247,
+     "max": 34.250809994283216,
+     "mean": 20.12989607170858
+    },
+    "PVDF+BaTiO3+%3CNT": {
+     "n": 15,
+     "median": 20.773021492974646,
+     "q25": 14.404223568083319,
+     "q75": 21.653226261907257,
+     "min": 9.542328463714531,
+     "max": 36.15781049116373,
+     "mean": 19.525066762164045
+    }
+   },
+   "relative_se_of_recording_mean_pct": {
+    "n": 75,
+    "median": 5.770186319399616,
+    "q25": 4.422583485939581,
+    "q75": 7.451955011793923,
+    "min": 2.6391806385732943,
+    "max": 12.694668005899759,
+    "mean": 6.230286086114434
+   },
+   "kruskal_freq_Hz": {
+    "H": 22.313543859649087,
+    "p": 0.00017357764191816333
+   },
+   "kruskal_force_N": {
+    "H": 4.444294736842096,
+    "p": 0.10837613528396534
+   },
+   "kruskal_composition": {
+    "H": 4.13838596491226,
+    "p": 0.38760119047159663
+   },
+   "spread": {
+    "within_recording_pooled_sd_V": 0.034728526110404626,
+    "between_condition_sd_of_recording_mean_cycle_amplitude_V": 0.07656116894498864,
+    "between_over_within_ratio": 2.2045614231250372,
+    "between_condition_sd_of_recording_target_V": 0.07778879019973732,
+    "within_recording_pooled_sd_log10": 0.10978806912764338,
+    "between_condition_sd_log10": 0.29737342567480224,
+    "between_over_within_ratio_log10": 2.7086133132468673,
+    "icc1_log10": 0.8563578123054909,
+    "icc1_k0": 13.891115996379153,
+    "icc1_msb": 1.0102605905059066,
+    "icc1_msw": 0.012053420122776201,
+    "fraction_variance_between_conditions_log10": 0.8563578123054909
+   }
+  },
+  "vpp": {
+   "all": {
+    "n": 75,
+    "median": 30.51379535242533,
+    "q25": 23.05522158742007,
+    "q75": 37.592604872835636,
+    "min": 6.9488021408963165,
+    "max": 60.9089355578368,
+    "mean": 30.351492807362664
+   },
+   "all_excluding_failed": {
+    "n": 74,
+    "median": 30.326734469357355,
+    "q25": 22.96063145323148,
+    "q75": 37.35171468721336,
+    "min": 6.9488021408963165,
+    "max": 60.9089355578368,
+    "mean": 30.030910183514827
+   },
+   "all_nominal_period": {
+    "n": 75,
+    "median": 31.953228014678338,
+    "q25": 24.00688581918939,
+    "q75": 39.657587894469074,
+    "min": 9.039088342408578,
+    "max": 106.30043769679502,
+    "mean": 33.26061703840986
+   },
+   "clean_only": {
+    "n": 52,
+    "median": 30.96531188726071,
+    "q25": 22.866041319042886,
+    "q75": 36.23954992252286,
+    "min": 9.620719533666314,
+    "max": 60.9089355578368,
+    "mean": 30.136660799311276
+   },
+   "excluding_duplicates": {
+    "n": 72,
+    "median": 30.739550575735542,
+    "q25": 23.39292060890303,
+    "q75": 37.516388509921214,
+    "min": 9.620719533666314,
+    "max": 60.9089355578368,
+    "mean": 30.585588632186198
+   },
+   "by_freq": {
+    "5": {
+     "n": 15,
+     "median": 20.310107675086847,
+     "q25": 17.371108946133727,
+     "q75": 24.78173889070709,
+     "min": 9.620719533666314,
+     "max": 38.75253412077971,
+     "mean": 21.789038455310315
+    },
+    "10": {
+     "n": 15,
+     "median": 24.93972262431108,
+     "q25": 20.08438660047557,
+     "q75": 31.766050898868635,
+     "min": 14.436429846764565,
+     "max": 49.648668972920476,
+     "mean": 27.122225514986244
+    },
+    "15": {
+     "n": 15,
+     "median": 33.190218535174004,
+     "q25": 30.326734469357355,
+     "q75": 39.5389267107831,
+     "min": 22.117690187627105,
+     "max": 44.3847355748546,
+     "mean": 34.3971968238531
+    },
+    "20": {
+     "n": 15,
+     "median": 37.08634230783306,
+     "q25": 32.4695793349365,
+     "q75": 39.128223365009205,
+     "min": 6.9488021408963165,
+     "max": 60.9089355578368,
+     "mean": 35.88291205591947
+    },
+    "25": {
+     "n": 15,
+     "median": 28.962509974888093,
+     "q25": 26.23928058784274,
+     "q75": 38.49825222062031,
+     "min": 17.488997432832385,
+     "max": 54.07460697210231,
+     "mean": 32.56609118674418
+    }
+   },
+   "by_force": {
+    "1": {
+     "n": 25,
+     "median": 28.622307559031217,
+     "q25": 21.777222255172163,
+     "q75": 35.009005457242075,
+     "min": 9.620719533666314,
+     "max": 45.67454254839956,
+     "mean": 29.11173799575744
+    },
+    "2": {
+     "n": 25,
+     "median": 33.190218535174004,
+     "q25": 28.15565664114398,
+     "q75": 38.68509973483233,
+     "min": 22.86604131904289,
+     "max": 54.07460697210231,
+     "mean": 33.996609039908634
+    },
+    "3": {
+     "n": 25,
+     "median": 26.38913543944762,
+     "q25": 17.488997432832385,
+     "q75": 37.08634230783306,
+     "min": 6.9488021408963165,
+     "max": 60.9089355578368,
+     "mean": 27.946131386421907
+    }
+   },
+   "by_composition": {
+    "PVDF": {
+     "n": 15,
+     "median": 30.51379535242533,
+     "q25": 23.762830367794386,
+     "q75": 38.15990933888625,
+     "min": 16.62212663711927,
+     "max": 49.84581416575469,
+     "mean": 30.99614018751658
+    },
+    "PVDF+BaTiO3": {
+     "n": 15,
+     "median": 32.02829074579604,
+     "q25": 24.06183337585551,
+     "q75": 34.60547727795387,
+     "min": 14.441238147108008,
+     "max": 60.9089355578368,
+     "mean": 31.944851919244275
+    },
+    "PVDF+BaTiO3+%1CNT": {
+     "n": 15,
+     "median": 31.96945172064529,
+     "q25": 26.23928058784274,
+     "q75": 37.26325722741993,
+     "min": 9.620719533666314,
+     "max": 54.07460697210231,
+     "mean": 31.529375755608488
+    },
+    "PVDF+BaTiO3+%2CNT": {
+     "n": 15,
+     "median": 29.756644869998663,
+     "q25": 21.533555088806096,
+     "q75": 38.24878585972209,
+     "min": 13.435835334498105,
+     "max": 44.3847355748546,
+     "mean": 29.074312286062234
+    },
+    "PVDF+BaTiO3+%3CNT": {
+     "n": 15,
+     "median": 28.303917536519467,
+     "q25": 23.343414357867772,
+     "q75": 33.70099629572677,
+     "min": 6.9488021408963165,
+     "max": 41.15716192687907,
+     "mean": 28.21278388838173
+    }
+   },
+   "relative_se_of_recording_mean_pct": {
+    "n": 75,
+    "median": 8.457978473320475,
+    "q25": 6.666466583297717,
+    "q75": 10.313807412138047,
+    "min": 3.107598789848047,
+    "max": 17.33066011888869,
+    "mean": 8.59990167298502
+   },
+   "kruskal_freq_Hz": {
+    "H": 21.219929824561376,
+    "p": 0.000286405723504656
+   },
+   "kruskal_force_N": {
+    "H": 5.554021052631583,
+    "p": 0.062224247356631464
+   },
+   "kruskal_composition": {
+    "H": 0.8247017543859556,
+    "p": 0.9351061072929197
+   },
+   "spread": {
+    "within_recording_pooled_sd_V": 0.3421570898639762,
+    "between_condition_sd_of_recording_mean_cycle_amplitude_V": 0.8504211034648363,
+    "between_over_within_ratio": 2.4854697700489545,
+    "between_condition_sd_of_recording_target_V": 1.4366576618284361,
+    "within_recording_pooled_sd_log10": 0.1453748524871263,
+    "between_condition_sd_log10": 0.30125850177725305,
+    "between_over_within_ratio_log10": 2.072287583603437,
+    "icc1_log10": 0.7880607529752405,
+    "icc1_k0": 13.891115996379153,
+    "icc1_msb": 1.1127350975139254,
+    "icc1_msw": 0.021133847735653733,
+    "fraction_variance_between_conditions_log10": 0.7880607529752405
+   }
+  },
+  "vmax": {
+   "all": {
+    "n": 75,
+    "median": 36.679634426475474,
+    "q25": 29.414213677859063,
+    "q75": 48.03325221810374,
+    "min": 9.106863770913368,
+    "max": 67.00363120747234,
+    "mean": 38.22704469688793
+   },
+   "all_excluding_failed": {
+    "n": 74,
+    "median": 36.39347986808263,
+    "q25": 29.338174715337665,
+    "q75": 47.28012395081578,
+    "min": 9.106863770913368,
+    "max": 67.00363120747234,
+    "mean": 37.84881625008771
+   },
+   "all_nominal_period": {
+    "n": 75,
+    "median": 37.684702170342135,
+    "q25": 31.162154256114533,
+    "q75": 50.93887305389539,
+    "min": 5.65551417910871,
+    "max": 111.14933048665343,
+    "mean": 40.95958351947947
+   },
+   "clean_only": {
+    "n": 52,
+    "median": 36.696875004125744,
+    "q25": 29.48520217927457,
+    "q75": 46.939110580328304,
+    "min": 9.106863770913368,
+    "max": 65.34780416768696,
+    "mean": 37.683473176103114
+   },
+   "excluding_duplicates": {
+    "n": 72,
+    "median": 36.696875004125744,
+    "q25": 29.49025264038046,
+    "q75": 47.74194142708163,
+    "min": 9.106863770913368,
+    "max": 67.00363120747234,
+    "mean": 38.21143732122
+   },
+   "by_freq": {
+    "5": {
+     "n": 15,
+     "median": 28.559258793900764,
+     "q25": 20.295295218867118,
+     "q75": 33.261740650576954,
+     "min": 9.106863770913368,
+     "max": 49.96785324372102,
+     "mean": 27.749141923689912
+    },
+    "10": {
+     "n": 15,
+     "median": 31.145226358125377,
+     "q25": 26.301315548244553,
+     "q75": 36.33973478026324,
+     "min": 19.06445821727956,
+     "max": 67.00363120747234,
+     "mean": 33.67167423341205
+    },
+    "15": {
+     "n": 15,
+     "median": 42.54861313047629,
+     "q25": 36.696875004125744,
+     "q75": 52.10896603029047,
+     "min": 29.929935846197917,
+     "max": 62.52732271996522,
+     "mean": 45.17606908027514
+    },
+    "20": {
+     "n": 15,
+     "median": 43.90163792765659,
+     "q25": 37.72174143373912,
+     "q75": 48.70837775857623,
+     "min": 20.823641857723256,
+     "max": 65.34780416768696,
+     "mean": 43.10683310937709
+    },
+    "25": {
+     "n": 15,
+     "median": 36.107325309689784,
+     "q25": 33.18398804131962,
+     "q75": 52.12419805922521,
+     "min": 21.121097320686747,
+     "max": 66.21594976010464,
+     "mean": 41.431505137685505
+    }
+   },
+   "by_force": {
+    "1": {
+     "n": 25,
+     "median": 34.07547738773027,
+     "q25": 28.257951919135053,
+     "q75": 45.32100657832926,
+     "min": 9.106863770913368,
+     "max": 62.52732271996522,
+     "mean": 36.27136524364894
+    },
+    "2": {
+     "n": 25,
+     "median": 39.37670838738439,
+     "q25": 34.778221862776526,
+     "q75": 48.61587380014798,
+     "min": 29.566291602901856,
+     "max": 67.00363120747234,
+     "mean": 42.623438283297325
+    },
+    "3": {
+     "n": 25,
+     "median": 33.914075521572045,
+     "q25": 21.483825279351773,
+     "q75": 47.45063063605951,
+     "min": 13.660277269326306,
+     "max": 65.34780416768696,
+     "mean": 35.78633056371756
+    }
+   },
+   "by_composition": {
+    "PVDF": {
+     "n": 15,
+     "median": 35.48392735828753,
+     "q25": 31.358995762675754,
+     "q75": 42.28285675476022,
+     "min": 19.06445821727956,
+     "max": 65.09602833097432,
+     "mean": 37.16417720898121
+    },
+    "PVDF+BaTiO3": {
+     "n": 15,
+     "median": 37.684702170342135,
+     "q25": 29.220737214563854,
+     "q75": 48.90772139763038,
+     "min": 17.92862798273231,
+     "max": 67.00363120747234,
+     "mean": 39.34223160389888
+    },
+    "PVDF+BaTiO3+%1CNT": {
+     "n": 15,
+     "median": 39.37670838738439,
+     "q25": 35.010700415630915,
+     "q75": 47.711090998046046,
+     "min": 9.106863770913368,
+     "max": 66.21594976010464,
+     "mean": 40.926052956537745
+    },
+    "PVDF+BaTiO3+%2CNT": {
+     "n": 15,
+     "median": 32.453900561067194,
+     "q25": 27.68195256384236,
+     "q75": 49.8182465185328,
+     "min": 20.699256231191534,
+     "max": 62.52732271996522,
+     "mean": 38.650759263098635
+    },
+    "PVDF+BaTiO3+%3CNT": {
+     "n": 15,
+     "median": 34.07547738773027,
+     "q25": 28.76004383597566,
+     "q75": 44.77607957036206,
+     "min": 13.660277269326306,
+     "max": 53.217545275611165,
+     "mean": 35.05200245192321
+    }
+   },
+   "relative_se_of_recording_mean_pct": {
+    "n": 75,
+    "median": 10.393027384701229,
+    "q25": 8.349364829614611,
+    "q75": 13.041634695139308,
+    "min": 4.319758964049648,
+    "max": 21.908252301780617,
+    "mean": 10.863447903717624
+   },
+   "kruskal_freq_Hz": {
+    "H": 20.379789473684184,
+    "p": 0.0004201563636956737
+   },
+   "kruskal_force_N": {
+    "H": 4.860800000000012,
+    "p": 0.08800162489134675
+   },
+   "kruskal_composition": {
+    "H": 1.9469473684210925,
+    "p": 0.7455162088526919
+   },
+   "spread": {
+    "within_recording_pooled_sd_V": 0.27193356748540715,
+    "between_condition_sd_of_recording_mean_cycle_amplitude_V": 0.5353548817779218,
+    "between_over_within_ratio": 1.9686973062148743,
+    "between_condition_sd_of_recording_target_V": 0.8778272727894472,
+    "within_recording_pooled_sd_log10": 0.17914495662047975,
+    "between_condition_sd_log10": 0.3028855306254457,
+    "between_over_within_ratio_log10": 1.69072876144156,
+    "icc1_log10": 0.7070947236300108,
+    "icc1_k0": 13.891115996379153,
+    "icc1_msb": 1.108302143703891,
+    "icc1_msw": 0.03209291548255357,
+    "fraction_variance_between_conditions_log10": 0.7070947236300108
+   }
+  }
+ },
+ "split_half": {
+  "definition": "half A = samples 0-499, half B = samples 500-999 of each 1 s recording; each descriptor recomputed after removing the half's own mean; LOO = within-grid leave-one-condition-out plain GP (legacy gp()), X standardized inside the fold; X_on_Y = trained by LOO on half X values, scored against half Y values",
+  "ci_method": "percentile, 2000 record-level bootstrap resamples, seed 0",
+  "per_target": {
+   "rms_Voc": {
+    "halfA_mean_V": 0.10757434499234934,
+    "halfB_mean_V": 0.10758106626317918,
+    "ccc_raw": 0.970069618676794,
+    "ccc_raw_ci95_record_boot": [
+     0.9489756560166958,
+     0.9812368493777477
+    ],
+    "ccc_log10": 0.9762237831746803,
+    "ccc_log10_ci95_record_boot": [
+     0.957092403762302,
+     0.9864904146747079
+    ],
+    "pearson_log10": 0.9783860986420613,
+    "abs_rel_diff_pct": {
+     "n": 75,
+     "median": 9.788262688781213,
+     "q25": 5.306013227684142,
+     "q75": 15.411389395832252,
+     "min": 0.7343297952509986,
+     "max": 52.56875716975829,
+     "mean": 11.64344575359067
+    },
+    "abs_rel_diff_p90_pct": 22.176806717384533,
+    "signed_rel_diff_mean_pct": 2.786797116872276,
+    "wilcoxon_halfA_vs_halfB": {
+     "statistic": 1293.0,
+     "p": 0.4857818297256762
+    },
+    "acquisition_noise_ceiling_R2": 0.9848815149063785,
+    "noise_ceiling_assumption": "full-recording noise variance = mean((A-B)^2)/4, exact for a mean of two halves, approximate for V_pp and |V|_max which are extremes over the two halves",
+    "loo_R2_full": 0.9141997156901656,
+    "loo_MAE_full": 0.018458242037890663,
+    "loo_R2_legacy_full": 0.914199715657367,
+    "loo_R2_A_on_A": 0.9407381752152884,
+    "loo_R2_A_on_B": 0.9014528781725181,
+    "loo_R2_B_on_B": 0.8694326015045166,
+    "loo_R2_B_on_A": 0.8610714817727458,
+    "loo_R2_A_on_full": 0.9341625839565044,
+    "loo_R2_B_on_full": 0.8799265805334582,
+    "loo_MAE_A_on_A": 0.013813440928323244,
+    "loo_MAE_B_on_B": 0.02249222059399551,
+    "ccc_boot_percentiles": {
+     "p2_5": 0.9489756560166958,
+     "p25": 0.9634124289234133,
+     "p50": 0.9692551296069796,
+     "p75": 0.9741747286155276,
+     "p97_5": 0.9812368493777477
+    }
+   },
+   "Vpp": {
+    "halfA_mean_V": 1.3709826580569067,
+    "halfB_mean_V": 1.3913060032325153,
+    "ccc_raw": 0.9231287317912459,
+    "ccc_raw_ci95_record_boot": [
+     0.875133452352242,
+     0.9554229571533663
+    ],
+    "ccc_log10": 0.9420117996426012,
+    "ccc_log10_ci95_record_boot": [
+     0.9031567414552062,
+     0.9635959525959793
+    ],
+    "pearson_log10": 0.9440722717355476,
+    "abs_rel_diff_pct": {
+     "n": 75,
+     "median": 16.606356137625454,
+     "q25": 9.362068577031248,
+     "q75": 32.76332147417071,
+     "min": 0.7326070455800396,
+     "max": 64.43523567664757,
+     "mean": 20.350694562078203
+    },
+    "abs_rel_diff_p90_pct": 37.99653648428465,
+    "signed_rel_diff_mean_pct": 2.7459528275779057,
+    "wilcoxon_halfA_vs_halfB": {
+     "statistic": 1380.0,
+     "p": 0.8121715935727583
+    },
+    "acquisition_noise_ceiling_R2": 0.9694390855599699,
+    "noise_ceiling_assumption": "full-recording noise variance = mean((A-B)^2)/4, exact for a mean of two halves, approximate for V_pp and |V|_max which are extremes over the two halves",
+    "loo_R2_full": 0.7772547974491723,
+    "loo_MAE_full": 0.3806800443341814,
+    "loo_R2_legacy_full": 0.7772547532528207,
+    "loo_R2_A_on_A": 0.8189644363998451,
+    "loo_R2_A_on_B": 0.7897277405780343,
+    "loo_R2_B_on_B": 0.8193496858334863,
+    "loo_R2_B_on_A": 0.7415332440763127,
+    "loo_R2_A_on_full": 0.7856719354838533,
+    "loo_R2_B_on_full": 0.800572723673175,
+    "loo_MAE_A_on_A": 0.3407424716184631,
+    "loo_MAE_B_on_B": 0.36784505462226874,
+    "ccc_boot_percentiles": {
+     "p2_5": 0.875133452352242,
+     "p25": 0.9069210940301144,
+     "p50": 0.9199642721064882,
+     "p75": 0.9328899233214099,
+     "p97_5": 0.9554229571533663
+    }
+   },
+   "Vmax": {
+    "halfA_mean_V": 0.8769923755786149,
+    "halfB_mean_V": 0.895370669813034,
+    "ccc_raw": 0.8890217706321045,
+    "ccc_raw_ci95_record_boot": [
+     0.7872351353856059,
+     0.9332758074153165
+    ],
+    "ccc_log10": 0.8997082500657431,
+    "ccc_log10_ci95_record_boot": [
+     0.832616419769823,
+     0.9378232090625874
+    ],
+    "pearson_log10": 0.9021802505175505,
+    "abs_rel_diff_pct": {
+     "n": 75,
+     "median": 22.446945438217178,
+     "q25": 9.253565501437166,
+     "q75": 39.941964819419596,
+     "min": 0.19559089956390838,
+     "max": 81.89265635810688,
+     "mean": 25.944777165841916
+    },
+    "abs_rel_diff_p90_pct": 50.31241260815789,
+    "signed_rel_diff_mean_pct": 2.9259363363994804,
+    "wilcoxon_halfA_vs_halfB": {
+     "statistic": 1387.0,
+     "p": 0.8409635326867296
+    },
+    "acquisition_noise_ceiling_R2": 0.9544216356421251,
+    "noise_ceiling_assumption": "full-recording noise variance = mean((A-B)^2)/4, exact for a mean of two halves, approximate for V_pp and |V|_max which are extremes over the two halves",
+    "loo_R2_full": 0.7781141178764932,
+    "loo_MAE_full": 0.2698810072663007,
+    "loo_R2_legacy_full": 0.7781141251452135,
+    "loo_R2_A_on_A": 0.7360955542339475,
+    "loo_R2_A_on_B": 0.7300265912264456,
+    "loo_R2_B_on_B": 0.7144263270728726,
+    "loo_R2_B_on_A": 0.7005466580074013,
+    "loo_R2_A_on_full": 0.7287160690541266,
+    "loo_R2_B_on_full": 0.7464648423517637,
+    "loo_MAE_A_on_A": 0.2789407081237946,
+    "loo_MAE_B_on_B": 0.2835404714831554,
+    "ccc_boot_percentiles": {
+     "p2_5": 0.7872351353856059,
+     "p25": 0.8604742594360445,
+     "p50": 0.8846103964430011,
+     "p75": 0.9050148951108535,
+     "p97_5": 0.9332758074153165
+    }
+   }
+  },
+  "halves": {
+   "A": {
+    "rms_Voc": [
+     0.029913688425805066,
+     0.0456663939820291,
+     0.08866539054391609,
+     0.12317978446887551,
+     0.06266940992657902,
+     0.045922245646647576,
+     0.06063912914034422,
+     0.0916209714320296,
+     0.1470502973211055,
+     0.06129641061346978,
+     0.05428621162578711,
+     0.09949325271548466,
+     0.12368637788287867,
+     0.18609892749003915,
+     0.055255115657607344,
+     0.05522277551882299,
+     0.08014706743377042,
+     0.11965119153769788,
+     0.15216576444881424,
+     0.05769666624515835,
+     0.06564045951661185,
+     0.08395120662890865,
+     0.12599337126565655,
+     0.17218215150107027,
+     0.06304723838215187,
+     0.06952048185499234,
+     0.11005717434186289,
+     0.1536037403279148,
+     0.21968410841455163,
+     0.08482042315601332,
+     0.010095782967853458,
+     0.014777987949771783,
+     0.04139116886876132,
+     0.05304774788340976,
+     0.034885322519619906,
+     0.058958306149969275,
+     0.08687305831123743,
+     0.14162547639269377,
+     0.17838007963761773,
+     0.06355668711135534,
+     0.0666951823387117,
+     0.11506808808830361,
+     0.1604899811244688,
+     0.23626319063520973,
+     0.08711755626381805,
+     0.03870074596581162,
+     0.04343691146176998,
+     0.05693721797097217,
+     0.06450699412267079,
+     0.05867603758719035,
+     0.07506185089485179,
+     0.09604867376471564,
+     0.16873985171176653,
+     0.29433413458510044,
+     0.10223534626005792,
+     0.0929777428418036,
+     0.16161501793615754,
+     0.21876133202760487,
+     0.4113271322491028,
+     0.13657276805764187,
+     0.028418318530934867,
+     0.03406990951397077,
+     0.060558364583329326,
+     0.09523130703251696,
+     0.032491750374892,
+     0.07812371713769081,
+     0.0909809002986619,
+     0.14886586479294872,
+     0.28105681596996074,
+     0.09845595775982467,
+     0.08506320466152077,
+     0.1408376388884712,
+     0.19022004898884226,
+     0.3428802168147947,
+     0.10283705795122523
+    ],
+    "Vpp": [
+     0.367269,
+     0.622317,
+     1.152816,
+     1.254835,
+     0.8059509999999999,
+     0.873284,
+     0.9830761292000001,
+     1.1813808,
+     2.7035189531999997,
+     0.75983888,
+     0.581509,
+     0.964081,
+     1.270138,
+     2.08169885,
+     0.703932,
+     0.663124,
+     0.8161529999999999,
+     1.249734,
+     2.310733,
+     0.647821,
+     0.9365346,
+     1.20647772,
+     1.498724602184,
+     1.62402193,
+     0.724336,
+     0.889574795704511,
+     1.563425144199984,
+     1.826282484835352,
+     3.71193037034833,
+     0.6087547653200001,
+     0.153028,
+     0.13772600000000002,
+     0.540701,
+     0.7498400000000001,
+     0.311158,
+     0.70102913301,
+     0.97709112126955,
+     1.9196610002578889,
+     2.54291511600835,
+     0.9109051717139909,
+     0.7817788585587,
+     1.0595856543272,
+     1.71551586259592,
+     3.20490246305589,
+     0.864397875471288,
+     0.37237,
+     0.392773,
+     0.805951,
+     0.679384,
+     0.545802,
+     1.033834338682062,
+     0.8947644312459501,
+     2.3885264695630832,
+     3.668020802953802,
+     0.950988832136374,
+     0.766249600759447,
+     1.398781994536835,
+     2.468293808439145,
+     5.9538779184573905,
+     1.262597555729179,
+     0.40297499999999997,
+     0.438682,
+     0.7141329999999999,
+     1.152816,
+     0.2785133,
+     1.0133942737716348,
+     1.413442663742798,
+     1.9554236319285159,
+     4.49903139479573,
+     1.100780549991948,
+     0.952260774937358,
+     1.341307596747006,
+     3.12131205971445,
+     6.492977504874499,
+     1.2109255699998291
+    ],
+    "Vmax": [
+     0.210485684,
+     0.374665436,
+     0.726957906,
+     0.693495376,
+     0.5728271199999999,
+     0.5689974912,
+     0.6886849368936,
+     0.632901636,
+     1.397742333858,
+     0.42518444112,
+     0.366412016,
+     0.519114552,
+     0.973344412,
+     1.16907354954,
+     0.5590952060000001,
+     0.445078678,
+     0.500914216,
+     0.826181556,
+     1.4809807720000001,
+     0.33364320199999997,
+     0.7549388064,
+     0.86827860576,
+     1.151963097999952,
+     1.1103536983120001,
+     0.49580304599999997,
+     0.4695109475057669,
+     1.153851610999644,
+     1.312796078203377,
+     1.9890768361042956,
+     0.3428041156798956,
+     0.0800949,
+     0.07840138,
+     0.393191322,
+     0.526101986,
+     0.23650081,
+     0.53321365306458,
+     0.7320689060043641,
+     0.9734711057405389,
+     1.6266244891395611,
+     0.5988589336851975,
+     0.5304956995338949,
+     0.5346416185213041,
+     1.032843520592131,
+     1.8799912433588792,
+     0.5256929450891972,
+     0.267739346,
+     0.318625934,
+     0.689281998,
+     0.5283221539999999,
+     0.393497432,
+     0.8884035006489762,
+     0.598895810362356,
+     2.0427647551976835,
+     3.0511648690233155,
+     0.6856179774100171,
+     0.4738763290038843,
+     0.7739934188584371,
+     1.7524879622031089,
+     3.3909679581629377,
+     1.00035795783821,
+     0.232419982,
+     0.238479938,
+     0.42013474199999995,
+     0.697117022,
+     0.2232215388,
+     0.6201968047225935,
+     0.7257549768197226,
+     0.9925036039600081,
+     2.5595898744212318,
+     0.6743567960684056,
+     0.5094216926848252,
+     0.9342414844829869,
+     1.9430604072748008,
+     3.9225219282328028,
+     0.8280600979136361
+    ]
+   },
+   "B": {
+    "rms_Voc": [
+     0.02719509239981795,
+     0.049409172347830314,
+     0.10959964632462882,
+     0.12574679205863307,
+     0.07159568949469344,
+     0.04224640043471168,
+     0.06502540953176446,
+     0.08543505577550647,
+     0.14199515472612875,
+     0.0677086712513449,
+     0.06697685462167584,
+     0.10658020572915967,
+     0.10875592559013925,
+     0.20939563510922,
+     0.053515780563503285,
+     0.04681991672386661,
+     0.06894886164048297,
+     0.10813312308523924,
+     0.15573111224688507,
+     0.060895964865186225,
+     0.05951517822083167,
+     0.049004599258804966,
+     0.10754251673724326,
+     0.13892155308200993,
+     0.06675603119886635,
+     0.0690059180896436,
+     0.09177275801083949,
+     0.12228181461689895,
+     0.2545246910306217,
+     0.08606792401401801,
+     0.009414028973972623,
+     0.014228885602910581,
+     0.031082025224413612,
+     0.050384314542433695,
+     0.03160624267194973,
+     0.06519414287097458,
+     0.08148439440453129,
+     0.1386562148679029,
+     0.19346089237145914,
+     0.06032547853312841,
+     0.06441313377363042,
+     0.13782888795412443,
+     0.17920253212462386,
+     0.3055229561993997,
+     0.08406154311441465,
+     0.036375497333967874,
+     0.043757057107201854,
+     0.04006399040306769,
+     0.059269047765848605,
+     0.05147923726487112,
+     0.052174898855583754,
+     0.11544431569717377,
+     0.11873414333383614,
+     0.35239867735769453,
+     0.08969585990119326,
+     0.10894284938721872,
+     0.16705150553073891,
+     0.24733807397381077,
+     0.4550682737275821,
+     0.1384399175649975,
+     0.02716845749031321,
+     0.033442260922293576,
+     0.06863369779256749,
+     0.10249943796626743,
+     0.032118423779560465,
+     0.06818600541277656,
+     0.07703286098606238,
+     0.1386859956340936,
+     0.26107266021809955,
+     0.0886856206763351,
+     0.08919649533591195,
+     0.12848861824301586,
+     0.16952419120459863,
+     0.3121286530201891,
+     0.1315141238415024
+    ],
+    "Vpp": [
+     0.42338,
+     0.6886289999999999,
+     1.356854,
+     1.606801,
+     0.9028689999999999,
+     0.85288,
+     0.7790409119999999,
+     0.9793836,
+     2.1696308127000004,
+     0.86838664,
+     0.5968119999999999,
+     1.050796,
+     1.076301,
+     3.1225502,
+     0.7804460000000001,
+     0.571307,
+     0.6376200000000001,
+     1.1477140000000001,
+     2.142401,
+     0.744739,
+     1.0375344,
+     0.87042708,
+     1.2471903888479998,
+     1.6359633709999999,
+     0.877365,
+     0.636505468768673,
+     1.11828540609599,
+     1.3209540373409459,
+     4.30288602618329,
+     0.6783273879764,
+     0.147927,
+     0.153029,
+     0.321361,
+     0.515197,
+     0.275451,
+     1.0553955411300002,
+     0.96080613622721,
+     1.4514526419452132,
+     2.20666684874669,
+     0.917703031173901,
+     0.9381338639652,
+     1.51369803114299,
+     2.1191713086544,
+     4.65344458546124,
+     0.8125335962440949,
+     0.382571,
+     0.331562,
+     0.413177,
+     0.663124,
+     0.387673,
+     0.563207152977933,
+     1.3297180434583462,
+     1.224496527846813,
+     4.4540267282496355,
+     0.675469663945541,
+     0.999454723153518,
+     1.6687194254097781,
+     3.299715767063068,
+     8.41102520941707,
+     1.235444691173826,
+     0.357067,
+     0.48969100000000004,
+     0.928374,
+     1.305844,
+     0.29177590000000003,
+     0.685531506421436,
+     1.1967165004596358,
+     2.032862957782966,
+     3.174157511004464,
+     1.0328306399591178,
+     1.028442234316854,
+     1.442922714104816,
+     2.193354085109239,
+     6.15868590017028,
+     1.724359044810063
+    ],
+    "Vmax": [
+     0.263933942,
+     0.34809947999999996,
+     0.804216674,
+     0.9028588359999999,
+     0.632058962,
+     0.5713888464,
+     0.4008104741788,
+     0.5726212392,
+     1.1246867770632,
+     0.45061458832,
+     0.38741792999999997,
+     0.6503715000000001,
+     0.7820579360000001,
+     1.6701306899,
+     0.643546342,
+     0.402873014,
+     0.366371256,
+     0.74151515,
+     1.366729578,
+     0.410096002,
+     0.756536418,
+     0.6635192544,
+     0.745924729166912,
+     1.033665703344,
+     0.499700228,
+     0.3740509879976757,
+     0.750553475793556,
+     0.6744313507430862,
+     2.950708359959397,
+     0.3738914689311806,
+     0.083145302,
+     0.094204278,
+     0.166138554,
+     0.357638348,
+     0.194856232,
+     0.8017302213103801,
+     0.5306251638570966,
+     0.8509893375856026,
+     1.1528050970794002,
+     0.7147203283288001,
+     0.7079588854667647,
+     0.97542359273977,
+     1.4324624319731787,
+     3.0299169943486146,
+     0.5081974287881338,
+     0.287713864,
+     0.256343726,
+     0.28879527,
+     0.533845334,
+     0.257527152,
+     0.42641738514827016,
+     1.0096408419448688,
+     0.8558772762607378,
+     3.6163017579135586,
+     0.44870749012258354,
+     0.7113124786785471,
+     1.1153428523937226,
+     2.6286515363510548,
+     4.559440063814713,
+     0.897068583499738,
+     0.218514638,
+     0.30348610600000003,
+     0.576775254,
+     0.881230536,
+     0.23033029500000002,
+     0.3754033156179055,
+     0.7058177067447471,
+     1.5665815830343965,
+     2.2449311284781865,
+     0.6102392289912676,
+     0.5457221506118487,
+     0.9360705645636782,
+     1.2478491041736832,
+     3.66004221847348,
+     1.2406274052850101
+    ]
+   }
+  }
+ },
+ "anova_split_half": {
+  "specification": "three-factor factorial ANOVA, OLS on 2N rows (N conditions x 2 half-recordings), composition x force x frequency with all two-way interactions and the three-way interaction as a separate term; Type II SS by nested-model comparison with rank-based df (identical to anova_lm typ=2 for the balanced 75-condition design); the error term (df = 2N - rank) is the between-half variation inside each recording = acquisition repeatability, not pure error; partial eta^2 = SS/(SS+SS_error)",
+  "log10": {
+   "rms_Voc": {
+    "terms": {
+     "composition": {
+      "df": 4,
+      "SS": 0.704393631244066,
+      "F": 82.5766775638713,
+      "p": 1.0520908726890003e-26,
+      "partial_eta2": 0.8149549511461981
+     },
+     "force": {
+      "df": 2,
+      "SS": 4.785047526491688,
+      "F": 1121.910560221956,
+      "p": 1.3100129841362297e-56,
+      "partial_eta2": 0.9676559785751639
+     },
+     "frequency": {
+      "df": 4,
+      "SS": 5.318266485026069,
+      "F": 623.4650020289213,
+      "p": 1.053082600971961e-56,
+      "partial_eta2": 0.9708041700353246
+     },
+     "composition:force": {
+      "df": 8,
+      "SS": 1.7360265246726216,
+      "F": 101.75794911506506,
+      "p": 4.260647836084055e-37,
+      "partial_eta2": 0.9156415799755904
+     },
+     "composition:frequency": {
+      "df": 16,
+      "SS": 0.11813634112302152,
+      "F": 3.462306484891802,
+      "p": 0.00013374138450384556,
+      "partial_eta2": 0.4248329688944471
+     },
+     "force:frequency": {
+      "df": 8,
+      "SS": 0.1910917172599812,
+      "F": 11.200924044013963,
+      "p": 2.7898457903844745e-10,
+      "partial_eta2": 0.5443704020317175
+     },
+     "composition:force:frequency": {
+      "df": 32,
+      "SS": 0.4353277340660453,
+      "F": 6.379231074799232,
+      "p": 2.2304592358850386e-11,
+      "partial_eta2": 0.7313131852628784
+     },
+     "acquisition_repeatability": {
+      "df": 75,
+      "SS": 0.15994080865763352,
+      "MS": 0.0021325441154351134
+     }
+    },
+    "ordering_by_partial_eta2": [
+     "frequency",
+     "force",
+     "composition:force",
+     "composition",
+     "composition:force:frequency",
+     "force:frequency",
+     "composition:frequency"
+    ],
+    "model_R2": 0.9881069256313049
+   },
+   "Vpp": {
+    "terms": {
+     "composition": {
+      "df": 4,
+      "SS": 0.569403930363169,
+      "F": 22.976718514619456,
+      "p": 2.029820222869824e-12,
+      "partial_eta2": 0.550647626569755
+     },
+     "force": {
+      "df": 2,
+      "SS": 5.2404127684022255,
+      "F": 422.92468548012664,
+      "p": 1.4378879227745453e-41,
+      "partial_eta2": 0.91855345470694
+     },
+     "frequency": {
+      "df": 4,
+      "SS": 6.685300764507271,
+      "F": 269.76679587315607,
+      "p": 1.0919251945308092e-43,
+      "partial_eta2": 0.935012448952042
+     },
+     "composition:force": {
+      "df": 8,
+      "SS": 1.989024914192135,
+      "F": 40.130795675057314,
+      "p": 4.416465885991685e-24,
+      "partial_eta2": 0.8106282330752752
+     },
+     "composition:frequency": {
+      "df": 16,
+      "SS": 0.16905327897115674,
+      "F": 1.705419210232832,
+      "p": 0.0639208507901333,
+      "partial_eta2": 0.26676689539624576
+     },
+     "force:frequency": {
+      "df": 8,
+      "SS": 0.3669665829456381,
+      "F": 7.403960028196416,
+      "p": 3.229455576592302e-07,
+      "partial_eta2": 0.4412645370007639
+     },
+     "composition:force:frequency": {
+      "df": 32,
+      "SS": 0.5354001114974454,
+      "F": 2.7005735732115856,
+      "p": 0.00021918175161957928,
+      "partial_eta2": 0.5353688227998036
+     },
+     "acquisition_repeatability": {
+      "df": 75,
+      "SS": 0.4646583317594446,
+      "MS": 0.006195444423459261
+     }
+    },
+    "ordering_by_partial_eta2": [
+     "frequency",
+     "force",
+     "composition:force",
+     "composition",
+     "composition:force:frequency",
+     "force:frequency",
+     "composition:frequency"
+    ],
+    "model_R2": 0.9709955099268385
+   },
+   "Vmax": {
+    "terms": {
+     "composition": {
+      "df": 4,
+      "SS": 0.7407019552570371,
+      "F": 17.098146418630453,
+      "p": 5.262433352156602e-10,
+      "partial_eta2": 0.4769604045620742
+     },
+     "force": {
+      "df": 2,
+      "SS": 5.099831026409859,
+      "F": 235.44600356717302,
+      "p": 4.7129713170887034e-33,
+      "partial_eta2": 0.862610188425891
+     },
+     "frequency": {
+      "df": 4,
+      "SS": 6.316786888442206,
+      "F": 145.81485352821846,
+      "p": 1.4430468376600677e-34,
+      "partial_eta2": 0.8860631562693618
+     },
+     "composition:force": {
+      "df": 8,
+      "SS": 1.7742930647219026,
+      "F": 20.478630031189883,
+      "p": 4.703006714256915e-16,
+      "partial_eta2": 0.6859678374051874
+     },
+     "composition:frequency": {
+      "df": 16,
+      "SS": 0.35611655293542555,
+      "F": 2.055122482454801,
+      "p": 0.019692119230683747,
+      "partial_eta2": 0.3047957212201191
+     },
+     "force:frequency": {
+      "df": 8,
+      "SS": 0.3983495609732075,
+      "F": 4.59769214255247,
+      "p": 0.00013630491846971184,
+      "partial_eta2": 0.3290484106889214
+     },
+     "composition:force:frequency": {
+      "df": 32,
+      "SS": 0.6925127055035771,
+      "F": 1.9982199910882406,
+      "p": 0.007422138343032139,
+      "partial_eta2": 0.4602104563572585
+     },
+     "acquisition_repeatability": {
+      "df": 75,
+      "SS": 0.8122612428875127,
+      "MS": 0.010830149905166836
+     }
+    },
+    "ordering_by_partial_eta2": [
+     "frequency",
+     "force",
+     "composition:force",
+     "composition",
+     "composition:force:frequency",
+     "force:frequency",
+     "composition:frequency"
+    ],
+    "model_R2": 0.9498320908088377
+   }
+  },
+  "raw": {
+   "rms_Voc": {
+    "terms": {
+     "composition": {
+      "df": 4,
+      "SS": 0.047977108540636776,
+      "F": 66.44025899529987,
+      "p": 6.739053736253041e-24,
+      "partial_eta2": 0.7799044137072705
+     },
+     "force": {
+      "df": 2,
+      "SS": 0.21824074732526016,
+      "F": 604.4537579140083,
+      "p": 5.556253902632002e-47,
+      "partial_eta2": 0.9415845774906684
+     },
+     "frequency": {
+      "df": 4,
+      "SS": 0.4078718101734339,
+      "F": 564.8341371354568,
+      "p": 3.804694094681808e-55,
+      "partial_eta2": 0.967870956719223
+     },
+     "composition:force": {
+      "df": 8,
+      "SS": 0.07364728707327714,
+      "F": 50.99457820916013,
+      "p": 2.9238588857286428e-27,
+      "partial_eta2": 0.8447065512447545
+     },
+     "composition:frequency": {
+      "df": 16,
+      "SS": 0.026823073810086744,
+      "F": 9.286366067073093,
+      "p": 4.266833198499579e-12,
+      "partial_eta2": 0.6645523881865983
+     },
+     "force:frequency": {
+      "df": 8,
+      "SS": 0.07658951678073367,
+      "F": 53.031825864690504,
+      "p": 8.570162719478217e-28,
+      "partial_eta2": 0.8497760482110287
+     },
+     "composition:force:frequency": {
+      "df": 32,
+      "SS": 0.04004670294727963,
+      "F": 6.932246952396746,
+      "p": 3.040100809292746e-12,
+      "partial_eta2": 0.7473317410486623
+     },
+     "acquisition_repeatability": {
+      "df": 75,
+      "SS": 0.013539543625207378,
+      "MS": 0.0001805272483360984
+     }
+    },
+    "ordering_by_partial_eta2": [
+     "frequency",
+     "force",
+     "force:frequency",
+     "composition:force",
+     "composition",
+     "composition:force:frequency",
+     "composition:frequency"
+    ],
+    "model_R2": 0.9850348093103753
+   },
+   "Vpp": {
+    "terms": {
+     "composition": {
+      "df": 4,
+      "SS": 8.532716247003023,
+      "F": 17.137754946194736,
+      "p": 5.054749590791814e-10,
+      "partial_eta2": 0.47753767188526486
+     },
+     "force": {
+      "df": 2,
+      "SS": 42.56111924556524,
+      "F": 170.96596458893382,
+      "p": 1.1543939879122656e-28,
+      "partial_eta2": 0.8201145204976513
+     },
+     "frequency": {
+      "df": 4,
+      "SS": 106.43383319326979,
+      "F": 213.76978894511907,
+      "p": 3.5094263044477274e-40,
+      "partial_eta2": 0.9193617021369931
+     },
+     "composition:force": {
+      "df": 8,
+      "SS": 15.238341406216417,
+      "F": 15.302920737456517,
+      "p": 4.435939173634786e-13,
+      "partial_eta2": 0.62010575770387
+     },
+     "composition:frequency": {
+      "df": 16,
+      "SS": 11.537355277184087,
+      "F": 5.7931250068527405,
+      "p": 6.038875339012105e-08,
+      "partial_eta2": 0.5527461390007672
+     },
+     "force:frequency": {
+      "df": 8,
+      "SS": 34.81443733872145,
+      "F": 34.96197918864468,
+      "p": 2.5476974372610203e-22,
+      "partial_eta2": 0.7885512235709313
+     },
+     "composition:force:frequency": {
+      "df": 32,
+      "SS": 14.416216687760835,
+      "F": 3.619327973856869,
+      "p": 2.427444386145921e-06,
+      "partial_eta2": 0.6069563386097931
+     },
+     "acquisition_repeatability": {
+      "df": 75,
+      "SS": 9.335436883862696,
+      "MS": 0.12447249178483595
+     }
+    },
+    "ordering_by_partial_eta2": [
+     "frequency",
+     "force",
+     "force:frequency",
+     "composition:force",
+     "composition:force:frequency",
+     "composition:frequency",
+     "composition"
+    ],
+    "model_R2": 0.9615619146727283
+   },
+   "Vmax": {
+    "terms": {
+     "composition": {
+      "df": 4,
+      "SS": 5.029138643792184,
+      "F": 18.140793932397777,
+      "p": 1.8485324918045922e-10,
+      "partial_eta2": 0.4917431152509405
+     },
+     "force": {
+      "df": 2,
+      "SS": 16.344454150359677,
+      "F": 117.91338266054399,
+      "p": 7.00417590124945e-24,
+      "partial_eta2": 0.7587080381494044
+     },
+     "frequency": {
+      "df": 4,
+      "SS": 38.95850745235637,
+      "F": 140.52868804469256,
+      "p": 4.888837644361038e-34,
+      "partial_eta2": 0.8822818028565199
+     },
+     "composition:force": {
+      "df": 8,
+      "SS": 5.467604523352643,
+      "F": 9.861200295643002,
+      "p": 2.9359756429409547e-09,
+      "partial_eta2": 0.5126376386232869
+     },
+     "composition:frequency": {
+      "df": 16,
+      "SS": 6.143520293613621,
+      "F": 5.540130406004865,
+      "p": 1.3202932915751327e-07,
+      "partial_eta2": 0.5416826954122368
+     },
+     "force:frequency": {
+      "df": 8,
+      "SS": 10.52346599258012,
+      "F": 18.97979371294903,
+      "p": 3.0240942254558005e-15,
+      "partial_eta2": 0.6693680759977232
+     },
+     "composition:force:frequency": {
+      "df": 32,
+      "SS": 5.999145082844612,
+      "F": 2.704967550774749,
+      "p": 0.00021439879168087955,
+      "partial_eta2": 0.5357731985540881
+     },
+     "acquisition_repeatability": {
+      "df": 75,
+      "SS": 5.198027711604116,
+      "MS": 0.06930703615472154
+     }
+    },
+    "ordering_by_partial_eta2": [
+     "frequency",
+     "force",
+     "force:frequency",
+     "composition:frequency",
+     "composition:force:frequency",
+     "composition:force",
+     "composition"
+    ],
+    "model_R2": 0.9445033815826702
+   }
+  },
+  "legacy_spec_full_recording_log10": {
+   "rms_Voc": {
+    "residual_df": 32,
+    "residual_MS": 0.006698633503208443,
+    "partial_eta2": {
+     "composition": 0.6268412136819487,
+     "force": 0.9179705117409649,
+     "frequency": 0.9254526616821352,
+     "composition:force": 0.8005909861705238,
+     "composition:frequency": 0.21144072409984424,
+     "force:frequency": 0.31174714058006064
+    }
+   },
+   "Vpp": {
+    "residual_df": 32,
+    "residual_MS": 0.00965282687919864,
+    "partial_eta2": {
+     "composition": 0.456373237805207,
+     "force": 0.8986446464155525,
+     "frequency": 0.9196748190268301,
+     "composition:force": 0.7637523759760338,
+     "composition:frequency": 0.22304132772015722,
+     "force:frequency": 0.4409784875322129
+    }
+   },
+   "Vmax": {
+    "residual_df": 32,
+    "residual_MS": 0.012319740669174796,
+    "partial_eta2": {
+     "composition": 0.5118854595603279,
+     "force": 0.8726583863095521,
+     "frequency": 0.8953382571179551,
+     "composition:force": 0.6805217543984304,
+     "composition:frequency": 0.32401504576260115,
+     "force:frequency": 0.4152851864243364
+    }
+   }
+  }
+ },
+ "bootstrap": {
+  "method": "percentile bootstrap of R^2 computed on the fixed out-of-fold within-grid LOO predictions of the plain GP (no model refit), as in the legacy record-level bootstrap (regression/reg_stats.py boot_ci); record level resamples the N conditions, cluster level resamples the 5 specimens with replacement and takes all conditions of each drawn specimen; both use the same 2000 draws for every target, seed 0",
+  "n_boot": 2000,
+  "seed": 0,
+  "cluster_possible_multisets": 126,
+  "cluster_distinct_multisets_drawn": 122,
+  "cluster_draws_single_specimen_only": 2,
+  "cluster_distinct_specimens_per_draw_counts": {
+   "1": 2,
+   "2": 188,
+   "3": 940,
+   "4": 794,
+   "5": 76
+  },
+  "per_target": {
+   "rms_Voc": {
+    "loo_R2": 0.9141997156901656,
+    "record_ci95": [
+     0.8499538663229933,
+     0.9385216511236671
+    ],
+    "cluster_ci95": [
+     0.8773386602330552,
+     0.9297625180971939
+    ],
+    "record_percentiles": {
+     "p2_5": 0.8499538663229933,
+     "p25": 0.896636492399324,
+     "p50": 0.9117287510742436,
+     "p75": 0.9232941035125981,
+     "p97_5": 0.9385216511236671
+    },
+    "cluster_percentiles": {
+     "p2_5": 0.8773386602330552,
+     "p25": 0.9043233901136131,
+     "p50": 0.913071368754977,
+     "p75": 0.919514437592666,
+     "p97_5": 0.9297625180971939
+    },
+    "record_sd": 0.0226733620008313,
+    "cluster_sd": 0.012819073712548345,
+    "within_specimen_loo_R2": {
+     "PVDF": 0.8869767031844003,
+     "PVDF+BaTiO3": 0.8815355208545403,
+     "PVDF+BaTiO3+%1CNT": 0.87085857104125,
+     "PVDF+BaTiO3+%2CNT": 0.9158033333592767,
+     "PVDF+BaTiO3+%3CNT": 0.9417244344552163
+    }
+   },
+   "Vpp": {
+    "loo_R2": 0.7772547974491723,
+    "record_ci95": [
+     0.5828971507449177,
+     0.8693395401240497
+    ],
+    "cluster_ci95": [
+     0.45478794646219733,
+     0.884481462879327
+    ],
+    "record_percentiles": {
+     "p2_5": 0.5828971507449177,
+     "p25": 0.7271138218055787,
+     "p50": 0.7753224032155215,
+     "p75": 0.8132667276397426,
+     "p97_5": 0.8693395401240497
+    },
+    "cluster_percentiles": {
+     "p2_5": 0.45478794646219733,
+     "p25": 0.6933472021062019,
+     "p50": 0.7722638795857802,
+     "p75": 0.8195044353586293,
+     "p97_5": 0.884481462879327
+    },
+    "record_sd": 0.07305288882072208,
+    "cluster_sd": 0.10644121963682597,
+    "within_specimen_loo_R2": {
+     "PVDF": 0.5790935299047758,
+     "PVDF+BaTiO3": 0.3258805622583417,
+     "PVDF+BaTiO3+%1CNT": 0.5504525493318815,
+     "PVDF+BaTiO3+%2CNT": 0.8641634659222426,
+     "PVDF+BaTiO3+%3CNT": 0.9388146178770023
+    }
+   },
+   "Vmax": {
+    "loo_R2": 0.7781141178764932,
+    "record_ci95": [
+     0.609878406718756,
+     0.865626957576044
+    ],
+    "cluster_ci95": [
+     0.5027375088290769,
+     0.8821489970618499
+    ],
+    "record_percentiles": {
+     "p2_5": 0.609878406718756,
+     "p25": 0.7309841206323542,
+     "p50": 0.7743429503686969,
+     "p75": 0.8086199782837326,
+     "p97_5": 0.865626957576044
+    },
+    "cluster_percentiles": {
+     "p2_5": 0.5027375088290769,
+     "p25": 0.7228647371828714,
+     "p50": 0.7763900826340272,
+     "p75": 0.8147301773726392,
+     "p97_5": 0.8821489970618499
+    },
+    "record_sd": 0.06742513692968301,
+    "cluster_sd": 0.09020377856226604,
+    "within_specimen_loo_R2": {
+     "PVDF": 0.0864779538659165,
+     "PVDF+BaTiO3": 0.3889807739149507,
+     "PVDF+BaTiO3+%1CNT": 0.8544103478354631,
+     "PVDF+BaTiO3+%2CNT": 0.7839842483898743,
+     "PVDF+BaTiO3+%3CNT": 0.934758723344793
+    }
+   }
+  }
+ },
+ "held_out_specimen": {
+  "definition": "train on the conditions of four specimens, predict all conditions of the fifth (15 each for the full design); within-level R^2 and MAE use only the held-out conditions (their own mean in the R^2 denominator); pooled R^2 uses all out-of-fold predictions with the global mean (legacy)",
+  "per_target": {
+   "rms_Voc": {
+    "per_specimen": {
+     "PVDF": {
+      "n": 15,
+      "within_R2": 0.5108305598230322,
+      "MAE": 0.02617199125940561,
+      "mean_true_V": 0.08704009987921603,
+      "mean_pred_V": 0.1098960485757958
+     },
+     "PVDF+BaTiO3": {
+      "n": 15,
+      "within_R2": 0.8054110197856612,
+      "MAE": 0.01805939350394332,
+      "mean_true_V": 0.1037342752045041,
+      "mean_pred_V": 0.08678675246909402
+     },
+     "PVDF+BaTiO3+%1CNT": {
+      "n": 15,
+      "within_R2": 0.6481030933055236,
+      "MAE": 0.03445132887356755,
+      "mean_true_V": 0.09346735076176217,
+      "mean_pred_V": 0.1275542009422675
+     },
+     "PVDF+BaTiO3+%2CNT": {
+      "n": 15,
+      "within_R2": 0.8125213435403339,
+      "MAE": 0.03572221338428356,
+      "mean_true_V": 0.1370509288279693,
+      "mean_pred_V": 0.10132871544368575
+     },
+     "PVDF+BaTiO3+%3CNT": {
+      "n": 15,
+      "within_R2": 0.5348819310511547,
+      "MAE": 0.052240396851192195,
+      "mean_true_V": 0.11814749903214433,
+      "mean_pred_V": 0.17038789588333655
+     }
+    },
+    "pooled_R2": 0.7117454655603047,
+    "pooled_MAE": 0.033329064774478445,
+    "pooled_R2_legacy": 0.7117454655774142,
+    "within_R2_min": 0.5108305598230322,
+    "within_R2_max": 0.8125213435403339,
+    "within_R2_median": 0.6481030933055236,
+    "n_specimens_within_R2_negative": 0
+   },
+   "Vpp": {
+    "per_specimen": {
+     "PVDF": {
+      "n": 15,
+      "within_R2": 0.6213044457307713,
+      "MAE": 0.3869648051406231,
+      "mean_true_V": 1.25524511598,
+      "mean_pred_V": 1.5491991950537918
+     },
+     "PVDF+BaTiO3": {
+      "n": 15,
+      "within_R2": 0.6387397551777504,
+      "MAE": 0.43070976281838563,
+      "mean_true_V": 1.488669675515761,
+      "mean_pred_V": 1.2533474265277469
+     },
+     "PVDF+BaTiO3+%1CNT": {
+      "n": 15,
+      "within_R2": 0.5102304733357317,
+      "MAE": 0.44794826135040405,
+      "mean_true_V": 1.3342414845701898,
+      "mean_pred_V": 1.7536768908744105
+     },
+     "PVDF+BaTiO3+%2CNT": {
+      "n": 15,
+      "within_R2": 0.8368990724930105,
+      "MAE": 0.4197408484379314,
+      "mean_true_V": 1.9235558766408807,
+      "mean_pred_V": 1.6180624194340183
+     },
+     "PVDF+BaTiO3+%3CNT": {
+      "n": 15,
+      "within_R2": 0.8512401917672002,
+      "MAE": 0.449478918120928,
+      "mean_true_V": 1.857462171431658,
+      "mean_pred_V": 2.3069410895525864
+     }
+    },
+    "pooled_R2": 0.7734247966553183,
+    "pooled_MAE": 0.4269685191736544,
+    "pooled_R2_legacy": 0.7734247993199277,
+    "within_R2_min": 0.5102304733357317,
+    "within_R2_max": 0.8512401917672002,
+    "within_R2_median": 0.6387397551777504,
+    "n_specimens_within_R2_negative": 0
+   },
+   "Vmax": {
+    "per_specimen": {
+     "PVDF": {
+      "n": 15,
+      "within_R2": 0.24479538083217312,
+      "MAE": 0.29329565771093097,
+      "mean_true_V": 0.7367194586817867,
+      "mean_pred_V": 1.021402337946172
+     },
+     "PVDF+BaTiO3": {
+      "n": 15,
+      "within_R2": 0.5414651475920147,
+      "MAE": 0.31055625213797344,
+      "mean_true_V": 0.9550956148486792,
+      "mean_pred_V": 0.7314201505698391
+     },
+     "PVDF+BaTiO3+%1CNT": {
+      "n": 15,
+      "within_R2": 0.5451718418233591,
+      "MAE": 0.39800726523617885,
+      "mean_true_V": 0.8574286229593377,
+      "mean_pred_V": 1.2314787543628753
+     },
+     "PVDF+BaTiO3+%2CNT": {
+      "n": 15,
+      "within_R2": 0.7597724759689728,
+      "MAE": 0.4036425923735409,
+      "mean_true_V": 1.3665199303907376,
+      "mean_pred_V": 1.0070674813384854
+     },
+     "PVDF+BaTiO3+%3CNT": {
+      "n": 15,
+      "within_R2": 0.5194292182187238,
+      "MAE": 0.5997161195623743,
+      "mean_true_V": 1.1303599858453304,
+      "mean_pred_V": 1.7300761054077045
+     }
+    },
+    "pooled_R2": 0.6439862556148035,
+    "pooled_MAE": 0.4010435774041997,
+    "pooled_R2_legacy": 0.6439862555804231,
+    "within_R2_min": 0.24479538083217312,
+    "within_R2_max": 0.7597724759689728,
+    "within_R2_median": 0.5414651475920147,
+    "n_specimens_within_R2_negative": 0
+   }
+  }
+ },
+ "duplicate_sensitivity": {
+  "definition": "headline results recomputed without recordings [52, 54, 73] (scaled copies, duplicated-recordings note in the README) with the same code paths as the primary analysis; equals the primary results of a --exclude-duplicates run",
+  "excluded_ids": [
+   52,
+   54,
+   73
+  ],
+  "n": 72,
+  "cv_median": {
+   "rms": 21.19273574131676,
+   "vpp": 30.739550575735542,
+   "vmax": 36.696875004125744
+  },
+  "per_target": {
+   "rms_Voc": {
+    "ccc_raw": 0.9707182397492097,
+    "acquisition_noise_ceiling_R2": 0.9852147573383274,
+    "loo_R2": 0.9049228123551976,
+    "loo_MAE": 0.017138333844900665,
+    "record_ci95": [
+     0.8594374339977013,
+     0.9305440373515064
+    ],
+    "cluster_ci95": [
+     0.894450895280724,
+     0.90751287377244
+    ],
+    "anova_log10_terms": {
+     "composition": {
+      "df": 4,
+      "SS": 0.661843548151078,
+      "F": 81.68466163910233,
+      "p": 5.290329438313097e-26,
+      "partial_eta2": 0.8194305953992493
+     },
+     "force": {
+      "df": 2,
+      "SS": 4.645805121157528,
+      "F": 1146.76956638198,
+      "p": 2.5263001196567046e-55,
+      "partial_eta2": 0.9695629638915026
+     },
+     "frequency": {
+      "df": 4,
+      "SS": 5.016496531675921,
+      "F": 619.135478389736,
+      "p": 6.216737296272258e-55,
+      "partial_eta2": 0.9717485517436695
+     },
+     "composition:force": {
+      "df": 8,
+      "SS": 1.7418089108297727,
+      "F": 107.48693699483303,
+      "p": 6.696311911970709e-37,
+      "partial_eta2": 0.9227381178337687
+     },
+     "composition:frequency": {
+      "df": 16,
+      "SS": 0.1224479910426568,
+      "F": 3.778129568781444,
+      "p": 5.002687743098068e-05,
+      "partial_eta2": 0.45639894101555983
+     },
+     "force:frequency": {
+      "df": 8,
+      "SS": 0.19257437066559402,
+      "F": 11.88375436470325,
+      "p": 1.2383878269569828e-10,
+      "partial_eta2": 0.5690430062129355
+     },
+     "composition:force:frequency": {
+      "df": 29,
+      "SS": 0.4248748267669946,
+      "F": 7.232828521001824,
+      "p": 4.947152040731315e-12,
+      "partial_eta2": 0.744456142024021
+     },
+     "acquisition_repeatability": {
+      "df": 72,
+      "SS": 0.14584358467877379,
+      "MS": 0.002025605342760747
+     }
+    },
+    "anova_ordering_by_partial_eta2": [
+     "frequency",
+     "force",
+     "composition:force",
+     "composition",
+     "composition:force:frequency",
+     "force:frequency",
+     "composition:frequency"
+    ],
+    "anova_ordering_same_as_primary": true
+   },
+   "Vpp": {
+    "ccc_raw": 0.9106164176677146,
+    "acquisition_noise_ceiling_R2": 0.9662953355747558,
+    "loo_R2": 0.6932568279419229,
+    "loo_MAE": 0.3966695353600564,
+    "record_ci95": [
+     0.5341270809519226,
+     0.830046628284894
+    ],
+    "cluster_ci95": [
+     0.49172744409524893,
+     0.8016718656103103
+    ],
+    "anova_log10_terms": {
+     "composition": {
+      "df": 4,
+      "SS": 0.5347038245521114,
+      "F": 23.402975003997913,
+      "p": 2.0232566526310924e-12,
+      "partial_eta2": 0.5652486325375917
+     },
+     "force": {
+      "df": 2,
+      "SS": 5.007562355912951,
+      "F": 438.34306494649115,
+      "p": 4.870325999056403e-41,
+      "partial_eta2": 0.9241055627026802
+     },
+     "frequency": {
+      "df": 4,
+      "SS": 5.999957042970964,
+      "F": 262.606770803125,
+      "p": 3.967255990117683e-42,
+      "partial_eta2": 0.9358532941009151
+     },
+     "composition:force": {
+      "df": 8,
+      "SS": 1.9917688345647109,
+      "F": 43.587977220945724,
+      "p": 1.3318204112083165e-24,
+      "partial_eta2": 0.8288582205360941
+     },
+     "composition:frequency": {
+      "df": 16,
+      "SS": 0.1756109193477866,
+      "F": 1.9215394425913663,
+      "p": 0.03188285100047503,
+      "partial_eta2": 0.29923345636508974
+     },
+     "force:frequency": {
+      "df": 8,
+      "SS": 0.3370485583460121,
+      "F": 7.375988934353047,
+      "p": 4.041558577131322e-07,
+      "partial_eta2": 0.45041487044974265
+     },
+     "composition:force:frequency": {
+      "df": 29,
+      "SS": 0.511193891524981,
+      "F": 3.0860675454662903,
+      "p": 5.652005434614808e-05,
+      "partial_eta2": 0.5541684106107668
+     },
+     "acquisition_repeatability": {
+      "df": 72,
+      "SS": 0.41125834814991813,
+      "MS": 0.005711921502082196
+     }
+    },
+    "anova_ordering_by_partial_eta2": [
+     "frequency",
+     "force",
+     "composition:force",
+     "composition",
+     "composition:force:frequency",
+     "force:frequency",
+     "composition:frequency"
+    ],
+    "anova_ordering_same_as_primary": true
+   },
+   "Vmax": {
+    "ccc_raw": 0.881787854559272,
+    "acquisition_noise_ceiling_R2": 0.953064883630745,
+    "loo_R2": 0.6970335560749872,
+    "loo_MAE": 0.29212365278529395,
+    "record_ci95": [
+     0.4919336277546196,
+     0.7844531277012254
+    ],
+    "cluster_ci95": [
+     0.4756168153457754,
+     0.7905619905485987
+    ],
+    "anova_log10_terms": {
+     "composition": {
+      "df": 4,
+      "SS": 0.6868135030761326,
+      "F": 17.087511351489503,
+      "p": 6.795752116424584e-10,
+      "partial_eta2": 0.486996959696434
+     },
+     "force": {
+      "df": 2,
+      "SS": 4.897497999746543,
+      "F": 243.6936731434346,
+      "p": 8.837204383540495e-33,
+      "partial_eta2": 0.871287757082949
+     },
+     "frequency": {
+      "df": 4,
+      "SS": 5.6464428239651525,
+      "F": 140.4801382295273,
+      "p": 3.221507002711245e-33,
+      "partial_eta2": 0.8864210985610667
+     },
+     "composition:force": {
+      "df": 8,
+      "SS": 1.7781412042551321,
+      "F": 22.11954764734201,
+      "p": 1.3616210024998654e-16,
+      "partial_eta2": 0.7107927113211522
+     },
+     "composition:frequency": {
+      "df": 16,
+      "SS": 0.3453580943338852,
+      "F": 2.1480759808987373,
+      "p": 0.01474011165373297,
+      "partial_eta2": 0.3231124293811612
+     },
+     "force:frequency": {
+      "df": 8,
+      "SS": 0.3493753883000723,
+      "F": 4.346125903735162,
+      "p": 0.0002591774275276862,
+      "partial_eta2": 0.325647003114126
+     },
+     "composition:force:frequency": {
+      "df": 29,
+      "SS": 0.6647563247226254,
+      "F": 2.281205776069248,
+      "p": 0.0024923718778690034,
+      "partial_eta2": 0.4788461008695268
+     },
+     "acquisition_repeatability": {
+      "df": 72,
+      "SS": 0.7234899688474967,
+      "MS": 0.010048471789548565
+     }
+    },
+    "anova_ordering_by_partial_eta2": [
+     "frequency",
+     "force",
+     "composition:force",
+     "composition",
+     "composition:force:frequency",
+     "force:frequency",
+     "composition:frequency"
+    ],
+    "anova_ordering_same_as_primary": true
+   }
+  },
+  "cluster_distinct_multisets_drawn": 122
+ },
+ "macros": {
+  "specNCyclesTotal": {
+   "value": "1045",
+   "json_key": "repeatability.segmentation.n_cycles_total"
+  },
+  "specNCyclesMin": {
+   "value": "4",
+   "json_key": "repeatability.segmentation.n_cycles_min"
+  },
+  "specNCyclesMax": {
+   "value": "26",
+   "json_key": "repeatability.segmentation.n_cycles_max"
+  },
+  "specNRecAllCycles": {
+   "value": "29",
+   "json_key": "repeatability.segmentation.n_recordings_all_expected_cycles"
+  },
+  "specNRecOneShort": {
+   "value": "46",
+   "json_key": "repeatability.segmentation.n_recordings_one_short"
+  },
+  "specNSegFailed": {
+   "value": "1",
+   "json_key": "repeatability.segmentation.n_failed"
+  },
+  "specNRateDeviates": {
+   "value": "22",
+   "json_key": "repeatability.segmentation.n_rate_deviates"
+  },
+  "specNPeriodAcf": {
+   "value": "44",
+   "json_key": "repeatability.segmentation.n_period_from_acf"
+  },
+  "specNClean": {
+   "value": "52",
+   "json_key": "repeatability.segmentation.n_clean"
+  },
+  "specNRateDeviatesFiveHz": {
+   "value": "7",
+   "json_key": "repeatability.segmentation.rate_deviates_by_freq.5"
+  },
+  "specNRateDeviatesTenHz": {
+   "value": "3",
+   "json_key": "repeatability.segmentation.rate_deviates_by_freq.10"
+  },
+  "specNRateDeviatesFifteenHz": {
+   "value": "4",
+   "json_key": "repeatability.segmentation.rate_deviates_by_freq.15"
+  },
+  "specNRateDeviatesTwentyHz": {
+   "value": "4",
+   "json_key": "repeatability.segmentation.rate_deviates_by_freq.20"
+  },
+  "specNRateDeviatesTwentyFiveHz": {
+   "value": "4",
+   "json_key": "repeatability.segmentation.rate_deviates_by_freq.25"
+  },
+  "specCvMedianRms": {
+   "value": "21.1",
+   "json_key": "repeatability.rms.all.median"
+  },
+  "specCvQloRms": {
+   "value": "16.0",
+   "json_key": "repeatability.rms.all.q25"
+  },
+  "specCvQhiRms": {
+   "value": "28.1",
+   "json_key": "repeatability.rms.all.q75"
+  },
+  "specCvMinRms": {
+   "value": "6.3",
+   "json_key": "repeatability.rms.all.min"
+  },
+  "specCvMaxRms": {
+   "value": "52.8",
+   "json_key": "repeatability.rms.all.max"
+  },
+  "specCvMedianNoFailRms": {
+   "value": "21.0",
+   "json_key": "repeatability.rms.all_excluding_failed.median"
+  },
+  "specCvMedianNominalRms": {
+   "value": "22.0",
+   "json_key": "repeatability.rms.all_nominal_period.median"
+  },
+  "specCvMedianCleanRms": {
+   "value": "21.0",
+   "json_key": "repeatability.rms.clean_only.median"
+  },
+  "specRelSeMedianRms": {
+   "value": "5.8",
+   "json_key": "repeatability.rms.relative_se_of_recording_mean_pct.median"
+  },
+  "specCvMedianRmsFiveHz": {
+   "value": "10.7",
+   "json_key": "repeatability.rms.by_freq.5.median"
+  },
+  "specCvMedianRmsTenHz": {
+   "value": "18.2",
+   "json_key": "repeatability.rms.by_freq.10.median"
+  },
+  "specCvMedianRmsFifteenHz": {
+   "value": "26.2",
+   "json_key": "repeatability.rms.by_freq.15.median"
+  },
+  "specCvMedianRmsTwentyHz": {
+   "value": "27.0",
+   "json_key": "repeatability.rms.by_freq.20.median"
+  },
+  "specCvMedianRmsTwentyFiveHz": {
+   "value": "21.1",
+   "json_key": "repeatability.rms.by_freq.25.median"
+  },
+  "specCvMedianRmsOneN": {
+   "value": "21.1",
+   "json_key": "repeatability.rms.by_force.1.median"
+  },
+  "specCvMedianRmsTwoN": {
+   "value": "24.8",
+   "json_key": "repeatability.rms.by_force.2.median"
+  },
+  "specCvMedianRmsThreeN": {
+   "value": "19.5",
+   "json_key": "repeatability.rms.by_force.3.median"
+  },
+  "specSdWithinRms": {
+   "value": "0.035",
+   "json_key": "repeatability.rms.spread.within_recording_pooled_sd_V"
+  },
+  "specSdBetweenRms": {
+   "value": "0.077",
+   "json_key": "repeatability.rms.spread.between_condition_sd_of_recording_mean_cycle_amplitude_V"
+  },
+  "specSdRatioRms": {
+   "value": "2.2",
+   "json_key": "repeatability.rms.spread.between_over_within_ratio"
+  },
+  "specSdWithinLogRms": {
+   "value": "0.110",
+   "json_key": "repeatability.rms.spread.within_recording_pooled_sd_log10"
+  },
+  "specSdBetweenLogRms": {
+   "value": "0.297",
+   "json_key": "repeatability.rms.spread.between_condition_sd_log10"
+  },
+  "specSdRatioLogRms": {
+   "value": "2.7",
+   "json_key": "repeatability.rms.spread.between_over_within_ratio_log10"
+  },
+  "specIccLogRms": {
+   "value": "0.86",
+   "json_key": "repeatability.rms.spread.icc1_log10"
+  },
+  "specKwFreqPRms": {
+   "value": "$<$0.001",
+   "json_key": "repeatability.rms.kruskal_freq_Hz.p"
+  },
+  "specCvMedianVpp": {
+   "value": "30.5",
+   "json_key": "repeatability.vpp.all.median"
+  },
+  "specCvQloVpp": {
+   "value": "23.1",
+   "json_key": "repeatability.vpp.all.q25"
+  },
+  "specCvQhiVpp": {
+   "value": "37.6",
+   "json_key": "repeatability.vpp.all.q75"
+  },
+  "specCvMinVpp": {
+   "value": "6.9",
+   "json_key": "repeatability.vpp.all.min"
+  },
+  "specCvMaxVpp": {
+   "value": "60.9",
+   "json_key": "repeatability.vpp.all.max"
+  },
+  "specCvMedianNoFailVpp": {
+   "value": "30.3",
+   "json_key": "repeatability.vpp.all_excluding_failed.median"
+  },
+  "specCvMedianNominalVpp": {
+   "value": "32.0",
+   "json_key": "repeatability.vpp.all_nominal_period.median"
+  },
+  "specCvMedianCleanVpp": {
+   "value": "31.0",
+   "json_key": "repeatability.vpp.clean_only.median"
+  },
+  "specRelSeMedianVpp": {
+   "value": "8.5",
+   "json_key": "repeatability.vpp.relative_se_of_recording_mean_pct.median"
+  },
+  "specCvMedianVppFiveHz": {
+   "value": "20.3",
+   "json_key": "repeatability.vpp.by_freq.5.median"
+  },
+  "specCvMedianVppTenHz": {
+   "value": "24.9",
+   "json_key": "repeatability.vpp.by_freq.10.median"
+  },
+  "specCvMedianVppFifteenHz": {
+   "value": "33.2",
+   "json_key": "repeatability.vpp.by_freq.15.median"
+  },
+  "specCvMedianVppTwentyHz": {
+   "value": "37.1",
+   "json_key": "repeatability.vpp.by_freq.20.median"
+  },
+  "specCvMedianVppTwentyFiveHz": {
+   "value": "29.0",
+   "json_key": "repeatability.vpp.by_freq.25.median"
+  },
+  "specCvMedianVppOneN": {
+   "value": "28.6",
+   "json_key": "repeatability.vpp.by_force.1.median"
+  },
+  "specCvMedianVppTwoN": {
+   "value": "33.2",
+   "json_key": "repeatability.vpp.by_force.2.median"
+  },
+  "specCvMedianVppThreeN": {
+   "value": "26.4",
+   "json_key": "repeatability.vpp.by_force.3.median"
+  },
+  "specSdWithinVpp": {
+   "value": "0.342",
+   "json_key": "repeatability.vpp.spread.within_recording_pooled_sd_V"
+  },
+  "specSdBetweenVpp": {
+   "value": "0.850",
+   "json_key": "repeatability.vpp.spread.between_condition_sd_of_recording_mean_cycle_amplitude_V"
+  },
+  "specSdRatioVpp": {
+   "value": "2.5",
+   "json_key": "repeatability.vpp.spread.between_over_within_ratio"
+  },
+  "specSdWithinLogVpp": {
+   "value": "0.145",
+   "json_key": "repeatability.vpp.spread.within_recording_pooled_sd_log10"
+  },
+  "specSdBetweenLogVpp": {
+   "value": "0.301",
+   "json_key": "repeatability.vpp.spread.between_condition_sd_log10"
+  },
+  "specSdRatioLogVpp": {
+   "value": "2.1",
+   "json_key": "repeatability.vpp.spread.between_over_within_ratio_log10"
+  },
+  "specIccLogVpp": {
+   "value": "0.79",
+   "json_key": "repeatability.vpp.spread.icc1_log10"
+  },
+  "specKwFreqPVpp": {
+   "value": "$<$0.001",
+   "json_key": "repeatability.vpp.kruskal_freq_Hz.p"
+  },
+  "specCvMedianVmax": {
+   "value": "36.7",
+   "json_key": "repeatability.vmax.all.median"
+  },
+  "specCvQloVmax": {
+   "value": "29.4",
+   "json_key": "repeatability.vmax.all.q25"
+  },
+  "specCvQhiVmax": {
+   "value": "48.0",
+   "json_key": "repeatability.vmax.all.q75"
+  },
+  "specCvMinVmax": {
+   "value": "9.1",
+   "json_key": "repeatability.vmax.all.min"
+  },
+  "specCvMaxVmax": {
+   "value": "67.0",
+   "json_key": "repeatability.vmax.all.max"
+  },
+  "specCvMedianNoFailVmax": {
+   "value": "36.4",
+   "json_key": "repeatability.vmax.all_excluding_failed.median"
+  },
+  "specCvMedianNominalVmax": {
+   "value": "37.7",
+   "json_key": "repeatability.vmax.all_nominal_period.median"
+  },
+  "specCvMedianCleanVmax": {
+   "value": "36.7",
+   "json_key": "repeatability.vmax.clean_only.median"
+  },
+  "specRelSeMedianVmax": {
+   "value": "10.4",
+   "json_key": "repeatability.vmax.relative_se_of_recording_mean_pct.median"
+  },
+  "specCvMedianVmaxFiveHz": {
+   "value": "28.6",
+   "json_key": "repeatability.vmax.by_freq.5.median"
+  },
+  "specCvMedianVmaxTenHz": {
+   "value": "31.1",
+   "json_key": "repeatability.vmax.by_freq.10.median"
+  },
+  "specCvMedianVmaxFifteenHz": {
+   "value": "42.5",
+   "json_key": "repeatability.vmax.by_freq.15.median"
+  },
+  "specCvMedianVmaxTwentyHz": {
+   "value": "43.9",
+   "json_key": "repeatability.vmax.by_freq.20.median"
+  },
+  "specCvMedianVmaxTwentyFiveHz": {
+   "value": "36.1",
+   "json_key": "repeatability.vmax.by_freq.25.median"
+  },
+  "specCvMedianVmaxOneN": {
+   "value": "34.1",
+   "json_key": "repeatability.vmax.by_force.1.median"
+  },
+  "specCvMedianVmaxTwoN": {
+   "value": "39.4",
+   "json_key": "repeatability.vmax.by_force.2.median"
+  },
+  "specCvMedianVmaxThreeN": {
+   "value": "33.9",
+   "json_key": "repeatability.vmax.by_force.3.median"
+  },
+  "specSdWithinVmax": {
+   "value": "0.272",
+   "json_key": "repeatability.vmax.spread.within_recording_pooled_sd_V"
+  },
+  "specSdBetweenVmax": {
+   "value": "0.535",
+   "json_key": "repeatability.vmax.spread.between_condition_sd_of_recording_mean_cycle_amplitude_V"
+  },
+  "specSdRatioVmax": {
+   "value": "2.0",
+   "json_key": "repeatability.vmax.spread.between_over_within_ratio"
+  },
+  "specSdWithinLogVmax": {
+   "value": "0.179",
+   "json_key": "repeatability.vmax.spread.within_recording_pooled_sd_log10"
+  },
+  "specSdBetweenLogVmax": {
+   "value": "0.303",
+   "json_key": "repeatability.vmax.spread.between_condition_sd_log10"
+  },
+  "specSdRatioLogVmax": {
+   "value": "1.7",
+   "json_key": "repeatability.vmax.spread.between_over_within_ratio_log10"
+  },
+  "specIccLogVmax": {
+   "value": "0.71",
+   "json_key": "repeatability.vmax.spread.icc1_log10"
+  },
+  "specKwFreqPVmax": {
+   "value": "$<$0.001",
+   "json_key": "repeatability.vmax.kruskal_freq_Hz.p"
+  },
+  "specCccRms": {
+   "value": "0.970",
+   "json_key": "split_half.per_target.rms_Voc.ccc_raw"
+  },
+  "specCccLoRms": {
+   "value": "0.949",
+   "json_key": "split_half.per_target.rms_Voc.ccc_raw_ci95_record_boot[0]"
+  },
+  "specCccHiRms": {
+   "value": "0.981",
+   "json_key": "split_half.per_target.rms_Voc.ccc_raw_ci95_record_boot[1]"
+  },
+  "specCccLogRms": {
+   "value": "0.976",
+   "json_key": "split_half.per_target.rms_Voc.ccc_log10"
+  },
+  "specRelDiffMedianRms": {
+   "value": "9.8",
+   "json_key": "split_half.per_target.rms_Voc.abs_rel_diff_pct.median"
+  },
+  "specRelDiffPNinetyRms": {
+   "value": "22.2",
+   "json_key": "split_half.per_target.rms_Voc.abs_rel_diff_p90_pct"
+  },
+  "specNoiseCeilingRms": {
+   "value": "0.985",
+   "json_key": "split_half.per_target.rms_Voc.acquisition_noise_ceiling_R2"
+  },
+  "specSplitHalfLooRmsA": {
+   "value": "0.941",
+   "json_key": "split_half.per_target.rms_Voc.loo_R2_A_on_A"
+  },
+  "specSplitHalfLooRmsB": {
+   "value": "0.869",
+   "json_key": "split_half.per_target.rms_Voc.loo_R2_B_on_B"
+  },
+  "specSplitHalfLooRmsAonB": {
+   "value": "0.901",
+   "json_key": "split_half.per_target.rms_Voc.loo_R2_A_on_B"
+  },
+  "specSplitHalfLooRmsBonA": {
+   "value": "0.861",
+   "json_key": "split_half.per_target.rms_Voc.loo_R2_B_on_A"
+  },
+  "specLooFullRms": {
+   "value": "0.914",
+   "json_key": "split_half.per_target.rms_Voc.loo_R2_full"
+  },
+  "specLooLegacyRms": {
+   "value": "0.914",
+   "json_key": "split_half.per_target.rms_Voc.loo_R2_legacy_full"
+  },
+  "specCccVpp": {
+   "value": "0.923",
+   "json_key": "split_half.per_target.Vpp.ccc_raw"
+  },
+  "specCccLoVpp": {
+   "value": "0.875",
+   "json_key": "split_half.per_target.Vpp.ccc_raw_ci95_record_boot[0]"
+  },
+  "specCccHiVpp": {
+   "value": "0.955",
+   "json_key": "split_half.per_target.Vpp.ccc_raw_ci95_record_boot[1]"
+  },
+  "specCccLogVpp": {
+   "value": "0.942",
+   "json_key": "split_half.per_target.Vpp.ccc_log10"
+  },
+  "specRelDiffMedianVpp": {
+   "value": "16.6",
+   "json_key": "split_half.per_target.Vpp.abs_rel_diff_pct.median"
+  },
+  "specRelDiffPNinetyVpp": {
+   "value": "38.0",
+   "json_key": "split_half.per_target.Vpp.abs_rel_diff_p90_pct"
+  },
+  "specNoiseCeilingVpp": {
+   "value": "0.969",
+   "json_key": "split_half.per_target.Vpp.acquisition_noise_ceiling_R2"
+  },
+  "specSplitHalfLooVppA": {
+   "value": "0.819",
+   "json_key": "split_half.per_target.Vpp.loo_R2_A_on_A"
+  },
+  "specSplitHalfLooVppB": {
+   "value": "0.819",
+   "json_key": "split_half.per_target.Vpp.loo_R2_B_on_B"
+  },
+  "specSplitHalfLooVppAonB": {
+   "value": "0.790",
+   "json_key": "split_half.per_target.Vpp.loo_R2_A_on_B"
+  },
+  "specSplitHalfLooVppBonA": {
+   "value": "0.742",
+   "json_key": "split_half.per_target.Vpp.loo_R2_B_on_A"
+  },
+  "specLooFullVpp": {
+   "value": "0.777",
+   "json_key": "split_half.per_target.Vpp.loo_R2_full"
+  },
+  "specLooLegacyVpp": {
+   "value": "0.777",
+   "json_key": "split_half.per_target.Vpp.loo_R2_legacy_full"
+  },
+  "specCccVmax": {
+   "value": "0.889",
+   "json_key": "split_half.per_target.Vmax.ccc_raw"
+  },
+  "specCccLoVmax": {
+   "value": "0.787",
+   "json_key": "split_half.per_target.Vmax.ccc_raw_ci95_record_boot[0]"
+  },
+  "specCccHiVmax": {
+   "value": "0.933",
+   "json_key": "split_half.per_target.Vmax.ccc_raw_ci95_record_boot[1]"
+  },
+  "specCccLogVmax": {
+   "value": "0.900",
+   "json_key": "split_half.per_target.Vmax.ccc_log10"
+  },
+  "specRelDiffMedianVmax": {
+   "value": "22.4",
+   "json_key": "split_half.per_target.Vmax.abs_rel_diff_pct.median"
+  },
+  "specRelDiffPNinetyVmax": {
+   "value": "50.3",
+   "json_key": "split_half.per_target.Vmax.abs_rel_diff_p90_pct"
+  },
+  "specNoiseCeilingVmax": {
+   "value": "0.954",
+   "json_key": "split_half.per_target.Vmax.acquisition_noise_ceiling_R2"
+  },
+  "specSplitHalfLooVmaxA": {
+   "value": "0.736",
+   "json_key": "split_half.per_target.Vmax.loo_R2_A_on_A"
+  },
+  "specSplitHalfLooVmaxB": {
+   "value": "0.714",
+   "json_key": "split_half.per_target.Vmax.loo_R2_B_on_B"
+  },
+  "specSplitHalfLooVmaxAonB": {
+   "value": "0.730",
+   "json_key": "split_half.per_target.Vmax.loo_R2_A_on_B"
+  },
+  "specSplitHalfLooVmaxBonA": {
+   "value": "0.701",
+   "json_key": "split_half.per_target.Vmax.loo_R2_B_on_A"
+  },
+  "specLooFullVmax": {
+   "value": "0.778",
+   "json_key": "split_half.per_target.Vmax.loo_R2_full"
+  },
+  "specLooLegacyVmax": {
+   "value": "0.778",
+   "json_key": "split_half.per_target.Vmax.loo_R2_legacy_full"
+  },
+  "specAnovaErrorDf": {
+   "value": "75",
+   "json_key": "anova_split_half.log10.rms_Voc.terms.acquisition_repeatability.df"
+  },
+  "specAnovaThreeWayFRms": {
+   "value": "6.4",
+   "json_key": "anova_split_half.log10.rms_Voc.terms.composition:force:frequency.F"
+  },
+  "specAnovaThreeWayPRms": {
+   "value": "$<$0.001",
+   "json_key": "anova_split_half.log10.rms_Voc.terms.composition:force:frequency.p"
+  },
+  "specAnovaThreeWayEtaRms": {
+   "value": "0.73",
+   "json_key": "anova_split_half.log10.rms_Voc.terms.composition:force:frequency.partial_eta2"
+  },
+  "specAnovaEtaCompRms": {
+   "value": "0.815",
+   "json_key": "anova_split_half.log10.rms_Voc.terms.composition.partial_eta2"
+  },
+  "specAnovaFCompRms": {
+   "value": "82.6",
+   "json_key": "anova_split_half.log10.rms_Voc.terms.composition.F"
+  },
+  "specAnovaEtaForceRms": {
+   "value": "0.968",
+   "json_key": "anova_split_half.log10.rms_Voc.terms.force.partial_eta2"
+  },
+  "specAnovaFForceRms": {
+   "value": "1121.9",
+   "json_key": "anova_split_half.log10.rms_Voc.terms.force.F"
+  },
+  "specAnovaEtaFreqRms": {
+   "value": "0.971",
+   "json_key": "anova_split_half.log10.rms_Voc.terms.frequency.partial_eta2"
+  },
+  "specAnovaFFreqRms": {
+   "value": "623.5",
+   "json_key": "anova_split_half.log10.rms_Voc.terms.frequency.F"
+  },
+  "specAnovaThreeWayFVpp": {
+   "value": "2.7",
+   "json_key": "anova_split_half.log10.Vpp.terms.composition:force:frequency.F"
+  },
+  "specAnovaThreeWayPVpp": {
+   "value": "$<$0.001",
+   "json_key": "anova_split_half.log10.Vpp.terms.composition:force:frequency.p"
+  },
+  "specAnovaThreeWayEtaVpp": {
+   "value": "0.54",
+   "json_key": "anova_split_half.log10.Vpp.terms.composition:force:frequency.partial_eta2"
+  },
+  "specAnovaEtaCompVpp": {
+   "value": "0.551",
+   "json_key": "anova_split_half.log10.Vpp.terms.composition.partial_eta2"
+  },
+  "specAnovaFCompVpp": {
+   "value": "23.0",
+   "json_key": "anova_split_half.log10.Vpp.terms.composition.F"
+  },
+  "specAnovaEtaForceVpp": {
+   "value": "0.919",
+   "json_key": "anova_split_half.log10.Vpp.terms.force.partial_eta2"
+  },
+  "specAnovaFForceVpp": {
+   "value": "422.9",
+   "json_key": "anova_split_half.log10.Vpp.terms.force.F"
+  },
+  "specAnovaEtaFreqVpp": {
+   "value": "0.935",
+   "json_key": "anova_split_half.log10.Vpp.terms.frequency.partial_eta2"
+  },
+  "specAnovaFFreqVpp": {
+   "value": "269.8",
+   "json_key": "anova_split_half.log10.Vpp.terms.frequency.F"
+  },
+  "specAnovaThreeWayFVmax": {
+   "value": "2.0",
+   "json_key": "anova_split_half.log10.Vmax.terms.composition:force:frequency.F"
+  },
+  "specAnovaThreeWayPVmax": {
+   "value": "0.007",
+   "json_key": "anova_split_half.log10.Vmax.terms.composition:force:frequency.p"
+  },
+  "specAnovaThreeWayEtaVmax": {
+   "value": "0.46",
+   "json_key": "anova_split_half.log10.Vmax.terms.composition:force:frequency.partial_eta2"
+  },
+  "specAnovaEtaCompVmax": {
+   "value": "0.477",
+   "json_key": "anova_split_half.log10.Vmax.terms.composition.partial_eta2"
+  },
+  "specAnovaFCompVmax": {
+   "value": "17.1",
+   "json_key": "anova_split_half.log10.Vmax.terms.composition.F"
+  },
+  "specAnovaEtaForceVmax": {
+   "value": "0.863",
+   "json_key": "anova_split_half.log10.Vmax.terms.force.partial_eta2"
+  },
+  "specAnovaFForceVmax": {
+   "value": "235.4",
+   "json_key": "anova_split_half.log10.Vmax.terms.force.F"
+  },
+  "specAnovaEtaFreqVmax": {
+   "value": "0.886",
+   "json_key": "anova_split_half.log10.Vmax.terms.frequency.partial_eta2"
+  },
+  "specAnovaFFreqVmax": {
+   "value": "145.8",
+   "json_key": "anova_split_half.log10.Vmax.terms.frequency.F"
+  },
+  "specBootN": {
+   "value": "2000",
+   "json_key": "bootstrap.n_boot"
+  },
+  "specBootCluDistinct": {
+   "value": "122",
+   "json_key": "bootstrap.cluster_distinct_multisets_drawn"
+  },
+  "specBootCluPossible": {
+   "value": "126",
+   "json_key": "bootstrap.cluster_possible_multisets"
+  },
+  "specBootCluSingle": {
+   "value": "2",
+   "json_key": "bootstrap.cluster_draws_single_specimen_only"
+  },
+  "specBootLooRms": {
+   "value": "0.914",
+   "json_key": "bootstrap.per_target.rms_Voc.loo_R2"
+  },
+  "specBootRecLoRms": {
+   "value": "0.850",
+   "json_key": "bootstrap.per_target.rms_Voc.record_ci95[0]"
+  },
+  "specBootRecHiRms": {
+   "value": "0.939",
+   "json_key": "bootstrap.per_target.rms_Voc.record_ci95[1]"
+  },
+  "specBootCluLoRms": {
+   "value": "0.877",
+   "json_key": "bootstrap.per_target.rms_Voc.cluster_ci95[0]"
+  },
+  "specBootCluHiRms": {
+   "value": "0.930",
+   "json_key": "bootstrap.per_target.rms_Voc.cluster_ci95[1]"
+  },
+  "specBootLooVpp": {
+   "value": "0.777",
+   "json_key": "bootstrap.per_target.Vpp.loo_R2"
+  },
+  "specBootRecLoVpp": {
+   "value": "0.583",
+   "json_key": "bootstrap.per_target.Vpp.record_ci95[0]"
+  },
+  "specBootRecHiVpp": {
+   "value": "0.869",
+   "json_key": "bootstrap.per_target.Vpp.record_ci95[1]"
+  },
+  "specBootCluLoVpp": {
+   "value": "0.455",
+   "json_key": "bootstrap.per_target.Vpp.cluster_ci95[0]"
+  },
+  "specBootCluHiVpp": {
+   "value": "0.884",
+   "json_key": "bootstrap.per_target.Vpp.cluster_ci95[1]"
+  },
+  "specBootLooVmax": {
+   "value": "0.778",
+   "json_key": "bootstrap.per_target.Vmax.loo_R2"
+  },
+  "specBootRecLoVmax": {
+   "value": "0.610",
+   "json_key": "bootstrap.per_target.Vmax.record_ci95[0]"
+  },
+  "specBootRecHiVmax": {
+   "value": "0.866",
+   "json_key": "bootstrap.per_target.Vmax.record_ci95[1]"
+  },
+  "specBootCluLoVmax": {
+   "value": "0.503",
+   "json_key": "bootstrap.per_target.Vmax.cluster_ci95[0]"
+  },
+  "specBootCluHiVmax": {
+   "value": "0.882",
+   "json_key": "bootstrap.per_target.Vmax.cluster_ci95[1]"
+  },
+  "specLosoPooledRms": {
+   "value": "0.71",
+   "json_key": "held_out_specimen.per_target.rms_Voc.pooled_R2"
+  },
+  "specLosoWithinMinRms": {
+   "value": "0.51",
+   "json_key": "held_out_specimen.per_target.rms_Voc.within_R2_min"
+  },
+  "specLosoWithinMaxRms": {
+   "value": "0.81",
+   "json_key": "held_out_specimen.per_target.rms_Voc.within_R2_max"
+  },
+  "specLosoNegativeRms": {
+   "value": "0",
+   "json_key": "held_out_specimen.per_target.rms_Voc.n_specimens_within_R2_negative"
+  },
+  "specLosoWithinRmsPvdf": {
+   "value": "0.51",
+   "json_key": "held_out_specimen.per_target.rms_Voc.per_specimen.PVDF.within_R2"
+  },
+  "specLosoMaeRmsPvdf": {
+   "value": "0.026",
+   "json_key": "held_out_specimen.per_target.rms_Voc.per_specimen.PVDF.MAE"
+  },
+  "specLosoWithinRmsBto": {
+   "value": "0.81",
+   "json_key": "held_out_specimen.per_target.rms_Voc.per_specimen.PVDF+BaTiO3.within_R2"
+  },
+  "specLosoMaeRmsBto": {
+   "value": "0.018",
+   "json_key": "held_out_specimen.per_target.rms_Voc.per_specimen.PVDF+BaTiO3.MAE"
+  },
+  "specLosoWithinRmsCntOne": {
+   "value": "0.65",
+   "json_key": "held_out_specimen.per_target.rms_Voc.per_specimen.PVDF+BaTiO3+%1CNT.within_R2"
+  },
+  "specLosoMaeRmsCntOne": {
+   "value": "0.034",
+   "json_key": "held_out_specimen.per_target.rms_Voc.per_specimen.PVDF+BaTiO3+%1CNT.MAE"
+  },
+  "specLosoWithinRmsCntTwo": {
+   "value": "0.81",
+   "json_key": "held_out_specimen.per_target.rms_Voc.per_specimen.PVDF+BaTiO3+%2CNT.within_R2"
+  },
+  "specLosoMaeRmsCntTwo": {
+   "value": "0.036",
+   "json_key": "held_out_specimen.per_target.rms_Voc.per_specimen.PVDF+BaTiO3+%2CNT.MAE"
+  },
+  "specLosoWithinRmsCntThree": {
+   "value": "0.53",
+   "json_key": "held_out_specimen.per_target.rms_Voc.per_specimen.PVDF+BaTiO3+%3CNT.within_R2"
+  },
+  "specLosoMaeRmsCntThree": {
+   "value": "0.052",
+   "json_key": "held_out_specimen.per_target.rms_Voc.per_specimen.PVDF+BaTiO3+%3CNT.MAE"
+  },
+  "specLosoPooledVpp": {
+   "value": "0.77",
+   "json_key": "held_out_specimen.per_target.Vpp.pooled_R2"
+  },
+  "specLosoWithinMinVpp": {
+   "value": "0.51",
+   "json_key": "held_out_specimen.per_target.Vpp.within_R2_min"
+  },
+  "specLosoWithinMaxVpp": {
+   "value": "0.85",
+   "json_key": "held_out_specimen.per_target.Vpp.within_R2_max"
+  },
+  "specLosoNegativeVpp": {
+   "value": "0",
+   "json_key": "held_out_specimen.per_target.Vpp.n_specimens_within_R2_negative"
+  },
+  "specLosoWithinVppPvdf": {
+   "value": "0.62",
+   "json_key": "held_out_specimen.per_target.Vpp.per_specimen.PVDF.within_R2"
+  },
+  "specLosoMaeVppPvdf": {
+   "value": "0.387",
+   "json_key": "held_out_specimen.per_target.Vpp.per_specimen.PVDF.MAE"
+  },
+  "specLosoWithinVppBto": {
+   "value": "0.64",
+   "json_key": "held_out_specimen.per_target.Vpp.per_specimen.PVDF+BaTiO3.within_R2"
+  },
+  "specLosoMaeVppBto": {
+   "value": "0.431",
+   "json_key": "held_out_specimen.per_target.Vpp.per_specimen.PVDF+BaTiO3.MAE"
+  },
+  "specLosoWithinVppCntOne": {
+   "value": "0.51",
+   "json_key": "held_out_specimen.per_target.Vpp.per_specimen.PVDF+BaTiO3+%1CNT.within_R2"
+  },
+  "specLosoMaeVppCntOne": {
+   "value": "0.448",
+   "json_key": "held_out_specimen.per_target.Vpp.per_specimen.PVDF+BaTiO3+%1CNT.MAE"
+  },
+  "specLosoWithinVppCntTwo": {
+   "value": "0.84",
+   "json_key": "held_out_specimen.per_target.Vpp.per_specimen.PVDF+BaTiO3+%2CNT.within_R2"
+  },
+  "specLosoMaeVppCntTwo": {
+   "value": "0.420",
+   "json_key": "held_out_specimen.per_target.Vpp.per_specimen.PVDF+BaTiO3+%2CNT.MAE"
+  },
+  "specLosoWithinVppCntThree": {
+   "value": "0.85",
+   "json_key": "held_out_specimen.per_target.Vpp.per_specimen.PVDF+BaTiO3+%3CNT.within_R2"
+  },
+  "specLosoMaeVppCntThree": {
+   "value": "0.449",
+   "json_key": "held_out_specimen.per_target.Vpp.per_specimen.PVDF+BaTiO3+%3CNT.MAE"
+  },
+  "specLosoPooledVmax": {
+   "value": "0.64",
+   "json_key": "held_out_specimen.per_target.Vmax.pooled_R2"
+  },
+  "specLosoWithinMinVmax": {
+   "value": "0.24",
+   "json_key": "held_out_specimen.per_target.Vmax.within_R2_min"
+  },
+  "specLosoWithinMaxVmax": {
+   "value": "0.76",
+   "json_key": "held_out_specimen.per_target.Vmax.within_R2_max"
+  },
+  "specLosoNegativeVmax": {
+   "value": "0",
+   "json_key": "held_out_specimen.per_target.Vmax.n_specimens_within_R2_negative"
+  },
+  "specLosoWithinVmaxPvdf": {
+   "value": "0.24",
+   "json_key": "held_out_specimen.per_target.Vmax.per_specimen.PVDF.within_R2"
+  },
+  "specLosoMaeVmaxPvdf": {
+   "value": "0.293",
+   "json_key": "held_out_specimen.per_target.Vmax.per_specimen.PVDF.MAE"
+  },
+  "specLosoWithinVmaxBto": {
+   "value": "0.54",
+   "json_key": "held_out_specimen.per_target.Vmax.per_specimen.PVDF+BaTiO3.within_R2"
+  },
+  "specLosoMaeVmaxBto": {
+   "value": "0.311",
+   "json_key": "held_out_specimen.per_target.Vmax.per_specimen.PVDF+BaTiO3.MAE"
+  },
+  "specLosoWithinVmaxCntOne": {
+   "value": "0.55",
+   "json_key": "held_out_specimen.per_target.Vmax.per_specimen.PVDF+BaTiO3+%1CNT.within_R2"
+  },
+  "specLosoMaeVmaxCntOne": {
+   "value": "0.398",
+   "json_key": "held_out_specimen.per_target.Vmax.per_specimen.PVDF+BaTiO3+%1CNT.MAE"
+  },
+  "specLosoWithinVmaxCntTwo": {
+   "value": "0.76",
+   "json_key": "held_out_specimen.per_target.Vmax.per_specimen.PVDF+BaTiO3+%2CNT.within_R2"
+  },
+  "specLosoMaeVmaxCntTwo": {
+   "value": "0.404",
+   "json_key": "held_out_specimen.per_target.Vmax.per_specimen.PVDF+BaTiO3+%2CNT.MAE"
+  },
+  "specLosoWithinVmaxCntThree": {
+   "value": "0.52",
+   "json_key": "held_out_specimen.per_target.Vmax.per_specimen.PVDF+BaTiO3+%3CNT.within_R2"
+  },
+  "specLosoMaeVmaxCntThree": {
+   "value": "0.600",
+   "json_key": "held_out_specimen.per_target.Vmax.per_specimen.PVDF+BaTiO3+%3CNT.MAE"
+  },
+  "specDupNPairs": {
+   "value": "3",
+   "json_key": "duplicates.n_pairs"
+  },
+  "specDupNExact": {
+   "value": "2",
+   "json_key": "duplicates.n_exact"
+  },
+  "specDupMaxOtherR": {
+   "value": "0.57",
+   "json_key": "duplicates.max_abs_r_other_pairs"
+  },
+  "specDupNExcl": {
+   "value": "72",
+   "json_key": "duplicate_sensitivity.n"
+  },
+  "specDupCopyA": {
+   "value": "52",
+   "json_key": "duplicates.pairs[0].copy"
+  },
+  "specDupOrigA": {
+   "value": "47",
+   "json_key": "duplicates.pairs[0].original"
+  },
+  "specDupScaleA": {
+   "value": "2.9636",
+   "json_key": "duplicates.pairs[0].scale"
+  },
+  "specDupRA": {
+   "value": "1.000",
+   "json_key": "duplicates.pairs[0].r"
+  },
+  "specDupResidA": {
+   "value": "$9.8\\times10^{-16}$",
+   "json_key": "duplicates.pairs[0].relative_residual"
+  },
+  "specDupCopyB": {
+   "value": "54",
+   "json_key": "duplicates.pairs[1].copy"
+  },
+  "specDupOrigB": {
+   "value": "49",
+   "json_key": "duplicates.pairs[1].original"
+  },
+  "specDupScaleB": {
+   "value": "1.7424",
+   "json_key": "duplicates.pairs[1].scale"
+  },
+  "specDupRB": {
+   "value": "1.000",
+   "json_key": "duplicates.pairs[1].r"
+  },
+  "specDupResidB": {
+   "value": "$1.2\\times10^{-15}$",
+   "json_key": "duplicates.pairs[1].relative_residual"
+  },
+  "specDupCopyC": {
+   "value": "73",
+   "json_key": "duplicates.pairs[2].copy"
+  },
+  "specDupOrigC": {
+   "value": "5",
+   "json_key": "duplicates.pairs[2].original"
+  },
+  "specDupScaleC": {
+   "value": "7.34",
+   "json_key": "duplicates.pairs[2].scale"
+  },
+  "specDupRC": {
+   "value": "0.988",
+   "json_key": "duplicates.pairs[2].r"
+  },
+  "specDupResidC": {
+   "value": "$1.5\\times10^{-1}$",
+   "json_key": "duplicates.pairs[2].relative_residual"
+  },
+  "specDupCvMedianRmsExcl": {
+   "value": "21.2",
+   "json_key": "duplicate_sensitivity.cv_median.rms"
+  },
+  "specDupCvMedianVppExcl": {
+   "value": "30.7",
+   "json_key": "duplicate_sensitivity.cv_median.vpp"
+  },
+  "specDupCvMedianVmaxExcl": {
+   "value": "36.7",
+   "json_key": "duplicate_sensitivity.cv_median.vmax"
+  },
+  "specDupBootCluDistinctExcl": {
+   "value": "122",
+   "json_key": "duplicate_sensitivity.cluster_distinct_multisets_drawn"
+  },
+  "specDupCccRmsExcl": {
+   "value": "0.971",
+   "json_key": "duplicate_sensitivity.per_target.rms_Voc.ccc_raw"
+  },
+  "specDupNoiseCeilingRmsExcl": {
+   "value": "0.985",
+   "json_key": "duplicate_sensitivity.per_target.rms_Voc.acquisition_noise_ceiling_R2"
+  },
+  "specDupLooRmsExcl": {
+   "value": "0.905",
+   "json_key": "duplicate_sensitivity.per_target.rms_Voc.loo_R2"
+  },
+  "specDupBootRecLoRmsExcl": {
+   "value": "0.859",
+   "json_key": "duplicate_sensitivity.per_target.rms_Voc.record_ci95[0]"
+  },
+  "specDupBootRecHiRmsExcl": {
+   "value": "0.931",
+   "json_key": "duplicate_sensitivity.per_target.rms_Voc.record_ci95[1]"
+  },
+  "specDupBootCluLoRmsExcl": {
+   "value": "0.894",
+   "json_key": "duplicate_sensitivity.per_target.rms_Voc.cluster_ci95[0]"
+  },
+  "specDupBootCluHiRmsExcl": {
+   "value": "0.908",
+   "json_key": "duplicate_sensitivity.per_target.rms_Voc.cluster_ci95[1]"
+  },
+  "specDupAnovaOrderRmsExcl": {
+   "value": "frequency, force, composition$\\times$force, composition, three-way interaction, force$\\times$frequency, composition$\\times$frequency",
+   "json_key": "duplicate_sensitivity.per_target.rms_Voc.anova_ordering_by_partial_eta2"
+  },
+  "specDupAnovaOrderSameRmsExcl": {
+   "value": "yes",
+   "json_key": "duplicate_sensitivity.per_target.rms_Voc.anova_ordering_same_as_primary"
+  },
+  "specAnovaOrderRms": {
+   "value": "frequency, force, composition$\\times$force, composition, three-way interaction, force$\\times$frequency, composition$\\times$frequency",
+   "json_key": "anova_split_half.log10.rms_Voc.ordering_by_partial_eta2"
+  },
+  "specDupCccVppExcl": {
+   "value": "0.911",
+   "json_key": "duplicate_sensitivity.per_target.Vpp.ccc_raw"
+  },
+  "specDupNoiseCeilingVppExcl": {
+   "value": "0.966",
+   "json_key": "duplicate_sensitivity.per_target.Vpp.acquisition_noise_ceiling_R2"
+  },
+  "specDupLooVppExcl": {
+   "value": "0.693",
+   "json_key": "duplicate_sensitivity.per_target.Vpp.loo_R2"
+  },
+  "specDupBootRecLoVppExcl": {
+   "value": "0.534",
+   "json_key": "duplicate_sensitivity.per_target.Vpp.record_ci95[0]"
+  },
+  "specDupBootRecHiVppExcl": {
+   "value": "0.830",
+   "json_key": "duplicate_sensitivity.per_target.Vpp.record_ci95[1]"
+  },
+  "specDupBootCluLoVppExcl": {
+   "value": "0.492",
+   "json_key": "duplicate_sensitivity.per_target.Vpp.cluster_ci95[0]"
+  },
+  "specDupBootCluHiVppExcl": {
+   "value": "0.802",
+   "json_key": "duplicate_sensitivity.per_target.Vpp.cluster_ci95[1]"
+  },
+  "specDupAnovaOrderVppExcl": {
+   "value": "frequency, force, composition$\\times$force, composition, three-way interaction, force$\\times$frequency, composition$\\times$frequency",
+   "json_key": "duplicate_sensitivity.per_target.Vpp.anova_ordering_by_partial_eta2"
+  },
+  "specDupAnovaOrderSameVppExcl": {
+   "value": "yes",
+   "json_key": "duplicate_sensitivity.per_target.Vpp.anova_ordering_same_as_primary"
+  },
+  "specAnovaOrderVpp": {
+   "value": "frequency, force, composition$\\times$force, composition, three-way interaction, force$\\times$frequency, composition$\\times$frequency",
+   "json_key": "anova_split_half.log10.Vpp.ordering_by_partial_eta2"
+  },
+  "specDupCccVmaxExcl": {
+   "value": "0.882",
+   "json_key": "duplicate_sensitivity.per_target.Vmax.ccc_raw"
+  },
+  "specDupNoiseCeilingVmaxExcl": {
+   "value": "0.953",
+   "json_key": "duplicate_sensitivity.per_target.Vmax.acquisition_noise_ceiling_R2"
+  },
+  "specDupLooVmaxExcl": {
+   "value": "0.697",
+   "json_key": "duplicate_sensitivity.per_target.Vmax.loo_R2"
+  },
+  "specDupBootRecLoVmaxExcl": {
+   "value": "0.492",
+   "json_key": "duplicate_sensitivity.per_target.Vmax.record_ci95[0]"
+  },
+  "specDupBootRecHiVmaxExcl": {
+   "value": "0.784",
+   "json_key": "duplicate_sensitivity.per_target.Vmax.record_ci95[1]"
+  },
+  "specDupBootCluLoVmaxExcl": {
+   "value": "0.476",
+   "json_key": "duplicate_sensitivity.per_target.Vmax.cluster_ci95[0]"
+  },
+  "specDupBootCluHiVmaxExcl": {
+   "value": "0.791",
+   "json_key": "duplicate_sensitivity.per_target.Vmax.cluster_ci95[1]"
+  },
+  "specDupAnovaOrderVmaxExcl": {
+   "value": "frequency, force, composition$\\times$force, composition, three-way interaction, force$\\times$frequency, composition$\\times$frequency",
+   "json_key": "duplicate_sensitivity.per_target.Vmax.anova_ordering_by_partial_eta2"
+  },
+  "specDupAnovaOrderSameVmaxExcl": {
+   "value": "yes",
+   "json_key": "duplicate_sensitivity.per_target.Vmax.anova_ordering_same_as_primary"
+  },
+  "specAnovaOrderVmax": {
+   "value": "frequency, force, composition$\\times$force, composition, three-way interaction, force$\\times$frequency, composition$\\times$frequency",
+   "json_key": "anova_split_half.log10.Vmax.ordering_by_partial_eta2"
+  },
+  "specNRateDeviatesSpectral": {
+   "value": "30",
+   "json_key": "repeatability.segmentation.n_rate_deviates_spectral"
+  },
+  "specNRateDeviatesBoth": {
+   "value": "20",
+   "json_key": "repeatability.segmentation.n_rate_deviates_both"
+  },
+  "specNRateDeviatesNoCopy": {
+   "value": "21",
+   "json_key": "repeatability.segmentation.n_rate_deviates_excluding_copies"
+  },
+  "specNHalfPeriod": {
+   "value": "4",
+   "json_key": "repeatability.segmentation.n_half_period_accepted"
+  }
+ },
+ "index": {
+  "results/tables/tab_spec_repeatability.tex": [
+   "repeatability.{rms,vpp,vmax}.by_freq",
+   "repeatability.{rms,vpp,vmax}.by_force",
+   "repeatability.{rms,vpp,vmax}.all",
+   "repeatability.{rms,vpp,vmax}.all_excluding_failed",
+   "repeatability.{rms,vpp,vmax}.spread",
+   "repeatability.segmentation.per_recording"
+  ],
+  "results/tables/tab_spec_splithalf.tex": [
+   "split_half.per_target",
+   "duplicate_sensitivity.per_target"
+  ],
+  "results/tables/tab_spec_anova.tex": [
+   "anova_split_half.log10.{rms_Voc,Vpp,Vmax}.terms"
+  ],
+  "results/tables/tab_spec_bootstrap.tex": [
+   "bootstrap.per_target",
+   "bootstrap.cluster_distinct_multisets_drawn",
+   "bootstrap.cluster_possible_multisets",
+   "duplicate_sensitivity.per_target",
+   "duplicate_sensitivity.cluster_distinct_multisets_drawn"
+  ],
+  "results/tables/tab_spec_duplicates.tex": [
+   "duplicates.pairs"
+  ],
+  "results/tables/tab_spec_loso.tex": [
+   "held_out_specimen.per_target"
+  ],
+  "results/numbers_a1.tex": "macros (each entry lists its json_key)",
+  "figures/fig_spec_cycles.pdf": [
+   "repeatability.segmentation.per_recording",
+   "repeatability.{rms,vpp,vmax}.by_freq",
+   "results/a1_recordings.csv",
+   "results/a1_cycles.csv"
+  ],
+  "figures/fig_spec_splithalf.pdf": [
+   "split_half.halves"
+  ],
+  "results/a1_predictions.csv": "out-of-fold plain GP predictions: loo (full), loo_halfA, loo_halfB, held_out_specimen",
+  "results/a1_bootstrap_draws.csv": "bootstrap.per_target record and cluster R^2 draws",
+  "results/a1_bootstrap_cluster_draws.csv": "specimen indices of each cluster draw",
+  "example_recordings_fig_spec_cycles": {
+   "composition": "PVDF+BaTiO3+%2CNT",
+   "force_N": 2,
+   "condition_ids": [
+    50,
+    53
+   ],
+   "rate_example_condition_id": 58
+  },
+  "duplicate sensitivity macros specDup*Excl": [
+   "duplicate_sensitivity"
+  ]
+ }
+}
