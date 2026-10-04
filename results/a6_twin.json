@@ -33885,7 +33885,7 @@
   },
   "sources": {
    "R_in, area, thickness, C_p range": "project notes; project notes",
-   "eps ratios": "Koc et al. 2025 Fig. 7 as read in R1 (3 wt% = 1.57 x pristine; others below pristine, 0.90 assumed)",
+   "eps ratios": "Koc et al. 2025 Fig. 7 as read in project notes (3 wt% = 1.57 x pristine; others below pristine, 0.90 assumed)",
    "law-true parameters": "a2_common.fit_law5 on the full real V_rms grid (project notes)",
    "two-mode parameters": "bounded least squares on the full real V_rms grid (this script)",
    "delta": "a1_recordings.csv rate_rel_dev_from_nominal, recordings 52, 54, 73 excluded (project notes, 6.12)",

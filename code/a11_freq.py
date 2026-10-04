@@ -73,11 +73,11 @@ from pathlib import Path  # noqa: E402
 
 HERE = Path(__file__).resolve().parent
 from peng_paths import ROOT  # repository root (env PENG_ROOT overrides)
-for _p in (str(ROOT), str(ROOT / "regression"), str(HERE)):
+for _p in (str(ROOT), str(ROOT / "code"), str(HERE)):
     if _p not in sys.path:
         sys.path.insert(0, _p)
 os.environ["PYTHONPATH"] = os.pathsep.join(
-    [str(HERE), str(ROOT / "regression"), str(ROOT)]
+    [str(HERE), str(ROOT / "code"), str(ROOT)]
     + ([os.environ["PYTHONPATH"]] if os.environ.get("PYTHONPATH") else [])
 )
 

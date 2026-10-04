@@ -100,7 +100,7 @@ def do_bench(J):
     C.write_text(C.TAB / "tab_bench_all.tex", BN.all_table(B))
     C.write_text(C.TAB / "tab_bench_significance.tex", BN.sig_table(B))
     J["benchmark_best_by_cv_r2"] = best
-    mac("benchNModels", str(len(BN.ORDER)), "hyperparameters.models", "reg_common.py")
+    mac("benchNModels", str(len(BN.ORDER)), "hyperparameters.models", "code/reg_common.py")
     for t in C.TARGETS:
         T = C.CAMEL_T[t]
         for m in BN.ORDER:

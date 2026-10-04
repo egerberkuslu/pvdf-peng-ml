@@ -8,7 +8,7 @@
  ],
  "energy_target": "excluded from every table, figure and macro",
  "hyperparameters": {
-  "source": "regression/reg_common.py::model_factories()",
+  "source": "code/reg_common.py::model_factories()",
   "seed_constant": 42,
   "models": [
    {
@@ -1092,7 +1092,7 @@
    "loo_r2_recomputed": 0.9142017497171744,
    "loo_mae_recomputed": 0.018458058640461864,
    "legacy_cv_r2": 0.9142014130104592,
-   "factory": "regression/reg_common.py::model_factories()['ARD-GP']",
+   "factory": "code/reg_common.py::model_factories()['ARD-GP']",
    "inputs": "cnt_pct, is_pristine, force_N, freq_Hz from targets_design.parquet"
   },
   "Vpp": {
@@ -1331,7 +1331,7 @@
    "loo_r2_recomputed": 0.8282330783119515,
    "loo_mae_recomputed": 0.3207432001664924,
    "legacy_cv_r2": 0.8289014133923491,
-   "factory": "regression/reg_common.py::model_factories()['RandomForest']",
+   "factory": "code/reg_common.py::model_factories()['RandomForest']",
    "inputs": "cnt_pct, is_pristine, force_N, freq_Hz from targets_design.parquet"
   },
   "Vmax": {
@@ -1570,7 +1570,7 @@
    "loo_r2_recomputed": 0.817371882580687,
    "loo_mae_recomputed": 0.2622562629503125,
    "legacy_cv_r2": 0.8163958853816833,
-   "factory": "regression/reg_common.py::model_factories()['RandomForest']",
+   "factory": "code/reg_common.py::model_factories()['RandomForest']",
    "inputs": "cnt_pct, is_pristine, force_N, freq_Hz from targets_design.parquet"
   }
  },
@@ -5957,7 +5957,7 @@
    "in_sample_R2": 0.9988941430292626,
    "recordwise_R2": 0.9142014130104592,
    "worst_groupwise": {
-    "R2": -1.0994419166888667,
+    "R2": -1.0994419167157736,
     "factor": "frequency"
    },
    "raw_cov95": 0.88,
@@ -6135,7 +6135,7 @@
    54,
    73
   ],
-  "excluded_reason": "scaled copies of other recordings, revision/project notes",
+  "excluded_reason": "scaled copies of other recordings, duplicated-recordings note in the README",
   "n": 72,
   "benchmark_loo": {
    "rms_Voc": {
@@ -6692,7 +6692,7 @@
   "benchNModels": {
    "value": "14",
    "json_key": "hyperparameters.models",
-   "source": "reg_common.py"
+   "source": "code/reg_common.py"
   },
   "benchLooRmsLinear": {
    "value": "0.267",
@@ -10190,5 +10190,5 @@
    "source": "a3_tables.json"
   }
  },
- "runtime_s": 308.0150237083435
+ "runtime_s": 618.9049820899963
 }

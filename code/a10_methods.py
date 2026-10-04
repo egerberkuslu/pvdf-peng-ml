@@ -5,7 +5,7 @@ Three blocks, one command from the repository root:
     python code/a10_methods.py
 
 (a) Fair tuning. Nested, equal-budget random search for every regressor of the
-    benchmark (the 14 factories of regression/reg_common.py): 30 configurations per
+    benchmark (the 14 factories of code/reg_common.py): 30 configurations per
     model drawn with ParameterSampler(random_state=42) from a declared space, inner
     folds group-aware by specimen (leave-one-composition-out inside the outer
     training set), selection by pooled inner mean squared error, outer LOO on all
@@ -59,11 +59,11 @@ from pathlib import Path  # noqa: E402
 
 HERE = Path(__file__).resolve().parent
 from peng_paths import ROOT  # repository root (env PENG_ROOT overrides)
-for _p in (str(ROOT), str(ROOT / "regression"), str(HERE)):
+for _p in (str(ROOT), str(ROOT / "code"), str(HERE)):
     if _p not in sys.path:
         sys.path.insert(0, _p)
 os.environ["PYTHONPATH"] = os.pathsep.join(
-    [str(HERE), str(ROOT / "regression"), str(ROOT)]
+    [str(HERE), str(ROOT / "code"), str(ROOT)]
     + ([os.environ["PYTHONPATH"]] if os.environ.get("PYTHONPATH") else [])
 )
 

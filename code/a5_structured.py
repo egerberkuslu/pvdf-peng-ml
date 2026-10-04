@@ -1024,7 +1024,7 @@ Within-level $R^2$ and mean absolute error in volts for every held-out compositi
 
 ## tab_alt_pooled
 
-Pooled out-of-fold $R^2$ over all 75 conditions with the global mean as reference, mean of the within-level $R^2$ values over the held-out levels of one axis, and pooled mean absolute error in volts, for within-grid leave-one-out and the three held-out axes. Leave-one-out $R^2$ carries three decimals and group-wise $R^2$ two. Bold marks the best model per target in each row. The structured kernels use four optimizer restarts at seed 0 and the two reference models keep the single-start optimizer of the submitted manuscript.
+Pooled out-of-fold $R^2$ over all 75 conditions with the global mean as reference, mean of the within-level $R^2$ values over the held-out levels of one axis, and pooled mean absolute error in volts, for within-grid leave-one-out and the three held-out axes. Leave-one-out $R^2$ carries three decimals and group-wise $R^2$ two. Bold marks the best model per target in each row. The structured kernels use four optimizer restarts at seed 0 and the two reference models keep the single-start optimizer of the first-stage analysis.
 """
 open(OUT_CAP, "w").write(cap)
 

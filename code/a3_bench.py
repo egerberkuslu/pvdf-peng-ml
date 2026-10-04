@@ -3,8 +3,8 @@ benchmark and significance tables from the legacy JSON, and LOO predictions
 of the best model per target recomputed with the canonical factories.
 
 Sources
-  regression/reg_common.py::model_factories()      fourteen regressors
-  regression/reg_common.py::svr_tuned_estimator()  exploratory tuned SVR
+  code/reg_common.py::model_factories()      fourteen regressors
+  code/reg_common.py::svr_tuned_estimator()  exploratory tuned SVR
   code/baseline/mlp_tuned_analysis.py    MLP nested-tuning grid
   results/baseline/reg_stats.json   CV R2, bootstrap CI, Wilcoxon
   results/baseline/reg_models.json  CV R2, in-sample R2, MAE (all 14)
@@ -18,7 +18,7 @@ import numpy as np
 
 import a3_common as C
 
-sys.path[:0] = [str(C.ROOT / "regression"), str(C.ROOT)]
+sys.path[:0] = [str(C.ROOT / "code")]
 import reg_common  # noqa: E402
 
 ORDER = [
@@ -299,7 +299,7 @@ def hyperparams():
     facs = reg_common.model_factories()
     rows = [describe(n, facs[n]()) for n in ORDER]
     return {
-        "source": "regression/reg_common.py::model_factories()",
+        "source": "code/reg_common.py::model_factories()",
         "seed_constant": reg_common.SEED,
         "models": rows,
         "mlp_nested_tuning": mlp_grid_from_source(),
@@ -665,7 +665,7 @@ def recompute_loo_best(B):
             "loo_r2_recomputed": float(r2_score(y, pred)),
             "loo_mae_recomputed": float(mean_absolute_error(y, pred)),
             "legacy_cv_r2": B[t]["models"][m]["cv_r2"],
-            "factory": f"regression/reg_common.py::model_factories()['{m}']",
+            "factory": f"code/reg_common.py::model_factories()['{m}']",
             "inputs": "cnt_pct, is_pristine, force_N, freq_Hz from targets_design.parquet",
         }
     return out

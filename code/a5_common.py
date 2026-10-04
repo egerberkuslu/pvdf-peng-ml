@@ -133,7 +133,7 @@ def kernel_additive():
 
 
 def gp_legacy():
-    """Plain GP of the submitted manuscript (legacy physgp_analysis.gp)."""
+    """Plain GP of the first-stage analysis (legacy physgp_analysis.gp)."""
     k = C(1.0, (1e-3, 1e3)) * Matern(
         length_scale=[1.0] * 4, nu=2.5, length_scale_bounds=(1e-2, 1e3)
     ) + WhiteKernel(1e-3, (1e-6, 1e1))

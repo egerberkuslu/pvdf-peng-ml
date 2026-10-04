@@ -1,6 +1,6 @@
 """Shared helpers for task A2 (PhysGP identifiability, per-level results, selection rule).
 
-Data loading, the plain GP of the submitted manuscript, the legacy six-parameter
+Data loading, the plain GP of the first-stage analysis, the legacy six-parameter
 voltage law, the identifiable five-parameter reparameterization, and fold-level
 predictors. The loader and model code are copied from
 code/baseline/physgp_analysis.py and revision_experiments.py so the
@@ -144,7 +144,7 @@ def group_folds(axis, idx=None):
 
 # ---------------------------------------------------------------- models
 def gp(restarts=0):
-    """Plain GP of the submitted manuscript (legacy physgp_analysis.gp).
+    """Plain GP of the first-stage analysis (legacy physgp_analysis.gp).
 
     restarts > 0 is used only for the optimizer-restart robustness check; the
     restart draws use random_state=0 so the check is deterministic.

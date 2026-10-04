@@ -32,7 +32,7 @@ project notes), so the recorded voltage solves
 i.e. V is R_in dq/dt low-passed at f_c = 1 / (2 pi R_in C_p); the equation is
 integrated exactly on a 2 us grid and sampled at 1 kHz (1000 samples, as recorded).
     C_p = eps0 eps_r(c) A / t,   A = 12.25 cm^2, t = 155 um (140 to 170 um),
-    eps_r(pristine) = 10 (mid row of the R1 capacitance table, project notes),
+    eps_r(pristine) = 10 (mid row of the project notes capacitance table, project notes),
     eps_r / eps_r(pristine) = 1.00, 0.90, 0.90, 0.90, 1.57 for PVDF, +BaTiO3, +1, +2,
     +3 wt% MWCNT (Koc et al. 2025 Fig. 7 as read in project notes: 3 wt%
     is 1.57 times pristine, the other composites below pristine; 0.90 is our
@@ -40,7 +40,7 @@ integrated exactly on a 2 us grid and sampled at 1 kHz (1000 samples, as recorde
 This gives C_p = 0.63 to 1.1 nF, inside the 0.19 to 7.7 nF range of project notes;
 the optimum simulation also runs with C_p(3 wt%) = 7.7 nF (upper end) and with
 negligible C_p (pure current mode).  The force-pulse SD sigma_t is calibrated (below);
-the share of above-half-maximum excursions lasting one sample, which R1 found to be
+the share of above-half-maximum excursions lasting one sample, which project notes found to be
 all of them in the real recordings, is reported as a fidelity statistic.
 
 Composition, force and frequency (the ground truth).  The per-tap amplitude is
@@ -171,10 +171,10 @@ R_IN = 144e3  # Ohm, NI USB-6009 AI input (project notes)
 AREA = 12.25e-4  # m^2 electrode area (project notes, Koc 2025 Eq. 3)
 THICK = 155e-6  # m, middle of 140 to 170 um (project notes)
 EPS0 = 8.8541878128e-12
-EPS_R_PRISTINE = 10.0  # R1 capacitance table, middle row (range 3 to 100)
-EPS_RATIO_BTO = 0.90  # assumption: "below pristine" (R1 reading of Koc 2025 Fig. 7)
-EPS_RATIO_3WT = 1.57  # Koc 2025 Fig. 7 via R1: 3 wt% is 1.57 x pristine
-SIGMA_T = 0.3e-3  # s, force-pulse SD (R1: excursions above half max last one sample)
+EPS_R_PRISTINE = 10.0  # project notes capacitance table, middle row (range 3 to 100)
+EPS_RATIO_BTO = 0.90  # assumption: "below pristine" (project notes reading of Koc 2025 Fig. 7)
+EPS_RATIO_3WT = 1.57  # Koc 2025 Fig. 7 via project notes: 3 wt% is 1.57 x pristine
+SIGMA_T = 0.3e-3  # s, force-pulse SD (project notes: excursions above half max last one sample)
 DT_FINE = 2e-6
 DUP_IDS = [52, 54, 73]  # duplicated-recordings note in the README
 CV_LEVELS = [0.0, 0.10, 0.20, 0.30]
@@ -1449,7 +1449,7 @@ def write_outputs(args, emp, two, P_ser, fid, cal_hist, real, res, ex, opt_raw, 
         "delta_pool": emp["delta_pool"],
         "sources": {
             "R_in, area, thickness, C_p range": "project notes; project notes",
-            "eps ratios": "Koc et al. 2025 Fig. 7 as read in R1 (3 wt% = 1.57 x pristine; others below pristine, 0.90 assumed)",
+            "eps ratios": "Koc et al. 2025 Fig. 7 as read in project notes (3 wt% = 1.57 x pristine; others below pristine, 0.90 assumed)",
             "law-true parameters": "a2_common.fit_law5 on the full real V_rms grid (project notes)",
             "two-mode parameters": "bounded least squares on the full real V_rms grid (this script)",
             "delta": "a1_recordings.csv rate_rel_dev_from_nominal, recordings 52, 54, 73 excluded (project notes, 6.12)",

@@ -3,7 +3,7 @@
 into tapping cycles, plus per-cycle amplitudes.
 
 Why fixed-period windows and not peak detection: the recorded voltage excursions
-are one-sample spikes (1 kHz sampling, see R1 on the board) whose height varies
+are one-sample spikes (1 kHz sampling, see the project notes) whose height varies
 strongly from tap to tap. A peak detector with a height threshold skips the
 small taps (at 20 to 25 Hz it finds far fewer peaks than cycles), which drops
 exactly the cycles that make the amplitude vary and biases the cycle CV
@@ -27,7 +27,7 @@ folding concentrates more energy
 in half a period wins, and the nominal period is kept unless the
 autocorrelation period beats it by at least PERIOD_MARGIN. This is needed
 because in a subset of recordings the impact rate visibly differs from the
-nominal label (A4 board finding #5, confirmed here).
+nominal label (finding #5 of the descriptive analysis, confirmed here).
 """
 import numpy as np
 from scipy.signal import find_peaks

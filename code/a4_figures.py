@@ -783,7 +783,7 @@ OUT["macros"] = M
 
 # ================================================================ spectral check
 # Dominant 3-60 Hz FFT component of each mean-removed recording against the
-# nominal tapping frequency (descriptive; shared with A1 on the board).
+# nominal tapping frequency (descriptive; shared with A1).
 spec_rows = []
 fr_axis = np.fft.rfftfreq(1000, 0.001)
 band = (fr_axis >= 3) & (fr_axis <= 60)
@@ -816,7 +816,7 @@ OUT["index"] = {
     "fig_desc_waveforms": ["waveforms_2wt_3N"],
     "tab_desc_optima": ["optima", "best_measured"],
     "numbers_a4.tex": ["macros"],
-    "board finding on periodicity": ["spectral_check"],
+    "periodicity finding": ["spectral_check"],
     "macro prefixes": {
         "descBest*": "best_measured",
         "descMapMaxRms": "eda.map_3N_max_V",

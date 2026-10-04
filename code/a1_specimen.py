@@ -129,7 +129,7 @@ NUMW = {
     20: "Twenty",
     25: "TwentyFive",
 }
-# house style (A4 board interface #1, values copied)
+# house style (shared figure style, values copied)
 CBLUE, CTEAL, CAMBER, CRED, CGREY = (
     "#3B6FB6",
     "#2A9D8F",
@@ -1641,7 +1641,7 @@ EXAMPLE = {"composition": "PVDF+BaTiO3+%2CNT", "force_N": 2, "freqs": (5, 20)}
 
 
 # rate-deviating example: condition 58 (+2 wt% MWCNT, 3 N, 20 Hz label), the same
-# recording A4 cites on the board (finding #5); asserted to be rate-deviating
+# recording A4 cites (finding #5); asserted to be rate-deviating
 RATE_EXAMPLE_ID = 58
 RATE_EXAMPLE = int(np.where(CID == RATE_EXAMPLE_ID)[0][0])  # row position
 assert bool(REC.loc[RATE_EXAMPLE, "flag_rate_deviates"])
@@ -1807,7 +1807,7 @@ Within-grid leave-one-out R2 of the plain Gaussian process with two bootstrap 95
 
 ## tab_spec_loso
 
-Held-out specimen evaluation of the plain Gaussian process, which equals held-out composition because each composition is one specimen. Each row trains on the conditions of the other four specimens and predicts every condition of the named specimen. R2 and MAE are computed within the held-out conditions with their own mean in the R2 denominator. The pooled row uses all {N} out-of-fold predictions and the global mean, as in the submitted manuscript.
+Held-out specimen evaluation of the plain Gaussian process, which equals held-out composition because each composition is one specimen. Each row trains on the conditions of the other four specimens and predicts every condition of the named specimen. R2 and MAE are computed within the held-out conditions with their own mean in the R2 denominator. The pooled row uses all {N} out-of-fold predictions and the global mean, as in the first-stage analysis.
 
 ## tab_spec_duplicates
 

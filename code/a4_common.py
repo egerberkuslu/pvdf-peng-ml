@@ -3,7 +3,7 @@
 The GP is the protocol plain GP (ARD Matern-5/2 + white noise, inputs
 standardized, normalize_y=True, n_restarts_optimizer=0 as in the legacy
 surface and uncertainty scripts). The random forest uses the benchmark
-settings of regression/reg_common.py (400 trees, random_state=42).
+settings of code/reg_common.py (400 trees, random_state=42).
 """
 
 import os

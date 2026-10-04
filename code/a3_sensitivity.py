@@ -4,7 +4,7 @@ Rows 52, 54 and 73 of targets_design.parquet are scaled copies of other
 recordings. Everything here is refitted fresh on the remaining 72 rows (never
 read from the cache):
   1. within-grid LOO R2 of ARD-GP, random forest, extra-trees and XGBoost with
-     the canonical benchmark factories (regression/reg_common.py), also rerun
+     the canonical benchmark factories (code/reg_common.py), also rerun
      on all 75 rows with the same code so the two columns differ only in data;
   2. within-grid nested-LOO raw GP, jackknife+ and sigma-scaled jackknife+
      coverage (same construction as a3_conformal.within_grid);
@@ -54,7 +54,7 @@ def bench_loo():
     """LOO R2 on 75 and on 72 rows with the canonical factories."""
     import sys
 
-    sys.path[:0] = [str(C.ROOT / "regression"), str(C.ROOT)]
+    sys.path[:0] = [str(C.ROOT / "code")]
     import reg_common
     from sklearn.metrics import mean_absolute_error, r2_score
     from sklearn.model_selection import LeaveOneOut, cross_val_predict

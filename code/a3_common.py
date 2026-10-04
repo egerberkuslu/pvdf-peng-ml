@@ -241,7 +241,7 @@ TARGET_LABEL = {
 
 
 def apply_style():
-    """House style of protocol section 7 (values mirrored from the A4 board post)."""
+    """House style of protocol section 7 (values mirrored from A4)."""
     import matplotlib
 
     matplotlib.use("Agg")

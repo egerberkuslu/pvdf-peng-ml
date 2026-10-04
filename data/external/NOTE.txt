@@ -3,7 +3,7 @@ External benchmark datasets (UCI Machine Learning Repository)
 
 The data files in this directory are PUBLIC benchmark datasets from the UCI
 Machine Learning Repository. They are redistributed here unchanged so that the
-protocol-replay experiment (code/protocol_replay.py) can be reproduced without
+protocol-replay experiment (code/baseline/protocol_replay.py) can be reproduced without
 network access. They are NOT part of the piezoelectric nanogenerator study; they
 serve only as independent, external test beds for the same modeling protocol.
 
