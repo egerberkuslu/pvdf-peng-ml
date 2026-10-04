@@ -1,0 +1,532 @@
+{
+ "study": "park2017",
+ "doi": "10.1038/s41598-017-17791-3",
+ "citation": "Park S, Kim Y, Jung H, Park J-Y, Lee N, Seo Y. Energy harvesting efficiency of piezoelectric polymer film with graphene and metal electrodes. Sci Rep 7, 17290 (2017).",
+ "license": "CC BY 4.0 (https://creativecommons.org/licenses/by/4.0), open access; PDF from the PMC open-access subset (PMC5725581) and nature.com",
+ "pdf_source": "data/external_peng/pdf/PMC5725581/PMC5725581.1.pdf",
+ "figures": {
+  "Fig. 3d-i": "G/PVDF/G, 100-300 Hz, preload 70-1070 g (PDF p. 4, image xref 62, 1900x1359 px)",
+  "Fig. 5a": "P(VDF-TrFE) film, 10-370 Hz, preload 70/170/270 g (PDF p. 6, image xref 126, 1650x629 px)"
+ },
+ "device": "piezoelectric polymer film with graphene (Fig. 3) or on a P(VDF-TrFE) thin film (Fig. 5), clamped at two edges and tensioned by hanging masses; loudspeaker excitation at fixed drive amplitude; oscilloscope input 1 MOhm",
+ "quantity": "peak-to-peak voltage (V) against excitation frequency, continuous sweep, sampled every 5 Hz",
+ "sampling_step_Hz": 5.0,
+ "axis_calibration": {
+  "3d": {
+   "x_ticks_px": [
+    220.5,
+    349.5,
+    478.5
+   ],
+   "x_ticks_val": [
+    150,
+    200,
+    250
+   ],
+   "y_ticks_px": [
+    419.0,
+    460.0,
+    502.0,
+    544.0,
+    585.5,
+    627.0,
+    668.5,
+    710.5,
+    751.5
+   ],
+   "y_ticks_val": [
+    9,
+    8,
+    7,
+    6,
+    5,
+    4,
+    3,
+    2,
+    1
+   ],
+   "x_map": [
+    0.38759689922480633,
+    64.53488372093011
+   ],
+   "y_map": [
+    -0.024023894035148468,
+    19.061985975240237
+   ],
+   "x_resid_px": 2.1998403099132695e-13,
+   "y_resid_px": 0.4576576576576533
+  },
+  "3e": {
+   "x_ticks_px": [
+    852.5,
+    981.5,
+    1110.5
+   ],
+   "x_ticks_val": [
+    150,
+    200,
+    250
+   ],
+   "y_ticks_px": [
+    417.5,
+    459.0,
+    500.5,
+    543.0,
+    584.5,
+    625.5,
+    667.0,
+    709.0,
+    750.5
+   ],
+   "y_ticks_val": [
+    9,
+    8,
+    7,
+    6,
+    5,
+    4,
+    3,
+    2,
+    1
+   ],
+   "x_map": [
+    0.3875968992248059,
+    -180.42635658914693
+   ],
+   "y_map": [
+    -0.02402384268190629,
+    19.03125878416004
+   ],
+   "x_resid_px": 2.199840309913272e-13,
+   "y_resid_px": 0.5697586475365218
+  },
+  "3f": {
+   "x_ticks_px": [
+    1482.5,
+    1611.0,
+    1740.0
+   ],
+   "x_ticks_val": [
+    150,
+    200,
+    250
+   ],
+   "y_ticks_px": [
+    417.5,
+    459.0,
+    500.5,
+    543.0,
+    584.5,
+    625.5,
+    667.0,
+    709.0,
+    750.5
+   ],
+   "y_ticks_val": [
+    9,
+    8,
+    7,
+    6,
+    5,
+    4,
+    3,
+    2,
+    1
+   ],
+   "x_map": [
+    0.3883490264881688,
+    -425.695006510188
+   ],
+   "y_map": [
+    -0.02402384268190629,
+    19.03125878416004
+   ],
+   "x_resid_px": 0.1666666666666739,
+   "y_resid_px": 0.5697586475365218
+  },
+  "3g": {
+   "x_ticks_px": [
+    220.5,
+    349.5,
+    478.5
+   ],
+   "x_ticks_val": [
+    150,
+    200,
+    250
+   ],
+   "y_ticks_px": [
+    910.5,
+    951.5,
+    993.5,
+    1035.5,
+    1076.5,
+    1118.5,
+    1160.0,
+    1201.5,
+    1242.5
+   ],
+   "y_ticks_val": [
+    9,
+    8,
+    7,
+    6,
+    5,
+    4,
+    3,
+    2,
+    1
+   ],
+   "x_map": [
+    0.38759689922480633,
+    64.53488372093011
+   ],
+   "y_map": [
+    -0.024057568391403314,
+    30.901981968077564
+   ],
+   "x_resid_px": 2.1998403099132695e-13,
+   "y_resid_px": 0.46578454958537463
+  },
+  "3h": {
+   "x_ticks_px": [
+    852.5,
+    981.5,
+    1110.5
+   ],
+   "x_ticks_val": [
+    150,
+    200,
+    250
+   ],
+   "y_ticks_px": [
+    910.5,
+    951.5,
+    993.5,
+    1035.5,
+    1077.0,
+    1118.5,
+    1160.0,
+    1201.5,
+    1242.5
+   ],
+   "y_ticks_val": [
+    9,
+    8,
+    7,
+    6,
+    5,
+    4,
+    3,
+    2,
+    1
+   ],
+   "x_map": [
+    0.3875968992248059,
+    -180.42635658914693
+   ],
+   "y_map": [
+    -0.024057555498988446,
+    30.903304618105263
+   ],
+   "x_resid_px": 2.199840309913272e-13,
+   "y_resid_px": 0.521273278088678
+  },
+  "3i": {
+   "x_ticks_px": [
+    1482.5,
+    1611.0,
+    1740.5
+   ],
+   "x_ticks_val": [
+    150,
+    200,
+    250
+   ],
+   "y_ticks_px": [
+    910.5,
+    951.5,
+    993.0,
+    1035.5,
+    1077.0,
+    1118.5,
+    1160.0,
+    1201.5,
+    1242.5
+   ],
+   "y_ticks_val": [
+    9,
+    8,
+    7,
+    6,
+    5,
+    4,
+    3,
+    2,
+    1
+   ],
+   "x_map": [
+    0.38759495826093143,
+    -424.54467607778105
+   ],
+   "y_map": [
+    -0.024047845091396264,
+    30.891513215069974
+   ],
+   "x_resid_px": 0.33333333333377524,
+   "y_resid_px": 0.5017368069470525
+  },
+  "5a": {
+   "x_ticks_px": [
+    168.5,
+    320.0,
+    472.5,
+    625.0
+   ],
+   "x_ticks_val": [
+    0,
+    100,
+    200,
+    300
+   ],
+   "y_ticks_px": [
+    114.0,
+    177.5,
+    240.5,
+    304.5,
+    368.5,
+    431.75,
+    495.5
+   ],
+   "y_ticks_val": [
+    3.0,
+    2.5,
+    2.0,
+    1.5,
+    1.0,
+    0.5,
+    0.0
+   ],
+   "x_map": [
+    0.6570285215994888,
+    -110.51180881419732
+   ],
+   "y_map": [
+    -0.0078607238871081,
+    3.8944326440408936
+   ],
+   "x_resid_px": 0.39980289093299926,
+   "y_resid_px": 0.4997693911929157
+  }
+ },
+ "digitization_error": {
+  "repeat_pass": {
+   "description": "second trace with looser dark/colour thresholds and a +-2 px instead of +-1 px sampling window",
+   "G/PVDF/G": {
+    "n": 234,
+    "median_abs_V": 0.006008967390817688,
+    "p90_abs_V": 0.012028777749492292,
+    "max_abs_V": 0.06014388874747212
+   },
+   "P(VDF-TrFE)": {
+    "n": 169,
+    "median_abs_V": 0.00294777145766556,
+    "p90_abs_V": 0.015917965871393776,
+    "max_abs_V": 0.22108285932491523
+   }
+  },
+  "stated": {
+   "text": "G/PVDF/G: 7.6 Vpp at 1.75 MPa (the 870 g panel, peak near 280 Hz)",
+   "fig4a_note": "Fig. 4a plots the same peak maxima; peak heights between 5 Hz samples are not in the csv"
+  },
+  "sampled_maxima": {
+   "G/PVDF/G 70 g": [
+    155.0,
+    1.350370097827028
+   ],
+   "G/PVDF/G 170 g": [
+    185.0,
+    1.7701278172103727
+   ],
+   "G/PVDF/G 370 g": [
+    180.0,
+    2.388741766269458
+   ],
+   "G/PVDF/G 570 g": [
+    210.0,
+    2.0208711141978846
+   ],
+   "G/PVDF/G 870 g": [
+    280.0,
+    7.3569721734703215
+   ],
+   "G/PVDF/G 1070 g": [
+    280.0,
+    5.67734763674099
+   ],
+   "P(VDF-TrFE) 70 g": [
+    130.0,
+    0.8032029754356329
+   ],
+   "P(VDF-TrFE) 170 g": [
+    285.0,
+    2.9295287868983744
+   ],
+   "P(VDF-TrFE) 270 g": [
+    355.0,
+    2.4225120961799016
+   ]
+  },
+  "peak_undersampling": {
+   "description": "resonance maxima printed by the authors (Fig. 4a, Fig. 5b) against the maximum of the pixel-resolution trace and of the 5 Hz samples in the csv; the csv under-records narrow peaks, so every Lorentzian statistic on this study is computed from 5 Hz samples",
+   "printed_calibration": {
+    "G/PVDF/G": {
+     "y_ticks_px": [
+      108.5,
+      218.5,
+      326.5,
+      435.5
+     ],
+     "y_ticks_val": [
+      8,
+      6,
+      4,
+      2
+     ],
+     "y_resid_px": 0.7006427915519167
+    },
+    "P(VDF-TrFE)": {
+     "y_ticks_px": [
+      135.0,
+      220.5,
+      306.5,
+      395.0,
+      480.5
+     ],
+     "y_ticks_val": [
+      8,
+      6,
+      4,
+      2,
+      0
+     ],
+     "y_resid_px": 1.0000000000000961
+    }
+   },
+   "per_curve": [
+    {
+     "device": "G/PVDF/G",
+     "mass_g": 70,
+     "printed_peak_V": 1.392,
+     "traced_max_V": 1.38,
+     "traced_max_f_Hz": 155.2,
+     "sampled_max_V": 1.35,
+     "sampled_max_f_Hz": 155.0,
+     "sampled_shortfall_V": 0.042,
+     "sampled_shortfall_rel": 0.03,
+     "traced_shortfall_rel": 0.008
+    },
+    {
+     "device": "G/PVDF/G",
+     "mass_g": 170,
+     "printed_peak_V": 1.896,
+     "traced_max_V": 1.854,
+     "traced_max_f_Hz": 185.5,
+     "sampled_max_V": 1.77,
+     "sampled_max_f_Hz": 185.0,
+     "sampled_shortfall_V": 0.126,
+     "sampled_shortfall_rel": 0.066,
+     "traced_shortfall_rel": 0.022
+    },
+    {
+     "device": "G/PVDF/G",
+     "mass_g": 370,
+     "printed_peak_V": 2.598,
+     "traced_max_V": 2.515,
+     "traced_max_f_Hz": 181.3,
+     "sampled_max_V": 2.389,
+     "sampled_max_f_Hz": 180.0,
+     "sampled_shortfall_V": 0.21,
+     "sampled_shortfall_rel": 0.081,
+     "traced_shortfall_rel": 0.032
+    },
+    {
+     "device": "G/PVDF/G",
+     "mass_g": 570,
+     "printed_peak_V": 2.898,
+     "traced_max_V": 2.707,
+     "traced_max_f_Hz": 210.7,
+     "sampled_max_V": 2.021,
+     "sampled_max_f_Hz": 210.0,
+     "sampled_shortfall_V": 0.877,
+     "sampled_shortfall_rel": 0.303,
+     "traced_shortfall_rel": 0.066
+    },
+    {
+     "device": "G/PVDF/G",
+     "mass_g": 870,
+     "printed_peak_V": 7.606,
+     "traced_max_V": 7.423,
+     "traced_max_f_Hz": 279.7,
+     "sampled_max_V": 7.357,
+     "sampled_max_f_Hz": 280.0,
+     "sampled_shortfall_V": 0.249,
+     "sampled_shortfall_rel": 0.033,
+     "traced_shortfall_rel": 0.024
+    },
+    {
+     "device": "G/PVDF/G",
+     "mass_g": 1070,
+     "printed_peak_V": 6.604,
+     "traced_max_V": 6.555,
+     "traced_max_f_Hz": 282.4,
+     "sampled_max_V": 5.677,
+     "sampled_max_f_Hz": 280.0,
+     "sampled_shortfall_V": 0.927,
+     "sampled_shortfall_rel": 0.14,
+     "traced_shortfall_rel": 0.007
+    },
+    {
+     "device": "P(VDF-TrFE)",
+     "mass_g": 70,
+     "printed_peak_V": 0.802,
+     "traced_max_V": 0.825,
+     "traced_max_f_Hz": 131.9,
+     "sampled_max_V": 0.803,
+     "sampled_max_f_Hz": 130.0,
+     "sampled_shortfall_V": -0.001,
+     "sampled_shortfall_rel": -0.002,
+     "traced_shortfall_rel": -0.029
+    },
+    {
+     "device": "P(VDF-TrFE)",
+     "mass_g": 170,
+     "printed_peak_V": 3.202,
+     "traced_max_V": 3.073,
+     "traced_max_f_Hz": 277.8,
+     "sampled_max_V": 2.93,
+     "sampled_max_f_Hz": 285.0,
+     "sampled_shortfall_V": 0.273,
+     "sampled_shortfall_rel": 0.085,
+     "traced_shortfall_rel": 0.04
+    },
+    {
+     "device": "P(VDF-TrFE)",
+     "mass_g": 270,
+     "printed_peak_V": 2.499,
+     "traced_max_V": 2.515,
+     "traced_max_f_Hz": 357.3,
+     "sampled_max_V": 2.423,
+     "sampled_max_f_Hz": 355.0,
+     "sampled_shortfall_V": 0.077,
+     "sampled_shortfall_rel": 0.031,
+     "traced_shortfall_rel": -0.006
+    }
+   ],
+   "median_sampled_shortfall_rel": 0.066,
+   "max_sampled_shortfall_rel": 0.303
+  }
+ },
+ "force_axis": "none: excitation amplitude fixed; preload mass is a device-state factor, not a force amplitude",
+ "n_rows": 403
+}

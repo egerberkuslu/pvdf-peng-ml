@@ -1,0 +1,218 @@
+{
+ "study": "shi2025",
+ "doi": "10.1002/smll.202508878",
+ "citation": "Shi K, Xiao H, Taleb S, Flores-Ruiz FJ, Acuautla M. High-Performance of Piezoelectric and Ferroelectric PVDF-TrFE Based Composites Engineered by MWCNTs@BaTiO3 Heterostructure. Small 21(45), e08878 (2025).",
+ "license": "CC BY-NC 4.0 (http://creativecommons.org/licenses/by-nc/4.0/), open access; PDF from the PMC open-access subset (PMC12614141). Non-commercial academic reuse of digitized values with citation.",
+ "pdf_source": "data/external_peng/pdf/PMC12614141/PMC12614141.1.pdf",
+ "figure": "Fig. 4c (PDF p. 9, image xref 137, 2051x1559 px, panel c at x 1400-2051, y 0-520)",
+ "device": "solution-cast PVDF-TrFE composite films, silver-paste electrodes, poled at 1000 kV/cm; loads applied by an Instron universal testing machine at 0.2 Hz, load resistance 60 MOhm",
+ "quantity": "peak output voltage (V) during the load-release half cycle, as plotted",
+ "coding": "model inputs mirror the paper's (c, is_pristine): c = filler_wt_pct = MWCNTs@BaTiO3 loading; pristine PVDF-TrFE is c = 0, is_pristine = 1; PB-5 (5 wt% BaTiO3, no MWCNT) is c = 0, is_pristine = 0, exactly as PVDF/BaTiO3 in the paper's grid (c = 0 wt% CNT, is_pristine = 0); bto_wt_pct records the BaTiO3 of PB-5 but is not a model input",
+ "axis_calibration": {
+  "x_ticks_px": [
+   1556.5,
+   1661.5,
+   1766.0,
+   1871.0,
+   1975.5
+  ],
+  "x_ticks_val": [
+   20,
+   40,
+   60,
+   80,
+   100
+  ],
+  "y_ticks_px": [
+   52.5,
+   137.0,
+   221.5,
+   306.0,
+   390.5
+  ],
+  "y_ticks_val": [
+   2.5,
+   2.0,
+   1.5,
+   1.0,
+   0.5
+  ],
+  "x_map": [
+   0.19093065708398305,
+   -277.2026334760223
+  ],
+  "y_map": [
+   -0.0059171597633136085,
+   2.8106508875739644
+  ],
+  "x_resid_px": 0.15007159904620226,
+  "y_resid_px": 7.50510764646606e-14,
+  "frame": {
+   "bottom_top": 474,
+   "bottom_bot": 475,
+   "left_l": 1452,
+   "left_r": 1452
+  }
+ },
+ "value_per_pixel_V": 0.0059171597633136085,
+ "marker_diameter_px": 15.5,
+ "digitization_error": {
+  "repeat_pass": {
+   "description": "second pass with a looser colour threshold, darker highlight cut and narrower column window",
+   "n": 48,
+   "median_abs_V": 0.0,
+   "max_abs_V": 0.002958579881656931
+  },
+  "text_check": [
+   {
+    "condition": [
+     "PBC-5",
+     100
+    ],
+    "stated_V": 2.45,
+    "digitized": 2.4438
+   }
+  ],
+  "slope_check": {
+   "stated_mV_per_N": 22.5,
+   "digitized_mV_per_N": 22.57396449704141
+  },
+  "second_figure_PBC5": {
+   "description": "PBC-5 curve read a second time, independently, from the Fig. 4b waveform (median pulse peak per force band)",
+   "calibration": {
+    "y_ticks_px": [
+     10.5,
+     143.0,
+     276.0
+    ],
+    "y_ticks_val": [
+     3.0,
+     2.0,
+     1.0
+    ],
+    "band_edges_px": [
+     784,
+     826,
+     880,
+     935,
+     992,
+     1049,
+     1112,
+     1170,
+     1233,
+     1296,
+     1355
+    ]
+   },
+   "pairs": [
+    {
+     "force_N": 10,
+     "fig4c": 0.318,
+     "fig4b_median_peak": 0.3289,
+     "n_pulses": 4
+    },
+    {
+     "force_N": 20,
+     "fig4c": 0.6953,
+     "fig4b_median_peak": 0.7282,
+     "n_pulses": 5
+    },
+    {
+     "force_N": 30,
+     "fig4c": 0.9763,
+     "fig4b_median_peak": 0.9843,
+     "n_pulses": 5
+    },
+    {
+     "force_N": 40,
+     "fig4c": 1.1302,
+     "fig4b_median_peak": 1.1576,
+     "n_pulses": 5
+    },
+    {
+     "force_N": 50,
+     "fig4c": 1.2929,
+     "fig4b_median_peak": 1.2706,
+     "n_pulses": 5
+    },
+    {
+     "force_N": 60,
+     "fig4c": 1.5178,
+     "fig4b_median_peak": 1.5041,
+     "n_pulses": 5
+    },
+    {
+     "force_N": 70,
+     "fig4c": 1.7426,
+     "fig4b_median_peak": 1.7376,
+     "n_pulses": 5
+    },
+    {
+     "force_N": 80,
+     "fig4c": 2.0207,
+     "fig4b_median_peak": 2.0239,
+     "n_pulses": 5
+    },
+    {
+     "force_N": 90,
+     "fig4c": 2.2426,
+     "fig4b_median_peak": 2.2498,
+     "n_pulses": 5
+    },
+    {
+     "force_N": 100,
+     "fig4c": 2.4438,
+     "fig4b_median_peak": 2.4382,
+     "n_pulses": 5
+    }
+   ],
+   "median_abs_V": 0.009450000000000014,
+   "max_abs_V": 0.03289999999999993,
+   "median_rel": 0.008610212382658645
+  },
+  "occlusion_note": "partly hidden markers read from one visible edge plus the radius; reading method per row in the csv column 'reading'"
+ },
+ "not_read": [
+  [
+   "PB-5",
+   10
+  ],
+  [
+   "PB-5",
+   20
+  ],
+  [
+   "PB-5",
+   30
+  ],
+  [
+   "PB-5",
+   50
+  ],
+  [
+   "PB-5",
+   60
+  ],
+  [
+   "PBC-1",
+   10
+  ],
+  [
+   "PBC-1",
+   30
+  ],
+  [
+   "PBC-1",
+   40
+  ],
+  [
+   "PBC-2.5",
+   10
+  ],
+  [
+   "PBC-2.5",
+   60
+  ]
+ ],
+ "n_rows": 50
+}

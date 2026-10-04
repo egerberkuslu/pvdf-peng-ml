@@ -1,0 +1,83 @@
+{
+ "study": "li2022",
+ "doi": "10.3390/nano12172910",
+ "citation": "Li H, Lim S. Screen Printing of Surface-Modified Barium Titanate/Polyvinylidene Fluoride Nanocomposites for High-Performance Flexible Piezoelectric Nanogenerators. Nanomaterials 12(17), 2910 (2022).",
+ "license": "CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/), open access; PDF from the PMC open-access subset (PMC9457562)",
+ "pdf_source": "data/external_peng/pdf/PMC9457562/PMC9457562.1.pdf",
+ "figure": "Fig. 7a (PDF p. 10, image xref 300, 2073x1173 px, panel a at x 100-1010, y 20-720)",
+ "device": "screen-printed PVDF composite films with 20 wt% BTO or TOS-BTO, printed silver electrodes; vertical pressing at 3 Hz, dynamic pressure 10-500 kPa; oscilloscope (Keysight DSOX2012A)",
+ "quantity": "peak-to-peak voltage (V), mean with error bar as plotted",
+ "axis_calibration": {
+  "x_ticks_px": [
+   327.5,
+   489.5,
+   649.5,
+   811.5,
+   972.5
+  ],
+  "x_ticks_val": [
+   100,
+   200,
+   300,
+   400,
+   500
+  ],
+  "y_ticks_px": [
+   50.5,
+   172.5,
+   294.5,
+   416.5,
+   539.5
+  ],
+  "y_ticks_val": [
+   25,
+   20,
+   15,
+   10,
+   5
+  ],
+  "x_map": [
+   0.6203454847161036,
+   -103.28659961393888
+  ],
+  "y_map": [
+   -0.04091642067705626,
+   27.05806917352846
+  ],
+  "x_resid_px": 0.6004962779157401,
+  "y_resid_px": 0.4003273322417101,
+  "frame": {
+   "bottom_top": 660,
+   "bottom_bot": 663,
+   "left_l": 164,
+   "left_r": 167
+  }
+ },
+ "value_per_pixel_V": 0.04091642067705626,
+ "digitization_error": {
+  "repeat_pass": {
+   "description": "second pass with a 9 px instead of 13 px opening kernel",
+   "n": 19,
+   "median_abs_V": 0.02045821033852846,
+   "max_abs_V": 0.14320747236969567
+  },
+  "fit_check": {
+   "20% TOS-BTO/PVDF": {
+    "digitized_intercept_V": 0.637113097074893,
+    "digitized_slope_V_per_kPa": 0.04527304828091821,
+    "stated_intercept_V": 0.52054,
+    "stated_slope_V_per_kPa": 0.0454,
+    "n": 10
+   },
+   "20% BTO/PVDF": {
+    "digitized_intercept_V": 0.06073114486790759,
+    "digitized_slope_V_per_kPa": 0.024021772338474728,
+    "stated_intercept_V": 0.1862,
+    "stated_slope_V_per_kPa": 0.0234,
+    "n": 9
+   }
+  }
+ },
+ "not_read": "BTO/PVDF at the lowest pressure (about 15 kPa): the star is covered by the TOS-BTO marker",
+ "n_rows": 19
+}

@@ -1,0 +1,992 @@
+{
+ "study": "salama2024",
+ "doi": "10.1038/s41598-024-66258-9",
+ "citation": "Salama M, Hamed A, Noman S, Magdy G, Shehata N, Kandas I. Boosting piezoelectric properties of PVDF nanofibers via embedded graphene oxide nanosheets. Sci Rep 14, 16484 (2024).",
+ "license": "CC BY 4.0 (https://creativecommons.org/licenses/by/4.0), open access; PDF from the PMC open-access subset (PMC11254930) and nature.com",
+ "pdf_sha_source": "data/external_peng/pdf/PMC11254930/PMC11254930.1.pdf",
+ "figures": {
+  "Fig. 10a/10e": "impulse test at 10 Hz, force 0.1-0.5 N, GO 0-3 wt% (PDF p. 11, image xref 386, 2008x1986 px)",
+  "Fig. 10b/10f": "impulse test at 15 Hz, same grid",
+  "Fig. 11a": "frequency test 1-5 Hz at 0.3 N, GO 0.5-3 wt% (PDF p. 12, image xref 393, 2008x764 px)"
+ },
+ "device": "electrospun PVDF/GO nanofiber mat between conductive layers; tapper on a loudspeaker driven by an amplifier (square wave), force set by the tip distance and read on a balance (F = M g); voltage on a high-impedance oscilloscope (Tektronix MDO3014), divided by sample mass",
+ "quantity": "open-circuit voltage divided by sample mass (V/g) as plotted; peak value per pulse train",
+ "axis_calibration": {
+  "10a": {
+   "x_ticks_px": [
+    253.5,
+    386.5,
+    521.0,
+    655.5,
+    788.5
+   ],
+   "x_ticks_val": [
+    0.1,
+    0.2,
+    0.3,
+    0.4,
+    0.5
+   ],
+   "y_ticks_px": [
+    74.5,
+    136.5,
+    199.5,
+    261.5,
+    323.5,
+    385.5,
+    447.5
+   ],
+   "y_ticks_val": [
+    3500,
+    3000,
+    2500,
+    2000,
+    1500,
+    1000,
+    500
+   ],
+   "x_map": [
+    0.0007468222406898205,
+    -0.08909438739939643
+   ],
+   "y_map": [
+    -8.041315748494936,
+    4100.506549446142
+   ],
+   "x_resid_px": 0.5993278566093991,
+   "y_resid_px": 0.46459341921708164
+  },
+  "10b": {
+   "x_ticks_px": [
+    1404.5,
+    1540.5,
+    1676.5,
+    1813.5
+   ],
+   "x_ticks_val": [
+    0.2,
+    0.3,
+    0.4,
+    0.5
+   ],
+   "y_ticks_px": [
+    90.0,
+    160.0,
+    228.5,
+    297.5,
+    366.5,
+    436.5
+   ],
+   "y_ticks_val": [
+    3000,
+    2500,
+    2000,
+    1500,
+    1000,
+    500
+   ],
+   "x_map": [
+    0.0007336733458034457,
+    -0.8302969950612927
+   ],
+   "y_map": [
+    -7.228347303029279,
+    3652.260065247204
+   ],
+   "x_resid_px": 0.4002201027140194,
+   "y_resid_px": 0.5914911193723277
+  },
+  "10e": {
+   "x_ticks_px": [
+    237.0,
+    354.5,
+    473.0,
+    589.5,
+    708.5
+   ],
+   "x_ticks_val": [
+    0.5,
+    1.0,
+    1.5,
+    2.0,
+    2.5
+   ],
+   "y_ticks_px": [
+    1397.0,
+    1461.0,
+    1523.5,
+    1586.0,
+    1648.5,
+    1712.0,
+    1773.0
+   ],
+   "y_ticks_val": [
+    3500,
+    3000,
+    2500,
+    2000,
+    1500,
+    1000,
+    500
+   ],
+   "x_map": [
+    0.004244448527954629,
+    -0.5055019294585635
+   ],
+   "y_map": [
+    -7.977029272483262,
+    14650.428850548105
+   ],
+   "x_resid_px": 0.8009337860783791,
+   "y_resid_px": 0.8970695970700618
+  },
+  "10f": {
+   "x_ticks_px": [
+    1269.0,
+    1387.5,
+    1508.0,
+    1628.5,
+    1748.5
+   ],
+   "x_ticks_val": [
+    0.5,
+    1.0,
+    1.5,
+    2.0,
+    2.5
+   ],
+   "y_ticks_px": [
+    1398.5,
+    1471.0,
+    1541.5,
+    1614.0,
+    1685.0,
+    1756.5
+   ],
+   "y_ticks_val": [
+    3000,
+    2500,
+    2000,
+    1500,
+    1000,
+    500
+   ],
+   "x_map": [
+    0.004166629051265512,
+    -4.784526598023769
+   ],
+   "y_map": [
+    -6.987349117758261,
+    12774.2900705431
+   ],
+   "x_resid_px": 0.7989166666662336,
+   "y_resid_px": 0.5868436813726339
+  },
+  "11a": {
+   "x_ticks_px": [
+    255.0,
+    391.0,
+    529.0,
+    665.0,
+    801.5
+   ],
+   "x_ticks_val": [
+    1,
+    2,
+    3,
+    4,
+    5
+   ],
+   "y_ticks_px": [
+    95.5,
+    178.0,
+    260.5,
+    342.5,
+    425.5,
+    507.5
+   ],
+   "y_ticks_val": [
+    3000,
+    2500,
+    2000,
+    1500,
+    1000,
+    500
+   ],
+   "x_map": [
+    0.007315253722110258,
+    -0.864648541390848
+   ],
+   "y_map": [
+    -6.066898891678841,
+    3579.6755907488105
+   ],
+   "x_resid_px": 0.7000000000001374,
+   "y_resid_px": 0.2950251343386161
+  }
+ },
+ "value_per_pixel_V_per_g": {
+  "10a": 8.041315748494936,
+  "10b": 7.228347303029279,
+  "10e": 7.977029272483262,
+  "10f": 6.987349117758261,
+  "11a": 6.066898891678841
+ },
+ "digitization_error": {
+  "repeat_pass": {
+   "description": "second pass with looser colour thresholds and a narrower column window",
+   "n": 90,
+   "median_abs_V_per_g": 3.6727868961852437,
+   "max_abs_V_per_g": 57.234895204517215
+  },
+  "cross_figure": {
+   "description": "same numbers read from Fig. 10a/b (against force) and Fig. 10e/f (against GO); includes overlap and fitted-line contamination in a/b and any plotting inconsistency of the source",
+   "n": 59,
+   "median_abs_V_per_g": 15.82017858600716,
+   "median_rel": 0.01797381879255754,
+   "n_rel_below_5pct": 41,
+   "pairs": [
+    {
+     "condition": [
+      0.5,
+      0.1,
+      10.0
+     ],
+     "a_b": 280.9,
+     "e_f": 313.5
+    },
+    {
+     "condition": [
+      0.5,
+      0.1,
+      15.0
+     ],
+     "a_b": 262.2,
+     "e_f": 277.9
+    },
+    {
+     "condition": [
+      0.5,
+      0.2,
+      15.0
+     ],
+     "a_b": 536.8,
+     "e_f": 549.7
+    },
+    {
+     "condition": [
+      0.5,
+      0.3,
+      10.0
+     ],
+     "a_b": 1036.8,
+     "e_f": 1083.0
+    },
+    {
+     "condition": [
+      0.5,
+      0.3,
+      15.0
+     ],
+     "a_b": 786.2,
+     "e_f": 837.4
+    },
+    {
+     "condition": [
+      0.5,
+      0.4,
+      10.0
+     ],
+     "a_b": 1177.5,
+     "e_f": 1300.3
+    },
+    {
+     "condition": [
+      0.5,
+      0.4,
+      15.0
+     ],
+     "a_b": 1003.1,
+     "e_f": 1043.0
+    },
+    {
+     "condition": [
+      0.5,
+      0.5,
+      10.0
+     ],
+     "a_b": 1434.8,
+     "e_f": 1498.8
+    },
+    {
+     "condition": [
+      0.5,
+      0.5,
+      15.0
+     ],
+     "a_b": 1252.4,
+     "e_f": 1242.4
+    },
+    {
+     "condition": [
+      1.0,
+      0.1,
+      10.0
+     ],
+     "a_b": 172.3,
+     "e_f": 167.8
+    },
+    {
+     "condition": [
+      1.0,
+      0.1,
+      15.0
+     ],
+     "a_b": 334.4,
+     "e_f": 337.9
+    },
+    {
+     "condition": [
+      1.0,
+      0.2,
+      10.0
+     ],
+     "a_b": 510.1,
+     "e_f": 471.9
+    },
+    {
+     "condition": [
+      1.0,
+      0.2,
+      15.0
+     ],
+     "a_b": 815.1,
+     "e_f": 826.3
+    },
+    {
+     "condition": [
+      1.0,
+      0.3,
+      10.0
+     ],
+     "a_b": 1305.1,
+     "e_f": 1298.3
+    },
+    {
+     "condition": [
+      1.0,
+      0.3,
+      15.0
+     ],
+     "a_b": 1017.5,
+     "e_f": 1114.7
+    },
+    {
+     "condition": [
+      1.0,
+      0.4,
+      10.0
+     ],
+     "a_b": 1619.4,
+     "e_f": 1593.3
+    },
+    {
+     "condition": [
+      1.0,
+      0.4,
+      15.0
+     ],
+     "a_b": 1368.2,
+     "e_f": 1359.2
+    },
+    {
+     "condition": [
+      1.0,
+      0.5,
+      10.0
+     ],
+     "a_b": 1820.8,
+     "e_f": 1696.5
+    },
+    {
+     "condition": [
+      1.0,
+      0.5,
+      15.0
+     ],
+     "a_b": 1546.7,
+     "e_f": 1558.7
+    },
+    {
+     "condition": [
+      1.5,
+      0.1,
+      10.0
+     ],
+     "a_b": 562.3,
+     "e_f": 117.5
+    },
+    {
+     "condition": [
+      1.5,
+      0.1,
+      15.0
+     ],
+     "a_b": 513.5,
+     "e_f": 476.6
+    },
+    {
+     "condition": [
+      1.5,
+      0.2,
+      10.0
+     ],
+     "a_b": 313.0,
+     "e_f": 312.3
+    },
+    {
+     "condition": [
+      1.5,
+      0.2,
+      15.0
+     ],
+     "a_b": 1126.0,
+     "e_f": 1174.2
+    },
+    {
+     "condition": [
+      1.5,
+      0.3,
+      10.0
+     ],
+     "a_b": 1780.6,
+     "e_f": 1068.1
+    },
+    {
+     "condition": [
+      1.5,
+      0.3,
+      15.0
+     ],
+     "a_b": 1580.6,
+     "e_f": 1542.6
+    },
+    {
+     "condition": [
+      1.5,
+      0.4,
+      10.0
+     ],
+     "a_b": 2693.3,
+     "e_f": 2698.0
+    },
+    {
+     "condition": [
+      1.5,
+      0.4,
+      15.0
+     ],
+     "a_b": 2219.6,
+     "e_f": 2232.8
+    },
+    {
+     "condition": [
+      1.5,
+      0.5,
+      10.0
+     ],
+     "a_b": 3673.0,
+     "e_f": 3676.3
+    },
+    {
+     "condition": [
+      1.5,
+      0.5,
+      15.0
+     ],
+     "a_b": 2716.0,
+     "e_f": 2716.1
+    },
+    {
+     "condition": [
+      2.0,
+      0.1,
+      10.0
+     ],
+     "a_b": 329.1,
+     "e_f": 328.3
+    },
+    {
+     "condition": [
+      2.0,
+      0.1,
+      15.0
+     ],
+     "a_b": 291.1,
+     "e_f": 199.3
+    },
+    {
+     "condition": [
+      2.0,
+      0.2,
+      10.0
+     ],
+     "a_b": 658.8,
+     "e_f": 745.1
+    },
+    {
+     "condition": [
+      2.0,
+      0.2,
+      15.0
+     ],
+     "a_b": 565.8,
+     "e_f": 740.9
+    },
+    {
+     "condition": [
+      2.0,
+      0.3,
+      10.0
+     ],
+     "a_b": 984.5,
+     "e_f": 1001.7
+    },
+    {
+     "condition": [
+      2.0,
+      0.3,
+      15.0
+     ],
+     "a_b": 970.5,
+     "e_f": 979.4
+    },
+    {
+     "condition": [
+      2.0,
+      0.4,
+      10.0
+     ],
+     "a_b": 1282.0,
+     "e_f": 1296.5
+    },
+    {
+     "condition": [
+      2.0,
+      0.4,
+      15.0
+     ],
+     "a_b": 1138.9,
+     "e_f": 1130.9
+    },
+    {
+     "condition": [
+      2.0,
+      0.5,
+      10.0
+     ],
+     "a_b": 1609.2,
+     "e_f": 1603.6
+    },
+    {
+     "condition": [
+      2.0,
+      0.5,
+      15.0
+     ],
+     "a_b": 1212.7,
+     "e_f": 1234.9
+    },
+    {
+     "condition": [
+      2.5,
+      0.1,
+      10.0
+     ],
+     "a_b": 514.1,
+     "e_f": 237.3
+    },
+    {
+     "condition": [
+      2.5,
+      0.1,
+      15.0
+     ],
+     "a_b": 151.1,
+     "e_f": 156.7
+    },
+    {
+     "condition": [
+      2.5,
+      0.2,
+      10.0
+     ],
+     "a_b": 879.2,
+     "e_f": 843.5
+    },
+    {
+     "condition": [
+      2.5,
+      0.2,
+      15.0
+     ],
+     "a_b": 1223.5,
+     "e_f": 1210.9
+    },
+    {
+     "condition": [
+      2.5,
+      0.3,
+      10.0
+     ],
+     "a_b": 1675.9,
+     "e_f": 1053.6
+    },
+    {
+     "condition": [
+      2.5,
+      0.3,
+      15.0
+     ],
+     "a_b": 1420.9,
+     "e_f": 1406.8
+    },
+    {
+     "condition": [
+      2.5,
+      0.4,
+      10.0
+     ],
+     "a_b": 2062.5,
+     "e_f": 2037.7
+    },
+    {
+     "condition": [
+      2.5,
+      0.4,
+      15.0
+     ],
+     "a_b": 1704.2,
+     "e_f": 1688.4
+    },
+    {
+     "condition": [
+      2.5,
+      0.5,
+      10.0
+     ],
+     "a_b": 2681.2,
+     "e_f": 2685.6
+    },
+    {
+     "condition": [
+      2.5,
+      0.5,
+      15.0
+     ],
+     "a_b": 2130.7,
+     "e_f": 1973.1
+    },
+    {
+     "condition": [
+      3.0,
+      0.1,
+      10.0
+     ],
+     "a_b": 88.3,
+     "e_f": 84.2
+    },
+    {
+     "condition": [
+      3.0,
+      0.1,
+      15.0
+     ],
+     "a_b": 78.5,
+     "e_f": 78.9
+    },
+    {
+     "condition": [
+      3.0,
+      0.2,
+      10.0
+     ],
+     "a_b": 385.4,
+     "e_f": 423.2
+    },
+    {
+     "condition": [
+      3.0,
+      0.2,
+      15.0
+     ],
+     "a_b": 412.5,
+     "e_f": 409.4
+    },
+    {
+     "condition": [
+      3.0,
+      0.3,
+      10.0
+     ],
+     "a_b": 1139.4,
+     "e_f": 1125.4
+    },
+    {
+     "condition": [
+      3.0,
+      0.3,
+      15.0
+     ],
+     "a_b": 876.6,
+     "e_f": 878.7
+    },
+    {
+     "condition": [
+      3.0,
+      0.4,
+      10.0
+     ],
+     "a_b": 1366.4,
+     "e_f": 1346.1
+    },
+    {
+     "condition": [
+      3.0,
+      0.4,
+      15.0
+     ],
+     "a_b": 1519.9,
+     "e_f": 1709.5
+    },
+    {
+     "condition": [
+      3.0,
+      0.5,
+      10.0
+     ],
+     "a_b": 2218.8,
+     "e_f": 2219.0
+    },
+    {
+     "condition": [
+      3.0,
+      0.5,
+      15.0
+     ],
+     "a_b": 2044.0,
+     "e_f": 2109.4
+    }
+   ]
+  },
+  "text_check": [
+   {
+    "condition": [
+     0.0,
+     0.5,
+     10.0
+    ],
+    "text_V_per_g": 567,
+    "digitized": 567.0,
+    "rel_err": 0.0
+   },
+   {
+    "condition": [
+     0.5,
+     0.5,
+     10.0
+    ],
+    "text_V_per_g": 1492,
+    "digitized": 1498.8,
+    "rel_err": 0.0046
+   },
+   {
+    "condition": [
+     1.0,
+     0.5,
+     10.0
+    ],
+    "text_V_per_g": 1687,
+    "digitized": 1696.5,
+    "rel_err": 0.0056
+   },
+   {
+    "condition": [
+     1.5,
+     0.5,
+     10.0
+    ],
+    "text_V_per_g": 3671,
+    "digitized": 3676.3,
+    "rel_err": 0.0014
+   },
+   {
+    "condition": [
+     2.5,
+     0.5,
+     10.0
+    ],
+    "text_V_per_g": 2680,
+    "digitized": 2685.6,
+    "rel_err": 0.0021
+   },
+   {
+    "condition": [
+     3.0,
+     0.5,
+     10.0
+    ],
+    "text_V_per_g": 2213,
+    "digitized": 2219.0,
+    "rel_err": 0.0027
+   },
+   {
+    "condition": [
+     1.5,
+     0.5,
+     15.0
+    ],
+    "text_V_per_g": 2716,
+    "digitized": 2716.1,
+    "rel_err": 0.0
+   },
+   {
+    "condition": [
+     0.5,
+     0.3,
+     5.0
+    ],
+    "text_V_per_g": 1091,
+    "digitized": 1068.4,
+    "rel_err": 0.0207
+   },
+   {
+    "condition": [
+     1.0,
+     0.3,
+     5.0
+    ],
+    "text_V_per_g": 1630,
+    "digitized": 1652.5,
+    "rel_err": 0.0138
+   },
+   {
+    "condition": [
+     1.5,
+     0.3,
+     5.0
+    ],
+    "text_V_per_g": 2593,
+    "digitized": 2594.3,
+    "rel_err": 0.0005
+   },
+   {
+    "condition": [
+     2.5,
+     0.3,
+     5.0
+    ],
+    "text_V_per_g": 1857,
+    "digitized": 1882.0,
+    "rel_err": 0.0135
+   },
+   {
+    "condition": [
+     3.0,
+     0.3,
+     5.0
+    ],
+    "text_V_per_g": 1224,
+    "digitized": 1199.6,
+    "rel_err": 0.0199
+   }
+  ],
+  "source_inconsistency_candidates": {
+   "description": "conditions where Fig. 10a/b shows a fully visible marker (not a line crossing) whose value differs from the same condition in Fig. 10e/f by more than 10 %; checked by eye for (2.5 wt%, 0.3 N, 10 Hz): magenta marker near 1650 V/g in 10a, yellow marker near 1050 V/g in 10e. The csv keeps the 10e/f value.",
+   "pairs": [
+    {
+     "condition": [
+      2.5,
+      0.3,
+      10.0
+     ],
+     "a_b": 1675.9,
+     "e_f": 1053.6,
+     "rel_diff": 0.591
+    }
+   ]
+  },
+  "cross_figure_over_25pct": {
+   "description": "every condition whose Fig. 10a/b reading and Fig. 10e/f reading differ by more than 25 %. Part of each gap is overlap of markers and fitted lines in 10a/b (reading 'errbar_mid' or a small marker) and part may be a plotting inconsistency of the source; the csv keeps the 10e/f value, and a9_external.py reports the scores with these cells dropped as a sensitivity.",
+   "threshold_rel": 0.25,
+   "pairs": [
+    {
+     "condition": [
+      1.5,
+      0.1,
+      10.0
+     ],
+     "a_b": 562.3,
+     "e_f": 117.5,
+     "rel_diff": 3.786,
+     "a_b_reading": "errbar_mid",
+     "a_b_size_px": 11
+    },
+    {
+     "condition": [
+      1.5,
+      0.3,
+      10.0
+     ],
+     "a_b": 1780.6,
+     "e_f": 1068.1,
+     "rel_diff": 0.667,
+     "a_b_reading": "errbar_mid",
+     "a_b_size_px": 10
+    },
+    {
+     "condition": [
+      2.0,
+      0.1,
+      15.0
+     ],
+     "a_b": 291.1,
+     "e_f": 199.3,
+     "rel_diff": 0.46,
+     "a_b_reading": "errbar_mid",
+     "a_b_size_px": 7
+    },
+    {
+     "condition": [
+      2.5,
+      0.1,
+      10.0
+     ],
+     "a_b": 514.1,
+     "e_f": 237.3,
+     "rel_diff": 1.166,
+     "a_b_reading": "errbar_mid",
+     "a_b_size_px": 9
+    },
+    {
+     "condition": [
+      2.5,
+      0.3,
+      10.0
+     ],
+     "a_b": 1675.9,
+     "e_f": 1053.6,
+     "rel_diff": 0.591,
+     "a_b_reading": "marker",
+     "a_b_size_px": 101
+    }
+   ]
+  }
+ },
+ "exclusions": [
+  "GO = 0 in Fig. 10e/f (markers on the axis; read from 10a/b instead)",
+  "the (0 Hz, 0) and (0 N, 0) anchor points of the fitted curves",
+  "Fig. 13 charging voltages (capacitor voltage, not device output)"
+ ],
+ "n_rows": 98
+}
