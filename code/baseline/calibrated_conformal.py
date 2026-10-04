@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""GP-scaled jackknife+ intervals (calibrated conformal for the GP surrogate).
+"""GP-scaled jackknife+ intervals (calibrated conformal for the GP).
 
 Leave-one-out residuals are standardized by the GP posterior sigma, and the
 full jackknife+ construction of Barber et al. is applied to the standardized
@@ -27,7 +27,7 @@ from sklearn.preprocessing import StandardScaler
 _p = (
     "targets_design.parquet"
     if os.path.exists("targets_design.parquet")
-    else os.path.join(os.path.dirname(__file__), "..", "data", "targets_design.parquet")
+    else os.path.join(os.path.dirname(__file__), "..", "..", "data", "targets_design.parquet")
 )
 df = pd.read_parquet(_p)
 FEAT = ["cnt_pct", "is_pristine", "force_N", "freq_Hz"]

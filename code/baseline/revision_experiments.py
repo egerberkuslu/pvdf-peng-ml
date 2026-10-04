@@ -39,8 +39,8 @@ from sklearn.neural_network import MLPRegressor
 from sklearn.preprocessing import StandardScaler
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-df = pd.read_parquet(os.path.join(HERE, "..", "data", "targets_design.parquet"))
-EXT = os.path.join(HERE, "..", "data", "external")
+df = pd.read_parquet(os.path.join(HERE, "..", "..", "data", "targets_design.parquet"))
+EXT = os.path.join(HERE, "..", "..", "data", "external")
 
 FEAT = ["cnt_pct", "is_pristine", "force_N", "freq_Hz"]
 X = df[FEAT].values.astype(float)
@@ -214,7 +214,7 @@ def clopper(k, n, alpha=0.05):
 
 
 cal = json.load(
-    open(os.path.join(HERE, "..", "results", "calibrated_conformal_results.json"))
+    open(os.path.join(HERE, "..", "..", "results", "baseline", "calibrated_conformal_results.json"))
 )
 CC = {}
 for tgt in TARGETS:
@@ -432,7 +432,7 @@ R["subsample75_replication"] = FF
 
 # full-size width normalization for Table 9
 ext = json.load(
-    open(os.path.join(HERE, "..", "results", "protocol_replay_extended.json"))
+    open(os.path.join(HERE, "..", "..", "results", "baseline", "protocol_replay_extended.json"))
 )
 WN = {}
 for name, loader in PUB.items():
@@ -548,6 +548,6 @@ GG["ofat"] = {
 }
 R["stopping_and_ofat"] = GG
 
-out = os.path.join(HERE, "..", "results", "revision_experiments.json")
+out = os.path.join(HERE, "..", "..", "results", "baseline", "revision_experiments.json")
 json.dump(R, open(out, "w"), indent=1)
 print("wrote", out)

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Batch-D reviewer analyses on the 75-condition table (no new experiments).
+"""Batch-D additional analyses on the 75-condition table (no new experiments).
 Addresses editorial points: E1 (energy=N*rms^2), E3 (group-wise CV, drop-20Hz),
 E3b (per-group error, high-output bias, calibration slope), E7 (interval coverage).
 Writes batchD_results.json."""

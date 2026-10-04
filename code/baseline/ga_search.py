@@ -21,7 +21,7 @@ from sklearn.gaussian_process.kernels import Matern, WhiteKernel
 from sklearn.preprocessing import StandardScaler
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-df = pd.read_parquet(os.path.join(HERE, "..", "data", "targets_design.parquet"))
+df = pd.read_parquet(os.path.join(HERE, "..", "..", "data", "targets_design.parquet"))
 FEAT = ["cnt_pct", "is_pristine", "force_N", "freq_Hz"]
 X = df[FEAT].values.astype(float)
 y = df["rms_Voc"].values.astype(float)
@@ -96,6 +96,6 @@ out = {
     ],
 }
 json.dump(
-    out, open(os.path.join(HERE, "..", "results", "ga_search.json"), "w"), indent=1
+    out, open(os.path.join(HERE, "..", "..", "results", "baseline", "ga_search.json"), "w"), indent=1
 )
 print("wrote ga_search.json")

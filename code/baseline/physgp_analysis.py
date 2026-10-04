@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""PhysGP: physics-guided Gaussian-process surrogate.
+"""PhysGP: Gaussian process with a closed-form voltage-law mean.
 
 The closed-form voltage law
     V(c, F, f) = (b0 + b1 c + b2 c^2) * F * A (g/2)^2 / ((f - f0)^2 + (g/2)^2)
@@ -28,7 +28,7 @@ from sklearn.preprocessing import StandardScaler
 _p = (
     "targets_design.parquet"
     if os.path.exists("targets_design.parquet")
-    else os.path.join(os.path.dirname(__file__), "..", "data", "targets_design.parquet")
+    else os.path.join(os.path.dirname(__file__), "..", "..", "data", "targets_design.parquet")
 )
 df = pd.read_parquet(_p)
 FEAT = ["cnt_pct", "is_pristine", "force_N", "freq_Hz"]

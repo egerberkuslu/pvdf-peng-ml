@@ -32,7 +32,7 @@ SEED = 0
 EXT = (
     "external_data"
     if os.path.isdir("external_data")
-    else os.path.join(os.path.dirname(__file__), "..", "data", "external")
+    else os.path.join(os.path.dirname(__file__), "..", "..", "data", "external")
 )
 
 

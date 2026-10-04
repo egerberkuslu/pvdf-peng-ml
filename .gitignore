@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+.venv/
+results/*_cache/
+results/baseline/targets_design.parquet
+results/baseline/external_data
+.mplconfig/

@@ -25,7 +25,7 @@ from sklearn.gaussian_process.kernels import Matern, WhiteKernel
 from sklearn.preprocessing import StandardScaler
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-df = pd.read_parquet(os.path.join(HERE, "..", "data", "targets_design.parquet"))
+df = pd.read_parquet(os.path.join(HERE, "..", "..", "data", "targets_design.parquet"))
 FEAT = ["cnt_pct", "is_pristine", "force_N", "freq_Hz"]
 X = df[FEAT].values.astype(float)
 y = df["rms_Voc"].values.astype(float)
@@ -142,6 +142,6 @@ for gname, gvals in GROUPS.items():
     }
 R["groupwise_jackknife_rms"] = GW
 
-out_p = os.path.join(HERE, "..", "results", "groupwise_conformal.json")
+out_p = os.path.join(HERE, "..", "..", "results", "baseline", "groupwise_conformal.json")
 json.dump(R, open(out_p, "w"), indent=1)
 print("wrote", out_p)
