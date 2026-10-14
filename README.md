@@ -33,7 +33,7 @@ full-precision value.
 code/                 analysis scripts (Python); peng_paths.py defines all paths
 code/baseline/        first-stage analyses whose JSON outputs the later scripts read
 code/figures/         scripts of the manuscript's result figures
-data/                 design table, LCR measurements, external data (no raw waveforms)
+data/                 raw voltage waveforms, design table, LCR measurements, external data
 results/              derived numbers: JSON, CSV, LaTeX macros, table bodies
 results/baseline/     outputs of code/baseline/ (and of the fourteen-regressor benchmark)
 results/tables/       table bodies (booktabs) written by the scripts
@@ -61,14 +61,15 @@ Science 60(48):25481-25503, doi:10.1007/s10853-025-11872-9.
 | `data/external/` | UCI benchmarks (Airfoil Self-Noise, Energy Efficiency, Concrete, Yacht, Combined Cycle Power Plant), unchanged; provenance in `data/external/NOTE.txt` |
 | `results/lcr/lcr_summary.csv` | Per-composition summary of the LCR measurements |
 
-**Raw waveforms are not part of this repository. The sampled voltage waveforms are
-available from the authors on reasonable request (TO CONFIRM by the authors).** The
-design table is derived from them; the scripts that start from the waveforms
-(`a1_segment.py`, `a1_specimen.py`, `a4_figures.py`, `a6_twin.py`, `a7_dynforce.py`,
-`a11_freq.py`, `figures/make_cycles.py`) need `data/long.parquet` and `data/series_index.parquet` and cannot be rerun
-without them; their outputs are shipped under `results/`. The original LCR workbook is
-likewise available on request; `data/lcr/lcr_tidy.csv` holds every value of its five
-labelled blocks.
+| `data/raw_waveforms.csv` | The 75 open-circuit voltage recordings, 1000 samples each (1 s at 1 kHz): `series_id` (= `condition_id`), `material`, `force`, `freq_label`, `freq_hz`, `time_s`, `voc_V` |
+| `data/series_index.csv` | One row per recording with its design factors and encodings (`cnt_pct`, `force_newton`, `cnt_level`, `material_code`) |
+| `data/long.parquet`, `data/series_index.parquet` | The same waveforms and index in the form the scripts read |
+| `data/lcr/LCR_measurements_original.xlsx` | The original LCR workbook from which `data/lcr/lcr_tidy.csv` was extracted |
+
+The raw waveforms are included, so every script, including those that start from the
+waveforms (`a1_segment.py`, `a1_specimen.py`, `a4_figures.py`, `a6_twin.py`,
+`a7_dynforce.py`, `a11_freq.py`, `figures/make_cycles.py`), can be rerun from this
+repository.
 
 ## How to reproduce
 
@@ -108,24 +109,24 @@ in `results/`, so every script can also be run on its own):
 
 | Script | Writes | Content (macro prefix) |
 |---|---|---|
-| `a1_specimen.py`, `a1_segment.py` | `results/a1_*.csv/json`, `numbers_a1.tex`, `tables/tab_spec_*.tex` | cycle segmentation, repeatability, split-half, specimen bootstrap (`spec`); needs raw waveforms |
+| `a1_specimen.py`, `a1_segment.py` | `results/a1_*.csv/json`, `numbers_a1.tex`, `tables/tab_spec_*.tex` | cycle segmentation, repeatability, split-half, specimen bootstrap (`spec`) |
 | `a2_physgp.py`, `a2_report.py` | `a2_physgp.json`, `numbers_a2.tex`, `tables/tab_phys_*.tex` | LawGP/PhysGP against the plain GP, per-level and axis-wise results (`phys`) |
 | `a3_tables.py`, `a3_bench.py`, `a3_conformal.py`, `a3_sensitivity.py` | `a3_tables.json`, `a3_groupwise_coverage.json`, `numbers_a3.tex`, `tables/tab_bench_*.tex`, `tab_cov_*.tex`, `tab_al_*.tex`, `tab_rep_*.tex` | benchmark of fourteen regressors, interval coverage, McNemar tests, replication (`bench`, `cov`) |
-| `a4_figures.py` | `a4_desc.json`, `numbers_a4.tex`, `tables/tab_desc_optima.tex` | descriptive figures and optima (`desc`); needs raw waveforms |
+| `a4_figures.py` | `a4_desc.json`, `numbers_a4.tex`, `tables/tab_desc_optima.tex` | descriptive figures and optima (`desc`) |
 | `a5_structured.py` | `a5_structured.json`, `numbers_a5.tex`, `tables/tab_alt_*.tex` | structured kernels against plain GP and PhysGP |
-| `a6_twin.py` | `a6_twin.json`, `a6_*.csv`, `numbers_a6.tex`, `tables/tab_a6_*.tex` | simulated generator with known ground truth; needs raw waveforms for its first block |
-| `a7_dynforce.py` | `a7_dynforce.json`, `a7_*.csv`, `numbers_a7.tex` | RC deconvolution and open-circuit sensitivity; needs raw waveforms |
+| `a6_twin.py` | `a6_twin.json`, `a6_*.csv`, `numbers_a6.tex`, `tables/tab_a6_*.tex` | simulated generator with known ground truth for its first block |
+| `a7_dynforce.py` | `a7_dynforce.json`, `a7_*.csv`, `numbers_a7.tex` | RC deconvolution and open-circuit sensitivity |
 | `a8_specvar.py` | `a8_specvar.json`, `numbers_a8.tex` | literature-calibrated specimen variability |
 | `a9_external.py` | `a9_external.json`, `a9_*.csv`, `numbers_a9.tex` | protocol applied to the digitized literature sweeps |
 | `a10_methods.py` | `a10_methods.json`, `a10_*.csv`, `numbers_a10.tex` | fixed against tuned models, active-learning stopping, public datasets |
-| `a11_freq.py` | `a11_freq.json`, `numbers_a11.tex` | frequency-axis extensions; needs raw waveforms |
+| `a11_freq.py` | `a11_freq.json`, `numbers_a11.tex` | frequency-axis extensions |
 | `a12_axisrule.py` | `a12_axisrule.json`, `a12_units.csv`, `numbers_a12.tex` | inner-fold audit of the axis rule |
 | `a13_rankset.py` | `a13_rankset.json`, `numbers_a13.tex` | composition statements that survive specimen variability |
 | `a14_kmode.py` | `a14_kmode.json`, `numbers_a14.tex` | K-mode law chosen by BIC |
 | `lcr_analysis.py` | `results/lcr/*` | LCR summary, RC high-pass chain, macros (`lcr`) |
 | `code/baseline/*.py` | `results/baseline/*.json` | first-stage analyses; `reg_stats.json` and `reg_models.json` (benchmark scores) are shipped, their pipeline is not |
 | `code/reg_common.py` | | model factories of the fourteen regressors |
-| `code/figures/make_*.py` | `figures/*.pdf/png` | manuscript result figures (axes, coverage, law, lcr, twin; cycles needs raw waveforms) |
+| `code/figures/make_*.py` | `figures/*.pdf/png` | manuscript result figures (axes, coverage, law, lcr, twin, cycles) |
 
 ## Notes
 
